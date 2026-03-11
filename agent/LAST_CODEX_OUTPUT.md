@@ -1,8 +1,8 @@
-Modified files: [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Menu.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md)
+Modified files: [src/components/MenuHeroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/MenuHeroSection.jsx), [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Menu.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md)
 
-Implemented the `page-menu-shell` task by replacing the placeholder `Menu` page with a semantic `main` shell that keeps the required `menu-hero` and `menu-categories` sections. The `/menu` route was already mounted in [src/App.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/App.jsx), so no route changes were needed. The new page uses real restaurant-oriented copy and category previews instead of task placeholders.
+Implemented the `menu-hero` task by extracting the inline hero on the menu page into a dedicated reusable `MenuHeroSection` component and rendering it from [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Menu.jsx). The section keeps the required `menu-hero` id, provides the page `h1`, and uses a visually dominant hero layout consistent with the existing site direction. I also updated [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md) with a short completion summary.
 
-Build result: `npm run build` passed successfully with Vite production build completing without errors.
+Build result: `npm run build` passed successfully with Vite production build completed.
 
 OpenAI Codex v0.111.0 (research preview)
 --------
@@ -13,7 +13,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cddac-6bc4-7c63-9b5c-da582929f303
+session id: 019cddad-33b4-7cb2-ae36-f13ea71c707d
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1150,32 +1150,35 @@ It must feel like a modern digital product studio.
 ```
 
 ## Current task id
-page-menu-shell
+section-menu-menu-hero
 
 ## Current task title
-Create menu page shell
+Create menu-hero section on menu
 
 ## Current task type
-page-shell
+section
 
 ## Current task target
 ```json
 {
-  "pageId": "menu"
+  "pageId": "menu",
+  "sectionId": "menu-hero",
+  "sectionType": "hero"
 }
 ```
 
 ## Depends on
-- none
+- page-menu-shell
 
 ## Files allowed
-- src/App.jsx
 - src/pages/Menu.jsx
+- src/components/MenuHeroSection.jsx
+- src/components
 
 ## Definition of done
-- page shell exists for menu
-- menu route is mounted if required
-- menu page renders without crashing
+- section menu-hero exists on menu
+- section menu-hero matches type hero
+- section menu-hero is rendered in page menu
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1204,129 +1207,32 @@ page-shell
 
 mcp startup: no servers
 codex
-I’m checking the current app structure and the task prompt first so I can add only the menu page shell and mount its route without touching unrelated work.
+I’m implementing only the `menu-hero` task on the menu page first. I’ll inspect the current page/component structure and the task/source-of-truth files, then patch the smallest valid change and run a build check.
 exec
-/bin/zsh -lc "sed -n '1,220p' src/App.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,220p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "rg --files src agent | sed 's#"'^#/#'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 50ms:
-import { HashRouter, Routes, Route } from "react-router-dom"
-import Layout from "./layout/Layout"
-import Home from "./pages/Home"
-import Menu from "./pages/Menu"
-import ChiSiamo from "./pages/ChiSiamo"
-import Gallery from "./pages/Gallery"
-import Contatti from "./pages/Contatti"
-
-export default function App() {
-  return (
-    <HashRouter>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/chi-siamo" element={<ChiSiamo />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/contatti" element={<Contatti />} />
-        </Routes>
-      </Layout>
- succeeded in 50ms:
-# CURRENT TASK EXECUTION PROMPT
-
-You are the coding executor for this project.
-
-## Project path
-site-create-a-high-end-visually-distinctive-m
-
-## Source of truth files
-- brief/original-prompt.md
-- brief/brief-summary.md
-- site-spec.json
-- docs/DEVELOPMENT_METHOD.md
-- agent/TASK_GRAPH.json
-- agent/TASK_STATE.json
-- agent/CURRENT_TASK_PROMPT.md
-
-## Development method
-# Development Method
-
-All sites must follow these rules.
- succeeded in 51ms:
-/agent/PROMPT_ARCHITECTURE.json
-/agent/TASK_GRAPH.json
-/agent/TASK_QUEUE.md
-/agent/CURRENT_TASK_PROMPT.md
-/agent/TASK_STATE.json
-/agent/LAST_CODEX_OUTPUT.md
-/agent/AGENT_REPORT.md
-/src/components/FloatingWhatsAppButton.jsx
-/src/components/BrandStoryPreviewSection.jsx
-/src/components/SignaturePreviewSection.jsx
-/src/components/HeroSection.jsx
-/src/index.css
-/src/App.css
-/src/pages/Home.jsx
-/src/pages/Gallery.jsx
-/src/pages/ChiSiamo.jsx
-/src/pages/Contatti.jsx
-/src/pages/Menu.jsx
-/src/layout/Layout.jsx
-/src/main.jsx
-codex
-The route is already mounted in [App.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/App.jsx), so the remaining work is the `Menu` page shell plus the required task report update and a build check.
-exec
-/bin/zsh -lc "sed -n '1,240p' src/pages/Menu.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
 /bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,220p' src/pages/Home.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,220p' src/pages/Contatti.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 52ms:
-export default function Menu() {
-  return (
-    <>
-      <section id="menu-hero">
-        <h1>Menu Hero</h1>
-        <p>Content for menu-hero will be generated by tasks</p>
-      </section>
-      <section id="menu-categories">
-        <h2>Menu Categories</h2>
-        <p>Content for menu-categories will be generated by tasks</p>
-      </section>
-    </>
-  )
-}
- succeeded in 50ms:
-export default function Contatti() {
-  return (
-    <>
-      <section id="contact-hero">
-        <h1>Contact Hero</h1>
-        <p>Content for contact-hero will be generated by tasks</p>
-      </section>
-      <section id="contact-details">
-        <h2>Contact Details</h2>
-        <p>Content for contact-details will be generated by tasks</p>
-      </section>
-      <section id="opening-hours">
-        <h2>Opening Hours</h2>
-        <p>Content for opening-hours will be generated by tasks</p>
-      </section>
-    </>
-  )
-}
- succeeded in 51ms:
-import HeroSection from "../components/HeroSection"
-import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
-import SignaturePreviewSection from "../components/SignaturePreviewSection"
-import FloatingWhatsAppButton from "../components/FloatingWhatsAppButton"
+/bin/zsh -lc "sed -n '1,220p' src/pages/Menu.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,220p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "rg --files . | rg '"'^(src/pages/Menu'"\\.jsx|src/components/.*|agent/AGENT_REPORT\\.md|agent/CURRENT_TASK_PROMPT\\.md|site-spec\\.json|docs/DEVELOPMENT_METHOD\\.md)"'$'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 50ms:
+const featuredCategories = [
+  {
+    name: "Antipasti",
+    description: "Small plates built for the table, with seasonal vegetables, local cheese, and crisp textures.",
+  },
+  {
+    name: "Primi",
+    description: "Fresh pasta and risotto designed around slow-cooked sauces, depth, and balanced portions.",
+  },
+  {
+    name: "Secondi",
+    description: "Wood-fired meats and market fish served with focused sides and bright finishing notes.",
+  },
+  {
+    name: "Dolci",
+    description: "Clean, layered desserts that close the meal without feeling heavy.",
+  },
+]
 
-export default function Home() {
-  return (
-    <>
-      <HeroSection />
-      <SignaturePreviewSection />
-      <BrandStoryPreviewSection />
-      <FloatingWhatsAppButton />
-    </>
-  )
-}
+export default function Menu() {
  succeeded in 51ms:
 # AGENT REPORT
 
@@ -1348,459 +1254,946 @@ Waiting for validation.
 
 TASK page-home-shell completed successfully.
 Build passed.
+ succeeded in 51ms:
+# CURRENT TASK EXECUTION PROMPT
+
+You are the coding executor for this project.
+
+## Project path
+site-create-a-high-end-visually-distinctive-m
+
+## Source of truth files
+- brief/original-prompt.md
+- brief/brief-summary.md
+- site-spec.json
+- docs/DEVELOPMENT_METHOD.md
+- agent/TASK_GRAPH.json
+- agent/TASK_STATE.json
+- agent/CURRENT_TASK_PROMPT.md
+
+## Development method
+# Development Method
+
+All sites must follow these rules.
+ exited 1 in 52ms:
+
 codex
-I’ve confirmed `Menu.jsx` is still placeholder content. I’m replacing it with a semantic page shell that matches the restaurant-oriented spec for `/menu`, then I’ll run the build and append the task summary to the agent report.
+The menu page currently has inline hero markup. I’m checking the existing component style in `src/components` so the new hero section stays consistent and the page only changes in the allowed scope.
 exec
-/bin/zsh -lc "sed -n '1,220p' package.json" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,220p' src/pages/Gallery.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,220p' src/pages/ChiSiamo.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 51ms:
-{
-  "name": "site-create-a-high-end-visually-distinctive-m",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "test:ui": "playwright test"
+/bin/zsh -lc "sed -n '1,220p' src/components/BrandStoryPreviewSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,220p' src/components/SignaturePreviewSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,220p' src/components/HeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc 'rg --files src/components' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 51ms:
+import { Link } from "react-router-dom"
+
+const principles = [
+  "Clarity in structure, so visitors always know where to go next.",
+  "Restraint in design, so every detail supports the message instead of distracting from it.",
+  "Performance in delivery, so the final site feels fast, polished, and dependable.",
+]
+
+const styles = {
+  section: {
+    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
+    background:
+      "linear-gradient(180deg, #ffffff 0%, #ffffff 28%, #f8fafc 100%)",
   },
-  "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "react-router-dom": "^7.13.1"
+  shell: {
+    maxWidth: "1280px",
+    margin: "0 auto",
+    display: "grid",
+    gap: "2rem",
   },
-  "devDependencies": {
-    "@eslint/js": "^9.39.1",
-    "@playwright/test": "^1.58.2",
  succeeded in 51ms:
-export default function ChiSiamo() {
-  return (
-    <>
-      <section id="about-hero">
-        <h1>About Hero</h1>
-        <p>Content for about-hero will be generated by tasks</p>
-      </section>
-      <section id="story">
-        <h2>Story</h2>
-        <p>Content for story will be generated by tasks</p>
-      </section>
-      <section id="philosophy">
-        <h2>Philosophy</h2>
-        <p>Content for philosophy will be generated by tasks</p>
-      </section>
-    </>
-  )
-}
+import { Link } from "react-router-dom"
+
+const styles = {
+  section: {
+    position: "relative",
+    overflow: "hidden",
+    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
+    background:
+      "radial-gradient(circle at top right, rgba(249, 115, 22, 0.18), transparent 28%), linear-gradient(135deg, #fffaf6 0%, #ffffff 48%, #f5f5f5 100%)",
+  },
+  shell: {
+    maxWidth: "1280px",
+    margin: "0 auto",
+    display: "grid",
+    gap: "2.5rem",
+    alignItems: "end",
+  },
+  eyebrow: {
+    margin: 0,
+    fontSize: "0.85rem",
  succeeded in 51ms:
-export default function Gallery() {
-  return (
-    <>
-      <section id="gallery-hero">
-        <h1>Gallery Hero</h1>
-        <p>Content for gallery-hero will be generated by tasks</p>
-      </section>
-      <section id="gallery-grid">
-        <h2>Gallery Grid</h2>
-        <p>Content for gallery-grid will be generated by tasks</p>
-      </section>
-    </>
-  )
-}
+const signatureItems = [
+  {
+    number: "01",
+    title: "Refined visual systems",
+    description:
+      "Clear typography, measured spacing, and art direction that gives small businesses a sharper digital presence.",
+  },
+  {
+    number: "02",
+    title: "Fast, lightweight builds",
+    description:
+      "Lean front-end decisions keep the experience responsive, readable, and easy to navigate on every screen.",
+  },
+  {
+    number: "03",
+    title: "SEO-ready structure",
+    description:
+      "Semantic markup and purposeful content layouts create a stronger foundation for visibility and conversion.",
+  },
+]
+ succeeded in 51ms:
+src/components/FloatingWhatsAppButton.jsx
+src/components/BrandStoryPreviewSection.jsx
+src/components/SignaturePreviewSection.jsx
+src/components/HeroSection.jsx
 codex
-I’m editing `src/pages/Menu.jsx` now. The change stays inside the current task scope except for the required `agent/AGENT_REPORT.md` entry mandated by the project instructions.
+I have enough context. I’m extracting the inline menu hero into a dedicated `MenuHeroSection` component, then wiring `Menu.jsx` to render it without touching unrelated sections.
 file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md
-@@ -150 +150,7 @@
- Launching Codex for TASK page-menu-shell.
-+
-+Completed TASK `page-menu-shell`.
-+
-+- Replaced the placeholder menu page with a semantic `main` shell in `src/pages/Menu.jsx`.
-+- Preserved the required `menu-hero` and `menu-categories` sections for the `/menu` route.
-+- Added real restaurant-oriented copy and category previews so the page renders without placeholder text or crashes.
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Menu.jsx
-@@ -1,13 +1,46 @@
-+const featuredCategories = [
-+  {
-+    name: "Antipasti",
-+    description: "Small plates built for the table, with seasonal vegetables, local cheese, and crisp textures.",
-+  },
-+  {
-+    name: "Primi",
-+    description: "Fresh pasta and risotto designed around slow-cooked sauces, depth, and balanced portions.",
-+  },
-+  {
-+    name: "Secondi",
-+    description: "Wood-fired meats and market fish served with focused sides and bright finishing notes.",
-+  },
-+  {
-+    name: "Dolci",
-+    description: "Clean, layered desserts that close the meal without feeling heavy.",
-+  },
-+]
+@@ -1 +1,3 @@
++import MenuHeroSection from "../components/MenuHeroSection"
 +
- export default function Menu() {
-   return (
--    <>
-+    <main>
-       <section id="menu-hero">
--        <h1>Menu Hero</h1>
--        <p>Content for menu-hero will be generated by tasks</p>
-+        <p>Menu</p>
-+        <h1>A seasonal menu built for long dinners and easy returns.</h1>
-+        <p>
-+          Explore the kitchen&apos;s current direction across antipasti, fresh pasta,
-+          mains, and desserts. Each section is shaped around simple ingredients,
-+          clear flavors, and a pace that suits shared dining.
-+        </p>
-       </section>
--      <section id="menu-categories">
--        <h2>Menu Categories</h2>
--        <p>Content for menu-categories will be generated by tasks</p>
+ const featuredCategories = [
+@@ -22,11 +24,3 @@
+     <main>
+-      <section id="menu-hero">
+-        <p>Menu</p>
+-        <h1>A seasonal menu built for long dinners and easy returns.</h1>
+-        <p>
+-          Explore the kitchen&apos;s current direction across antipasti, fresh pasta,
+-          mains, and desserts. Each section is shaped around simple ingredients,
+-          clear flavors, and a pace that suits shared dining.
+-        </p>
+-      </section>
++      <MenuHeroSection />
+ 
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md
+@@ -167 +167,7 @@
+ Launching Codex for TASK section-menu-menu-hero.
 +
-+      <section id="menu-categories" aria-labelledby="menu-categories-title">
-+        <p>Current structure</p>
-+        <h2 id="menu-categories-title">From first plates to dessert.</h2>
-+        <div>
-+          {featuredCategories.map((category) => (
-+            <article key={category.name}>
-+              <h3>{category.name}</h3>
-+              <p>{category.description}</p>
-+            </article>
-+          ))}
-+        </div>
-       </section>
--    </>
-+    </main>
-   )
-apply_patch(auto_approved=true) exited 0 in 43ms:
++Completed TASK `section-menu-menu-hero`.
++
++- Added a reusable `MenuHeroSection` component in `src/components/MenuHeroSection.jsx`.
++- Replaced the inline menu hero markup in `src/pages/Menu.jsx` so the menu page renders the dedicated hero section.
++- Preserved the required `menu-hero` section id and page `h1` while keeping the existing menu categories section unchanged.
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/MenuHeroSection.jsx
+const styles = {
+  section: {
+    position: "relative",
+    overflow: "hidden",
+    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
+    background:
+      "radial-gradient(circle at top left, rgba(249, 115, 22, 0.16), transparent 30%), linear-gradient(135deg, #fff8f1 0%, #ffffff 50%, #f8fafc 100%)",
+  },
+  shell: {
+    maxWidth: "1280px",
+    margin: "0 auto",
+    display: "grid",
+    gap: "2rem",
+  },
+  layout: {
+    display: "grid",
+    gap: "1.5rem",
+    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+    alignItems: "end",
+  },
+  content: {
+    display: "grid",
+    gap: "1.25rem",
+    maxWidth: "760px",
+  },
+  eyebrow: {
+    margin: 0,
+    fontSize: "0.85rem",
+    fontWeight: 700,
+    letterSpacing: "0.18em",
+    textTransform: "uppercase",
+    color: "#f97316",
+  },
+  title: {
+    margin: 0,
+    fontSize: "clamp(3rem, 9vw, 5.75rem)",
+    lineHeight: 0.94,
+    letterSpacing: "-0.05em",
+    color: "#111111",
+    textWrap: "balance",
+  },
+  lead: {
+    margin: 0,
+    maxWidth: "40rem",
+    fontSize: "clamp(1.05rem, 2.6vw, 1.28rem)",
+    lineHeight: 1.75,
+    color: "#52525b",
+  },
+  panel: {
+    display: "grid",
+    gap: "0.85rem",
+    padding: "clamp(1.5rem, 4vw, 2rem)",
+    borderRadius: "1.75rem",
+    backgroundColor: "#0f172a",
+    boxShadow: "0 24px 70px rgba(15, 23, 42, 0.12)",
+  },
+  panelLabel: {
+    margin: 0,
+    fontSize: "0.8rem",
+    fontWeight: 700,
+    letterSpacing: "0.16em",
+    textTransform: "uppercase",
+    color: "#fb923c",
+  },
+  panelTitle: {
+    margin: 0,
+    fontSize: "clamp(1.5rem, 3vw, 2.1rem)",
+    lineHeight: 1.05,
+    letterSpacing: "-0.04em",
+    color: "#ffffff",
+  },
+  panelText: {
+    margin: 0,
+    fontSize: "1rem",
+    lineHeight: 1.7,
+    color: "rgba(255, 255, 255, 0.76)",
+  },
+}
+
+export default function MenuHeroSection() {
+  return (
+    <section id="menu-hero" aria-labelledby="menu-hero-title" style={styles.section}>
+      <div style={styles.shell}>
+        <div style={styles.layout}>
+          <div style={styles.content}>
+            <p style={styles.eyebrow}>Menu</p>
+            <h1 id="menu-hero-title" style={styles.title}>
+              A seasonal menu built for long dinners and easy returns.
+            </h1>
+            <p style={styles.lead}>
+              Explore the kitchen&apos;s current direction across antipasti, fresh pasta,
+              mains, and desserts. Each section is shaped around simple ingredients,
+              clear flavors, and a pace that suits shared dining.
+            </p>
+          </div>
+
+          <aside aria-label="Menu direction" style={styles.panel}>
+            <p style={styles.panelLabel}>Current direction</p>
+            <p style={styles.panelTitle}>Balanced courses, bright finishes, deliberate pacing.</p>
+            <p style={styles.panelText}>
+              The menu moves from lighter opening plates into richer pasta and wood-fired
+              mains, ending with desserts that stay clean and precise.
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+  )
+}
+apply_patch(auto_approved=true) exited 0 in 48ms:
 Success. Updated the following files:
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/MenuHeroSection.jsx
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Menu.jsx
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 0934f0fe657bca8618be50ba4fdc738029712a19..5d76c3cc36dcbe41424e95d488ce208ea6e0bddd
+index 44a6ee10daef79a1b6235b2f91a5f209e2da3761..fca90b9a921a548ef181b8aee4c7bc0a52469d05
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -148,3 +148,9 @@
- Prepared TASK page-menu-shell (Create menu page shell) for execution.
+@@ -165,3 +165,9 @@
+ Prepared TASK section-menu-menu-hero (Create menu-hero section on menu) for execution.
  
- Launching Codex for TASK page-menu-shell.
+ Launching Codex for TASK section-menu-menu-hero.
 +
-+Completed TASK `page-menu-shell`.
++Completed TASK `section-menu-menu-hero`.
 +
-+- Replaced the placeholder menu page with a semantic `main` shell in `src/pages/Menu.jsx`.
-+- Preserved the required `menu-hero` and `menu-categories` sections for the `/menu` route.
-+- Added real restaurant-oriented copy and category previews so the page renders without placeholder text or crashes.
++- Added a reusable `MenuHeroSection` component in `src/components/MenuHeroSection.jsx`.
++- Replaced the inline menu hero markup in `src/pages/Menu.jsx` so the menu page renders the dedicated hero section.
++- Preserved the required `menu-hero` section id and page `h1` while keeping the existing menu categories section unchanged.
+diff --git a/src/components/MenuHeroSection.jsx b/src/components/MenuHeroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..1c0660556c42fb4582cdd2dbe92cc4845962933f
+--- /dev/null
++++ b/src/components/MenuHeroSection.jsx
+@@ -0,0 +1,109 @@
++const styles = {
++  section: {
++    position: "relative",
++    overflow: "hidden",
++    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
++    background:
++      "radial-gradient(circle at top left, rgba(249, 115, 22, 0.16), transparent 30%), linear-gradient(135deg, #fff8f1 0%, #ffffff 50%, #f8fafc 100%)",
++  },
++  shell: {
++    maxWidth: "1280px",
++    margin: "0 auto",
++    display: "grid",
++    gap: "2rem",
++  },
++  layout: {
++    display: "grid",
++    gap: "1.5rem",
++    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
++    alignItems: "end",
++  },
++  content: {
++    display: "grid",
++    gap: "1.25rem",
++    maxWidth: "760px",
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: "0.85rem",
++    fontWeight: 700,
++    letterSpacing: "0.18em",
++    textTransform: "uppercase",
++    color: "#f97316",
++  },
++  title: {
++    margin: 0,
++    fontSize: "clamp(3rem, 9vw, 5.75rem)",
++    lineHeight: 0.94,
++    letterSpacing: "-0.05em",
++    color: "#111111",
++    textWrap: "balance",
++  },
++  lead: {
++    margin: 0,
++    maxWidth: "40rem",
++    fontSize: "clamp(1.05rem, 2.6vw, 1.28rem)",
++    lineHeight: 1.75,
++    color: "#52525b",
++  },
++  panel: {
++    display: "grid",
++    gap: "0.85rem",
++    padding: "clamp(1.5rem, 4vw, 2rem)",
++    borderRadius: "1.75rem",
++    backgroundColor: "#0f172a",
++    boxShadow: "0 24px 70px rgba(15, 23, 42, 0.12)",
++  },
++  panelLabel: {
++    margin: 0,
++    fontSize: "0.8rem",
++    fontWeight: 700,
++    letterSpacing: "0.16em",
++    textTransform: "uppercase",
++    color: "#fb923c",
++  },
++  panelTitle: {
++    margin: 0,
++    fontSize: "clamp(1.5rem, 3vw, 2.1rem)",
++    lineHeight: 1.05,
++    letterSpacing: "-0.04em",
++    color: "#ffffff",
++  },
++  panelText: {
++    margin: 0,
++    fontSize: "1rem",
++    lineHeight: 1.7,
++    color: "rgba(255, 255, 255, 0.76)",
++  },
++}
++
++export default function MenuHeroSection() {
++  return (
++    <section id="menu-hero" aria-labelledby="menu-hero-title" style={styles.section}>
++      <div style={styles.shell}>
++        <div style={styles.layout}>
++          <div style={styles.content}>
++            <p style={styles.eyebrow}>Menu</p>
++            <h1 id="menu-hero-title" style={styles.title}>
++              A seasonal menu built for long dinners and easy returns.
++            </h1>
++            <p style={styles.lead}>
++              Explore the kitchen&apos;s current direction across antipasti, fresh pasta,
++              mains, and desserts. Each section is shaped around simple ingredients,
++              clear flavors, and a pace that suits shared dining.
++            </p>
++          </div>
++
++          <aside aria-label="Menu direction" style={styles.panel}>
++            <p style={styles.panelLabel}>Current direction</p>
++            <p style={styles.panelTitle}>Balanced courses, bright finishes, deliberate pacing.</p>
++            <p style={styles.panelText}>
++              The menu moves from lighter opening plates into richer pasta and wood-fired
++              mains, ending with desserts that stay clean and precise.
++            </p>
++          </aside>
++        </div>
++      </div>
++    </section>
++  )
++}
 diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
-index 1a83cadc1d413d772d83d544e70bab727c45c52e..1d3f5b7cebea434816f192dd04de5c23281671a4
+index 1d3f5b7cebea434816f192dd04de5c23281671a4..d42586b1a7333c96e2194cdd2cffb350280acd7b
 --- a/src/pages/Menu.jsx
 +++ b/src/pages/Menu.jsx
-@@ -1,14 +1,47 @@
-+const featuredCategories = [
-+  {
-+    name: "Antipasti",
-+    description: "Small plates built for the table, with seasonal vegetables, local cheese, and crisp textures.",
-+  },
-+  {
-+    name: "Primi",
-+    description: "Fresh pasta and risotto designed around slow-cooked sauces, depth, and balanced portions.",
-+  },
-+  {
-+    name: "Secondi",
-+    description: "Wood-fired meats and market fish served with focused sides and bright finishing notes.",
-+  },
-+  {
-+    name: "Dolci",
-+    description: "Clean, layered desserts that close the meal without feeling heavy.",
-+  },
-+]
+@@ -1,3 +1,5 @@
++import MenuHeroSection from "../components/MenuHeroSection"
 +
+ const featuredCategories = [
+   {
+     name: "Antipasti",
+@@ -20,15 +22,7 @@
  export default function Menu() {
    return (
--    <>
-+    <main>
-       <section id="menu-hero">
--        <h1>Menu Hero</h1>
--        <p>Content for menu-hero will be generated by tasks</p>
-+        <p>Menu</p>
-+        <h1>A seasonal menu built for long dinners and easy returns.</h1>
-+        <p>
-+          Explore the kitchen&apos;s current direction across antipasti, fresh pasta,
-+          mains, and desserts. Each section is shaped around simple ingredients,
-+          clear flavors, and a pace that suits shared dining.
-+        </p>
-       </section>
--      <section id="menu-categories">
--        <h2>Menu Categories</h2>
--        <p>Content for menu-categories will be generated by tasks</p>
-+
-+      <section id="menu-categories" aria-labelledby="menu-categories-title">
-+        <p>Current structure</p>
-+        <h2 id="menu-categories-title">From first plates to dessert.</h2>
-+        <div>
-+          {featuredCategories.map((category) => (
-+            <article key={category.name}>
-+              <h3>{category.name}</h3>
-+              <p>{category.description}</p>
-+            </article>
-+          ))}
-+        </div>
-       </section>
--    </>
-+    </main>
-   )
- }
+     <main>
+-      <section id="menu-hero">
+-        <p>Menu</p>
+-        <h1>A seasonal menu built for long dinners and easy returns.</h1>
+-        <p>
+-          Explore the kitchen&apos;s current direction across antipasti, fresh pasta,
+-          mains, and desserts. Each section is shaped around simple ingredients,
+-          clear flavors, and a pace that suits shared dining.
+-        </p>
+-      </section>
++      <MenuHeroSection />
+ 
+       <section id="menu-categories" aria-labelledby="menu-categories-title">
+         <p>Current structure</p>
 
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 0934f0fe657bca8618be50ba4fdc738029712a19..5d76c3cc36dcbe41424e95d488ce208ea6e0bddd
+index 44a6ee10daef79a1b6235b2f91a5f209e2da3761..fca90b9a921a548ef181b8aee4c7bc0a52469d05
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -148,3 +148,9 @@
- Prepared TASK page-menu-shell (Create menu page shell) for execution.
+@@ -165,3 +165,9 @@
+ Prepared TASK section-menu-menu-hero (Create menu-hero section on menu) for execution.
  
- Launching Codex for TASK page-menu-shell.
+ Launching Codex for TASK section-menu-menu-hero.
 +
-+Completed TASK `page-menu-shell`.
++Completed TASK `section-menu-menu-hero`.
 +
-+- Replaced the placeholder menu page with a semantic `main` shell in `src/pages/Menu.jsx`.
-+- Preserved the required `menu-hero` and `menu-categories` sections for the `/menu` route.
-+- Added real restaurant-oriented copy and category previews so the page renders without placeholder text or crashes.
++- Added a reusable `MenuHeroSection` component in `src/components/MenuHeroSection.jsx`.
++- Replaced the inline menu hero markup in `src/pages/Menu.jsx` so the menu page renders the dedicated hero section.
++- Preserved the required `menu-hero` section id and page `h1` while keeping the existing menu categories section unchanged.
+diff --git a/src/components/MenuHeroSection.jsx b/src/components/MenuHeroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..1c0660556c42fb4582cdd2dbe92cc4845962933f
+--- /dev/null
++++ b/src/components/MenuHeroSection.jsx
+@@ -0,0 +1,109 @@
++const styles = {
++  section: {
++    position: "relative",
++    overflow: "hidden",
++    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
++    background:
++      "radial-gradient(circle at top left, rgba(249, 115, 22, 0.16), transparent 30%), linear-gradient(135deg, #fff8f1 0%, #ffffff 50%, #f8fafc 100%)",
++  },
++  shell: {
++    maxWidth: "1280px",
++    margin: "0 auto",
++    display: "grid",
++    gap: "2rem",
++  },
++  layout: {
++    display: "grid",
++    gap: "1.5rem",
++    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
++    alignItems: "end",
++  },
++  content: {
++    display: "grid",
++    gap: "1.25rem",
++    maxWidth: "760px",
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: "0.85rem",
++    fontWeight: 700,
++    letterSpacing: "0.18em",
++    textTransform: "uppercase",
++    color: "#f97316",
++  },
++  title: {
++    margin: 0,
++    fontSize: "clamp(3rem, 9vw, 5.75rem)",
++    lineHeight: 0.94,
++    letterSpacing: "-0.05em",
++    color: "#111111",
++    textWrap: "balance",
++  },
++  lead: {
++    margin: 0,
++    maxWidth: "40rem",
++    fontSize: "clamp(1.05rem, 2.6vw, 1.28rem)",
++    lineHeight: 1.75,
++    color: "#52525b",
++  },
++  panel: {
++    display: "grid",
++    gap: "0.85rem",
++    padding: "clamp(1.5rem, 4vw, 2rem)",
++    borderRadius: "1.75rem",
++    backgroundColor: "#0f172a",
++    boxShadow: "0 24px 70px rgba(15, 23, 42, 0.12)",
++  },
++  panelLabel: {
++    margin: 0,
++    fontSize: "0.8rem",
++    fontWeight: 700,
++    letterSpacing: "0.16em",
++    textTransform: "uppercase",
++    color: "#fb923c",
++  },
++  panelTitle: {
++    margin: 0,
++    fontSize: "clamp(1.5rem, 3vw, 2.1rem)",
++    lineHeight: 1.05,
++    letterSpacing: "-0.04em",
++    color: "#ffffff",
++  },
++  panelText: {
++    margin: 0,
++    fontSize: "1rem",
++    lineHeight: 1.7,
++    color: "rgba(255, 255, 255, 0.76)",
++  },
++}
++
++export default function MenuHeroSection() {
++  return (
++    <section id="menu-hero" aria-labelledby="menu-hero-title" style={styles.section}>
++      <div style={styles.shell}>
++        <div style={styles.layout}>
++          <div style={styles.content}>
++            <p style={styles.eyebrow}>Menu</p>
++            <h1 id="menu-hero-title" style={styles.title}>
++              A seasonal menu built for long dinners and easy returns.
++            </h1>
++            <p style={styles.lead}>
++              Explore the kitchen&apos;s current direction across antipasti, fresh pasta,
++              mains, and desserts. Each section is shaped around simple ingredients,
++              clear flavors, and a pace that suits shared dining.
++            </p>
++          </div>
++
++          <aside aria-label="Menu direction" style={styles.panel}>
++            <p style={styles.panelLabel}>Current direction</p>
++            <p style={styles.panelTitle}>Balanced courses, bright finishes, deliberate pacing.</p>
++            <p style={styles.panelText}>
++              The menu moves from lighter opening plates into richer pasta and wood-fired
++              mains, ending with desserts that stay clean and precise.
++            </p>
++          </aside>
++        </div>
++      </div>
++    </section>
++  )
++}
 diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
-index 1a83cadc1d413d772d83d544e70bab727c45c52e..1d3f5b7cebea434816f192dd04de5c23281671a4
+index 1d3f5b7cebea434816f192dd04de5c23281671a4..d42586b1a7333c96e2194cdd2cffb350280acd7b
 --- a/src/pages/Menu.jsx
 +++ b/src/pages/Menu.jsx
-@@ -1,14 +1,47 @@
-+const featuredCategories = [
-+  {
-+    name: "Antipasti",
-+    description: "Small plates built for the table, with seasonal vegetables, local cheese, and crisp textures.",
-+  },
-+  {
-+    name: "Primi",
-+    description: "Fresh pasta and risotto designed around slow-cooked sauces, depth, and balanced portions.",
-+  },
-+  {
-+    name: "Secondi",
-+    description: "Wood-fired meats and market fish served with focused sides and bright finishing notes.",
-+  },
-+  {
-+    name: "Dolci",
-+    description: "Clean, layered desserts that close the meal without feeling heavy.",
-+  },
-+]
+@@ -1,3 +1,5 @@
++import MenuHeroSection from "../components/MenuHeroSection"
 +
+ const featuredCategories = [
+   {
+     name: "Antipasti",
+@@ -20,15 +22,7 @@
  export default function Menu() {
    return (
--    <>
-+    <main>
-       <section id="menu-hero">
--        <h1>Menu Hero</h1>
--        <p>Content for menu-hero will be generated by tasks</p>
-+        <p>Menu</p>
-+        <h1>A seasonal menu built for long dinners and easy returns.</h1>
-+        <p>
-+          Explore the kitchen&apos;s current direction across antipasti, fresh pasta,
-+          mains, and desserts. Each section is shaped around simple ingredients,
-+          clear flavors, and a pace that suits shared dining.
-+        </p>
-       </section>
--      <section id="menu-categories">
--        <h2>Menu Categories</h2>
--        <p>Content for menu-categories will be generated by tasks</p>
-+
-+      <section id="menu-categories" aria-labelledby="menu-categories-title">
-+        <p>Current structure</p>
-+        <h2 id="menu-categories-title">From first plates to dessert.</h2>
-+        <div>
-+          {featuredCategories.map((category) => (
-+            <article key={category.name}>
-+              <h3>{category.name}</h3>
-+              <p>{category.description}</p>
-+            </article>
-+          ))}
-+        </div>
-       </section>
--    </>
-+    </main>
-   )
- }
+     <main>
+-      <section id="menu-hero">
+-        <p>Menu</p>
+-        <h1>A seasonal menu built for long dinners and easy returns.</h1>
+-        <p>
+-          Explore the kitchen&apos;s current direction across antipasti, fresh pasta,
+-          mains, and desserts. Each section is shaped around simple ingredients,
+-          clear flavors, and a pace that suits shared dining.
+-        </p>
+-      </section>
++      <MenuHeroSection />
+ 
+       <section id="menu-categories" aria-labelledby="menu-categories-title">
+         <p>Current structure</p>
 
 codex
-The page shell is in place. I’m running the production build now to verify the menu route still compiles cleanly with the existing hash-router setup.
+The component extraction is in place. I’m running the project build now to verify the new menu hero compiles cleanly and doesn’t break the existing route.
 exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 832ms:
+/bin/zsh -lc "sed -n '1,220p' src/pages/Menu.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,220p' src/components/MenuHeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 52ms:
+const styles = {
+  section: {
+    position: "relative",
+    overflow: "hidden",
+    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
+    background:
+      "radial-gradient(circle at top left, rgba(249, 115, 22, 0.16), transparent 30%), linear-gradient(135deg, #fff8f1 0%, #ffffff 50%, #f8fafc 100%)",
+  },
+  shell: {
+    maxWidth: "1280px",
+    margin: "0 auto",
+    display: "grid",
+    gap: "2rem",
+  },
+  layout: {
+    display: "grid",
+    gap: "1.5rem",
+    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+    alignItems: "end",
+  },
+ succeeded in 52ms:
+import MenuHeroSection from "../components/MenuHeroSection"
+
+const featuredCategories = [
+  {
+    name: "Antipasti",
+    description: "Small plates built for the table, with seasonal vegetables, local cheese, and crisp textures.",
+  },
+  {
+    name: "Primi",
+    description: "Fresh pasta and risotto designed around slow-cooked sauces, depth, and balanced portions.",
+  },
+  {
+    name: "Secondi",
+    description: "Wood-fired meats and market fish served with focused sides and bright finishing notes.",
+  },
+  {
+    name: "Dolci",
+    description: "Clean, layered desserts that close the meal without feeling heavy.",
+  },
+]
+exec
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 902ms:
 
 > site-create-a-high-end-visually-distinctive-m@0.0.0 build
 > vite build
 
 vite v7.3.1 building client environment for production...
 transforming...
-✓ 51 modules transformed.
+✓ 52 modules transformed.
 rendering chunks...
 computing gzip size...
 dist/index.html                   0.50 kB │ gzip:  0.32 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-B9CGAguB.js   244.08 kB │ gzip: 77.81 kB
-✓ built in 575ms
+dist/assets/index-B_hWVw8M.js   246.13 kB │ gzip: 78.12 kB
+✓ built in 644ms
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 0934f0fe657bca8618be50ba4fdc738029712a19..5d76c3cc36dcbe41424e95d488ce208ea6e0bddd
+index 44a6ee10daef79a1b6235b2f91a5f209e2da3761..fca90b9a921a548ef181b8aee4c7bc0a52469d05
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -148,3 +148,9 @@
- Prepared TASK page-menu-shell (Create menu page shell) for execution.
+@@ -165,3 +165,9 @@
+ Prepared TASK section-menu-menu-hero (Create menu-hero section on menu) for execution.
  
- Launching Codex for TASK page-menu-shell.
+ Launching Codex for TASK section-menu-menu-hero.
 +
-+Completed TASK `page-menu-shell`.
++Completed TASK `section-menu-menu-hero`.
 +
-+- Replaced the placeholder menu page with a semantic `main` shell in `src/pages/Menu.jsx`.
-+- Preserved the required `menu-hero` and `menu-categories` sections for the `/menu` route.
-+- Added real restaurant-oriented copy and category previews so the page renders without placeholder text or crashes.
++- Added a reusable `MenuHeroSection` component in `src/components/MenuHeroSection.jsx`.
++- Replaced the inline menu hero markup in `src/pages/Menu.jsx` so the menu page renders the dedicated hero section.
++- Preserved the required `menu-hero` section id and page `h1` while keeping the existing menu categories section unchanged.
+diff --git a/src/components/MenuHeroSection.jsx b/src/components/MenuHeroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..1c0660556c42fb4582cdd2dbe92cc4845962933f
+--- /dev/null
++++ b/src/components/MenuHeroSection.jsx
+@@ -0,0 +1,109 @@
++const styles = {
++  section: {
++    position: "relative",
++    overflow: "hidden",
++    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
++    background:
++      "radial-gradient(circle at top left, rgba(249, 115, 22, 0.16), transparent 30%), linear-gradient(135deg, #fff8f1 0%, #ffffff 50%, #f8fafc 100%)",
++  },
++  shell: {
++    maxWidth: "1280px",
++    margin: "0 auto",
++    display: "grid",
++    gap: "2rem",
++  },
++  layout: {
++    display: "grid",
++    gap: "1.5rem",
++    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
++    alignItems: "end",
++  },
++  content: {
++    display: "grid",
++    gap: "1.25rem",
++    maxWidth: "760px",
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: "0.85rem",
++    fontWeight: 700,
++    letterSpacing: "0.18em",
++    textTransform: "uppercase",
++    color: "#f97316",
++  },
++  title: {
++    margin: 0,
++    fontSize: "clamp(3rem, 9vw, 5.75rem)",
++    lineHeight: 0.94,
++    letterSpacing: "-0.05em",
++    color: "#111111",
++    textWrap: "balance",
++  },
++  lead: {
++    margin: 0,
++    maxWidth: "40rem",
++    fontSize: "clamp(1.05rem, 2.6vw, 1.28rem)",
++    lineHeight: 1.75,
++    color: "#52525b",
++  },
++  panel: {
++    display: "grid",
++    gap: "0.85rem",
++    padding: "clamp(1.5rem, 4vw, 2rem)",
++    borderRadius: "1.75rem",
++    backgroundColor: "#0f172a",
++    boxShadow: "0 24px 70px rgba(15, 23, 42, 0.12)",
++  },
++  panelLabel: {
++    margin: 0,
++    fontSize: "0.8rem",
++    fontWeight: 700,
++    letterSpacing: "0.16em",
++    textTransform: "uppercase",
++    color: "#fb923c",
++  },
++  panelTitle: {
++    margin: 0,
++    fontSize: "clamp(1.5rem, 3vw, 2.1rem)",
++    lineHeight: 1.05,
++    letterSpacing: "-0.04em",
++    color: "#ffffff",
++  },
++  panelText: {
++    margin: 0,
++    fontSize: "1rem",
++    lineHeight: 1.7,
++    color: "rgba(255, 255, 255, 0.76)",
++  },
++}
++
++export default function MenuHeroSection() {
++  return (
++    <section id="menu-hero" aria-labelledby="menu-hero-title" style={styles.section}>
++      <div style={styles.shell}>
++        <div style={styles.layout}>
++          <div style={styles.content}>
++            <p style={styles.eyebrow}>Menu</p>
++            <h1 id="menu-hero-title" style={styles.title}>
++              A seasonal menu built for long dinners and easy returns.
++            </h1>
++            <p style={styles.lead}>
++              Explore the kitchen&apos;s current direction across antipasti, fresh pasta,
++              mains, and desserts. Each section is shaped around simple ingredients,
++              clear flavors, and a pace that suits shared dining.
++            </p>
++          </div>
++
++          <aside aria-label="Menu direction" style={styles.panel}>
++            <p style={styles.panelLabel}>Current direction</p>
++            <p style={styles.panelTitle}>Balanced courses, bright finishes, deliberate pacing.</p>
++            <p style={styles.panelText}>
++              The menu moves from lighter opening plates into richer pasta and wood-fired
++              mains, ending with desserts that stay clean and precise.
++            </p>
++          </aside>
++        </div>
++      </div>
++    </section>
++  )
++}
 diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
-index 1a83cadc1d413d772d83d544e70bab727c45c52e..1d3f5b7cebea434816f192dd04de5c23281671a4
+index 1d3f5b7cebea434816f192dd04de5c23281671a4..d42586b1a7333c96e2194cdd2cffb350280acd7b
 --- a/src/pages/Menu.jsx
 +++ b/src/pages/Menu.jsx
-@@ -1,14 +1,47 @@
-+const featuredCategories = [
-+  {
-+    name: "Antipasti",
-+    description: "Small plates built for the table, with seasonal vegetables, local cheese, and crisp textures.",
-+  },
-+  {
-+    name: "Primi",
-+    description: "Fresh pasta and risotto designed around slow-cooked sauces, depth, and balanced portions.",
-+  },
-+  {
-+    name: "Secondi",
-+    description: "Wood-fired meats and market fish served with focused sides and bright finishing notes.",
-+  },
-+  {
-+    name: "Dolci",
-+    description: "Clean, layered desserts that close the meal without feeling heavy.",
-+  },
-+]
+@@ -1,3 +1,5 @@
++import MenuHeroSection from "../components/MenuHeroSection"
 +
+ const featuredCategories = [
+   {
+     name: "Antipasti",
+@@ -20,15 +22,7 @@
  export default function Menu() {
    return (
--    <>
-+    <main>
-       <section id="menu-hero">
--        <h1>Menu Hero</h1>
--        <p>Content for menu-hero will be generated by tasks</p>
-+        <p>Menu</p>
-+        <h1>A seasonal menu built for long dinners and easy returns.</h1>
-+        <p>
-+          Explore the kitchen&apos;s current direction across antipasti, fresh pasta,
-+          mains, and desserts. Each section is shaped around simple ingredients,
-+          clear flavors, and a pace that suits shared dining.
-+        </p>
-       </section>
--      <section id="menu-categories">
--        <h2>Menu Categories</h2>
--        <p>Content for menu-categories will be generated by tasks</p>
-+
-+      <section id="menu-categories" aria-labelledby="menu-categories-title">
-+        <p>Current structure</p>
-+        <h2 id="menu-categories-title">From first plates to dessert.</h2>
-+        <div>
-+          {featuredCategories.map((category) => (
-+            <article key={category.name}>
-+              <h3>{category.name}</h3>
-+              <p>{category.description}</p>
-+            </article>
-+          ))}
-+        </div>
-       </section>
--    </>
-+    </main>
-   )
- }
+     <main>
+-      <section id="menu-hero">
+-        <p>Menu</p>
+-        <h1>A seasonal menu built for long dinners and easy returns.</h1>
+-        <p>
+-          Explore the kitchen&apos;s current direction across antipasti, fresh pasta,
+-          mains, and desserts. Each section is shaped around simple ingredients,
+-          clear flavors, and a pace that suits shared dining.
+-        </p>
+-      </section>
++      <MenuHeroSection />
+ 
+       <section id="menu-categories" aria-labelledby="menu-categories-title">
+         <p>Current structure</p>
 
 codex
-Modified files: [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Menu.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md)
+Modified files: [src/components/MenuHeroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/MenuHeroSection.jsx), [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Menu.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md)
 
-Implemented the `page-menu-shell` task by replacing the placeholder `Menu` page with a semantic `main` shell that keeps the required `menu-hero` and `menu-categories` sections. The `/menu` route was already mounted in [src/App.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/App.jsx), so no route changes were needed. The new page uses real restaurant-oriented copy and category previews instead of task placeholders.
+Implemented the `menu-hero` task by extracting the inline hero on the menu page into a dedicated reusable `MenuHeroSection` component and rendering it from [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Menu.jsx). The section keeps the required `menu-hero` id, provides the page `h1`, and uses a visually dominant hero layout consistent with the existing site direction. I also updated [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md) with a short completion summary.
 
-Build result: `npm run build` passed successfully with Vite production build completing without errors.
+Build result: `npm run build` passed successfully with Vite production build completed.
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 0934f0fe657bca8618be50ba4fdc738029712a19..5d76c3cc36dcbe41424e95d488ce208ea6e0bddd
+index 44a6ee10daef79a1b6235b2f91a5f209e2da3761..fca90b9a921a548ef181b8aee4c7bc0a52469d05
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -148,3 +148,9 @@
- Prepared TASK page-menu-shell (Create menu page shell) for execution.
+@@ -165,3 +165,9 @@
+ Prepared TASK section-menu-menu-hero (Create menu-hero section on menu) for execution.
  
- Launching Codex for TASK page-menu-shell.
+ Launching Codex for TASK section-menu-menu-hero.
 +
-+Completed TASK `page-menu-shell`.
++Completed TASK `section-menu-menu-hero`.
 +
-+- Replaced the placeholder menu page with a semantic `main` shell in `src/pages/Menu.jsx`.
-+- Preserved the required `menu-hero` and `menu-categories` sections for the `/menu` route.
-+- Added real restaurant-oriented copy and category previews so the page renders without placeholder text or crashes.
++- Added a reusable `MenuHeroSection` component in `src/components/MenuHeroSection.jsx`.
++- Replaced the inline menu hero markup in `src/pages/Menu.jsx` so the menu page renders the dedicated hero section.
++- Preserved the required `menu-hero` section id and page `h1` while keeping the existing menu categories section unchanged.
+diff --git a/src/components/MenuHeroSection.jsx b/src/components/MenuHeroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..1c0660556c42fb4582cdd2dbe92cc4845962933f
+--- /dev/null
++++ b/src/components/MenuHeroSection.jsx
+@@ -0,0 +1,109 @@
++const styles = {
++  section: {
++    position: "relative",
++    overflow: "hidden",
++    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
++    background:
++      "radial-gradient(circle at top left, rgba(249, 115, 22, 0.16), transparent 30%), linear-gradient(135deg, #fff8f1 0%, #ffffff 50%, #f8fafc 100%)",
++  },
++  shell: {
++    maxWidth: "1280px",
++    margin: "0 auto",
++    display: "grid",
++    gap: "2rem",
++  },
++  layout: {
++    display: "grid",
++    gap: "1.5rem",
++    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
++    alignItems: "end",
++  },
++  content: {
++    display: "grid",
++    gap: "1.25rem",
++    maxWidth: "760px",
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: "0.85rem",
++    fontWeight: 700,
++    letterSpacing: "0.18em",
++    textTransform: "uppercase",
++    color: "#f97316",
++  },
++  title: {
++    margin: 0,
++    fontSize: "clamp(3rem, 9vw, 5.75rem)",
++    lineHeight: 0.94,
++    letterSpacing: "-0.05em",
++    color: "#111111",
++    textWrap: "balance",
++  },
++  lead: {
++    margin: 0,
++    maxWidth: "40rem",
++    fontSize: "clamp(1.05rem, 2.6vw, 1.28rem)",
++    lineHeight: 1.75,
++    color: "#52525b",
++  },
++  panel: {
++    display: "grid",
++    gap: "0.85rem",
++    padding: "clamp(1.5rem, 4vw, 2rem)",
++    borderRadius: "1.75rem",
++    backgroundColor: "#0f172a",
++    boxShadow: "0 24px 70px rgba(15, 23, 42, 0.12)",
++  },
++  panelLabel: {
++    margin: 0,
++    fontSize: "0.8rem",
++    fontWeight: 700,
++    letterSpacing: "0.16em",
++    textTransform: "uppercase",
++    color: "#fb923c",
++  },
++  panelTitle: {
++    margin: 0,
++    fontSize: "clamp(1.5rem, 3vw, 2.1rem)",
++    lineHeight: 1.05,
++    letterSpacing: "-0.04em",
++    color: "#ffffff",
++  },
++  panelText: {
++    margin: 0,
++    fontSize: "1rem",
++    lineHeight: 1.7,
++    color: "rgba(255, 255, 255, 0.76)",
++  },
++}
++
++export default function MenuHeroSection() {
++  return (
++    <section id="menu-hero" aria-labelledby="menu-hero-title" style={styles.section}>
++      <div style={styles.shell}>
++        <div style={styles.layout}>
++          <div style={styles.content}>
++            <p style={styles.eyebrow}>Menu</p>
++            <h1 id="menu-hero-title" style={styles.title}>
++              A seasonal menu built for long dinners and easy returns.
++            </h1>
++            <p style={styles.lead}>
++              Explore the kitchen&apos;s current direction across antipasti, fresh pasta,
++              mains, and desserts. Each section is shaped around simple ingredients,
++              clear flavors, and a pace that suits shared dining.
++            </p>
++          </div>
++
++          <aside aria-label="Menu direction" style={styles.panel}>
++            <p style={styles.panelLabel}>Current direction</p>
++            <p style={styles.panelTitle}>Balanced courses, bright finishes, deliberate pacing.</p>
++            <p style={styles.panelText}>
++              The menu moves from lighter opening plates into richer pasta and wood-fired
++              mains, ending with desserts that stay clean and precise.
++            </p>
++          </aside>
++        </div>
++      </div>
++    </section>
++  )
++}
 diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
-index 1a83cadc1d413d772d83d544e70bab727c45c52e..1d3f5b7cebea434816f192dd04de5c23281671a4
+index 1d3f5b7cebea434816f192dd04de5c23281671a4..d42586b1a7333c96e2194cdd2cffb350280acd7b
 --- a/src/pages/Menu.jsx
 +++ b/src/pages/Menu.jsx
-@@ -1,14 +1,47 @@
-+const featuredCategories = [
-+  {
-+    name: "Antipasti",
-+    description: "Small plates built for the table, with seasonal vegetables, local cheese, and crisp textures.",
-+  },
-+  {
-+    name: "Primi",
-+    description: "Fresh pasta and risotto designed around slow-cooked sauces, depth, and balanced portions.",
-+  },
-+  {
-+    name: "Secondi",
-+    description: "Wood-fired meats and market fish served with focused sides and bright finishing notes.",
-+  },
-+  {
-+    name: "Dolci",
-+    description: "Clean, layered desserts that close the meal without feeling heavy.",
-+  },
-+]
+@@ -1,3 +1,5 @@
++import MenuHeroSection from "../components/MenuHeroSection"
 +
+ const featuredCategories = [
+   {
+     name: "Antipasti",
+@@ -20,15 +22,7 @@
  export default function Menu() {
    return (
--    <>
-+    <main>
-       <section id="menu-hero">
--        <h1>Menu Hero</h1>
--        <p>Content for menu-hero will be generated by tasks</p>
-+        <p>Menu</p>
-+        <h1>A seasonal menu built for long dinners and easy returns.</h1>
-+        <p>
-+          Explore the kitchen&apos;s current direction across antipasti, fresh pasta,
-+          mains, and desserts. Each section is shaped around simple ingredients,
-+          clear flavors, and a pace that suits shared dining.
-+        </p>
-       </section>
--      <section id="menu-categories">
--        <h2>Menu Categories</h2>
--        <p>Content for menu-categories will be generated by tasks</p>
-+
-+      <section id="menu-categories" aria-labelledby="menu-categories-title">
-+        <p>Current structure</p>
-+        <h2 id="menu-categories-title">From first plates to dessert.</h2>
-+        <div>
-+          {featuredCategories.map((category) => (
-+            <article key={category.name}>
-+              <h3>{category.name}</h3>
-+              <p>{category.description}</p>
-+            </article>
-+          ))}
-+        </div>
-       </section>
--    </>
-+    </main>
-   )
- }
+     <main>
+-      <section id="menu-hero">
+-        <p>Menu</p>
+-        <h1>A seasonal menu built for long dinners and easy returns.</h1>
+-        <p>
+-          Explore the kitchen&apos;s current direction across antipasti, fresh pasta,
+-          mains, and desserts. Each section is shaped around simple ingredients,
+-          clear flavors, and a pace that suits shared dining.
+-        </p>
+-      </section>
++      <MenuHeroSection />
+ 
+       <section id="menu-categories" aria-labelledby="menu-categories-title">
+         <p>Current structure</p>
 
 tokens used
-15.644
+28.724

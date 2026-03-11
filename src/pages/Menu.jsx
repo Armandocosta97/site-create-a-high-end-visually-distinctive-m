@@ -1,3 +1,5 @@
+import MenuHeroSection from "../components/MenuHeroSection"
+
 const featuredCategories = [
   {
     name: "Antipasti",
@@ -20,15 +22,7 @@ const featuredCategories = [
 export default function Menu() {
   return (
     <main>
-      <section id="menu-hero">
-        <p>Menu</p>
-        <h1>A seasonal menu built for long dinners and easy returns.</h1>
-        <p>
-          Explore the kitchen&apos;s current direction across antipasti, fresh pasta,
-          mains, and desserts. Each section is shaped around simple ingredients,
-          clear flavors, and a pace that suits shared dining.
-        </p>
-      </section>
+      <MenuHeroSection />
 
       <section id="menu-categories" aria-labelledby="menu-categories-title">
         <p>Current structure</p>
