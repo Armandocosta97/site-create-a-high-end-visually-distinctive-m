@@ -218,6 +218,23 @@ Waiting for validation.
 TASK page-chi-siamo-shell completed successfully.
 Build passed.
 
+Prepared TASK validation-prep (Prepare site for final validation) for execution.
+
+Launching Codex for TASK validation-prep.
+
+Completed TASK `validation-prep`.
+
+- Removed the duplicate layout-level `main` wrapper so each route now renders a single semantic page `main`.
+- Upgraded the shared header and footer with real brand, navigation, and contact content aligned to the existing routes and CTA structure.
+- Replaced the broken default Vite favicon with an inline site icon to avoid asset validation issues.
+- Verified the app builds successfully after the validation-prep changes.
+
+TASK validation-prep executed by Codex.
+Waiting for validation.
+
+TASK validation-prep completed successfully.
+Build passed.
+
 Prepared TASK navigation-structure (Build navigation from spec) for execution.
 
 Launching Codex for TASK navigation-structure.
@@ -589,4 +606,15 @@ TASK responsive-polish executed by Codex.
 Waiting for validation.
 
 TASK responsive-polish completed successfully.
+Build passed.
+Commit created for TASK responsive-polish.
+
+Prepared TASK validation-prep (Prepare site for final validation) for execution.
+
+Launching Codex for TASK validation-prep.
+
+TASK validation-prep executed by Codex.
+Waiting for validation.
+
+TASK validation-prep completed successfully.
 Build passed.
