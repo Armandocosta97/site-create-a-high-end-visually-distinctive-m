@@ -1,7 +1,7 @@
 {
-  "currentTaskId": "section-contatti-contact-details",
+  "currentTaskId": "section-contatti-opening-hours",
   "status": "ready_for_next_task",
-  "lastCompletedTaskId": "section-contatti-contact-hero",
+  "lastCompletedTaskId": "section-contatti-contact-details",
   "completedTaskIds": [
     "page-home-shell",
     "section-home-hero",
@@ -21,6 +21,7 @@
     "section-gallery-gallery-hero",
     "section-gallery-gallery-grid",
     "page-contatti-shell",
-    "section-contatti-contact-hero"
+    "section-contatti-contact-hero",
+    "section-contatti-contact-details"
   ]
 }

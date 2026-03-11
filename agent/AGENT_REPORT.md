@@ -218,6 +218,22 @@ Waiting for validation.
 TASK page-chi-siamo-shell completed successfully.
 Build passed.
 
+Prepared TASK section-contatti-contact-details (Create contact-details section on contatti) for execution.
+
+Launching Codex for TASK section-contatti-contact-details.
+
+Completed TASK `section-contatti-contact-details`.
+
+- Added a reusable `ContactDetailsSection` component in `src/components/ContactDetailsSection.jsx`.
+- Replaced the inline `contact-details` markup in `src/pages/Contatti.jsx` so the contatti page renders the dedicated contact-block section component.
+- Preserved the required email, phone, and WhatsApp contact actions with valid `mailto:`, `tel:`, and WhatsApp links.
+
+TASK section-contatti-contact-details executed by Codex.
+Waiting for validation.
+
+TASK section-contatti-contact-details completed successfully.
+Build passed.
+
 Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
 
 Launching Codex for TASK section-contatti-contact-hero.
@@ -414,4 +430,15 @@ TASK section-contatti-contact-hero executed by Codex.
 Waiting for validation.
 
 TASK section-contatti-contact-hero completed successfully.
+Build passed.
+Commit created for TASK section-contatti-contact-hero.
+
+Prepared TASK section-contatti-contact-details (Create contact-details section on contatti) for execution.
+
+Launching Codex for TASK section-contatti-contact-details.
+
+TASK section-contatti-contact-details executed by Codex.
+Waiting for validation.
+
+TASK section-contatti-contact-details completed successfully.
 Build passed.

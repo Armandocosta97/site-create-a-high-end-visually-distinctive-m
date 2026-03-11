@@ -1132,10 +1132,10 @@ It must feel like a modern digital product studio.
 ```
 
 ## Current task id
-section-contatti-contact-hero
+section-contatti-contact-details
 
 ## Current task title
-Create contact-hero section on contatti
+Create contact-details section on contatti
 
 ## Current task type
 section
@@ -1144,8 +1144,8 @@ section
 ```json
 {
   "pageId": "contatti",
-  "sectionId": "contact-hero",
-  "sectionType": "hero"
+  "sectionId": "contact-details",
+  "sectionType": "contact-block"
 }
 ```
 
@@ -1154,13 +1154,13 @@ section
 
 ## Files allowed
 - src/pages/Contatti.jsx
-- src/components/ContactHeroSection.jsx
+- src/components/ContactDetailsSection.jsx
 - src/components
 
 ## Definition of done
-- section contact-hero exists on contatti
-- section contact-hero matches type hero
-- section contact-hero is rendered in page contatti
+- section contact-details exists on contatti
+- section contact-details matches type contact-block
+- section contact-details is rendered in page contatti
 
 ## Strict execution rules
 - Execute only this current task.
