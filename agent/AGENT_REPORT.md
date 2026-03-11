@@ -200,3 +200,26 @@ Waiting for validation.
 
 TASK section-menu-menu-categories completed successfully.
 Build passed.
+Commit created for TASK section-menu-menu-categories.
+
+Prepared TASK page-chi-siamo-shell (Create chi-siamo page shell) for execution.
+
+Launching Codex for TASK page-chi-siamo-shell.
+
+Completed TASK `page-chi-siamo-shell`.
+
+- Replaced the placeholder `chi-siamo` content in `src/pages/ChiSiamo.jsx` with a semantic page shell built from the required `about-hero`, `story`, and `philosophy` sections.
+- Preserved the existing `/chi-siamo` hash route mounting in `src/App.jsx`, so no routing changes were required.
+- Added real restaurant-focused copy and maintained a single page `h1` so the page renders without placeholder text or crashes.
+
+TASK page-chi-siamo-shell executed by Codex.
+Waiting for validation.
+
+TASK page-chi-siamo-shell completed successfully.
+Build passed.
+
+TASK page-chi-siamo-shell executed by Codex.
+Waiting for validation.
+
+TASK page-chi-siamo-shell completed successfully.
+Build passed.
