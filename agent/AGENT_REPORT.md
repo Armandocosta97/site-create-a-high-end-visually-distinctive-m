@@ -111,3 +111,18 @@ Waiting for validation.
 
 TASK cta-home-home-primary-cta completed successfully.
 Build passed.
+Commit created for TASK cta-home-home-primary-cta.
+
+Prepared TASK cta-home-home-contact-cta (Add CTA home-contact-cta on home) for execution.
+
+Launching Codex for TASK cta-home-home-contact-cta.
+
+Completed TASK `cta-home-home-contact-cta`.
+- Verified the home hero includes the required `home-contact-cta` secondary CTA.
+- Confirmed the CTA is visible in the hero and uses a valid internal route target to `/contatti`.
+
+TASK cta-home-home-contact-cta executed by Codex.
+Waiting for validation.
+
+TASK cta-home-home-contact-cta completed successfully.
+Build passed.
