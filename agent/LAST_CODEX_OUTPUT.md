@@ -1,8 +1,8 @@
-Modified files: [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md)
+Modified files: [src/components/ContactHeroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/ContactHeroSection.jsx), [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md).
 
-Implemented the `contatti` page shell in [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx) with the required `contact-hero`, `contact-details`, and `opening-hours` sections, real contact copy, and functional `mailto:`, `tel:`, and WhatsApp CTAs. The `/contatti` route was already mounted in [src/App.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/App.jsx), so no router change was needed. I also appended the task summary to [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md).
+Implemented the `contact-hero` section for `contatti` as a dedicated reusable component and mounted it in the page shell. The section keeps the required `contact-hero` id, the page `h1`, and the visible hero CTAs for email and WhatsApp. I left the other `contatti` sections unchanged.
 
-Build result: `npm run build` passed with Vite production build success.
+Build result: `npm run build` passed successfully.
 
 OpenAI Codex v0.111.0 (research preview)
 --------
@@ -13,7 +13,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cddb7-a0af-72e2-a996-ed1e17ee339f
+session id: 019cddb8-ddd0-7c31-a236-69dd39ef0f20
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1150,32 +1150,35 @@ It must feel like a modern digital product studio.
 ```
 
 ## Current task id
-page-contatti-shell
+section-contatti-contact-hero
 
 ## Current task title
-Create contatti page shell
+Create contact-hero section on contatti
 
 ## Current task type
-page-shell
+section
 
 ## Current task target
 ```json
 {
-  "pageId": "contatti"
+  "pageId": "contatti",
+  "sectionId": "contact-hero",
+  "sectionType": "hero"
 }
 ```
 
 ## Depends on
-- none
+- page-contatti-shell
 
 ## Files allowed
-- src/App.jsx
 - src/pages/Contatti.jsx
+- src/components/ContactHeroSection.jsx
+- src/components
 
 ## Definition of done
-- page shell exists for contatti
-- contatti route is mounted if required
-- contatti page renders without crashing
+- section contact-hero exists on contatti
+- section contact-hero matches type hero
+- section contact-hero is rendered in page contatti
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1204,12 +1207,12 @@ page-shell
 
 mcp startup: no servers
 codex
-I’m checking the current app structure and the existing page/router setup first so I can add the `contatti` page shell with the smallest safe change, then I’ll run a build and update the agent report.
+I’m implementing only the `contact-hero` section for the `contatti` page, then I’ll run a build check and update the agent report as required.
 exec
-/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
 /bin/zsh -lc "sed -n '1,220p' src/pages/Contatti.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,220p' src/App.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc 'rg --files' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 53ms:
+/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,220p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc 'rg --files .' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 50ms:
 # AGENT REPORT
 
 Project created.
@@ -1230,1703 +1233,1381 @@ Waiting for validation.
 
 TASK page-home-shell completed successfully.
 Build passed.
- succeeded in 53ms:
-import { HashRouter, Routes, Route } from "react-router-dom"
-import Layout from "./layout/Layout"
-import Home from "./pages/Home"
-import Menu from "./pages/Menu"
-import ChiSiamo from "./pages/ChiSiamo"
-import Gallery from "./pages/Gallery"
-import Contatti from "./pages/Contatti"
-
-export default function App() {
-  return (
-    <HashRouter>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/chi-siamo" element={<ChiSiamo />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/contatti" element={<Contatti />} />
-        </Routes>
-      </Layout>
- succeeded in 53ms:
-export default function Contatti() {
-  return (
-    <>
-      <section id="contact-hero">
-        <h1>Contact Hero</h1>
-        <p>Content for contact-hero will be generated by tasks</p>
-      </section>
-      <section id="contact-details">
-        <h2>Contact Details</h2>
-        <p>Content for contact-details will be generated by tasks</p>
-      </section>
-      <section id="opening-hours">
-        <h2>Opening Hours</h2>
-        <p>Content for opening-hours will be generated by tasks</p>
-      </section>
-    </>
-  )
-}
  succeeded in 51ms:
-src/pages/Home.jsx
-src/pages/Gallery.jsx
-src/pages/ChiSiamo.jsx
-src/pages/Contatti.jsx
-src/pages/Menu.jsx
-src/assets/react.svg
-src/App.jsx
-src/main.jsx
-src/components/FloatingWhatsAppButton.jsx
-src/components/AboutHeroSection.jsx
-src/components/StorySection.jsx
-src/components/BrandStoryPreviewSection.jsx
-src/components/PhilosophySection.jsx
-src/components/MenuCategoriesSection.jsx
-src/components/GalleryHeroSection.jsx
-src/components/SignaturePreviewSection.jsx
-src/components/GalleryGridSection.jsx
-src/components/MenuHeroSection.jsx
-src/components/HeroSection.jsx
-src/index.css
+const contactDetails = [
+  {
+    label: "Email",
+    value: "hello@alaiweb.com",
+    href: "mailto:hello@alaiweb.com",
+    description: "Share your goals, timeline, and current site status.",
+  },
+  {
+    label: "Phone",
+    value: "+39 02 9475 1280",
+    href: "tel:+390294751280",
+    description: "Call for a quick conversation about scope and priorities.",
+  },
+]
+
+const officeHours = [
+  { day: "Monday", hours: "09:00 - 18:00" },
+  { day: "Tuesday", hours: "09:00 - 18:00" },
+  { day: "Wednesday", hours: "09:00 - 18:00" },
+  { day: "Thursday", hours: "09:00 - 18:00" },
+ succeeded in 50ms:
+# CURRENT TASK EXECUTION PROMPT
+
+You are the coding executor for this project.
+
+## Project path
+site-create-a-high-end-visually-distinctive-m
+
+## Source of truth files
+- brief/original-prompt.md
+- brief/brief-summary.md
+- site-spec.json
+- docs/DEVELOPMENT_METHOD.md
+- agent/TASK_GRAPH.json
+- agent/TASK_STATE.json
+- agent/CURRENT_TASK_PROMPT.md
+
+## Development method
+# Development Method
+
+All sites must follow these rules.
+ succeeded in 52ms:
+./src/pages/Home.jsx
+./src/pages/Gallery.jsx
+./src/pages/ChiSiamo.jsx
+./src/pages/Contatti.jsx
+./src/pages/Menu.jsx
+./src/assets/react.svg
+./src/App.jsx
+./src/main.jsx
+./src/components/FloatingWhatsAppButton.jsx
+./src/components/AboutHeroSection.jsx
+./src/components/StorySection.jsx
+./src/components/BrandStoryPreviewSection.jsx
+./src/components/PhilosophySection.jsx
+./src/components/MenuCategoriesSection.jsx
+./src/components/GalleryHeroSection.jsx
+./src/components/SignaturePreviewSection.jsx
+./src/components/GalleryGridSection.jsx
+./src/components/MenuHeroSection.jsx
+./src/components/HeroSection.jsx
+./src/index.css
 codex
-The route is already mounted, so the work is confined to replacing the placeholder `Contatti` page with a real shell and then recording the task result. I’m checking adjacent page patterns to keep the implementation consistent with the existing app.
+The `contatti` page already has inline hero markup, so I’m extracting only that block into a dedicated component and leaving the rest of the page behavior intact.
 exec
-/bin/zsh -lc "sed -n '1,220p' src/pages/Home.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,220p' src/pages/Menu.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,220p' src/pages/Gallery.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,220p' src/pages/ChiSiamo.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 51ms:
-import GalleryHeroSection from "../components/GalleryHeroSection"
-import GalleryGridSection from "../components/GalleryGridSection"
+/bin/zsh -lc "sed -n '1,260p' src/pages/Contatti.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,220p' src/components/AboutHeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,220p' src/components/MenuHeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,220p' src/components/GalleryHeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 50ms:
+const styles = {
+  section: {
+    position: "relative",
+    overflow: "hidden",
+    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
+    background:
+      "radial-gradient(circle at top left, rgba(249, 115, 22, 0.16), transparent 30%), linear-gradient(135deg, #fff8f1 0%, #ffffff 50%, #f8fafc 100%)",
+  },
+  shell: {
+    maxWidth: "1280px",
+    margin: "0 auto",
+    display: "grid",
+    gap: "2rem",
+  },
+  layout: {
+    display: "grid",
+    gap: "1.5rem",
+    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+    alignItems: "end",
+  },
+ succeeded in 50ms:
+const values = [
+  {
+    title: "Stagionalita",
+    text: "Il menu segue il tempo degli ingredienti, con piatti che cambiano senza perdere equilibrio.",
+  },
+  {
+    title: "Precisione",
+    text: "Ogni dettaglio, dalla cucina alla sala, e misurato per mantenere il servizio chiaro e naturale.",
+  },
+  {
+    title: "Accoglienza",
+    text: "L'esperienza resta contemporanea, ma sempre calda, leggibile e pensata per far tornare le persone.",
+  },
+]
 
-export default function Gallery() {
-  return (
-    <main>
-      <GalleryHeroSection />
-      <GalleryGridSection />
-    </main>
-  )
-}
- succeeded in 52ms:
-import HeroSection from "../components/HeroSection"
-import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
-import SignaturePreviewSection from "../components/SignaturePreviewSection"
-import FloatingWhatsAppButton from "../components/FloatingWhatsAppButton"
-
-export default function Home() {
-  return (
-    <>
-      <HeroSection />
-      <SignaturePreviewSection />
-      <BrandStoryPreviewSection />
-      <FloatingWhatsAppButton />
-    </>
-  )
-}
- succeeded in 52ms:
-import MenuHeroSection from "../components/MenuHeroSection"
-import MenuCategoriesSection from "../components/MenuCategoriesSection"
-
-export default function Menu() {
-  return (
-    <main>
-      <MenuHeroSection />
-      <MenuCategoriesSection />
-    </main>
-  )
-}
+const styles = {
+  section: {
+    position: "relative",
+    overflow: "hidden",
+    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
  succeeded in 51ms:
-import AboutHeroSection from "../components/AboutHeroSection"
-import PhilosophySection from "../components/PhilosophySection"
-import StorySection from "../components/StorySection"
+const contactDetails = [
+  {
+    label: "Email",
+    value: "hello@alaiweb.com",
+    href: "mailto:hello@alaiweb.com",
+    description: "Share your goals, timeline, and current site status.",
+  },
+  {
+    label: "Phone",
+    value: "+39 02 9475 1280",
+    href: "tel:+390294751280",
+    description: "Call for a quick conversation about scope and priorities.",
+  },
+]
 
-export default function ChiSiamo() {
-  return (
-    <>
-      <AboutHeroSection />
-      <StorySection />
-      <PhilosophySection />
-    </>
-  )
-}
+const officeHours = [
+  { day: "Monday", hours: "09:00 - 18:00" },
+  { day: "Tuesday", hours: "09:00 - 18:00" },
+  { day: "Wednesday", hours: "09:00 - 18:00" },
+  { day: "Thursday", hours: "09:00 - 18:00" },
+ succeeded in 51ms:
+const highlights = [
+  {
+    label: "Dining room",
+    text: "Soft light, natural materials, and a room designed to feel calm before the first course arrives.",
+  },
+  {
+    label: "Kitchen detail",
+    text: "Close finishes, precise plating, and the small gestures that give the menu its identity.",
+  },
+  {
+    label: "Service rhythm",
+    text: "A visual sequence of evenings shaped by timing, warmth, and a steady pace across the table.",
+  },
+]
+
+const styles = {
+  section: {
+    position: "relative",
+    overflow: "hidden",
+    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
 codex
-I have enough context. I’m replacing the placeholder sections in `src/pages/Contatti.jsx` with a semantic page shell that matches the spec’s three required sections and includes the required phone and WhatsApp actions, then I’ll append the task summary to the agent report and run a build.
+I have the page structure now. Next edit is limited to extracting the hero into `ContactHeroSection.jsx`, wiring it into `Contatti.jsx`, and then appending the task note to `agent/AGENT_REPORT.md`.
 file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx
-@@ -1,17 +1,272 @@
-+const contactDetails = [
-+  {
-+    label: "Email",
-+    value: "hello@alaiweb.com",
-+    href: "mailto:hello@alaiweb.com",
-+    description: "Share your goals, timeline, and current site status.",
-+  },
-+  {
-+    label: "Phone",
-+    value: "+39 02 9475 1280",
-+    href: "tel:+390294751280",
-+    description: "Call for a quick conversation about scope and priorities.",
-+  },
-+]
-+
-+const officeHours = [
-+  { day: "Monday", hours: "09:00 - 18:00" },
-+  { day: "Tuesday", hours: "09:00 - 18:00" },
-+  { day: "Wednesday", hours: "09:00 - 18:00" },
-+  { day: "Thursday", hours: "09:00 - 18:00" },
-+  { day: "Friday", hours: "09:00 - 16:00" },
-+  { day: "Saturday", hours: "By request" },
-+  { day: "Sunday", hours: "Closed" },
-+]
-+
- export default function Contatti() {
-   return (
--    <>
--      <section id="contact-hero">
--        <h1>Contact Hero</h1>
--        <p>Content for contact-hero will be generated by tasks</p>
-+    <main>
-+      <section
-+        id="contact-hero"
-+        style={{
-+          padding: "5rem 1.5rem 3rem",
-+          background:
-+            "linear-gradient(180deg, rgba(249, 115, 22, 0.08) 0%, rgba(255, 255, 255, 1) 70%)",
-+        }}
-+      >
-+        <div
-+          style={{
-+            maxWidth: "72rem",
-+            margin: "0 auto",
-+            display: "grid",
-+            gap: "1.5rem",
-+          }}
-+        >
-+          <p
-+            style={{
-+              margin: 0,
-+              color: "#f97316",
-+              fontSize: "0.875rem",
-+              fontWeight: 700,
-+              letterSpacing: "0.12em",
-+              textTransform: "uppercase",
-+            }}
-+          >
-+            Contact
-+          </p>
-+          <h1
-+            style={{
-+              margin: 0,
-+              maxWidth: "12ch",
-+              fontSize: "clamp(3rem, 8vw, 5.5rem)",
-+              lineHeight: 0.95,
-+            }}
-+          >
-+            Let&apos;s build something sharp and effective.
-+          </h1>
-+          <p
-+            style={{
-+              margin: 0,
-+              maxWidth: "38rem",
-+              fontSize: "1.125rem",
-+              lineHeight: 1.7,
-+              color: "rgba(17, 17, 17, 0.78)",
-+            }}
-+          >
-+            Reach out with your business goals, launch timeline, and the kind of
-+            digital presence you need. We reply with a clear next step, not a vague
-+            sales sequence.
-+          </p>
-+          <div
-+            style={{
-+              display: "flex",
-+              flexWrap: "wrap",
-+              gap: "1rem",
-+            }}
-+          >
-+            <a
-+              href="mailto:hello@alaiweb.com"
-+              style={{
-+                display: "inline-flex",
-+                alignItems: "center",
-+                justifyContent: "center",
-+                minHeight: "3rem",
-+                padding: "0.875rem 1.5rem",
-+                borderRadius: "999px",
-+                backgroundColor: "#f97316",
-+                color: "#ffffff",
-+                fontWeight: 700,
-+                textDecoration: "none",
-+              }}
-+            >
-+              Tell us about your idea
-+            </a>
-+            <a
-+              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
-+              target="_blank"
-+              rel="noreferrer"
-+              style={{
-+                display: "inline-flex",
-+                alignItems: "center",
-+                justifyContent: "center",
-+                minHeight: "3rem",
-+                padding: "0.875rem 1.5rem",
-+                borderRadius: "999px",
-+                border: "1px solid rgba(17, 17, 17, 0.14)",
-+                color: "#111111",
-+                fontWeight: 700,
-+                textDecoration: "none",
-+              }}
-+            >
-+              Start on WhatsApp
-+            </a>
-+          </div>
-+        </div>
-       </section>
--      <section id="contact-details">
--        <h2>Contact Details</h2>
--        <p>Content for contact-details will be generated by tasks</p>
-+
-+      <section id="contact-details" style={{ padding: "0 1.5rem 3rem" }}>
-+        <div
-+          style={{
-+            maxWidth: "72rem",
-+            margin: "0 auto",
-+            display: "grid",
-+            gap: "1.5rem",
-+          }}
-+        >
-+          <h2 style={{ margin: 0, fontSize: "clamp(2rem, 5vw, 3.25rem)" }}>
-+            Project conversations, without the friction.
-+          </h2>
-+          <p
-+            style={{
-+              margin: 0,
-+              maxWidth: "42rem",
-+              color: "rgba(17, 17, 17, 0.72)",
-+              lineHeight: 1.7,
-+            }}
-+          >
-+            Use the channel that fits your workflow. Email is best for detailed
-+            briefs, phone is best for quick alignment, and WhatsApp works well when
-+            you want to move fast.
-+          </p>
-+          <div
-+            style={{
-+              display: "grid",
-+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-+              gap: "1rem",
-+            }}
-+          >
-+            {contactDetails.map((item) => (
-+              <a
-+                key={item.label}
-+                href={item.href}
-+                style={{
-+                  display: "grid",
-+                  gap: "0.75rem",
-+                  padding: "1.5rem",
-+                  borderRadius: "1.5rem",
-+                  backgroundColor: "#f5f5f5",
-+                  color: "#111111",
-+                  textDecoration: "none",
-+                }}
-+              >
-+                <span
-+                  style={{
-+                    fontSize: "0.875rem",
-+                    fontWeight: 700,
-+                    letterSpacing: "0.08em",
-+                    textTransform: "uppercase",
-+                    color: "#f97316",
-+                  }}
-+                >
-+                  {item.label}
-+                </span>
-+                <strong style={{ fontSize: "1.25rem" }}>{item.value}</strong>
-+                <span style={{ color: "rgba(17, 17, 17, 0.72)", lineHeight: 1.6 }}>
-+                  {item.description}
-+                </span>
-+              </a>
-+            ))}
-+            <a
-+              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
-+              target="_blank"
-+              rel="noreferrer"
-+              style={{
-+                display: "grid",
-+                gap: "0.75rem",
-+                padding: "1.5rem",
-+                borderRadius: "1.5rem",
-+                backgroundColor: "#111111",
-+                color: "#ffffff",
-+                textDecoration: "none",
-+              }}
-+            >
-+              <span
-+                style={{
-+                  fontSize: "0.875rem",
-+                  fontWeight: 700,
-+                  letterSpacing: "0.08em",
-+                  textTransform: "uppercase",
-+                  color: "#f97316",
-+                }}
-+              >
-+                WhatsApp
-+              </span>
-+              <strong style={{ fontSize: "1.25rem" }}>Message the studio</strong>
-+              <span style={{ color: "rgba(255, 255, 255, 0.72)", lineHeight: 1.6 }}>
-+                Ideal for early project questions, quick feedback, and scheduling the
-+                first call.
-+              </span>
-+            </a>
-+          </div>
-+        </div>
-       </section>
--      <section id="opening-hours">
--        <h2>Opening Hours</h2>
--        <p>Content for opening-hours will be generated by tasks</p>
-+
-+      <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
-+        <div
-+          style={{
-+            maxWidth: "72rem",
-+            margin: "0 auto",
-+            padding: "2rem",
-+            borderRadius: "2rem",
-+            backgroundColor: "#0f172a",
-+            color: "#ffffff",
-+            display: "grid",
-+            gap: "1.5rem",
-+          }}
-+        >
-+          <div style={{ display: "grid", gap: "0.75rem" }}>
-+            <h2 style={{ margin: 0, fontSize: "clamp(2rem, 4vw, 3rem)" }}>
-+              Studio hours
-+            </h2>
-+            <p style={{ margin: 0, maxWidth: "38rem", color: "rgba(255, 255, 255, 0.72)" }}>
-+              We keep our calendar focused so projects move quickly. If your launch is
-+              urgent, mention the deadline in your first message and we will confirm
-+              availability directly.
-+            </p>
-+          </div>
-+          <div
-+            style={{
-+              display: "grid",
-+              gap: "0.75rem",
-+            }}
-+          >
-+            {officeHours.map((entry) => (
-+              <div
-+                key={entry.day}
-+                style={{
-+                  display: "flex",
-+                  justifyContent: "space-between",
-+                  gap: "1rem",
-+                  paddingBottom: "0.75rem",
-+                  borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
-+                }}
-+              >
-+                <span>{entry.day}</span>
-+                <span style={{ color: "rgba(255, 255, 255, 0.72)" }}>{entry.hours}</span>
-+              </div>
-+            ))}
-+          </div>
-+        </div>
-       </section>
--    </>
-+    </main>
-   )
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md
 @@ -220,2 +220,12 @@
  
-+Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
++Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
 +
-+Launching Codex for TASK page-contatti-shell.
++Launching Codex for TASK section-contatti-contact-hero.
 +
-+Completed TASK `page-contatti-shell`.
++Completed TASK `section-contatti-contact-hero`.
 +
-+- Replaced the placeholder `contatti` content in `src/pages/Contatti.jsx` with a semantic page shell built from the required `contact-hero`, `contact-details`, and `opening-hours` sections.
-+- Preserved the existing `/contatti` hash route mounting in `src/App.jsx`, so no routing changes were required.
-+- Added real contact copy plus working email, phone, and WhatsApp actions so the page renders without placeholder text or crashes.
++- Added a reusable `ContactHeroSection` component in `src/components/ContactHeroSection.jsx`.
++- Replaced the inline contatti hero markup in `src/pages/Contatti.jsx` so the page renders the dedicated hero section.
++- Preserved the required `contact-hero` section id, page `h1`, and visible email/WhatsApp hero CTAs.
 +
- Prepared TASK section-gallery-gallery-grid (Create gallery-grid section on gallery) for execution.
-apply_patch(auto_approved=true) exited 0 in 46ms:
+ Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/ContactHeroSection.jsx
+const styles = {
+  section: {
+    position: "relative",
+    overflow: "hidden",
+    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem) clamp(3rem, 6vw, 4rem)",
+    background:
+      "radial-gradient(circle at top left, rgba(249, 115, 22, 0.16), transparent 30%), linear-gradient(180deg, rgba(249, 115, 22, 0.08) 0%, #ffffff 72%)",
+  },
+  shell: {
+    maxWidth: "1280px",
+    margin: "0 auto",
+    display: "grid",
+    gap: "1.5rem",
+  },
+  eyebrow: {
+    margin: 0,
+    color: "#f97316",
+    fontSize: "0.875rem",
+    fontWeight: 700,
+    letterSpacing: "0.12em",
+    textTransform: "uppercase",
+  },
+  title: {
+    margin: 0,
+    maxWidth: "12ch",
+    fontSize: "clamp(3rem, 8vw, 5.5rem)",
+    lineHeight: 0.95,
+    letterSpacing: "-0.05em",
+    textWrap: "balance",
+    color: "#111111",
+  },
+  lead: {
+    margin: 0,
+    maxWidth: "38rem",
+    fontSize: "1.125rem",
+    lineHeight: 1.7,
+    color: "rgba(17, 17, 17, 0.78)",
+  },
+  actions: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "1rem",
+  },
+  primaryAction: {
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    minHeight: "3rem",
+    padding: "0.875rem 1.5rem",
+    borderRadius: "999px",
+    backgroundColor: "#f97316",
+    color: "#ffffff",
+    fontWeight: 700,
+    textDecoration: "none",
+  },
+  secondaryAction: {
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    minHeight: "3rem",
+    padding: "0.875rem 1.5rem",
+    borderRadius: "999px",
+    border: "1px solid rgba(17, 17, 17, 0.14)",
+    color: "#111111",
+    fontWeight: 700,
+    textDecoration: "none",
+  },
+}
+
+export default function ContactHeroSection() {
+  return (
+    <section id="contact-hero" aria-labelledby="contact-hero-title" style={styles.section}>
+      <div style={styles.shell}>
+        <p style={styles.eyebrow}>Contact</p>
+        <h1 id="contact-hero-title" style={styles.title}>
+          Let&apos;s build something sharp and effective.
+        </h1>
+        <p style={styles.lead}>
+          Reach out with your business goals, launch timeline, and the kind of
+          digital presence you need. We reply with a clear next step, not a vague
+          sales sequence.
+        </p>
+        <div style={styles.actions}>
+          <a href="mailto:hello@alaiweb.com" style={styles.primaryAction}>
+            Tell us about your idea
+          </a>
+          <a
+            href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
+            target="_blank"
+            rel="noreferrer"
+            style={styles.secondaryAction}
+          >
+            Start on WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx
+@@ -1 +1,3 @@
++import ContactHeroSection from "../components/ContactHeroSection"
++
+ const contactDetails = [
+@@ -28,99 +30,3 @@
+     <main>
+-      <section
+-        id="contact-hero"
+-        style={{
+-          padding: "5rem 1.5rem 3rem",
+-          background:
+-            "linear-gradient(180deg, rgba(249, 115, 22, 0.08) 0%, rgba(255, 255, 255, 1) 70%)",
+-        }}
+-      >
+-        <div
+-          style={{
+-            maxWidth: "72rem",
+-            margin: "0 auto",
+-            display: "grid",
+-            gap: "1.5rem",
+-          }}
+-        >
+-          <p
+-            style={{
+-              margin: 0,
+-              color: "#f97316",
+-              fontSize: "0.875rem",
+-              fontWeight: 700,
+-              letterSpacing: "0.12em",
+-              textTransform: "uppercase",
+-            }}
+-          >
+-            Contact
+-          </p>
+-          <h1
+-            style={{
+-              margin: 0,
+-              maxWidth: "12ch",
+-              fontSize: "clamp(3rem, 8vw, 5.5rem)",
+-              lineHeight: 0.95,
+-            }}
+-          >
+-            Let&apos;s build something sharp and effective.
+-          </h1>
+-          <p
+-            style={{
+-              margin: 0,
+-              maxWidth: "38rem",
+-              fontSize: "1.125rem",
+-              lineHeight: 1.7,
+-              color: "rgba(17, 17, 17, 0.78)",
+-            }}
+-          >
+-            Reach out with your business goals, launch timeline, and the kind of
+-            digital presence you need. We reply with a clear next step, not a vague
+-            sales sequence.
+-          </p>
+-          <div
+-            style={{
+-              display: "flex",
+-              flexWrap: "wrap",
+-              gap: "1rem",
+-            }}
+-          >
+-            <a
+-              href="mailto:hello@alaiweb.com"
+-              style={{
+-                display: "inline-flex",
+-                alignItems: "center",
+-                justifyContent: "center",
+-                minHeight: "3rem",
+-                padding: "0.875rem 1.5rem",
+-                borderRadius: "999px",
+-                backgroundColor: "#f97316",
+-                color: "#ffffff",
+-                fontWeight: 700,
+-                textDecoration: "none",
+-              }}
+-            >
+-              Tell us about your idea
+-            </a>
+-            <a
+-              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
+-              target="_blank"
+-              rel="noreferrer"
+-              style={{
+-                display: "inline-flex",
+-                alignItems: "center",
+-                justifyContent: "center",
+-                minHeight: "3rem",
+-                padding: "0.875rem 1.5rem",
+-                borderRadius: "999px",
+-                border: "1px solid rgba(17, 17, 17, 0.14)",
+-                color: "#111111",
+-                fontWeight: 700,
+-                textDecoration: "none",
+-              }}
+-            >
+-              Start on WhatsApp
+-            </a>
+-          </div>
+-        </div>
+-      </section>
++      <ContactHeroSection />
+ 
+apply_patch(auto_approved=true) exited 0 in 55ms:
 Success. Updated the following files:
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/ContactHeroSection.jsx
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 68c8f1d2b418666d61e1820fa7d8b823ade1e4f4..e782edcf5061176f61873481fe113c3a481b272b
+index 647d53330fd25cb77bf9e15fa1c66566f0b00f11..b7ad5ea7268488e00f1b276cd64dd57022f86144
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
 @@ -218,6 +218,16 @@
  TASK page-chi-siamo-shell completed successfully.
  Build passed.
  
-+Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
++Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
 +
-+Launching Codex for TASK page-contatti-shell.
++Launching Codex for TASK section-contatti-contact-hero.
 +
-+Completed TASK `page-contatti-shell`.
++Completed TASK `section-contatti-contact-hero`.
 +
-+- Replaced the placeholder `contatti` content in `src/pages/Contatti.jsx` with a semantic page shell built from the required `contact-hero`, `contact-details`, and `opening-hours` sections.
-+- Preserved the existing `/contatti` hash route mounting in `src/App.jsx`, so no routing changes were required.
-+- Added real contact copy plus working email, phone, and WhatsApp actions so the page renders without placeholder text or crashes.
++- Added a reusable `ContactHeroSection` component in `src/components/ContactHeroSection.jsx`.
++- Replaced the inline contatti hero markup in `src/pages/Contatti.jsx` so the page renders the dedicated hero section.
++- Preserved the required `contact-hero` section id, page `h1`, and visible email/WhatsApp hero CTAs.
 +
- Prepared TASK section-gallery-gallery-grid (Create gallery-grid section on gallery) for execution.
+ Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
  
- Launching Codex for TASK section-gallery-gallery-grid.
+ Launching Codex for TASK page-contatti-shell.
+diff --git a/src/components/ContactHeroSection.jsx b/src/components/ContactHeroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..3828321e53e045862b416bd398cb1ab3544d4e9b
+--- /dev/null
++++ b/src/components/ContactHeroSection.jsx
+@@ -0,0 +1,99 @@
++const styles = {
++  section: {
++    position: "relative",
++    overflow: "hidden",
++    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem) clamp(3rem, 6vw, 4rem)",
++    background:
++      "radial-gradient(circle at top left, rgba(249, 115, 22, 0.16), transparent 30%), linear-gradient(180deg, rgba(249, 115, 22, 0.08) 0%, #ffffff 72%)",
++  },
++  shell: {
++    maxWidth: "1280px",
++    margin: "0 auto",
++    display: "grid",
++    gap: "1.5rem",
++  },
++  eyebrow: {
++    margin: 0,
++    color: "#f97316",
++    fontSize: "0.875rem",
++    fontWeight: 700,
++    letterSpacing: "0.12em",
++    textTransform: "uppercase",
++  },
++  title: {
++    margin: 0,
++    maxWidth: "12ch",
++    fontSize: "clamp(3rem, 8vw, 5.5rem)",
++    lineHeight: 0.95,
++    letterSpacing: "-0.05em",
++    textWrap: "balance",
++    color: "#111111",
++  },
++  lead: {
++    margin: 0,
++    maxWidth: "38rem",
++    fontSize: "1.125rem",
++    lineHeight: 1.7,
++    color: "rgba(17, 17, 17, 0.78)",
++  },
++  actions: {
++    display: "flex",
++    flexWrap: "wrap",
++    gap: "1rem",
++  },
++  primaryAction: {
++    display: "inline-flex",
++    alignItems: "center",
++    justifyContent: "center",
++    minHeight: "3rem",
++    padding: "0.875rem 1.5rem",
++    borderRadius: "999px",
++    backgroundColor: "#f97316",
++    color: "#ffffff",
++    fontWeight: 700,
++    textDecoration: "none",
++  },
++  secondaryAction: {
++    display: "inline-flex",
++    alignItems: "center",
++    justifyContent: "center",
++    minHeight: "3rem",
++    padding: "0.875rem 1.5rem",
++    borderRadius: "999px",
++    border: "1px solid rgba(17, 17, 17, 0.14)",
++    color: "#111111",
++    fontWeight: 700,
++    textDecoration: "none",
++  },
++}
++
++export default function ContactHeroSection() {
++  return (
++    <section id="contact-hero" aria-labelledby="contact-hero-title" style={styles.section}>
++      <div style={styles.shell}>
++        <p style={styles.eyebrow}>Contact</p>
++        <h1 id="contact-hero-title" style={styles.title}>
++          Let&apos;s build something sharp and effective.
++        </h1>
++        <p style={styles.lead}>
++          Reach out with your business goals, launch timeline, and the kind of
++          digital presence you need. We reply with a clear next step, not a vague
++          sales sequence.
++        </p>
++        <div style={styles.actions}>
++          <a href="mailto:hello@alaiweb.com" style={styles.primaryAction}>
++            Tell us about your idea
++          </a>
++          <a
++            href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
++            target="_blank"
++            rel="noreferrer"
++            style={styles.secondaryAction}
++          >
++            Start on WhatsApp
++          </a>
++        </div>
++      </div>
++    </section>
++  )
++}
 diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 27ef33c6d2801e2478be5154702bdb2f62cc910f..b81fe3d8080f4f88bb4a19c938bc517e57cc4363
+index b81fe3d8080f4f88bb4a19c938bc517e57cc4363..634f4a8aad060e5b424277f70429ea03f77d2224
 --- a/src/pages/Contatti.jsx
 +++ b/src/pages/Contatti.jsx
-@@ -1,18 +1,273 @@
-+const contactDetails = [
-+  {
-+    label: "Email",
-+    value: "hello@alaiweb.com",
-+    href: "mailto:hello@alaiweb.com",
-+    description: "Share your goals, timeline, and current site status.",
-+  },
-+  {
-+    label: "Phone",
-+    value: "+39 02 9475 1280",
-+    href: "tel:+390294751280",
-+    description: "Call for a quick conversation about scope and priorities.",
-+  },
-+]
+@@ -1,3 +1,5 @@
++import ContactHeroSection from "../components/ContactHeroSection"
 +
-+const officeHours = [
-+  { day: "Monday", hours: "09:00 - 18:00" },
-+  { day: "Tuesday", hours: "09:00 - 18:00" },
-+  { day: "Wednesday", hours: "09:00 - 18:00" },
-+  { day: "Thursday", hours: "09:00 - 18:00" },
-+  { day: "Friday", hours: "09:00 - 16:00" },
-+  { day: "Saturday", hours: "By request" },
-+  { day: "Sunday", hours: "Closed" },
-+]
-+
+ const contactDetails = [
+   {
+     label: "Email",
+@@ -26,103 +28,7 @@
  export default function Contatti() {
    return (
--    <>
--      <section id="contact-hero">
--        <h1>Contact Hero</h1>
--        <p>Content for contact-hero will be generated by tasks</p>
-+    <main>
-+      <section
-+        id="contact-hero"
-+        style={{
-+          padding: "5rem 1.5rem 3rem",
-+          background:
-+            "linear-gradient(180deg, rgba(249, 115, 22, 0.08) 0%, rgba(255, 255, 255, 1) 70%)",
-+        }}
-+      >
-+        <div
-+          style={{
-+            maxWidth: "72rem",
-+            margin: "0 auto",
-+            display: "grid",
-+            gap: "1.5rem",
-+          }}
-+        >
-+          <p
-+            style={{
-+              margin: 0,
-+              color: "#f97316",
-+              fontSize: "0.875rem",
-+              fontWeight: 700,
-+              letterSpacing: "0.12em",
-+              textTransform: "uppercase",
-+            }}
-+          >
-+            Contact
-+          </p>
-+          <h1
-+            style={{
-+              margin: 0,
-+              maxWidth: "12ch",
-+              fontSize: "clamp(3rem, 8vw, 5.5rem)",
-+              lineHeight: 0.95,
-+            }}
-+          >
-+            Let&apos;s build something sharp and effective.
-+          </h1>
-+          <p
-+            style={{
-+              margin: 0,
-+              maxWidth: "38rem",
-+              fontSize: "1.125rem",
-+              lineHeight: 1.7,
-+              color: "rgba(17, 17, 17, 0.78)",
-+            }}
-+          >
-+            Reach out with your business goals, launch timeline, and the kind of
-+            digital presence you need. We reply with a clear next step, not a vague
-+            sales sequence.
-+          </p>
-+          <div
-+            style={{
-+              display: "flex",
-+              flexWrap: "wrap",
-+              gap: "1rem",
-+            }}
-+          >
-+            <a
-+              href="mailto:hello@alaiweb.com"
-+              style={{
-+                display: "inline-flex",
-+                alignItems: "center",
-+                justifyContent: "center",
-+                minHeight: "3rem",
-+                padding: "0.875rem 1.5rem",
-+                borderRadius: "999px",
-+                backgroundColor: "#f97316",
-+                color: "#ffffff",
-+                fontWeight: 700,
-+                textDecoration: "none",
-+              }}
-+            >
-+              Tell us about your idea
-+            </a>
-+            <a
-+              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
-+              target="_blank"
-+              rel="noreferrer"
-+              style={{
-+                display: "inline-flex",
-+                alignItems: "center",
-+                justifyContent: "center",
-+                minHeight: "3rem",
-+                padding: "0.875rem 1.5rem",
-+                borderRadius: "999px",
-+                border: "1px solid rgba(17, 17, 17, 0.14)",
-+                color: "#111111",
-+                fontWeight: 700,
-+                textDecoration: "none",
-+              }}
-+            >
-+              Start on WhatsApp
-+            </a>
-+          </div>
-+        </div>
-       </section>
--      <section id="contact-details">
--        <h2>Contact Details</h2>
--        <p>Content for contact-details will be generated by tasks</p>
-+
-+      <section id="contact-details" style={{ padding: "0 1.5rem 3rem" }}>
-+        <div
-+          style={{
-+            maxWidth: "72rem",
-+            margin: "0 auto",
-+            display: "grid",
-+            gap: "1.5rem",
-+          }}
-+        >
-+          <h2 style={{ margin: 0, fontSize: "clamp(2rem, 5vw, 3.25rem)" }}>
-+            Project conversations, without the friction.
-+          </h2>
-+          <p
-+            style={{
-+              margin: 0,
-+              maxWidth: "42rem",
-+              color: "rgba(17, 17, 17, 0.72)",
-+              lineHeight: 1.7,
-+            }}
-+          >
-+            Use the channel that fits your workflow. Email is best for detailed
-+            briefs, phone is best for quick alignment, and WhatsApp works well when
-+            you want to move fast.
-+          </p>
-+          <div
-+            style={{
-+              display: "grid",
-+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-+              gap: "1rem",
-+            }}
-+          >
-+            {contactDetails.map((item) => (
-+              <a
-+                key={item.label}
-+                href={item.href}
-+                style={{
-+                  display: "grid",
-+                  gap: "0.75rem",
-+                  padding: "1.5rem",
-+                  borderRadius: "1.5rem",
-+                  backgroundColor: "#f5f5f5",
-+                  color: "#111111",
-+                  textDecoration: "none",
-+                }}
-+              >
-+                <span
-+                  style={{
-+                    fontSize: "0.875rem",
-+                    fontWeight: 700,
-+                    letterSpacing: "0.08em",
-+                    textTransform: "uppercase",
-+                    color: "#f97316",
-+                  }}
-+                >
-+                  {item.label}
-+                </span>
-+                <strong style={{ fontSize: "1.25rem" }}>{item.value}</strong>
-+                <span style={{ color: "rgba(17, 17, 17, 0.72)", lineHeight: 1.6 }}>
-+                  {item.description}
-+                </span>
-+              </a>
-+            ))}
-+            <a
-+              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
-+              target="_blank"
-+              rel="noreferrer"
-+              style={{
-+                display: "grid",
-+                gap: "0.75rem",
-+                padding: "1.5rem",
-+                borderRadius: "1.5rem",
-+                backgroundColor: "#111111",
-+                color: "#ffffff",
-+                textDecoration: "none",
-+              }}
-+            >
-+              <span
-+                style={{
-+                  fontSize: "0.875rem",
-+                  fontWeight: 700,
-+                  letterSpacing: "0.08em",
-+                  textTransform: "uppercase",
-+                  color: "#f97316",
-+                }}
-+              >
-+                WhatsApp
-+              </span>
-+              <strong style={{ fontSize: "1.25rem" }}>Message the studio</strong>
-+              <span style={{ color: "rgba(255, 255, 255, 0.72)", lineHeight: 1.6 }}>
-+                Ideal for early project questions, quick feedback, and scheduling the
-+                first call.
-+              </span>
-+            </a>
-+          </div>
-+        </div>
-       </section>
--      <section id="opening-hours">
--        <h2>Opening Hours</h2>
--        <p>Content for opening-hours will be generated by tasks</p>
-+
-+      <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
-+        <div
-+          style={{
-+            maxWidth: "72rem",
-+            margin: "0 auto",
-+            padding: "2rem",
-+            borderRadius: "2rem",
-+            backgroundColor: "#0f172a",
-+            color: "#ffffff",
-+            display: "grid",
-+            gap: "1.5rem",
-+          }}
-+        >
-+          <div style={{ display: "grid", gap: "0.75rem" }}>
-+            <h2 style={{ margin: 0, fontSize: "clamp(2rem, 4vw, 3rem)" }}>
-+              Studio hours
-+            </h2>
-+            <p style={{ margin: 0, maxWidth: "38rem", color: "rgba(255, 255, 255, 0.72)" }}>
-+              We keep our calendar focused so projects move quickly. If your launch is
-+              urgent, mention the deadline in your first message and we will confirm
-+              availability directly.
-+            </p>
-+          </div>
-+          <div
-+            style={{
-+              display: "grid",
-+              gap: "0.75rem",
-+            }}
-+          >
-+            {officeHours.map((entry) => (
-+              <div
-+                key={entry.day}
-+                style={{
-+                  display: "flex",
-+                  justifyContent: "space-between",
-+                  gap: "1rem",
-+                  paddingBottom: "0.75rem",
-+                  borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
-+                }}
-+              >
-+                <span>{entry.day}</span>
-+                <span style={{ color: "rgba(255, 255, 255, 0.72)" }}>{entry.hours}</span>
-+              </div>
-+            ))}
-+          </div>
-+        </div>
-       </section>
--    </>
-+    </main>
-   )
- }
+     <main>
+-      <section
+-        id="contact-hero"
+-        style={{
+-          padding: "5rem 1.5rem 3rem",
+-          background:
+-            "linear-gradient(180deg, rgba(249, 115, 22, 0.08) 0%, rgba(255, 255, 255, 1) 70%)",
+-        }}
+-      >
+-        <div
+-          style={{
+-            maxWidth: "72rem",
+-            margin: "0 auto",
+-            display: "grid",
+-            gap: "1.5rem",
+-          }}
+-        >
+-          <p
+-            style={{
+-              margin: 0,
+-              color: "#f97316",
+-              fontSize: "0.875rem",
+-              fontWeight: 700,
+-              letterSpacing: "0.12em",
+-              textTransform: "uppercase",
+-            }}
+-          >
+-            Contact
+-          </p>
+-          <h1
+-            style={{
+-              margin: 0,
+-              maxWidth: "12ch",
+-              fontSize: "clamp(3rem, 8vw, 5.5rem)",
+-              lineHeight: 0.95,
+-            }}
+-          >
+-            Let&apos;s build something sharp and effective.
+-          </h1>
+-          <p
+-            style={{
+-              margin: 0,
+-              maxWidth: "38rem",
+-              fontSize: "1.125rem",
+-              lineHeight: 1.7,
+-              color: "rgba(17, 17, 17, 0.78)",
+-            }}
+-          >
+-            Reach out with your business goals, launch timeline, and the kind of
+-            digital presence you need. We reply with a clear next step, not a vague
+-            sales sequence.
+-          </p>
+-          <div
+-            style={{
+-              display: "flex",
+-              flexWrap: "wrap",
+-              gap: "1rem",
+-            }}
+-          >
+-            <a
+-              href="mailto:hello@alaiweb.com"
+-              style={{
+-                display: "inline-flex",
+-                alignItems: "center",
+-                justifyContent: "center",
+-                minHeight: "3rem",
+-                padding: "0.875rem 1.5rem",
+-                borderRadius: "999px",
+-                backgroundColor: "#f97316",
+-                color: "#ffffff",
+-                fontWeight: 700,
+-                textDecoration: "none",
+-              }}
+-            >
+-              Tell us about your idea
+-            </a>
+-            <a
+-              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
+-              target="_blank"
+-              rel="noreferrer"
+-              style={{
+-                display: "inline-flex",
+-                alignItems: "center",
+-                justifyContent: "center",
+-                minHeight: "3rem",
+-                padding: "0.875rem 1.5rem",
+-                borderRadius: "999px",
+-                border: "1px solid rgba(17, 17, 17, 0.14)",
+-                color: "#111111",
+-                fontWeight: 700,
+-                textDecoration: "none",
+-              }}
+-            >
+-              Start on WhatsApp
+-            </a>
+-          </div>
+-        </div>
+-      </section>
++      <ContactHeroSection />
+ 
+       <section id="contact-details" style={{ padding: "0 1.5rem 3rem" }}>
+         <div
 
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 68c8f1d2b418666d61e1820fa7d8b823ade1e4f4..e782edcf5061176f61873481fe113c3a481b272b
+index 647d53330fd25cb77bf9e15fa1c66566f0b00f11..b7ad5ea7268488e00f1b276cd64dd57022f86144
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
 @@ -218,6 +218,16 @@
  TASK page-chi-siamo-shell completed successfully.
  Build passed.
  
-+Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
++Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
 +
-+Launching Codex for TASK page-contatti-shell.
++Launching Codex for TASK section-contatti-contact-hero.
 +
-+Completed TASK `page-contatti-shell`.
++Completed TASK `section-contatti-contact-hero`.
 +
-+- Replaced the placeholder `contatti` content in `src/pages/Contatti.jsx` with a semantic page shell built from the required `contact-hero`, `contact-details`, and `opening-hours` sections.
-+- Preserved the existing `/contatti` hash route mounting in `src/App.jsx`, so no routing changes were required.
-+- Added real contact copy plus working email, phone, and WhatsApp actions so the page renders without placeholder text or crashes.
++- Added a reusable `ContactHeroSection` component in `src/components/ContactHeroSection.jsx`.
++- Replaced the inline contatti hero markup in `src/pages/Contatti.jsx` so the page renders the dedicated hero section.
++- Preserved the required `contact-hero` section id, page `h1`, and visible email/WhatsApp hero CTAs.
 +
- Prepared TASK section-gallery-gallery-grid (Create gallery-grid section on gallery) for execution.
+ Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
  
- Launching Codex for TASK section-gallery-gallery-grid.
+ Launching Codex for TASK page-contatti-shell.
+diff --git a/src/components/ContactHeroSection.jsx b/src/components/ContactHeroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..3828321e53e045862b416bd398cb1ab3544d4e9b
+--- /dev/null
++++ b/src/components/ContactHeroSection.jsx
+@@ -0,0 +1,99 @@
++const styles = {
++  section: {
++    position: "relative",
++    overflow: "hidden",
++    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem) clamp(3rem, 6vw, 4rem)",
++    background:
++      "radial-gradient(circle at top left, rgba(249, 115, 22, 0.16), transparent 30%), linear-gradient(180deg, rgba(249, 115, 22, 0.08) 0%, #ffffff 72%)",
++  },
++  shell: {
++    maxWidth: "1280px",
++    margin: "0 auto",
++    display: "grid",
++    gap: "1.5rem",
++  },
++  eyebrow: {
++    margin: 0,
++    color: "#f97316",
++    fontSize: "0.875rem",
++    fontWeight: 700,
++    letterSpacing: "0.12em",
++    textTransform: "uppercase",
++  },
++  title: {
++    margin: 0,
++    maxWidth: "12ch",
++    fontSize: "clamp(3rem, 8vw, 5.5rem)",
++    lineHeight: 0.95,
++    letterSpacing: "-0.05em",
++    textWrap: "balance",
++    color: "#111111",
++  },
++  lead: {
++    margin: 0,
++    maxWidth: "38rem",
++    fontSize: "1.125rem",
++    lineHeight: 1.7,
++    color: "rgba(17, 17, 17, 0.78)",
++  },
++  actions: {
++    display: "flex",
++    flexWrap: "wrap",
++    gap: "1rem",
++  },
++  primaryAction: {
++    display: "inline-flex",
++    alignItems: "center",
++    justifyContent: "center",
++    minHeight: "3rem",
++    padding: "0.875rem 1.5rem",
++    borderRadius: "999px",
++    backgroundColor: "#f97316",
++    color: "#ffffff",
++    fontWeight: 700,
++    textDecoration: "none",
++  },
++  secondaryAction: {
++    display: "inline-flex",
++    alignItems: "center",
++    justifyContent: "center",
++    minHeight: "3rem",
++    padding: "0.875rem 1.5rem",
++    borderRadius: "999px",
++    border: "1px solid rgba(17, 17, 17, 0.14)",
++    color: "#111111",
++    fontWeight: 700,
++    textDecoration: "none",
++  },
++}
++
++export default function ContactHeroSection() {
++  return (
++    <section id="contact-hero" aria-labelledby="contact-hero-title" style={styles.section}>
++      <div style={styles.shell}>
++        <p style={styles.eyebrow}>Contact</p>
++        <h1 id="contact-hero-title" style={styles.title}>
++          Let&apos;s build something sharp and effective.
++        </h1>
++        <p style={styles.lead}>
++          Reach out with your business goals, launch timeline, and the kind of
++          digital presence you need. We reply with a clear next step, not a vague
++          sales sequence.
++        </p>
++        <div style={styles.actions}>
++          <a href="mailto:hello@alaiweb.com" style={styles.primaryAction}>
++            Tell us about your idea
++          </a>
++          <a
++            href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
++            target="_blank"
++            rel="noreferrer"
++            style={styles.secondaryAction}
++          >
++            Start on WhatsApp
++          </a>
++        </div>
++      </div>
++    </section>
++  )
++}
 diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 27ef33c6d2801e2478be5154702bdb2f62cc910f..b81fe3d8080f4f88bb4a19c938bc517e57cc4363
+index b81fe3d8080f4f88bb4a19c938bc517e57cc4363..634f4a8aad060e5b424277f70429ea03f77d2224
 --- a/src/pages/Contatti.jsx
 +++ b/src/pages/Contatti.jsx
-@@ -1,18 +1,273 @@
-+const contactDetails = [
-+  {
-+    label: "Email",
-+    value: "hello@alaiweb.com",
-+    href: "mailto:hello@alaiweb.com",
-+    description: "Share your goals, timeline, and current site status.",
-+  },
-+  {
-+    label: "Phone",
-+    value: "+39 02 9475 1280",
-+    href: "tel:+390294751280",
-+    description: "Call for a quick conversation about scope and priorities.",
-+  },
-+]
+@@ -1,3 +1,5 @@
++import ContactHeroSection from "../components/ContactHeroSection"
 +
-+const officeHours = [
-+  { day: "Monday", hours: "09:00 - 18:00" },
-+  { day: "Tuesday", hours: "09:00 - 18:00" },
-+  { day: "Wednesday", hours: "09:00 - 18:00" },
-+  { day: "Thursday", hours: "09:00 - 18:00" },
-+  { day: "Friday", hours: "09:00 - 16:00" },
-+  { day: "Saturday", hours: "By request" },
-+  { day: "Sunday", hours: "Closed" },
-+]
-+
+ const contactDetails = [
+   {
+     label: "Email",
+@@ -26,103 +28,7 @@
  export default function Contatti() {
    return (
--    <>
--      <section id="contact-hero">
--        <h1>Contact Hero</h1>
--        <p>Content for contact-hero will be generated by tasks</p>
-+    <main>
-+      <section
-+        id="contact-hero"
-+        style={{
-+          padding: "5rem 1.5rem 3rem",
-+          background:
-+            "linear-gradient(180deg, rgba(249, 115, 22, 0.08) 0%, rgba(255, 255, 255, 1) 70%)",
-+        }}
-+      >
-+        <div
-+          style={{
-+            maxWidth: "72rem",
-+            margin: "0 auto",
-+            display: "grid",
-+            gap: "1.5rem",
-+          }}
-+        >
-+          <p
-+            style={{
-+              margin: 0,
-+              color: "#f97316",
-+              fontSize: "0.875rem",
-+              fontWeight: 700,
-+              letterSpacing: "0.12em",
-+              textTransform: "uppercase",
-+            }}
-+          >
-+            Contact
-+          </p>
-+          <h1
-+            style={{
-+              margin: 0,
-+              maxWidth: "12ch",
-+              fontSize: "clamp(3rem, 8vw, 5.5rem)",
-+              lineHeight: 0.95,
-+            }}
-+          >
-+            Let&apos;s build something sharp and effective.
-+          </h1>
-+          <p
-+            style={{
-+              margin: 0,
-+              maxWidth: "38rem",
-+              fontSize: "1.125rem",
-+              lineHeight: 1.7,
-+              color: "rgba(17, 17, 17, 0.78)",
-+            }}
-+          >
-+            Reach out with your business goals, launch timeline, and the kind of
-+            digital presence you need. We reply with a clear next step, not a vague
-+            sales sequence.
-+          </p>
-+          <div
-+            style={{
-+              display: "flex",
-+              flexWrap: "wrap",
-+              gap: "1rem",
-+            }}
-+          >
-+            <a
-+              href="mailto:hello@alaiweb.com"
-+              style={{
-+                display: "inline-flex",
-+                alignItems: "center",
-+                justifyContent: "center",
-+                minHeight: "3rem",
-+                padding: "0.875rem 1.5rem",
-+                borderRadius: "999px",
-+                backgroundColor: "#f97316",
-+                color: "#ffffff",
-+                fontWeight: 700,
-+                textDecoration: "none",
-+              }}
-+            >
-+              Tell us about your idea
-+            </a>
-+            <a
-+              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
-+              target="_blank"
-+              rel="noreferrer"
-+              style={{
-+                display: "inline-flex",
-+                alignItems: "center",
-+                justifyContent: "center",
-+                minHeight: "3rem",
-+                padding: "0.875rem 1.5rem",
-+                borderRadius: "999px",
-+                border: "1px solid rgba(17, 17, 17, 0.14)",
-+                color: "#111111",
-+                fontWeight: 700,
-+                textDecoration: "none",
-+              }}
-+            >
-+              Start on WhatsApp
-+            </a>
-+          </div>
-+        </div>
-       </section>
--      <section id="contact-details">
--        <h2>Contact Details</h2>
--        <p>Content for contact-details will be generated by tasks</p>
-+
-+      <section id="contact-details" style={{ padding: "0 1.5rem 3rem" }}>
-+        <div
-+          style={{
-+            maxWidth: "72rem",
-+            margin: "0 auto",
-+            display: "grid",
-+            gap: "1.5rem",
-+          }}
-+        >
-+          <h2 style={{ margin: 0, fontSize: "clamp(2rem, 5vw, 3.25rem)" }}>
-+            Project conversations, without the friction.
-+          </h2>
-+          <p
-+            style={{
-+              margin: 0,
-+              maxWidth: "42rem",
-+              color: "rgba(17, 17, 17, 0.72)",
-+              lineHeight: 1.7,
-+            }}
-+          >
-+            Use the channel that fits your workflow. Email is best for detailed
-+            briefs, phone is best for quick alignment, and WhatsApp works well when
-+            you want to move fast.
-+          </p>
-+          <div
-+            style={{
-+              display: "grid",
-+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-+              gap: "1rem",
-+            }}
-+          >
-+            {contactDetails.map((item) => (
-+              <a
-+                key={item.label}
-+                href={item.href}
-+                style={{
-+                  display: "grid",
-+                  gap: "0.75rem",
-+                  padding: "1.5rem",
-+                  borderRadius: "1.5rem",
-+                  backgroundColor: "#f5f5f5",
-+                  color: "#111111",
-+                  textDecoration: "none",
-+                }}
-+              >
-+                <span
-+                  style={{
-+                    fontSize: "0.875rem",
-+                    fontWeight: 700,
-+                    letterSpacing: "0.08em",
-+                    textTransform: "uppercase",
-+                    color: "#f97316",
-+                  }}
-+                >
-+                  {item.label}
-+                </span>
-+                <strong style={{ fontSize: "1.25rem" }}>{item.value}</strong>
-+                <span style={{ color: "rgba(17, 17, 17, 0.72)", lineHeight: 1.6 }}>
-+                  {item.description}
-+                </span>
-+              </a>
-+            ))}
-+            <a
-+              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
-+              target="_blank"
-+              rel="noreferrer"
-+              style={{
-+                display: "grid",
-+                gap: "0.75rem",
-+                padding: "1.5rem",
-+                borderRadius: "1.5rem",
-+                backgroundColor: "#111111",
-+                color: "#ffffff",
-+                textDecoration: "none",
-+              }}
-+            >
-+              <span
-+                style={{
-+                  fontSize: "0.875rem",
-+                  fontWeight: 700,
-+                  letterSpacing: "0.08em",
-+                  textTransform: "uppercase",
-+                  color: "#f97316",
-+                }}
-+              >
-+                WhatsApp
-+              </span>
-+              <strong style={{ fontSize: "1.25rem" }}>Message the studio</strong>
-+              <span style={{ color: "rgba(255, 255, 255, 0.72)", lineHeight: 1.6 }}>
-+                Ideal for early project questions, quick feedback, and scheduling the
-+                first call.
-+              </span>
-+            </a>
-+          </div>
-+        </div>
-       </section>
--      <section id="opening-hours">
--        <h2>Opening Hours</h2>
--        <p>Content for opening-hours will be generated by tasks</p>
-+
-+      <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
-+        <div
-+          style={{
-+            maxWidth: "72rem",
-+            margin: "0 auto",
-+            padding: "2rem",
-+            borderRadius: "2rem",
-+            backgroundColor: "#0f172a",
-+            color: "#ffffff",
-+            display: "grid",
-+            gap: "1.5rem",
-+          }}
-+        >
-+          <div style={{ display: "grid", gap: "0.75rem" }}>
-+            <h2 style={{ margin: 0, fontSize: "clamp(2rem, 4vw, 3rem)" }}>
-+              Studio hours
-+            </h2>
-+            <p style={{ margin: 0, maxWidth: "38rem", color: "rgba(255, 255, 255, 0.72)" }}>
-+              We keep our calendar focused so projects move quickly. If your launch is
-+              urgent, mention the deadline in your first message and we will confirm
-+              availability directly.
-+            </p>
-+          </div>
-+          <div
-+            style={{
-+              display: "grid",
-+              gap: "0.75rem",
-+            }}
-+          >
-+            {officeHours.map((entry) => (
-+              <div
-+                key={entry.day}
-+                style={{
-+                  display: "flex",
-+                  justifyContent: "space-between",
-+                  gap: "1rem",
-+                  paddingBottom: "0.75rem",
-+                  borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
-+                }}
-+              >
-+                <span>{entry.day}</span>
-+                <span style={{ color: "rgba(255, 255, 255, 0.72)" }}>{entry.hours}</span>
-+              </div>
-+            ))}
-+          </div>
-+        </div>
-       </section>
--    </>
-+    </main>
-   )
- }
+     <main>
+-      <section
+-        id="contact-hero"
+-        style={{
+-          padding: "5rem 1.5rem 3rem",
+-          background:
+-            "linear-gradient(180deg, rgba(249, 115, 22, 0.08) 0%, rgba(255, 255, 255, 1) 70%)",
+-        }}
+-      >
+-        <div
+-          style={{
+-            maxWidth: "72rem",
+-            margin: "0 auto",
+-            display: "grid",
+-            gap: "1.5rem",
+-          }}
+-        >
+-          <p
+-            style={{
+-              margin: 0,
+-              color: "#f97316",
+-              fontSize: "0.875rem",
+-              fontWeight: 700,
+-              letterSpacing: "0.12em",
+-              textTransform: "uppercase",
+-            }}
+-          >
+-            Contact
+-          </p>
+-          <h1
+-            style={{
+-              margin: 0,
+-              maxWidth: "12ch",
+-              fontSize: "clamp(3rem, 8vw, 5.5rem)",
+-              lineHeight: 0.95,
+-            }}
+-          >
+-            Let&apos;s build something sharp and effective.
+-          </h1>
+-          <p
+-            style={{
+-              margin: 0,
+-              maxWidth: "38rem",
+-              fontSize: "1.125rem",
+-              lineHeight: 1.7,
+-              color: "rgba(17, 17, 17, 0.78)",
+-            }}
+-          >
+-            Reach out with your business goals, launch timeline, and the kind of
+-            digital presence you need. We reply with a clear next step, not a vague
+-            sales sequence.
+-          </p>
+-          <div
+-            style={{
+-              display: "flex",
+-              flexWrap: "wrap",
+-              gap: "1rem",
+-            }}
+-          >
+-            <a
+-              href="mailto:hello@alaiweb.com"
+-              style={{
+-                display: "inline-flex",
+-                alignItems: "center",
+-                justifyContent: "center",
+-                minHeight: "3rem",
+-                padding: "0.875rem 1.5rem",
+-                borderRadius: "999px",
+-                backgroundColor: "#f97316",
+-                color: "#ffffff",
+-                fontWeight: 700,
+-                textDecoration: "none",
+-              }}
+-            >
+-              Tell us about your idea
+-            </a>
+-            <a
+-              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
+-              target="_blank"
+-              rel="noreferrer"
+-              style={{
+-                display: "inline-flex",
+-                alignItems: "center",
+-                justifyContent: "center",
+-                minHeight: "3rem",
+-                padding: "0.875rem 1.5rem",
+-                borderRadius: "999px",
+-                border: "1px solid rgba(17, 17, 17, 0.14)",
+-                color: "#111111",
+-                fontWeight: 700,
+-                textDecoration: "none",
+-              }}
+-            >
+-              Start on WhatsApp
+-            </a>
+-          </div>
+-        </div>
+-      </section>
++      <ContactHeroSection />
+ 
+       <section id="contact-details" style={{ padding: "0 1.5rem 3rem" }}>
+         <div
 
 codex
-The shell is in place. I’m running the build now to verify the `contatti` page renders cleanly with the existing hash-router setup and that the task can be closed with a concrete result.
+The section extraction is in place. I’m running the build now to verify the page still compiles cleanly with the new component boundary.
 exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 865ms:
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 839ms:
 
 > site-create-a-high-end-visually-distinctive-m@0.0.0 build
 > vite build
 
 vite v7.3.1 building client environment for production...
 transforming...
-✓ 58 modules transformed.
+✓ 59 modules transformed.
 rendering chunks...
 computing gzip size...
 dist/index.html                   0.50 kB │ gzip:  0.32 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-BvVgLsPK.js   271.14 kB │ gzip: 83.72 kB
-✓ built in 588ms
+dist/assets/index-DRHd3JVf.js   271.64 kB │ gzip: 83.77 kB
+✓ built in 581ms
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 68c8f1d2b418666d61e1820fa7d8b823ade1e4f4..e782edcf5061176f61873481fe113c3a481b272b
+index 647d53330fd25cb77bf9e15fa1c66566f0b00f11..b7ad5ea7268488e00f1b276cd64dd57022f86144
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
 @@ -218,6 +218,16 @@
  TASK page-chi-siamo-shell completed successfully.
  Build passed.
  
-+Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
++Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
 +
-+Launching Codex for TASK page-contatti-shell.
++Launching Codex for TASK section-contatti-contact-hero.
 +
-+Completed TASK `page-contatti-shell`.
++Completed TASK `section-contatti-contact-hero`.
 +
-+- Replaced the placeholder `contatti` content in `src/pages/Contatti.jsx` with a semantic page shell built from the required `contact-hero`, `contact-details`, and `opening-hours` sections.
-+- Preserved the existing `/contatti` hash route mounting in `src/App.jsx`, so no routing changes were required.
-+- Added real contact copy plus working email, phone, and WhatsApp actions so the page renders without placeholder text or crashes.
++- Added a reusable `ContactHeroSection` component in `src/components/ContactHeroSection.jsx`.
++- Replaced the inline contatti hero markup in `src/pages/Contatti.jsx` so the page renders the dedicated hero section.
++- Preserved the required `contact-hero` section id, page `h1`, and visible email/WhatsApp hero CTAs.
 +
- Prepared TASK section-gallery-gallery-grid (Create gallery-grid section on gallery) for execution.
+ Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
  
- Launching Codex for TASK section-gallery-gallery-grid.
+ Launching Codex for TASK page-contatti-shell.
+diff --git a/src/components/ContactHeroSection.jsx b/src/components/ContactHeroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..3828321e53e045862b416bd398cb1ab3544d4e9b
+--- /dev/null
++++ b/src/components/ContactHeroSection.jsx
+@@ -0,0 +1,99 @@
++const styles = {
++  section: {
++    position: "relative",
++    overflow: "hidden",
++    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem) clamp(3rem, 6vw, 4rem)",
++    background:
++      "radial-gradient(circle at top left, rgba(249, 115, 22, 0.16), transparent 30%), linear-gradient(180deg, rgba(249, 115, 22, 0.08) 0%, #ffffff 72%)",
++  },
++  shell: {
++    maxWidth: "1280px",
++    margin: "0 auto",
++    display: "grid",
++    gap: "1.5rem",
++  },
++  eyebrow: {
++    margin: 0,
++    color: "#f97316",
++    fontSize: "0.875rem",
++    fontWeight: 700,
++    letterSpacing: "0.12em",
++    textTransform: "uppercase",
++  },
++  title: {
++    margin: 0,
++    maxWidth: "12ch",
++    fontSize: "clamp(3rem, 8vw, 5.5rem)",
++    lineHeight: 0.95,
++    letterSpacing: "-0.05em",
++    textWrap: "balance",
++    color: "#111111",
++  },
++  lead: {
++    margin: 0,
++    maxWidth: "38rem",
++    fontSize: "1.125rem",
++    lineHeight: 1.7,
++    color: "rgba(17, 17, 17, 0.78)",
++  },
++  actions: {
++    display: "flex",
++    flexWrap: "wrap",
++    gap: "1rem",
++  },
++  primaryAction: {
++    display: "inline-flex",
++    alignItems: "center",
++    justifyContent: "center",
++    minHeight: "3rem",
++    padding: "0.875rem 1.5rem",
++    borderRadius: "999px",
++    backgroundColor: "#f97316",
++    color: "#ffffff",
++    fontWeight: 700,
++    textDecoration: "none",
++  },
++  secondaryAction: {
++    display: "inline-flex",
++    alignItems: "center",
++    justifyContent: "center",
++    minHeight: "3rem",
++    padding: "0.875rem 1.5rem",
++    borderRadius: "999px",
++    border: "1px solid rgba(17, 17, 17, 0.14)",
++    color: "#111111",
++    fontWeight: 700,
++    textDecoration: "none",
++  },
++}
++
++export default function ContactHeroSection() {
++  return (
++    <section id="contact-hero" aria-labelledby="contact-hero-title" style={styles.section}>
++      <div style={styles.shell}>
++        <p style={styles.eyebrow}>Contact</p>
++        <h1 id="contact-hero-title" style={styles.title}>
++          Let&apos;s build something sharp and effective.
++        </h1>
++        <p style={styles.lead}>
++          Reach out with your business goals, launch timeline, and the kind of
++          digital presence you need. We reply with a clear next step, not a vague
++          sales sequence.
++        </p>
++        <div style={styles.actions}>
++          <a href="mailto:hello@alaiweb.com" style={styles.primaryAction}>
++            Tell us about your idea
++          </a>
++          <a
++            href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
++            target="_blank"
++            rel="noreferrer"
++            style={styles.secondaryAction}
++          >
++            Start on WhatsApp
++          </a>
++        </div>
++      </div>
++    </section>
++  )
++}
 diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 27ef33c6d2801e2478be5154702bdb2f62cc910f..b81fe3d8080f4f88bb4a19c938bc517e57cc4363
+index b81fe3d8080f4f88bb4a19c938bc517e57cc4363..634f4a8aad060e5b424277f70429ea03f77d2224
 --- a/src/pages/Contatti.jsx
 +++ b/src/pages/Contatti.jsx
-@@ -1,18 +1,273 @@
-+const contactDetails = [
-+  {
-+    label: "Email",
-+    value: "hello@alaiweb.com",
-+    href: "mailto:hello@alaiweb.com",
-+    description: "Share your goals, timeline, and current site status.",
-+  },
-+  {
-+    label: "Phone",
-+    value: "+39 02 9475 1280",
-+    href: "tel:+390294751280",
-+    description: "Call for a quick conversation about scope and priorities.",
-+  },
-+]
+@@ -1,3 +1,5 @@
++import ContactHeroSection from "../components/ContactHeroSection"
 +
-+const officeHours = [
-+  { day: "Monday", hours: "09:00 - 18:00" },
-+  { day: "Tuesday", hours: "09:00 - 18:00" },
-+  { day: "Wednesday", hours: "09:00 - 18:00" },
-+  { day: "Thursday", hours: "09:00 - 18:00" },
-+  { day: "Friday", hours: "09:00 - 16:00" },
-+  { day: "Saturday", hours: "By request" },
-+  { day: "Sunday", hours: "Closed" },
-+]
-+
+ const contactDetails = [
+   {
+     label: "Email",
+@@ -26,103 +28,7 @@
  export default function Contatti() {
    return (
--    <>
--      <section id="contact-hero">
--        <h1>Contact Hero</h1>
--        <p>Content for contact-hero will be generated by tasks</p>
-+    <main>
-+      <section
-+        id="contact-hero"
-+        style={{
-+          padding: "5rem 1.5rem 3rem",
-+          background:
-+            "linear-gradient(180deg, rgba(249, 115, 22, 0.08) 0%, rgba(255, 255, 255, 1) 70%)",
-+        }}
-+      >
-+        <div
-+          style={{
-+            maxWidth: "72rem",
-+            margin: "0 auto",
-+            display: "grid",
-+            gap: "1.5rem",
-+          }}
-+        >
-+          <p
-+            style={{
-+              margin: 0,
-+              color: "#f97316",
-+              fontSize: "0.875rem",
-+              fontWeight: 700,
-+              letterSpacing: "0.12em",
-+              textTransform: "uppercase",
-+            }}
-+          >
-+            Contact
-+          </p>
-+          <h1
-+            style={{
-+              margin: 0,
-+              maxWidth: "12ch",
-+              fontSize: "clamp(3rem, 8vw, 5.5rem)",
-+              lineHeight: 0.95,
-+            }}
-+          >
-+            Let&apos;s build something sharp and effective.
-+          </h1>
-+          <p
-+            style={{
-+              margin: 0,
-+              maxWidth: "38rem",
-+              fontSize: "1.125rem",
-+              lineHeight: 1.7,
-+              color: "rgba(17, 17, 17, 0.78)",
-+            }}
-+          >
-+            Reach out with your business goals, launch timeline, and the kind of
-+            digital presence you need. We reply with a clear next step, not a vague
-+            sales sequence.
-+          </p>
-+          <div
-+            style={{
-+              display: "flex",
-+              flexWrap: "wrap",
-+              gap: "1rem",
-+            }}
-+          >
-+            <a
-+              href="mailto:hello@alaiweb.com"
-+              style={{
-+                display: "inline-flex",
-+                alignItems: "center",
-+                justifyContent: "center",
-+                minHeight: "3rem",
-+                padding: "0.875rem 1.5rem",
-+                borderRadius: "999px",
-+                backgroundColor: "#f97316",
-+                color: "#ffffff",
-+                fontWeight: 700,
-+                textDecoration: "none",
-+              }}
-+            >
-+              Tell us about your idea
-+            </a>
-+            <a
-+              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
-+              target="_blank"
-+              rel="noreferrer"
-+              style={{
-+                display: "inline-flex",
-+                alignItems: "center",
-+                justifyContent: "center",
-+                minHeight: "3rem",
-+                padding: "0.875rem 1.5rem",
-+                borderRadius: "999px",
-+                border: "1px solid rgba(17, 17, 17, 0.14)",
-+                color: "#111111",
-+                fontWeight: 700,
-+                textDecoration: "none",
-+              }}
-+            >
-+              Start on WhatsApp
-+            </a>
-+          </div>
-+        </div>
-       </section>
--      <section id="contact-details">
--        <h2>Contact Details</h2>
--        <p>Content for contact-details will be generated by tasks</p>
-+
-+      <section id="contact-details" style={{ padding: "0 1.5rem 3rem" }}>
-+        <div
-+          style={{
-+            maxWidth: "72rem",
-+            margin: "0 auto",
-+            display: "grid",
-+            gap: "1.5rem",
-+          }}
-+        >
-+          <h2 style={{ margin: 0, fontSize: "clamp(2rem, 5vw, 3.25rem)" }}>
-+            Project conversations, without the friction.
-+          </h2>
-+          <p
-+            style={{
-+              margin: 0,
-+              maxWidth: "42rem",
-+              color: "rgba(17, 17, 17, 0.72)",
-+              lineHeight: 1.7,
-+            }}
-+          >
-+            Use the channel that fits your workflow. Email is best for detailed
-+            briefs, phone is best for quick alignment, and WhatsApp works well when
-+            you want to move fast.
-+          </p>
-+          <div
-+            style={{
-+              display: "grid",
-+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-+              gap: "1rem",
-+            }}
-+          >
-+            {contactDetails.map((item) => (
-+              <a
-+                key={item.label}
-+                href={item.href}
-+                style={{
-+                  display: "grid",
-+                  gap: "0.75rem",
-+                  padding: "1.5rem",
-+                  borderRadius: "1.5rem",
-+                  backgroundColor: "#f5f5f5",
-+                  color: "#111111",
-+                  textDecoration: "none",
-+                }}
-+              >
-+                <span
-+                  style={{
-+                    fontSize: "0.875rem",
-+                    fontWeight: 700,
-+                    letterSpacing: "0.08em",
-+                    textTransform: "uppercase",
-+                    color: "#f97316",
-+                  }}
-+                >
-+                  {item.label}
-+                </span>
-+                <strong style={{ fontSize: "1.25rem" }}>{item.value}</strong>
-+                <span style={{ color: "rgba(17, 17, 17, 0.72)", lineHeight: 1.6 }}>
-+                  {item.description}
-+                </span>
-+              </a>
-+            ))}
-+            <a
-+              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
-+              target="_blank"
-+              rel="noreferrer"
-+              style={{
-+                display: "grid",
-+                gap: "0.75rem",
-+                padding: "1.5rem",
-+                borderRadius: "1.5rem",
-+                backgroundColor: "#111111",
-+                color: "#ffffff",
-+                textDecoration: "none",
-+              }}
-+            >
-+              <span
-+                style={{
-+                  fontSize: "0.875rem",
-+                  fontWeight: 700,
-+                  letterSpacing: "0.08em",
-+                  textTransform: "uppercase",
-+                  color: "#f97316",
-+                }}
-+              >
-+                WhatsApp
-+              </span>
-+              <strong style={{ fontSize: "1.25rem" }}>Message the studio</strong>
-+              <span style={{ color: "rgba(255, 255, 255, 0.72)", lineHeight: 1.6 }}>
-+                Ideal for early project questions, quick feedback, and scheduling the
-+                first call.
-+              </span>
-+            </a>
-+          </div>
-+        </div>
-       </section>
--      <section id="opening-hours">
--        <h2>Opening Hours</h2>
--        <p>Content for opening-hours will be generated by tasks</p>
-+
-+      <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
-+        <div
-+          style={{
-+            maxWidth: "72rem",
-+            margin: "0 auto",
-+            padding: "2rem",
-+            borderRadius: "2rem",
-+            backgroundColor: "#0f172a",
-+            color: "#ffffff",
-+            display: "grid",
-+            gap: "1.5rem",
-+          }}
-+        >
-+          <div style={{ display: "grid", gap: "0.75rem" }}>
-+            <h2 style={{ margin: 0, fontSize: "clamp(2rem, 4vw, 3rem)" }}>
-+              Studio hours
-+            </h2>
-+            <p style={{ margin: 0, maxWidth: "38rem", color: "rgba(255, 255, 255, 0.72)" }}>
-+              We keep our calendar focused so projects move quickly. If your launch is
-+              urgent, mention the deadline in your first message and we will confirm
-+              availability directly.
-+            </p>
-+          </div>
-+          <div
-+            style={{
-+              display: "grid",
-+              gap: "0.75rem",
-+            }}
-+          >
-+            {officeHours.map((entry) => (
-+              <div
-+                key={entry.day}
-+                style={{
-+                  display: "flex",
-+                  justifyContent: "space-between",
-+                  gap: "1rem",
-+                  paddingBottom: "0.75rem",
-+                  borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
-+                }}
-+              >
-+                <span>{entry.day}</span>
-+                <span style={{ color: "rgba(255, 255, 255, 0.72)" }}>{entry.hours}</span>
-+              </div>
-+            ))}
-+          </div>
-+        </div>
-       </section>
--    </>
-+    </main>
-   )
- }
+     <main>
+-      <section
+-        id="contact-hero"
+-        style={{
+-          padding: "5rem 1.5rem 3rem",
+-          background:
+-            "linear-gradient(180deg, rgba(249, 115, 22, 0.08) 0%, rgba(255, 255, 255, 1) 70%)",
+-        }}
+-      >
+-        <div
+-          style={{
+-            maxWidth: "72rem",
+-            margin: "0 auto",
+-            display: "grid",
+-            gap: "1.5rem",
+-          }}
+-        >
+-          <p
+-            style={{
+-              margin: 0,
+-              color: "#f97316",
+-              fontSize: "0.875rem",
+-              fontWeight: 700,
+-              letterSpacing: "0.12em",
+-              textTransform: "uppercase",
+-            }}
+-          >
+-            Contact
+-          </p>
+-          <h1
+-            style={{
+-              margin: 0,
+-              maxWidth: "12ch",
+-              fontSize: "clamp(3rem, 8vw, 5.5rem)",
+-              lineHeight: 0.95,
+-            }}
+-          >
+-            Let&apos;s build something sharp and effective.
+-          </h1>
+-          <p
+-            style={{
+-              margin: 0,
+-              maxWidth: "38rem",
+-              fontSize: "1.125rem",
+-              lineHeight: 1.7,
+-              color: "rgba(17, 17, 17, 0.78)",
+-            }}
+-          >
+-            Reach out with your business goals, launch timeline, and the kind of
+-            digital presence you need. We reply with a clear next step, not a vague
+-            sales sequence.
+-          </p>
+-          <div
+-            style={{
+-              display: "flex",
+-              flexWrap: "wrap",
+-              gap: "1rem",
+-            }}
+-          >
+-            <a
+-              href="mailto:hello@alaiweb.com"
+-              style={{
+-                display: "inline-flex",
+-                alignItems: "center",
+-                justifyContent: "center",
+-                minHeight: "3rem",
+-                padding: "0.875rem 1.5rem",
+-                borderRadius: "999px",
+-                backgroundColor: "#f97316",
+-                color: "#ffffff",
+-                fontWeight: 700,
+-                textDecoration: "none",
+-              }}
+-            >
+-              Tell us about your idea
+-            </a>
+-            <a
+-              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
+-              target="_blank"
+-              rel="noreferrer"
+-              style={{
+-                display: "inline-flex",
+-                alignItems: "center",
+-                justifyContent: "center",
+-                minHeight: "3rem",
+-                padding: "0.875rem 1.5rem",
+-                borderRadius: "999px",
+-                border: "1px solid rgba(17, 17, 17, 0.14)",
+-                color: "#111111",
+-                fontWeight: 700,
+-                textDecoration: "none",
+-              }}
+-            >
+-              Start on WhatsApp
+-            </a>
+-          </div>
+-        </div>
+-      </section>
++      <ContactHeroSection />
+ 
+       <section id="contact-details" style={{ padding: "0 1.5rem 3rem" }}>
+         <div
 
 codex
-Modified files: [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md)
+Modified files: [src/components/ContactHeroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/ContactHeroSection.jsx), [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md).
 
-Implemented the `contatti` page shell in [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx) with the required `contact-hero`, `contact-details`, and `opening-hours` sections, real contact copy, and functional `mailto:`, `tel:`, and WhatsApp CTAs. The `/contatti` route was already mounted in [src/App.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/App.jsx), so no router change was needed. I also appended the task summary to [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md).
+Implemented the `contact-hero` section for `contatti` as a dedicated reusable component and mounted it in the page shell. The section keeps the required `contact-hero` id, the page `h1`, and the visible hero CTAs for email and WhatsApp. I left the other `contatti` sections unchanged.
 
-Build result: `npm run build` passed with Vite production build success.
+Build result: `npm run build` passed successfully.
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 68c8f1d2b418666d61e1820fa7d8b823ade1e4f4..e782edcf5061176f61873481fe113c3a481b272b
+index 647d53330fd25cb77bf9e15fa1c66566f0b00f11..b7ad5ea7268488e00f1b276cd64dd57022f86144
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
 @@ -218,6 +218,16 @@
  TASK page-chi-siamo-shell completed successfully.
  Build passed.
  
-+Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
++Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
 +
-+Launching Codex for TASK page-contatti-shell.
++Launching Codex for TASK section-contatti-contact-hero.
 +
-+Completed TASK `page-contatti-shell`.
++Completed TASK `section-contatti-contact-hero`.
 +
-+- Replaced the placeholder `contatti` content in `src/pages/Contatti.jsx` with a semantic page shell built from the required `contact-hero`, `contact-details`, and `opening-hours` sections.
-+- Preserved the existing `/contatti` hash route mounting in `src/App.jsx`, so no routing changes were required.
-+- Added real contact copy plus working email, phone, and WhatsApp actions so the page renders without placeholder text or crashes.
++- Added a reusable `ContactHeroSection` component in `src/components/ContactHeroSection.jsx`.
++- Replaced the inline contatti hero markup in `src/pages/Contatti.jsx` so the page renders the dedicated hero section.
++- Preserved the required `contact-hero` section id, page `h1`, and visible email/WhatsApp hero CTAs.
 +
- Prepared TASK section-gallery-gallery-grid (Create gallery-grid section on gallery) for execution.
+ Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
  
- Launching Codex for TASK section-gallery-gallery-grid.
+ Launching Codex for TASK page-contatti-shell.
+diff --git a/src/components/ContactHeroSection.jsx b/src/components/ContactHeroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..3828321e53e045862b416bd398cb1ab3544d4e9b
+--- /dev/null
++++ b/src/components/ContactHeroSection.jsx
+@@ -0,0 +1,99 @@
++const styles = {
++  section: {
++    position: "relative",
++    overflow: "hidden",
++    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem) clamp(3rem, 6vw, 4rem)",
++    background:
++      "radial-gradient(circle at top left, rgba(249, 115, 22, 0.16), transparent 30%), linear-gradient(180deg, rgba(249, 115, 22, 0.08) 0%, #ffffff 72%)",
++  },
++  shell: {
++    maxWidth: "1280px",
++    margin: "0 auto",
++    display: "grid",
++    gap: "1.5rem",
++  },
++  eyebrow: {
++    margin: 0,
++    color: "#f97316",
++    fontSize: "0.875rem",
++    fontWeight: 700,
++    letterSpacing: "0.12em",
++    textTransform: "uppercase",
++  },
++  title: {
++    margin: 0,
++    maxWidth: "12ch",
++    fontSize: "clamp(3rem, 8vw, 5.5rem)",
++    lineHeight: 0.95,
++    letterSpacing: "-0.05em",
++    textWrap: "balance",
++    color: "#111111",
++  },
++  lead: {
++    margin: 0,
++    maxWidth: "38rem",
++    fontSize: "1.125rem",
++    lineHeight: 1.7,
++    color: "rgba(17, 17, 17, 0.78)",
++  },
++  actions: {
++    display: "flex",
++    flexWrap: "wrap",
++    gap: "1rem",
++  },
++  primaryAction: {
++    display: "inline-flex",
++    alignItems: "center",
++    justifyContent: "center",
++    minHeight: "3rem",
++    padding: "0.875rem 1.5rem",
++    borderRadius: "999px",
++    backgroundColor: "#f97316",
++    color: "#ffffff",
++    fontWeight: 700,
++    textDecoration: "none",
++  },
++  secondaryAction: {
++    display: "inline-flex",
++    alignItems: "center",
++    justifyContent: "center",
++    minHeight: "3rem",
++    padding: "0.875rem 1.5rem",
++    borderRadius: "999px",
++    border: "1px solid rgba(17, 17, 17, 0.14)",
++    color: "#111111",
++    fontWeight: 700,
++    textDecoration: "none",
++  },
++}
++
++export default function ContactHeroSection() {
++  return (
++    <section id="contact-hero" aria-labelledby="contact-hero-title" style={styles.section}>
++      <div style={styles.shell}>
++        <p style={styles.eyebrow}>Contact</p>
++        <h1 id="contact-hero-title" style={styles.title}>
++          Let&apos;s build something sharp and effective.
++        </h1>
++        <p style={styles.lead}>
++          Reach out with your business goals, launch timeline, and the kind of
++          digital presence you need. We reply with a clear next step, not a vague
++          sales sequence.
++        </p>
++        <div style={styles.actions}>
++          <a href="mailto:hello@alaiweb.com" style={styles.primaryAction}>
++            Tell us about your idea
++          </a>
++          <a
++            href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
++            target="_blank"
++            rel="noreferrer"
++            style={styles.secondaryAction}
++          >
++            Start on WhatsApp
++          </a>
++        </div>
++      </div>
++    </section>
++  )
++}
 diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 27ef33c6d2801e2478be5154702bdb2f62cc910f..b81fe3d8080f4f88bb4a19c938bc517e57cc4363
+index b81fe3d8080f4f88bb4a19c938bc517e57cc4363..634f4a8aad060e5b424277f70429ea03f77d2224
 --- a/src/pages/Contatti.jsx
 +++ b/src/pages/Contatti.jsx
-@@ -1,18 +1,273 @@
-+const contactDetails = [
-+  {
-+    label: "Email",
-+    value: "hello@alaiweb.com",
-+    href: "mailto:hello@alaiweb.com",
-+    description: "Share your goals, timeline, and current site status.",
-+  },
-+  {
-+    label: "Phone",
-+    value: "+39 02 9475 1280",
-+    href: "tel:+390294751280",
-+    description: "Call for a quick conversation about scope and priorities.",
-+  },
-+]
+@@ -1,3 +1,5 @@
++import ContactHeroSection from "../components/ContactHeroSection"
 +
-+const officeHours = [
-+  { day: "Monday", hours: "09:00 - 18:00" },
-+  { day: "Tuesday", hours: "09:00 - 18:00" },
-+  { day: "Wednesday", hours: "09:00 - 18:00" },
-+  { day: "Thursday", hours: "09:00 - 18:00" },
-+  { day: "Friday", hours: "09:00 - 16:00" },
-+  { day: "Saturday", hours: "By request" },
-+  { day: "Sunday", hours: "Closed" },
-+]
-+
+ const contactDetails = [
+   {
+     label: "Email",
+@@ -26,103 +28,7 @@
  export default function Contatti() {
    return (
--    <>
--      <section id="contact-hero">
--        <h1>Contact Hero</h1>
--        <p>Content for contact-hero will be generated by tasks</p>
-+    <main>
-+      <section
-+        id="contact-hero"
-+        style={{
-+          padding: "5rem 1.5rem 3rem",
-+          background:
-+            "linear-gradient(180deg, rgba(249, 115, 22, 0.08) 0%, rgba(255, 255, 255, 1) 70%)",
-+        }}
-+      >
-+        <div
-+          style={{
-+            maxWidth: "72rem",
-+            margin: "0 auto",
-+            display: "grid",
-+            gap: "1.5rem",
-+          }}
-+        >
-+          <p
-+            style={{
-+              margin: 0,
-+              color: "#f97316",
-+              fontSize: "0.875rem",
-+              fontWeight: 700,
-+              letterSpacing: "0.12em",
-+              textTransform: "uppercase",
-+            }}
-+          >
-+            Contact
-+          </p>
-+          <h1
-+            style={{
-+              margin: 0,
-+              maxWidth: "12ch",
-+              fontSize: "clamp(3rem, 8vw, 5.5rem)",
-+              lineHeight: 0.95,
-+            }}
-+          >
-+            Let&apos;s build something sharp and effective.
-+          </h1>
-+          <p
-+            style={{
-+              margin: 0,
-+              maxWidth: "38rem",
-+              fontSize: "1.125rem",
-+              lineHeight: 1.7,
-+              color: "rgba(17, 17, 17, 0.78)",
-+            }}
-+          >
-+            Reach out with your business goals, launch timeline, and the kind of
-+            digital presence you need. We reply with a clear next step, not a vague
-+            sales sequence.
-+          </p>
-+          <div
-+            style={{
-+              display: "flex",
-+              flexWrap: "wrap",
-+              gap: "1rem",
-+            }}
-+          >
-+            <a
-+              href="mailto:hello@alaiweb.com"
-+              style={{
-+                display: "inline-flex",
-+                alignItems: "center",
-+                justifyContent: "center",
-+                minHeight: "3rem",
-+                padding: "0.875rem 1.5rem",
-+                borderRadius: "999px",
-+                backgroundColor: "#f97316",
-+                color: "#ffffff",
-+                fontWeight: 700,
-+                textDecoration: "none",
-+              }}
-+            >
-+              Tell us about your idea
-+            </a>
-+            <a
-+              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
-+              target="_blank"
-+              rel="noreferrer"
-+              style={{
-+                display: "inline-flex",
-+                alignItems: "center",
-+                justifyContent: "center",
-+                minHeight: "3rem",
-+                padding: "0.875rem 1.5rem",
-+                borderRadius: "999px",
-+                border: "1px solid rgba(17, 17, 17, 0.14)",
-+                color: "#111111",
-+                fontWeight: 700,
-+                textDecoration: "none",
-+              }}
-+            >
-+              Start on WhatsApp
-+            </a>
-+          </div>
-+        </div>
-       </section>
--      <section id="contact-details">
--        <h2>Contact Details</h2>
--        <p>Content for contact-details will be generated by tasks</p>
-+
-+      <section id="contact-details" style={{ padding: "0 1.5rem 3rem" }}>
-+        <div
-+          style={{
-+            maxWidth: "72rem",
-+            margin: "0 auto",
-+            display: "grid",
-+            gap: "1.5rem",
-+          }}
-+        >
-+          <h2 style={{ margin: 0, fontSize: "clamp(2rem, 5vw, 3.25rem)" }}>
-+            Project conversations, without the friction.
-+          </h2>
-+          <p
-+            style={{
-+              margin: 0,
-+              maxWidth: "42rem",
-+              color: "rgba(17, 17, 17, 0.72)",
-+              lineHeight: 1.7,
-+            }}
-+          >
-+            Use the channel that fits your workflow. Email is best for detailed
-+            briefs, phone is best for quick alignment, and WhatsApp works well when
-+            you want to move fast.
-+          </p>
-+          <div
-+            style={{
-+              display: "grid",
-+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-+              gap: "1rem",
-+            }}
-+          >
-+            {contactDetails.map((item) => (
-+              <a
-+                key={item.label}
-+                href={item.href}
-+                style={{
-+                  display: "grid",
-+                  gap: "0.75rem",
-+                  padding: "1.5rem",
-+                  borderRadius: "1.5rem",
-+                  backgroundColor: "#f5f5f5",
-+                  color: "#111111",
-+                  textDecoration: "none",
-+                }}
-+              >
-+                <span
-+                  style={{
-+                    fontSize: "0.875rem",
-+                    fontWeight: 700,
-+                    letterSpacing: "0.08em",
-+                    textTransform: "uppercase",
-+                    color: "#f97316",
-+                  }}
-+                >
-+                  {item.label}
-+                </span>
-+                <strong style={{ fontSize: "1.25rem" }}>{item.value}</strong>
-+                <span style={{ color: "rgba(17, 17, 17, 0.72)", lineHeight: 1.6 }}>
-+                  {item.description}
-+                </span>
-+              </a>
-+            ))}
-+            <a
-+              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
-+              target="_blank"
-+              rel="noreferrer"
-+              style={{
-+                display: "grid",
-+                gap: "0.75rem",
-+                padding: "1.5rem",
-+                borderRadius: "1.5rem",
-+                backgroundColor: "#111111",
-+                color: "#ffffff",
-+                textDecoration: "none",
-+              }}
-+            >
-+              <span
-+                style={{
-+                  fontSize: "0.875rem",
-+                  fontWeight: 700,
-+                  letterSpacing: "0.08em",
-+                  textTransform: "uppercase",
-+                  color: "#f97316",
-+                }}
-+              >
-+                WhatsApp
-+              </span>
-+              <strong style={{ fontSize: "1.25rem" }}>Message the studio</strong>
-+              <span style={{ color: "rgba(255, 255, 255, 0.72)", lineHeight: 1.6 }}>
-+                Ideal for early project questions, quick feedback, and scheduling the
-+                first call.
-+              </span>
-+            </a>
-+          </div>
-+        </div>
-       </section>
--      <section id="opening-hours">
--        <h2>Opening Hours</h2>
--        <p>Content for opening-hours will be generated by tasks</p>
-+
-+      <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
-+        <div
-+          style={{
-+            maxWidth: "72rem",
-+            margin: "0 auto",
-+            padding: "2rem",
-+            borderRadius: "2rem",
-+            backgroundColor: "#0f172a",
-+            color: "#ffffff",
-+            display: "grid",
-+            gap: "1.5rem",
-+          }}
-+        >
-+          <div style={{ display: "grid", gap: "0.75rem" }}>
-+            <h2 style={{ margin: 0, fontSize: "clamp(2rem, 4vw, 3rem)" }}>
-+              Studio hours
-+            </h2>
-+            <p style={{ margin: 0, maxWidth: "38rem", color: "rgba(255, 255, 255, 0.72)" }}>
-+              We keep our calendar focused so projects move quickly. If your launch is
-+              urgent, mention the deadline in your first message and we will confirm
-+              availability directly.
-+            </p>
-+          </div>
-+          <div
-+            style={{
-+              display: "grid",
-+              gap: "0.75rem",
-+            }}
-+          >
-+            {officeHours.map((entry) => (
-+              <div
-+                key={entry.day}
-+                style={{
-+                  display: "flex",
-+                  justifyContent: "space-between",
-+                  gap: "1rem",
-+                  paddingBottom: "0.75rem",
-+                  borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
-+                }}
-+              >
-+                <span>{entry.day}</span>
-+                <span style={{ color: "rgba(255, 255, 255, 0.72)" }}>{entry.hours}</span>
-+              </div>
-+            ))}
-+          </div>
-+        </div>
-       </section>
--    </>
-+    </main>
-   )
- }
+     <main>
+-      <section
+-        id="contact-hero"
+-        style={{
+-          padding: "5rem 1.5rem 3rem",
+-          background:
+-            "linear-gradient(180deg, rgba(249, 115, 22, 0.08) 0%, rgba(255, 255, 255, 1) 70%)",
+-        }}
+-      >
+-        <div
+-          style={{
+-            maxWidth: "72rem",
+-            margin: "0 auto",
+-            display: "grid",
+-            gap: "1.5rem",
+-          }}
+-        >
+-          <p
+-            style={{
+-              margin: 0,
+-              color: "#f97316",
+-              fontSize: "0.875rem",
+-              fontWeight: 700,
+-              letterSpacing: "0.12em",
+-              textTransform: "uppercase",
+-            }}
+-          >
+-            Contact
+-          </p>
+-          <h1
+-            style={{
+-              margin: 0,
+-              maxWidth: "12ch",
+-              fontSize: "clamp(3rem, 8vw, 5.5rem)",
+-              lineHeight: 0.95,
+-            }}
+-          >
+-            Let&apos;s build something sharp and effective.
+-          </h1>
+-          <p
+-            style={{
+-              margin: 0,
+-              maxWidth: "38rem",
+-              fontSize: "1.125rem",
+-              lineHeight: 1.7,
+-              color: "rgba(17, 17, 17, 0.78)",
+-            }}
+-          >
+-            Reach out with your business goals, launch timeline, and the kind of
+-            digital presence you need. We reply with a clear next step, not a vague
+-            sales sequence.
+-          </p>
+-          <div
+-            style={{
+-              display: "flex",
+-              flexWrap: "wrap",
+-              gap: "1rem",
+-            }}
+-          >
+-            <a
+-              href="mailto:hello@alaiweb.com"
+-              style={{
+-                display: "inline-flex",
+-                alignItems: "center",
+-                justifyContent: "center",
+-                minHeight: "3rem",
+-                padding: "0.875rem 1.5rem",
+-                borderRadius: "999px",
+-                backgroundColor: "#f97316",
+-                color: "#ffffff",
+-                fontWeight: 700,
+-                textDecoration: "none",
+-              }}
+-            >
+-              Tell us about your idea
+-            </a>
+-            <a
+-              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
+-              target="_blank"
+-              rel="noreferrer"
+-              style={{
+-                display: "inline-flex",
+-                alignItems: "center",
+-                justifyContent: "center",
+-                minHeight: "3rem",
+-                padding: "0.875rem 1.5rem",
+-                borderRadius: "999px",
+-                border: "1px solid rgba(17, 17, 17, 0.14)",
+-                color: "#111111",
+-                fontWeight: 700,
+-                textDecoration: "none",
+-              }}
+-            >
+-              Start on WhatsApp
+-            </a>
+-          </div>
+-        </div>
+-      </section>
++      <ContactHeroSection />
+ 
+       <section id="contact-details" style={{ padding: "0 1.5rem 3rem" }}>
+         <div
 
 tokens used
-15.759
+23.183

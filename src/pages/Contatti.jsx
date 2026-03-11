@@ -1,3 +1,5 @@
+import ContactHeroSection from "../components/ContactHeroSection"
+
 const contactDetails = [
   {
     label: "Email",
@@ -26,103 +28,7 @@ const officeHours = [
 export default function Contatti() {
   return (
     <main>
-      <section
-        id="contact-hero"
-        style={{
-          padding: "5rem 1.5rem 3rem",
-          background:
-            "linear-gradient(180deg, rgba(249, 115, 22, 0.08) 0%, rgba(255, 255, 255, 1) 70%)",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "72rem",
-            margin: "0 auto",
-            display: "grid",
-            gap: "1.5rem",
-          }}
-        >
-          <p
-            style={{
-              margin: 0,
-              color: "#f97316",
-              fontSize: "0.875rem",
-              fontWeight: 700,
-              letterSpacing: "0.12em",
-              textTransform: "uppercase",
-            }}
-          >
-            Contact
-          </p>
-          <h1
-            style={{
-              margin: 0,
-              maxWidth: "12ch",
-              fontSize: "clamp(3rem, 8vw, 5.5rem)",
-              lineHeight: 0.95,
-            }}
-          >
-            Let&apos;s build something sharp and effective.
-          </h1>
-          <p
-            style={{
-              margin: 0,
-              maxWidth: "38rem",
-              fontSize: "1.125rem",
-              lineHeight: 1.7,
-              color: "rgba(17, 17, 17, 0.78)",
-            }}
-          >
-            Reach out with your business goals, launch timeline, and the kind of
-            digital presence you need. We reply with a clear next step, not a vague
-            sales sequence.
-          </p>
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: "1rem",
-            }}
-          >
-            <a
-              href="mailto:hello@alaiweb.com"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                minHeight: "3rem",
-                padding: "0.875rem 1.5rem",
-                borderRadius: "999px",
-                backgroundColor: "#f97316",
-                color: "#ffffff",
-                fontWeight: 700,
-                textDecoration: "none",
-              }}
-            >
-              Tell us about your idea
-            </a>
-            <a
-              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
-              target="_blank"
-              rel="noreferrer"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                minHeight: "3rem",
-                padding: "0.875rem 1.5rem",
-                borderRadius: "999px",
-                border: "1px solid rgba(17, 17, 17, 0.14)",
-                color: "#111111",
-                fontWeight: 700,
-                textDecoration: "none",
-              }}
-            >
-              Start on WhatsApp
-            </a>
-          </div>
-        </div>
-      </section>
+      <ContactHeroSection />
 
       <section id="contact-details" style={{ padding: "0 1.5rem 3rem" }}>
         <div

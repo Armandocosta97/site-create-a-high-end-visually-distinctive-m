@@ -218,6 +218,16 @@ Waiting for validation.
 TASK page-chi-siamo-shell completed successfully.
 Build passed.
 
+Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
+
+Launching Codex for TASK section-contatti-contact-hero.
+
+Completed TASK `section-contatti-contact-hero`.
+
+- Added a reusable `ContactHeroSection` component in `src/components/ContactHeroSection.jsx`.
+- Replaced the inline contatti hero markup in `src/pages/Contatti.jsx` so the page renders the dedicated hero section.
+- Preserved the required `contact-hero` section id, page `h1`, and visible email/WhatsApp hero CTAs.
+
 Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
 
 Launching Codex for TASK page-contatti-shell.
@@ -393,4 +403,15 @@ TASK page-contatti-shell executed by Codex.
 Waiting for validation.
 
 TASK page-contatti-shell completed successfully.
+Build passed.
+Commit created for TASK page-contatti-shell.
+
+Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
+
+Launching Codex for TASK section-contatti-contact-hero.
+
+TASK section-contatti-contact-hero executed by Codex.
+Waiting for validation.
+
+TASK section-contatti-contact-hero completed successfully.
 Build passed.
