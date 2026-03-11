@@ -1,8 +1,8 @@
-Modified files: [src/components/AboutHeroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/AboutHeroSection.jsx), [src/pages/ChiSiamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/ChiSiamo.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md).
+Modified files: [src/components/StorySection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/StorySection.jsx), [src/pages/ChiSiamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/ChiSiamo.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md)
 
-Implemented the `about-hero` section for the `chi-siamo` page by extracting it into a dedicated reusable component and rendering it from the page shell. The new hero keeps the required `about-hero` section id and page `h1`, and adds a more visually dominant editorial layout while leaving `story` and `philosophy` unchanged.
+Implemented the `story` section for `chi-siamo` as a dedicated editorial-content component. [src/components/StorySection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/StorySection.jsx) adds a two-column narrative layout with restaurant-focused copy and an editorial aside, and [src/pages/ChiSiamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/ChiSiamo.jsx) now renders that component in place of the previous inline block.
 
-Build result: `npm run build` passed successfully with a production Vite build.
+Build result: `npm run build` passed successfully with Vite production output generated. I also logged the task completion in [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md).
 
 OpenAI Codex v0.111.0 (research preview)
 --------
@@ -13,7 +13,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cddb0-723d-7441-a92b-1fbbeed96104
+session id: 019cddb1-d630-7971-822c-722bf8265e1c
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1150,10 +1150,10 @@ It must feel like a modern digital product studio.
 ```
 
 ## Current task id
-section-chi-siamo-about-hero
+section-chi-siamo-story
 
 ## Current task title
-Create about-hero section on chi-siamo
+Create story section on chi-siamo
 
 ## Current task type
 section
@@ -1162,8 +1162,8 @@ section
 ```json
 {
   "pageId": "chi-siamo",
-  "sectionId": "about-hero",
-  "sectionType": "hero"
+  "sectionId": "story",
+  "sectionType": "editorial-content"
 }
 ```
 
@@ -1172,13 +1172,13 @@ section
 
 ## Files allowed
 - src/pages/ChiSiamo.jsx
-- src/components/AboutHeroSection.jsx
+- src/components/StorySection.jsx
 - src/components
 
 ## Definition of done
-- section about-hero exists on chi-siamo
-- section about-hero matches type hero
-- section about-hero is rendered in page chi-siamo
+- section story exists on chi-siamo
+- section story matches type editorial-content
+- section story is rendered in page chi-siamo
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1207,12 +1207,14 @@ section
 
 mcp startup: no servers
 codex
-I’m implementing only the `about-hero` section for `chi-siamo` and will first inspect the current page shell, shared components, and task/source-of-truth files to fit the existing architecture without touching unrelated sections.
+I’m implementing the `chi-siamo` story section and will first inspect the current page/component structure plus the task/source-of-truth files to keep the change scoped correctly.
 exec
-/bin/zsh -lc "sed -n '1,220p' src/pages/ChiSiamo.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
 /bin/zsh -lc "sed -n '1,220p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,220p' site-spec.json" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "pwd && rg --files . | rg '"'^(src|agent|brief|docs)/'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,220p' src/pages/ChiSiamo.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "pwd && rg --files . | rg '"'^(src|agent|brief|docs)/'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc 'rg -n "StorySection|editorial-content|ChiSiamo|About" src/components src/pages' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 51ms:
+import AboutHeroSection from "../components/AboutHeroSection"
+
 export default function ChiSiamo() {
   const sectionStyle = {
     padding: "4rem 0",
@@ -1231,29 +1233,6 @@ export default function ChiSiamo() {
     letterSpacing: "0.18em",
     textTransform: "uppercase",
     color: "#f97316",
-  }
-
- succeeded in 51ms:
-{
-  "originalPrompt": "Create a high-end, visually distinctive multi-page website for a modern web agency called Alai Web.\n\nThe agency builds:\n- modern websites\n- fast websites\n- SEO-ready websites\n- custom business websites\n- elegant digital experiences for small businesses\n\nThe positioning of the brand is:\n\n\"Beautiful. Fast. Effective.\"\n\nThe site must communicate that Alai Web creates websites that are:\n- visually refined\n- technically solid\n- lightweight\n- SEO friendly\n- designed for real businesses\n\nIMPORTANT STRUCTURE\n\nThis must be a REAL multi-page website.\n\nCreate separate pages with real routes:\n\n- Home\n- Services\n- Portfolio\n- Process\n- About\n- Contact\n\nEach page must have a clear purpose.\nDo NOT collapse everything into the homepage.\nDo NOT simulate pages using anchor sections.\n\nDESIGN PRINCIPLE\n\nThe website must feel like a premium modern design studio.\n\nAvoid generic template style.\nAvoid repetitive card grids.\nAvoid UI patterns that look like cheap startup templates.\n\nPrefer:\n\n- large typographic sections\n- editorial layouts\n- split image/text compositions\n- asymmetrical blocks\n- strong visual rhythm\n- bold headlines\n- large spacing\n- full width sections\n- layered backgrounds\n- minimal containers\n- occasional cards only when necessary\n\nIMPORTANT:\nDo NOT build the entire site as repeated service cards.\nServices should often appear as rows, editorial blocks, or split layouts.\n\nVISUAL STYLE\n\nModern digital agency aesthetic.\n\nClean.\nSharp.\nConfident.\nMinimal but expressive.\n\nInspired by:\nmodern SaaS sites\ncreative digital studios\npremium design portfolios.\n\nCOLOR PALETTE\n\nPrimary brand color: ORANGE.\n\nSuggested palette:\n\nbackground: #ffffff\ntext: #111111\nbrand orange: #F97316\ndark section: #0f172a\nlight gray: #f5f5f5\n\nOrange must be used as:\n- accent color\n- CTA color\n- highlight elements\n- interactive states\n\nAvoid overusing orange for large backgrounds.\n\nTYPOGRAPHY\n\nStrong typographic hierarchy.\n\nHeadlines:\nlarge, bold, modern\n\nBody text:\nclean sans serif\n\nUse typography as a design element.\nLarge titles should drive sections.\n\nLAYOUT\n\nPrefer sections like:\n\nHero\nSplit layout (text + image)\nText driven sections\nEditorial feature blocks\nProcess timeline\nPortfolio previews\nFull width highlight bands\n\nAvoid stacking 6 identical cards.\n\nHOME PAGE STRUCTURE\n\n1. Hero section\n\nStrong, bold, minimal.\n\nHeadline idea:\n\nWebsites that look great\nand actually work.\n\nSubtext:\n\nAlai Web builds fast, modern websites designed to convert visitors into real customers.\n\nPrimary CTA:\nStart your project\n\nSecondary CTA:\nSee our work\n\nHero design should feel powerful and spacious.\n\n2. Value proposition section\n\nExplain clearly what Alai Web offers.\n\nAvoid cards.\nUse 2-3 strong typographic blocks.\n\nExamples:\n\nBeautiful design\nFast performance\nSEO foundations\n\n3. Portfolio preview\n\nLarge project previews.\n\nImage left / text right style.\n\nShow 3 example projects.\n\n4. How we work preview\n\nSimple process explanation.\n\nPrefer horizontal flow instead of cards.\n\nExample steps:\n\n1 Discovery\n2 Design\n3 Build\n4 Launch\n\n5. CTA section\n\nEncourage visitors to start a project.\n\nSERVICES PAGE\n\nExplain services clearly.\n\nPossible services:\n\nBusiness websites\nLanding pages\nWebsite redesign\nPerformance optimization\nSEO-ready builds\n\nPresent services using:\n\neditorial sections\nsplit layouts\nicon rows\nnot repetitive card grids.\n\nPORTFOLIO PAGE\n\nVisual portfolio.\n\nLarge images.\nProject titles.\nShort description.\n\nPortfolio should feel modern and visual.\n\nAvoid tiny thumbnails.\n\nPROCESS PAGE\n\nExplain the workflow.\n\nSteps like:\n\nDiscovery\nStructure\nDesign\nDevelopment\nLaunch\n\nUse visual timeline or progressive sections.\n\nABOUT PAGE\n\nTell the story of Alai Web.\n\nExplain:\n\n- philosophy\n- approach\n- design mindset\n- focus on performance and simplicity\n\nTone should feel human and confident.\n\nCONTACT PAGE\n\nSimple and effective.\n\nInclude:\n\ncontact form\nemail placeholder\noptional WhatsApp CTA\nproject inquiry CTA\n\nExample email:\n\nhello@alaiweb.com\n\nCTA examples:\n\nStart your project\nTell us about your idea\nLet's build something great\n\nFOOTER\n\nClean modern footer.\n\nInclude:\n\nbrand name\nshort tagline\nnavigation links\ncontact email\ncopyright\n\nRESPONSIVE\n\nFully responsive.\n\nNo horizontal overflow.\nTypography must scale correctly.\nHero must remain strong on mobile.\n\nQUALITY EXPECTATION\n\nThe final site must look like a real modern web agency website.\n\nIt must feel:\n\nmodern\nfast\nminimal\nprofessional\ndistinct\n\nIt must NOT look like a generic template.\n\nIt must NOT look like restaurant or salon websites.\n\nIt must feel like a modern digital product studio.",
-  "siteName": "site-create-a-high-end-visually-distinctive-m",
-  "businessType": "restaurant",
-  "architecture": "multi-page",
-  "routing": {
-    "mode": "hash"
-  },
-  "pages": [
-    {
-      "id": "home",
-      "route": "/",
-      "role": "landing",
-      "sections": [
-        {
-          "id": "hero",
-          "type": "hero"
-        },
-        {
-          "id": "signature-preview",
  succeeded in 51ms:
 # CURRENT TASK EXECUTION PROMPT
 
@@ -1277,12 +1256,17 @@ site-create-a-high-end-visually-distinctive-m
 All sites must follow these rules.
  exited 1 in 51ms:
 /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m
+ succeeded in 51ms:
+src/components/AboutHeroSection.jsx:116:export default function AboutHeroSection() {
+src/pages/ChiSiamo.jsx:1:import AboutHeroSection from "../components/AboutHeroSection"
+src/pages/ChiSiamo.jsx:3:export default function ChiSiamo() {
+src/pages/ChiSiamo.jsx:33:      <AboutHeroSection />
 codex
-The `chi-siamo` page already contains inline section markup, so I’m checking adjacent component patterns before extracting only the hero into a dedicated component and leaving the existing `story` and `philosophy` sections intact.
+The `ChiSiamo` page already has an inline story block, so I’m replacing that with a dedicated editorial component and leaving the unrelated `philosophy` section intact. After that I’ll run the build and append the task note to the agent report.
 exec
+/bin/zsh -lc "sed -n '1,240p' src/components/AboutHeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
 /bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc 'for f in src/components/*.jsx src/pages/*.jsx; do [ -f "$f" ] && printf '"'%s\\n' \""'$f"; done' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc 'rg --files src/components src/pages | sort' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 51ms:
+/bin/zsh -lc "rg -n '\"build\"' package.json && sed -n '1,220p' package.json" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 52ms:
 # AGENT REPORT
 
 Project created.
@@ -1303,136 +1287,7 @@ Waiting for validation.
 
 TASK page-home-shell completed successfully.
 Build passed.
- succeeded in 51ms:
-src/components/BrandStoryPreviewSection.jsx
-src/components/FloatingWhatsAppButton.jsx
-src/components/HeroSection.jsx
-src/components/MenuCategoriesSection.jsx
-src/components/MenuHeroSection.jsx
-src/components/SignaturePreviewSection.jsx
-src/pages/ChiSiamo.jsx
-src/pages/Contatti.jsx
-src/pages/Gallery.jsx
-src/pages/Home.jsx
-src/pages/Menu.jsx
  succeeded in 52ms:
-src/components/BrandStoryPreviewSection.jsx
-src/components/FloatingWhatsAppButton.jsx
-src/components/HeroSection.jsx
-src/components/MenuCategoriesSection.jsx
-src/components/MenuHeroSection.jsx
-src/components/SignaturePreviewSection.jsx
-src/pages/ChiSiamo.jsx
-src/pages/Contatti.jsx
-src/pages/Gallery.jsx
-src/pages/Home.jsx
-src/pages/Menu.jsx
-codex
-I have enough context to make the change cleanly. Plan:
-
-1. Extract the `about-hero` markup into `src/components/AboutHeroSection.jsx` with the existing `about-hero` id and a visually stronger hero treatment.
-2. Update `src/pages/ChiSiamo.jsx` to render that component and leave `story` and `philosophy` unchanged.
-3. Run the build, then append the task summary to `agent/AGENT_REPORT.md`.
-exec
-/bin/zsh -lc "sed -n '1,240p' src/components/HeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,240p' src/components/MenuHeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,240p' src/components/BrandStoryPreviewSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 51ms:
-const styles = {
-  section: {
-    position: "relative",
-    overflow: "hidden",
-    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
-    background:
-      "radial-gradient(circle at top left, rgba(249, 115, 22, 0.16), transparent 30%), linear-gradient(135deg, #fff8f1 0%, #ffffff 50%, #f8fafc 100%)",
-  },
-  shell: {
-    maxWidth: "1280px",
-    margin: "0 auto",
-    display: "grid",
-    gap: "2rem",
-  },
-  layout: {
-    display: "grid",
-    gap: "1.5rem",
-    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-    alignItems: "end",
-  },
- succeeded in 51ms:
-import { Link } from "react-router-dom"
-
-const styles = {
-  section: {
-    position: "relative",
-    overflow: "hidden",
-    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
-    background:
-      "radial-gradient(circle at top right, rgba(249, 115, 22, 0.18), transparent 28%), linear-gradient(135deg, #fffaf6 0%, #ffffff 48%, #f5f5f5 100%)",
-  },
-  shell: {
-    maxWidth: "1280px",
-    margin: "0 auto",
-    display: "grid",
-    gap: "2.5rem",
-    alignItems: "end",
-  },
-  eyebrow: {
-    margin: 0,
-    fontSize: "0.85rem",
- succeeded in 51ms:
-import { Link } from "react-router-dom"
-
-const principles = [
-  "Clarity in structure, so visitors always know where to go next.",
-  "Restraint in design, so every detail supports the message instead of distracting from it.",
-  "Performance in delivery, so the final site feels fast, polished, and dependable.",
-]
-
-const styles = {
-  section: {
-    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
-    background:
-      "linear-gradient(180deg, #ffffff 0%, #ffffff 28%, #f8fafc 100%)",
-  },
-  shell: {
-    maxWidth: "1280px",
-    margin: "0 auto",
-    display: "grid",
-    gap: "2rem",
-  },
-codex
-I’ve aligned on the existing visual language. Next I’m extracting the hero into its own component and wiring `ChiSiamo.jsx` to render it, keeping the rest of the page shell as-is.
-file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/ChiSiamo.jsx
-@@ -1 +1,3 @@
-+import AboutHeroSection from "../components/AboutHeroSection"
-+
- export default function ChiSiamo() {
-@@ -30,23 +32,3 @@
-     <>
--      <section id="about-hero" style={sectionStyle}>
--        <div style={contentStyle}>
--          <p style={eyebrowStyle}>Chi siamo</p>
--          <h1
--            style={{
--              margin: "0 0 1.5rem",
--              maxWidth: "14ch",
--              fontSize: "clamp(2.75rem, 8vw, 5.5rem)",
--              lineHeight: 0.95,
--              color: "#0f172a",
--            }}
--          >
--            Un ristorante costruito sulla cura dei dettagli.
--          </h1>
--          <p style={bodyStyle}>
--            La nostra cucina parte da ingredienti stagionali, tecnica pulita e
--            un servizio attento. Ogni scelta, dal menu alla sala, e pensata per
--            offrire un&apos;esperienza contemporanea ma accogliente.
--          </p>
--        </div>
--      </section>
-+      <AboutHeroSection />
- 
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/AboutHeroSection.jsx
 const values = [
   {
     title: "Stagionalita",
@@ -1453,535 +1308,8 @@ const styles = {
     position: "relative",
     overflow: "hidden",
     padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
-    background:
-      "radial-gradient(circle at top left, rgba(249, 115, 22, 0.16), transparent 28%), linear-gradient(135deg, #fffaf5 0%, #ffffff 52%, #f8fafc 100%)",
-  },
-  shell: {
-    maxWidth: "1280px",
-    margin: "0 auto",
-    display: "grid",
-    gap: "2rem",
-  },
-  layout: {
-    display: "grid",
-    gap: "1.5rem",
-    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-    alignItems: "end",
-  },
-  content: {
-    display: "grid",
-    gap: "1.25rem",
-    maxWidth: "760px",
-  },
-  eyebrow: {
-    margin: 0,
-    fontSize: "0.85rem",
-    fontWeight: 700,
-    letterSpacing: "0.18em",
-    textTransform: "uppercase",
-    color: "#f97316",
-  },
-  title: {
-    margin: 0,
-    maxWidth: "11ch",
-    fontSize: "clamp(3rem, 9vw, 5.9rem)",
-    lineHeight: 0.92,
-    letterSpacing: "-0.05em",
-    color: "#111111",
-    textWrap: "balance",
-  },
-  lead: {
-    margin: 0,
-    maxWidth: "40rem",
-    fontSize: "clamp(1.05rem, 2.6vw, 1.28rem)",
-    lineHeight: 1.75,
-    color: "#52525b",
-  },
-  note: {
-    margin: 0,
-    fontSize: "0.95rem",
-    fontWeight: 700,
-    letterSpacing: "0.08em",
-    textTransform: "uppercase",
-    color: "#0f172a",
-  },
-  panel: {
-    display: "grid",
-    gap: "1rem",
-    padding: "clamp(1.5rem, 4vw, 2rem)",
-    borderRadius: "1.75rem",
-    backgroundColor: "#0f172a",
-    boxShadow: "0 24px 70px rgba(15, 23, 42, 0.12)",
-  },
-  panelTitle: {
-    margin: 0,
-    fontSize: "0.8rem",
-    fontWeight: 700,
-    letterSpacing: "0.16em",
-    textTransform: "uppercase",
-    color: "#fb923c",
-  },
-  valueList: {
-    margin: 0,
-    padding: 0,
-    listStyle: "none",
-    display: "grid",
-    gap: "1rem",
-  },
-  valueItem: {
-    display: "grid",
-    gap: "0.35rem",
-    paddingTop: "1rem",
-    borderTop: "1px solid rgba(255, 255, 255, 0.12)",
-  },
-  valueHeading: {
-    margin: 0,
-    fontSize: "1.15rem",
-    lineHeight: 1.2,
-    color: "#ffffff",
-  },
-  valueText: {
-    margin: 0,
-    fontSize: "0.98rem",
-    lineHeight: 1.7,
-    color: "rgba(255, 255, 255, 0.74)",
-  },
-}
-
-export default function AboutHeroSection() {
-  return (
-    <section id="about-hero" aria-labelledby="about-hero-title" style={styles.section}>
-      <div style={styles.shell}>
-        <div style={styles.layout}>
-          <div style={styles.content}>
-            <p style={styles.eyebrow}>Chi siamo</p>
-            <h1 id="about-hero-title" style={styles.title}>
-              Un ristorante costruito sulla cura dei dettagli.
-            </h1>
-            <p style={styles.lead}>
-              La nostra cucina parte da ingredienti stagionali, tecnica pulita e un
-              servizio attento. Ogni scelta, dal menu alla sala, e pensata per offrire
-              un'esperienza contemporanea ma accogliente.
-            </p>
-            <p style={styles.note}>Cucina essenziale, ritmo preciso, ospitalita senza eccessi.</p>
-          </div>
-
-          <aside aria-label="Valori del ristorante" style={styles.panel}>
-            <p style={styles.panelTitle}>Cosa guida il nostro lavoro</p>
-            <ul style={styles.valueList}>
-              {values.map((value) => (
-                <li key={value.title} style={styles.valueItem}>
-                  <p style={styles.valueHeading}>{value.title}</p>
-                  <p style={styles.valueText}>{value.text}</p>
-                </li>
-              ))}
-            </ul>
-          </aside>
-        </div>
-      </div>
-    </section>
-  )
-}
-apply_patch(auto_approved=true) exited 0 in 55ms:
-Success. Updated the following files:
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/AboutHeroSection.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/ChiSiamo.jsx
-file update:
-diff --git a/src/components/AboutHeroSection.jsx b/src/components/AboutHeroSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..28a05ffea38835939c8269538927ecf1be554cb3
---- /dev/null
-+++ b/src/components/AboutHeroSection.jsx
-@@ -0,0 +1,149 @@
-+const values = [
-+  {
-+    title: "Stagionalita",
-+    text: "Il menu segue il tempo degli ingredienti, con piatti che cambiano senza perdere equilibrio.",
-+  },
-+  {
-+    title: "Precisione",
-+    text: "Ogni dettaglio, dalla cucina alla sala, e misurato per mantenere il servizio chiaro e naturale.",
-+  },
-+  {
-+    title: "Accoglienza",
-+    text: "L'esperienza resta contemporanea, ma sempre calda, leggibile e pensata per far tornare le persone.",
-+  },
-+]
-+
-+const styles = {
-+  section: {
-+    position: "relative",
-+    overflow: "hidden",
-+    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
-+    background:
-+      "radial-gradient(circle at top left, rgba(249, 115, 22, 0.16), transparent 28%), linear-gradient(135deg, #fffaf5 0%, #ffffff 52%, #f8fafc 100%)",
-+  },
-+  shell: {
-+    maxWidth: "1280px",
-+    margin: "0 auto",
-+    display: "grid",
-+    gap: "2rem",
-+  },
-+  layout: {
-+    display: "grid",
-+    gap: "1.5rem",
-+    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-+    alignItems: "end",
-+  },
-+  content: {
-+    display: "grid",
-+    gap: "1.25rem",
-+    maxWidth: "760px",
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    fontSize: "0.85rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.18em",
-+    textTransform: "uppercase",
-+    color: "#f97316",
-+  },
-+  title: {
-+    margin: 0,
-+    maxWidth: "11ch",
-+    fontSize: "clamp(3rem, 9vw, 5.9rem)",
-+    lineHeight: 0.92,
-+    letterSpacing: "-0.05em",
-+    color: "#111111",
-+    textWrap: "balance",
-+  },
-+  lead: {
-+    margin: 0,
-+    maxWidth: "40rem",
-+    fontSize: "clamp(1.05rem, 2.6vw, 1.28rem)",
-+    lineHeight: 1.75,
-+    color: "#52525b",
-+  },
-+  note: {
-+    margin: 0,
-+    fontSize: "0.95rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.08em",
-+    textTransform: "uppercase",
-+    color: "#0f172a",
-+  },
-+  panel: {
-+    display: "grid",
-+    gap: "1rem",
-+    padding: "clamp(1.5rem, 4vw, 2rem)",
-+    borderRadius: "1.75rem",
-+    backgroundColor: "#0f172a",
-+    boxShadow: "0 24px 70px rgba(15, 23, 42, 0.12)",
-+  },
-+  panelTitle: {
-+    margin: 0,
-+    fontSize: "0.8rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.16em",
-+    textTransform: "uppercase",
-+    color: "#fb923c",
-+  },
-+  valueList: {
-+    margin: 0,
-+    padding: 0,
-+    listStyle: "none",
-+    display: "grid",
-+    gap: "1rem",
-+  },
-+  valueItem: {
-+    display: "grid",
-+    gap: "0.35rem",
-+    paddingTop: "1rem",
-+    borderTop: "1px solid rgba(255, 255, 255, 0.12)",
-+  },
-+  valueHeading: {
-+    margin: 0,
-+    fontSize: "1.15rem",
-+    lineHeight: 1.2,
-+    color: "#ffffff",
-+  },
-+  valueText: {
-+    margin: 0,
-+    fontSize: "0.98rem",
-+    lineHeight: 1.7,
-+    color: "rgba(255, 255, 255, 0.74)",
-+  },
-+}
-+
-+export default function AboutHeroSection() {
-+  return (
-+    <section id="about-hero" aria-labelledby="about-hero-title" style={styles.section}>
-+      <div style={styles.shell}>
-+        <div style={styles.layout}>
-+          <div style={styles.content}>
-+            <p style={styles.eyebrow}>Chi siamo</p>
-+            <h1 id="about-hero-title" style={styles.title}>
-+              Un ristorante costruito sulla cura dei dettagli.
-+            </h1>
-+            <p style={styles.lead}>
-+              La nostra cucina parte da ingredienti stagionali, tecnica pulita e un
-+              servizio attento. Ogni scelta, dal menu alla sala, e pensata per offrire
-+              un'esperienza contemporanea ma accogliente.
-+            </p>
-+            <p style={styles.note}>Cucina essenziale, ritmo preciso, ospitalita senza eccessi.</p>
-+          </div>
-+
-+          <aside aria-label="Valori del ristorante" style={styles.panel}>
-+            <p style={styles.panelTitle}>Cosa guida il nostro lavoro</p>
-+            <ul style={styles.valueList}>
-+              {values.map((value) => (
-+                <li key={value.title} style={styles.valueItem}>
-+                  <p style={styles.valueHeading}>{value.title}</p>
-+                  <p style={styles.valueText}>{value.text}</p>
-+                </li>
-+              ))}
-+            </ul>
-+          </aside>
-+        </div>
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
-index df8266bf453f2fab5170aac4945090e77e237bf4..d7eb19dca8dd4c545b86698838f6c6ed51b4c4c1
---- a/src/pages/ChiSiamo.jsx
-+++ b/src/pages/ChiSiamo.jsx
-@@ -1,3 +1,5 @@
-+import AboutHeroSection from "../components/AboutHeroSection"
-+
- export default function ChiSiamo() {
-   const sectionStyle = {
-     padding: "4rem 0",
-@@ -28,27 +30,7 @@
- 
-   return (
-     <>
--      <section id="about-hero" style={sectionStyle}>
--        <div style={contentStyle}>
--          <p style={eyebrowStyle}>Chi siamo</p>
--          <h1
--            style={{
--              margin: "0 0 1.5rem",
--              maxWidth: "14ch",
--              fontSize: "clamp(2.75rem, 8vw, 5.5rem)",
--              lineHeight: 0.95,
--              color: "#0f172a",
--            }}
--          >
--            Un ristorante costruito sulla cura dei dettagli.
--          </h1>
--          <p style={bodyStyle}>
--            La nostra cucina parte da ingredienti stagionali, tecnica pulita e
--            un servizio attento. Ogni scelta, dal menu alla sala, e pensata per
--            offrire un&apos;esperienza contemporanea ma accogliente.
--          </p>
--        </div>
--      </section>
-+      <AboutHeroSection />
- 
-       <section id="story" style={sectionStyle}>
-         <div style={contentStyle}>
-
-file update:
-diff --git a/src/components/AboutHeroSection.jsx b/src/components/AboutHeroSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..28a05ffea38835939c8269538927ecf1be554cb3
---- /dev/null
-+++ b/src/components/AboutHeroSection.jsx
-@@ -0,0 +1,149 @@
-+const values = [
-+  {
-+    title: "Stagionalita",
-+    text: "Il menu segue il tempo degli ingredienti, con piatti che cambiano senza perdere equilibrio.",
-+  },
-+  {
-+    title: "Precisione",
-+    text: "Ogni dettaglio, dalla cucina alla sala, e misurato per mantenere il servizio chiaro e naturale.",
-+  },
-+  {
-+    title: "Accoglienza",
-+    text: "L'esperienza resta contemporanea, ma sempre calda, leggibile e pensata per far tornare le persone.",
-+  },
-+]
-+
-+const styles = {
-+  section: {
-+    position: "relative",
-+    overflow: "hidden",
-+    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
-+    background:
-+      "radial-gradient(circle at top left, rgba(249, 115, 22, 0.16), transparent 28%), linear-gradient(135deg, #fffaf5 0%, #ffffff 52%, #f8fafc 100%)",
-+  },
-+  shell: {
-+    maxWidth: "1280px",
-+    margin: "0 auto",
-+    display: "grid",
-+    gap: "2rem",
-+  },
-+  layout: {
-+    display: "grid",
-+    gap: "1.5rem",
-+    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-+    alignItems: "end",
-+  },
-+  content: {
-+    display: "grid",
-+    gap: "1.25rem",
-+    maxWidth: "760px",
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    fontSize: "0.85rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.18em",
-+    textTransform: "uppercase",
-+    color: "#f97316",
-+  },
-+  title: {
-+    margin: 0,
-+    maxWidth: "11ch",
-+    fontSize: "clamp(3rem, 9vw, 5.9rem)",
-+    lineHeight: 0.92,
-+    letterSpacing: "-0.05em",
-+    color: "#111111",
-+    textWrap: "balance",
-+  },
-+  lead: {
-+    margin: 0,
-+    maxWidth: "40rem",
-+    fontSize: "clamp(1.05rem, 2.6vw, 1.28rem)",
-+    lineHeight: 1.75,
-+    color: "#52525b",
-+  },
-+  note: {
-+    margin: 0,
-+    fontSize: "0.95rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.08em",
-+    textTransform: "uppercase",
-+    color: "#0f172a",
-+  },
-+  panel: {
-+    display: "grid",
-+    gap: "1rem",
-+    padding: "clamp(1.5rem, 4vw, 2rem)",
-+    borderRadius: "1.75rem",
-+    backgroundColor: "#0f172a",
-+    boxShadow: "0 24px 70px rgba(15, 23, 42, 0.12)",
-+  },
-+  panelTitle: {
-+    margin: 0,
-+    fontSize: "0.8rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.16em",
-+    textTransform: "uppercase",
-+    color: "#fb923c",
-+  },
-+  valueList: {
-+    margin: 0,
-+    padding: 0,
-+    listStyle: "none",
-+    display: "grid",
-+    gap: "1rem",
-+  },
-+  valueItem: {
-+    display: "grid",
-+    gap: "0.35rem",
-+    paddingTop: "1rem",
-+    borderTop: "1px solid rgba(255, 255, 255, 0.12)",
-+  },
-+  valueHeading: {
-+    margin: 0,
-+    fontSize: "1.15rem",
-+    lineHeight: 1.2,
-+    color: "#ffffff",
-+  },
-+  valueText: {
-+    margin: 0,
-+    fontSize: "0.98rem",
-+    lineHeight: 1.7,
-+    color: "rgba(255, 255, 255, 0.74)",
-+  },
-+}
-+
-+export default function AboutHeroSection() {
-+  return (
-+    <section id="about-hero" aria-labelledby="about-hero-title" style={styles.section}>
-+      <div style={styles.shell}>
-+        <div style={styles.layout}>
-+          <div style={styles.content}>
-+            <p style={styles.eyebrow}>Chi siamo</p>
-+            <h1 id="about-hero-title" style={styles.title}>
-+              Un ristorante costruito sulla cura dei dettagli.
-+            </h1>
-+            <p style={styles.lead}>
-+              La nostra cucina parte da ingredienti stagionali, tecnica pulita e un
-+              servizio attento. Ogni scelta, dal menu alla sala, e pensata per offrire
-+              un'esperienza contemporanea ma accogliente.
-+            </p>
-+            <p style={styles.note}>Cucina essenziale, ritmo preciso, ospitalita senza eccessi.</p>
-+          </div>
-+
-+          <aside aria-label="Valori del ristorante" style={styles.panel}>
-+            <p style={styles.panelTitle}>Cosa guida il nostro lavoro</p>
-+            <ul style={styles.valueList}>
-+              {values.map((value) => (
-+                <li key={value.title} style={styles.valueItem}>
-+                  <p style={styles.valueHeading}>{value.title}</p>
-+                  <p style={styles.valueText}>{value.text}</p>
-+                </li>
-+              ))}
-+            </ul>
-+          </aside>
-+        </div>
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
-index df8266bf453f2fab5170aac4945090e77e237bf4..d7eb19dca8dd4c545b86698838f6c6ed51b4c4c1
---- a/src/pages/ChiSiamo.jsx
-+++ b/src/pages/ChiSiamo.jsx
-@@ -1,3 +1,5 @@
-+import AboutHeroSection from "../components/AboutHeroSection"
-+
- export default function ChiSiamo() {
-   const sectionStyle = {
-     padding: "4rem 0",
-@@ -28,27 +30,7 @@
- 
-   return (
-     <>
--      <section id="about-hero" style={sectionStyle}>
--        <div style={contentStyle}>
--          <p style={eyebrowStyle}>Chi siamo</p>
--          <h1
--            style={{
--              margin: "0 0 1.5rem",
--              maxWidth: "14ch",
--              fontSize: "clamp(2.75rem, 8vw, 5.5rem)",
--              lineHeight: 0.95,
--              color: "#0f172a",
--            }}
--          >
--            Un ristorante costruito sulla cura dei dettagli.
--          </h1>
--          <p style={bodyStyle}>
--            La nostra cucina parte da ingredienti stagionali, tecnica pulita e
--            un servizio attento. Ogni scelta, dal menu alla sala, e pensata per
--            offrire un&apos;esperienza contemporanea ma accogliente.
--          </p>
--        </div>
--      </section>
-+      <AboutHeroSection />
- 
-       <section id="story" style={sectionStyle}>
-         <div style={contentStyle}>
-
-codex
-The component extraction is in place. I’m running the build now, then I’ll append the task result to `agent/AGENT_REPORT.md` without modifying task state.
-exec
-/bin/zsh -lc 'cat package.json' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 52ms:
+ succeeded in 51ms:
+8:    "build": "vite build",
 {
   "name": "site-create-a-high-end-visually-distinctive-m",
   "private": true,
@@ -2001,47 +1329,673 @@ exec
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
-    "@playwright/test": "^1.58.2",
+codex
+I’ve got the existing visual language: large editorial type, warm neutrals, dark accent panel. I’m matching that in a dedicated `StorySection` component so the `story` section becomes modular without spilling into future work.
+file update
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/StorySection.jsx
+const storyMoments = [
+  {
+    label: "Origine",
+    text: "Il progetto nasce dal desiderio di offrire una cucina italiana nitida, contemporanea e leggibile, senza perdere calore umano.",
+  },
+  {
+    label: "Metodo",
+    text: "Lavoriamo su ingredienti stagionali, preparazioni essenziali e un servizio che accompagna il tavolo con naturalezza.",
+  },
+  {
+    label: "Atmosfera",
+    text: "Sala, luci e ritmo del servizio sono pensati per lasciare spazio alla conversazione e far percepire ogni dettaglio con equilibrio.",
+  },
+]
+
+const styles = {
+  section: {
+    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
+    borderBottom: "1px solid rgba(15, 23, 42, 0.08)",
+    background:
+      "linear-gradient(180deg, #ffffff 0%, #fffaf5 100%)",
+  },
+  shell: {
+    maxWidth: "1280px",
+    margin: "0 auto",
+    display: "grid",
+    gap: "2rem",
+  },
+  layout: {
+    display: "grid",
+    gap: "2rem",
+    gridTemplateColumns: "minmax(0, 1.2fr) minmax(0, 0.8fr)",
+    alignItems: "start",
+  },
+  intro: {
+    display: "grid",
+    gap: "1.25rem",
+  },
+  eyebrow: {
+    margin: 0,
+    fontSize: "0.78rem",
+    fontWeight: 700,
+    letterSpacing: "0.18em",
+    textTransform: "uppercase",
+    color: "#f97316",
+  },
+  title: {
+    margin: 0,
+    maxWidth: "12ch",
+    fontSize: "clamp(2.4rem, 6vw, 4.8rem)",
+    lineHeight: 0.95,
+    letterSpacing: "-0.05em",
+    color: "#111111",
+    textWrap: "balance",
+  },
+  lead: {
+    margin: 0,
+    maxWidth: "42rem",
+    fontSize: "clamp(1.05rem, 2.2vw, 1.25rem)",
+    lineHeight: 1.8,
+    color: "#475569",
+  },
+  emphasis: {
+    margin: 0,
+    maxWidth: "32rem",
+    fontSize: "1rem",
+    lineHeight: 1.8,
+    color: "#0f172a",
+  },
+  panel: {
+    display: "grid",
+    gap: "1rem",
+    padding: "clamp(1.5rem, 4vw, 2rem)",
+    borderRadius: "1.5rem",
+    backgroundColor: "#0f172a",
+    boxShadow: "0 20px 60px rgba(15, 23, 42, 0.1)",
+  },
+  panelTitle: {
+    margin: 0,
+    fontSize: "0.8rem",
+    fontWeight: 700,
+    letterSpacing: "0.16em",
+    textTransform: "uppercase",
+    color: "#fb923c",
+  },
+  list: {
+    margin: 0,
+    padding: 0,
+    listStyle: "none",
+    display: "grid",
+    gap: "1rem",
+  },
+  item: {
+    display: "grid",
+    gap: "0.35rem",
+    paddingTop: "1rem",
+    borderTop: "1px solid rgba(255, 255, 255, 0.12)",
+  },
+  itemLabel: {
+    margin: 0,
+    fontSize: "1rem",
+    fontWeight: 700,
+    color: "#ffffff",
+  },
+  itemText: {
+    margin: 0,
+    fontSize: "0.98rem",
+    lineHeight: 1.7,
+    color: "rgba(255, 255, 255, 0.76)",
+  },
+}
+
+export default function StorySection() {
+  return (
+    <section id="story" aria-labelledby="story-title" style={styles.section}>
+      <div style={styles.shell}>
+        <div
+          style={{
+            ...styles.layout,
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          }}
+        >
+          <div style={styles.intro}>
+            <p style={styles.eyebrow}>La nostra storia</p>
+            <h2 id="story-title" style={styles.title}>
+              Una visione italiana resa piu essenziale.
+            </h2>
+            <p style={styles.lead}>
+              Siamo partiti da un&apos;idea semplice: creare un luogo in cui la cucina
+              resti riconoscibile, ma venga alleggerita da tutto cio che e superfluo.
+              Per questo il menu cambia con il ritmo della stagione, i sapori sono netti
+              e ogni piatto cerca equilibrio prima dell&apos;effetto.
+            </p>
+            <p style={styles.emphasis}>
+              Vogliamo che l&apos;esperienza sia contemporanea, curata e accessibile:
+              abbastanza precisa da farsi ricordare, abbastanza naturale da far sentire
+              ogni ospite al posto giusto.
+            </p>
+          </div>
+
+          <aside aria-label="Momenti chiave della nostra storia" style={styles.panel}>
+            <p style={styles.panelTitle}>Come prendiamo forma</p>
+            <ul style={styles.list}>
+              {storyMoments.map((moment) => (
+                <li key={moment.label} style={styles.item}>
+                  <p style={styles.itemLabel}>{moment.label}</p>
+                  <p style={styles.itemText}>{moment.text}</p>
+                </li>
+              ))}
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+  )
+}
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/ChiSiamo.jsx
+@@ -1,2 +1,3 @@
+ import AboutHeroSection from "../components/AboutHeroSection"
++import StorySection from "../components/StorySection"
+ 
+@@ -33,23 +34,3 @@
+       <AboutHeroSection />
+-
+-      <section id="story" style={sectionStyle}>
+-        <div style={contentStyle}>
+-          <h2
+-            style={{
+-              margin: "0 0 1rem",
+-              fontSize: "clamp(2rem, 5vw, 3.25rem)",
+-              lineHeight: 1,
+-              color: "#0f172a",
+-            }}
+-          >
+-            Una storia fatta di ritmo, materia prima e ospitalita.
+-          </h2>
+-          <p style={bodyStyle}>
+-            Siamo nati con un&apos;idea semplice: creare un luogo in cui la cucina
+-            italiana incontri una sensibilita piu essenziale, precisa e
+-            attuale. Il risultato e un ambiente caldo, piatti riconoscibili e
+-            una proposta che cambia con naturalezza durante l&apos;anno.
+-          </p>
+-        </div>
+-      </section>
++      <StorySection />
+ 
+apply_patch(auto_approved=true) exited 0 in 57ms:
+Success. Updated the following files:
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/StorySection.jsx
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/ChiSiamo.jsx
+file update:
+diff --git a/src/components/StorySection.jsx b/src/components/StorySection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f426a2cfa
+--- /dev/null
++++ b/src/components/StorySection.jsx
+@@ -0,0 +1,156 @@
++const storyMoments = [
++  {
++    label: "Origine",
++    text: "Il progetto nasce dal desiderio di offrire una cucina italiana nitida, contemporanea e leggibile, senza perdere calore umano.",
++  },
++  {
++    label: "Metodo",
++    text: "Lavoriamo su ingredienti stagionali, preparazioni essenziali e un servizio che accompagna il tavolo con naturalezza.",
++  },
++  {
++    label: "Atmosfera",
++    text: "Sala, luci e ritmo del servizio sono pensati per lasciare spazio alla conversazione e far percepire ogni dettaglio con equilibrio.",
++  },
++]
++
++const styles = {
++  section: {
++    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
++    borderBottom: "1px solid rgba(15, 23, 42, 0.08)",
++    background:
++      "linear-gradient(180deg, #ffffff 0%, #fffaf5 100%)",
++  },
++  shell: {
++    maxWidth: "1280px",
++    margin: "0 auto",
++    display: "grid",
++    gap: "2rem",
++  },
++  layout: {
++    display: "grid",
++    gap: "2rem",
++    gridTemplateColumns: "minmax(0, 1.2fr) minmax(0, 0.8fr)",
++    alignItems: "start",
++  },
++  intro: {
++    display: "grid",
++    gap: "1.25rem",
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: "0.78rem",
++    fontWeight: 700,
++    letterSpacing: "0.18em",
++    textTransform: "uppercase",
++    color: "#f97316",
++  },
++  title: {
++    margin: 0,
++    maxWidth: "12ch",
++    fontSize: "clamp(2.4rem, 6vw, 4.8rem)",
++    lineHeight: 0.95,
++    letterSpacing: "-0.05em",
++    color: "#111111",
++    textWrap: "balance",
++  },
++  lead: {
++    margin: 0,
++    maxWidth: "42rem",
++    fontSize: "clamp(1.05rem, 2.2vw, 1.25rem)",
++    lineHeight: 1.8,
++    color: "#475569",
++  },
++  emphasis: {
++    margin: 0,
++    maxWidth: "32rem",
++    fontSize: "1rem",
++    lineHeight: 1.8,
++    color: "#0f172a",
++  },
++  panel: {
++    display: "grid",
++    gap: "1rem",
++    padding: "clamp(1.5rem, 4vw, 2rem)",
++    borderRadius: "1.5rem",
++    backgroundColor: "#0f172a",
++    boxShadow: "0 20px 60px rgba(15, 23, 42, 0.1)",
++  },
++  panelTitle: {
++    margin: 0,
++    fontSize: "0.8rem",
++    fontWeight: 700,
++    letterSpacing: "0.16em",
++    textTransform: "uppercase",
++    color: "#fb923c",
++  },
++  list: {
++    margin: 0,
++    padding: 0,
++    listStyle: "none",
++    display: "grid",
++    gap: "1rem",
++  },
++  item: {
++    display: "grid",
++    gap: "0.35rem",
++    paddingTop: "1rem",
++    borderTop: "1px solid rgba(255, 255, 255, 0.12)",
++  },
++  itemLabel: {
++    margin: 0,
++    fontSize: "1rem",
++    fontWeight: 700,
++    color: "#ffffff",
++  },
++  itemText: {
++    margin: 0,
++    fontSize: "0.98rem",
++    lineHeight: 1.7,
++    color: "rgba(255, 255, 255, 0.76)",
++  },
++}
++
++export default function StorySection() {
++  return (
++    <section id="story" aria-labelledby="story-title" style={styles.section}>
++      <div style={styles.shell}>
++        <div
++          style={{
++            ...styles.layout,
++            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
++          }}
++        >
++          <div style={styles.intro}>
++            <p style={styles.eyebrow}>La nostra storia</p>
++            <h2 id="story-title" style={styles.title}>
++              Una visione italiana resa piu essenziale.
++            </h2>
++            <p style={styles.lead}>
++              Siamo partiti da un&apos;idea semplice: creare un luogo in cui la cucina
++              resti riconoscibile, ma venga alleggerita da tutto cio che e superfluo.
++              Per questo il menu cambia con il ritmo della stagione, i sapori sono netti
++              e ogni piatto cerca equilibrio prima dell&apos;effetto.
++            </p>
++            <p style={styles.emphasis}>
++              Vogliamo che l&apos;esperienza sia contemporanea, curata e accessibile:
++              abbastanza precisa da farsi ricordare, abbastanza naturale da far sentire
++              ogni ospite al posto giusto.
++            </p>
++          </div>
++
++          <aside aria-label="Momenti chiave della nostra storia" style={styles.panel}>
++            <p style={styles.panelTitle}>Come prendiamo forma</p>
++            <ul style={styles.list}>
++              {storyMoments.map((moment) => (
++                <li key={moment.label} style={styles.item}>
++                  <p style={styles.itemLabel}>{moment.label}</p>
++                  <p style={styles.itemText}>{moment.text}</p>
++                </li>
++              ))}
++            </ul>
++          </aside>
++        </div>
++      </div>
++    </section>
++  )
++}
+diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
+index d7eb19dca8dd4c545b86698838f6c6ed51b4c4c1..0157e66899343329a65c6dc7440bbdd4ccf6411d
+--- a/src/pages/ChiSiamo.jsx
++++ b/src/pages/ChiSiamo.jsx
+@@ -1,4 +1,5 @@
+ import AboutHeroSection from "../components/AboutHeroSection"
++import StorySection from "../components/StorySection"
+ 
+ export default function ChiSiamo() {
+   const sectionStyle = {
+@@ -31,27 +32,7 @@
+   return (
+     <>
+       <AboutHeroSection />
+-
+-      <section id="story" style={sectionStyle}>
+-        <div style={contentStyle}>
+-          <h2
+-            style={{
+-              margin: "0 0 1rem",
+-              fontSize: "clamp(2rem, 5vw, 3.25rem)",
+-              lineHeight: 1,
+-              color: "#0f172a",
+-            }}
+-          >
+-            Una storia fatta di ritmo, materia prima e ospitalita.
+-          </h2>
+-          <p style={bodyStyle}>
+-            Siamo nati con un&apos;idea semplice: creare un luogo in cui la cucina
+-            italiana incontri una sensibilita piu essenziale, precisa e
+-            attuale. Il risultato e un ambiente caldo, piatti riconoscibili e
+-            una proposta che cambia con naturalezza durante l&apos;anno.
+-          </p>
+-        </div>
+-      </section>
++      <StorySection />
+ 
+       <section id="philosophy" style={{ ...sectionStyle, borderBottom: "none" }}>
+         <div style={contentStyle}>
+
+file update:
+diff --git a/src/components/StorySection.jsx b/src/components/StorySection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f426a2cfa
+--- /dev/null
++++ b/src/components/StorySection.jsx
+@@ -0,0 +1,156 @@
++const storyMoments = [
++  {
++    label: "Origine",
++    text: "Il progetto nasce dal desiderio di offrire una cucina italiana nitida, contemporanea e leggibile, senza perdere calore umano.",
++  },
++  {
++    label: "Metodo",
++    text: "Lavoriamo su ingredienti stagionali, preparazioni essenziali e un servizio che accompagna il tavolo con naturalezza.",
++  },
++  {
++    label: "Atmosfera",
++    text: "Sala, luci e ritmo del servizio sono pensati per lasciare spazio alla conversazione e far percepire ogni dettaglio con equilibrio.",
++  },
++]
++
++const styles = {
++  section: {
++    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
++    borderBottom: "1px solid rgba(15, 23, 42, 0.08)",
++    background:
++      "linear-gradient(180deg, #ffffff 0%, #fffaf5 100%)",
++  },
++  shell: {
++    maxWidth: "1280px",
++    margin: "0 auto",
++    display: "grid",
++    gap: "2rem",
++  },
++  layout: {
++    display: "grid",
++    gap: "2rem",
++    gridTemplateColumns: "minmax(0, 1.2fr) minmax(0, 0.8fr)",
++    alignItems: "start",
++  },
++  intro: {
++    display: "grid",
++    gap: "1.25rem",
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: "0.78rem",
++    fontWeight: 700,
++    letterSpacing: "0.18em",
++    textTransform: "uppercase",
++    color: "#f97316",
++  },
++  title: {
++    margin: 0,
++    maxWidth: "12ch",
++    fontSize: "clamp(2.4rem, 6vw, 4.8rem)",
++    lineHeight: 0.95,
++    letterSpacing: "-0.05em",
++    color: "#111111",
++    textWrap: "balance",
++  },
++  lead: {
++    margin: 0,
++    maxWidth: "42rem",
++    fontSize: "clamp(1.05rem, 2.2vw, 1.25rem)",
++    lineHeight: 1.8,
++    color: "#475569",
++  },
++  emphasis: {
++    margin: 0,
++    maxWidth: "32rem",
++    fontSize: "1rem",
++    lineHeight: 1.8,
++    color: "#0f172a",
++  },
++  panel: {
++    display: "grid",
++    gap: "1rem",
++    padding: "clamp(1.5rem, 4vw, 2rem)",
++    borderRadius: "1.5rem",
++    backgroundColor: "#0f172a",
++    boxShadow: "0 20px 60px rgba(15, 23, 42, 0.1)",
++  },
++  panelTitle: {
++    margin: 0,
++    fontSize: "0.8rem",
++    fontWeight: 700,
++    letterSpacing: "0.16em",
++    textTransform: "uppercase",
++    color: "#fb923c",
++  },
++  list: {
++    margin: 0,
++    padding: 0,
++    listStyle: "none",
++    display: "grid",
++    gap: "1rem",
++  },
++  item: {
++    display: "grid",
++    gap: "0.35rem",
++    paddingTop: "1rem",
++    borderTop: "1px solid rgba(255, 255, 255, 0.12)",
++  },
++  itemLabel: {
++    margin: 0,
++    fontSize: "1rem",
++    fontWeight: 700,
++    color: "#ffffff",
++  },
++  itemText: {
++    margin: 0,
++    fontSize: "0.98rem",
++    lineHeight: 1.7,
++    color: "rgba(255, 255, 255, 0.76)",
++  },
++}
++
++export default function StorySection() {
++  return (
++    <section id="story" aria-labelledby="story-title" style={styles.section}>
++      <div style={styles.shell}>
++        <div
++          style={{
++            ...styles.layout,
++            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
++          }}
++        >
++          <div style={styles.intro}>
++            <p style={styles.eyebrow}>La nostra storia</p>
++            <h2 id="story-title" style={styles.title}>
++              Una visione italiana resa piu essenziale.
++            </h2>
++            <p style={styles.lead}>
++              Siamo partiti da un&apos;idea semplice: creare un luogo in cui la cucina
++              resti riconoscibile, ma venga alleggerita da tutto cio che e superfluo.
++              Per questo il menu cambia con il ritmo della stagione, i sapori sono netti
++              e ogni piatto cerca equilibrio prima dell&apos;effetto.
++            </p>
++            <p style={styles.emphasis}>
++              Vogliamo che l&apos;esperienza sia contemporanea, curata e accessibile:
++              abbastanza precisa da farsi ricordare, abbastanza naturale da far sentire
++              ogni ospite al posto giusto.
++            </p>
++          </div>
++
++          <aside aria-label="Momenti chiave della nostra storia" style={styles.panel}>
++            <p style={styles.panelTitle}>Come prendiamo forma</p>
++            <ul style={styles.list}>
++              {storyMoments.map((moment) => (
++                <li key={moment.label} style={styles.item}>
++                  <p style={styles.itemLabel}>{moment.label}</p>
++                  <p style={styles.itemText}>{moment.text}</p>
++                </li>
++              ))}
++            </ul>
++          </aside>
++        </div>
++      </div>
++    </section>
++  )
++}
+diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
+index d7eb19dca8dd4c545b86698838f6c6ed51b4c4c1..0157e66899343329a65c6dc7440bbdd4ccf6411d
+--- a/src/pages/ChiSiamo.jsx
++++ b/src/pages/ChiSiamo.jsx
+@@ -1,4 +1,5 @@
+ import AboutHeroSection from "../components/AboutHeroSection"
++import StorySection from "../components/StorySection"
+ 
+ export default function ChiSiamo() {
+   const sectionStyle = {
+@@ -31,27 +32,7 @@
+   return (
+     <>
+       <AboutHeroSection />
+-
+-      <section id="story" style={sectionStyle}>
+-        <div style={contentStyle}>
+-          <h2
+-            style={{
+-              margin: "0 0 1rem",
+-              fontSize: "clamp(2rem, 5vw, 3.25rem)",
+-              lineHeight: 1,
+-              color: "#0f172a",
+-            }}
+-          >
+-            Una storia fatta di ritmo, materia prima e ospitalita.
+-          </h2>
+-          <p style={bodyStyle}>
+-            Siamo nati con un&apos;idea semplice: creare un luogo in cui la cucina
+-            italiana incontri una sensibilita piu essenziale, precisa e
+-            attuale. Il risultato e un ambiente caldo, piatti riconoscibili e
+-            una proposta che cambia con naturalezza durante l&apos;anno.
+-          </p>
+-        </div>
+-      </section>
++      <StorySection />
+ 
+       <section id="philosophy" style={{ ...sectionStyle, borderBottom: "none" }}>
+         <div style={contentStyle}>
+
+codex
+The section is now extracted and wired into `ChiSiamo`. I’m running the build check next, then I’ll record the task outcome in `agent/AGENT_REPORT.md` as required.
 exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 816ms:
+/bin/zsh -lc "sed -n '1,260p' src/components/StorySection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 53ms:
+const storyMoments = [
+  {
+    label: "Origine",
+    text: "Il progetto nasce dal desiderio di offrire una cucina italiana nitida, contemporanea e leggibile, senza perdere calore umano.",
+  },
+  {
+    label: "Metodo",
+    text: "Lavoriamo su ingredienti stagionali, preparazioni essenziali e un servizio che accompagna il tavolo con naturalezza.",
+  },
+  {
+    label: "Atmosfera",
+    text: "Sala, luci e ritmo del servizio sono pensati per lasciare spazio alla conversazione e far percepire ogni dettaglio con equilibrio.",
+  },
+]
+
+const styles = {
+  section: {
+    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
+    borderBottom: "1px solid rgba(15, 23, 42, 0.08)",
+    background:
+exec
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 817ms:
+
+> site-create-a-high-end-visually-distinctive-m@0.0.0 build
+> vite build
+
 vite v7.3.1 building client environment for production...
 transforming...
-✓ 54 modules transformed.
+✓ 55 modules transformed.
 rendering chunks...
 computing gzip size...
 dist/index.html                   0.50 kB │ gzip:  0.32 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-BJkGTwud.js   252.82 kB │ gzip: 79.79 kB
-✓ built in 567ms
+dist/assets/index-CO0724vT.js   255.54 kB │ gzip: 80.31 kB
+✓ built in 558ms
 file update:
-diff --git a/src/components/AboutHeroSection.jsx b/src/components/AboutHeroSection.jsx
+diff --git a/src/components/StorySection.jsx b/src/components/StorySection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..28a05ffea38835939c8269538927ecf1be554cb3
+index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f426a2cfa
 --- /dev/null
-+++ b/src/components/AboutHeroSection.jsx
-@@ -0,0 +1,149 @@
-+const values = [
++++ b/src/components/StorySection.jsx
+@@ -0,0 +1,156 @@
++const storyMoments = [
 +  {
-+    title: "Stagionalita",
-+    text: "Il menu segue il tempo degli ingredienti, con piatti che cambiano senza perdere equilibrio.",
++    label: "Origine",
++    text: "Il progetto nasce dal desiderio di offrire una cucina italiana nitida, contemporanea e leggibile, senza perdere calore umano.",
 +  },
 +  {
-+    title: "Precisione",
-+    text: "Ogni dettaglio, dalla cucina alla sala, e misurato per mantenere il servizio chiaro e naturale.",
++    label: "Metodo",
++    text: "Lavoriamo su ingredienti stagionali, preparazioni essenziali e un servizio che accompagna il tavolo con naturalezza.",
 +  },
 +  {
-+    title: "Accoglienza",
-+    text: "L'esperienza resta contemporanea, ma sempre calda, leggibile e pensata per far tornare le persone.",
++    label: "Atmosfera",
++    text: "Sala, luci e ritmo del servizio sono pensati per lasciare spazio alla conversazione e far percepire ogni dettaglio con equilibrio.",
 +  },
 +]
 +
 +const styles = {
 +  section: {
-+    position: "relative",
-+    overflow: "hidden",
 +    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
++    borderBottom: "1px solid rgba(15, 23, 42, 0.08)",
 +    background:
-+      "radial-gradient(circle at top left, rgba(249, 115, 22, 0.16), transparent 28%), linear-gradient(135deg, #fffaf5 0%, #ffffff 52%, #f8fafc 100%)",
++      "linear-gradient(180deg, #ffffff 0%, #fffaf5 100%)",
 +  },
 +  shell: {
 +    maxWidth: "1280px",
@@ -2051,18 +2005,17 @@ index 0000000000000000000000000000000000000000..28a05ffea38835939c8269538927ecf1
 +  },
 +  layout: {
 +    display: "grid",
-+    gap: "1.5rem",
-+    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-+    alignItems: "end",
++    gap: "2rem",
++    gridTemplateColumns: "minmax(0, 1.2fr) minmax(0, 0.8fr)",
++    alignItems: "start",
 +  },
-+  content: {
++  intro: {
 +    display: "grid",
 +    gap: "1.25rem",
-+    maxWidth: "760px",
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    fontSize: "0.85rem",
++    fontSize: "0.78rem",
 +    fontWeight: 700,
 +    letterSpacing: "0.18em",
 +    textTransform: "uppercase",
@@ -2070,35 +2023,34 @@ index 0000000000000000000000000000000000000000..28a05ffea38835939c8269538927ecf1
 +  },
 +  title: {
 +    margin: 0,
-+    maxWidth: "11ch",
-+    fontSize: "clamp(3rem, 9vw, 5.9rem)",
-+    lineHeight: 0.92,
++    maxWidth: "12ch",
++    fontSize: "clamp(2.4rem, 6vw, 4.8rem)",
++    lineHeight: 0.95,
 +    letterSpacing: "-0.05em",
 +    color: "#111111",
 +    textWrap: "balance",
 +  },
 +  lead: {
 +    margin: 0,
-+    maxWidth: "40rem",
-+    fontSize: "clamp(1.05rem, 2.6vw, 1.28rem)",
-+    lineHeight: 1.75,
-+    color: "#52525b",
++    maxWidth: "42rem",
++    fontSize: "clamp(1.05rem, 2.2vw, 1.25rem)",
++    lineHeight: 1.8,
++    color: "#475569",
 +  },
-+  note: {
++  emphasis: {
 +    margin: 0,
-+    fontSize: "0.95rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.08em",
-+    textTransform: "uppercase",
++    maxWidth: "32rem",
++    fontSize: "1rem",
++    lineHeight: 1.8,
 +    color: "#0f172a",
 +  },
 +  panel: {
 +    display: "grid",
 +    gap: "1rem",
 +    padding: "clamp(1.5rem, 4vw, 2rem)",
-+    borderRadius: "1.75rem",
++    borderRadius: "1.5rem",
 +    backgroundColor: "#0f172a",
-+    boxShadow: "0 24px 70px rgba(15, 23, 42, 0.12)",
++    boxShadow: "0 20px 60px rgba(15, 23, 42, 0.1)",
 +  },
 +  panelTitle: {
 +    margin: 0,
@@ -2108,58 +2060,68 @@ index 0000000000000000000000000000000000000000..28a05ffea38835939c8269538927ecf1
 +    textTransform: "uppercase",
 +    color: "#fb923c",
 +  },
-+  valueList: {
++  list: {
 +    margin: 0,
 +    padding: 0,
 +    listStyle: "none",
 +    display: "grid",
 +    gap: "1rem",
 +  },
-+  valueItem: {
++  item: {
 +    display: "grid",
 +    gap: "0.35rem",
 +    paddingTop: "1rem",
 +    borderTop: "1px solid rgba(255, 255, 255, 0.12)",
 +  },
-+  valueHeading: {
++  itemLabel: {
 +    margin: 0,
-+    fontSize: "1.15rem",
-+    lineHeight: 1.2,
++    fontSize: "1rem",
++    fontWeight: 700,
 +    color: "#ffffff",
 +  },
-+  valueText: {
++  itemText: {
 +    margin: 0,
 +    fontSize: "0.98rem",
 +    lineHeight: 1.7,
-+    color: "rgba(255, 255, 255, 0.74)",
++    color: "rgba(255, 255, 255, 0.76)",
 +  },
 +}
 +
-+export default function AboutHeroSection() {
++export default function StorySection() {
 +  return (
-+    <section id="about-hero" aria-labelledby="about-hero-title" style={styles.section}>
++    <section id="story" aria-labelledby="story-title" style={styles.section}>
 +      <div style={styles.shell}>
-+        <div style={styles.layout}>
-+          <div style={styles.content}>
-+            <p style={styles.eyebrow}>Chi siamo</p>
-+            <h1 id="about-hero-title" style={styles.title}>
-+              Un ristorante costruito sulla cura dei dettagli.
-+            </h1>
++        <div
++          style={{
++            ...styles.layout,
++            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
++          }}
++        >
++          <div style={styles.intro}>
++            <p style={styles.eyebrow}>La nostra storia</p>
++            <h2 id="story-title" style={styles.title}>
++              Una visione italiana resa piu essenziale.
++            </h2>
 +            <p style={styles.lead}>
-+              La nostra cucina parte da ingredienti stagionali, tecnica pulita e un
-+              servizio attento. Ogni scelta, dal menu alla sala, e pensata per offrire
-+              un'esperienza contemporanea ma accogliente.
++              Siamo partiti da un&apos;idea semplice: creare un luogo in cui la cucina
++              resti riconoscibile, ma venga alleggerita da tutto cio che e superfluo.
++              Per questo il menu cambia con il ritmo della stagione, i sapori sono netti
++              e ogni piatto cerca equilibrio prima dell&apos;effetto.
 +            </p>
-+            <p style={styles.note}>Cucina essenziale, ritmo preciso, ospitalita senza eccessi.</p>
++            <p style={styles.emphasis}>
++              Vogliamo che l&apos;esperienza sia contemporanea, curata e accessibile:
++              abbastanza precisa da farsi ricordare, abbastanza naturale da far sentire
++              ogni ospite al posto giusto.
++            </p>
 +          </div>
 +
-+          <aside aria-label="Valori del ristorante" style={styles.panel}>
-+            <p style={styles.panelTitle}>Cosa guida il nostro lavoro</p>
-+            <ul style={styles.valueList}>
-+              {values.map((value) => (
-+                <li key={value.title} style={styles.valueItem}>
-+                  <p style={styles.valueHeading}>{value.title}</p>
-+                  <p style={styles.valueText}>{value.text}</p>
++          <aside aria-label="Momenti chiave della nostra storia" style={styles.panel}>
++            <p style={styles.panelTitle}>Come prendiamo forma</p>
++            <ul style={styles.list}>
++              {storyMoments.map((moment) => (
++                <li key={moment.label} style={styles.item}>
++                  <p style={styles.itemLabel}>{moment.label}</p>
++                  <p style={styles.itemText}>{moment.text}</p>
 +                </li>
 +              ))}
 +            </ul>
@@ -2170,127 +2132,126 @@ index 0000000000000000000000000000000000000000..28a05ffea38835939c8269538927ecf1
 +  )
 +}
 diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
-index df8266bf453f2fab5170aac4945090e77e237bf4..d7eb19dca8dd4c545b86698838f6c6ed51b4c4c1
+index d7eb19dca8dd4c545b86698838f6c6ed51b4c4c1..0157e66899343329a65c6dc7440bbdd4ccf6411d
 --- a/src/pages/ChiSiamo.jsx
 +++ b/src/pages/ChiSiamo.jsx
-@@ -1,3 +1,5 @@
-+import AboutHeroSection from "../components/AboutHeroSection"
-+
+@@ -1,4 +1,5 @@
+ import AboutHeroSection from "../components/AboutHeroSection"
++import StorySection from "../components/StorySection"
+ 
  export default function ChiSiamo() {
    const sectionStyle = {
-     padding: "4rem 0",
-@@ -28,27 +30,7 @@
- 
+@@ -31,27 +32,7 @@
    return (
      <>
--      <section id="about-hero" style={sectionStyle}>
+       <AboutHeroSection />
+-
+-      <section id="story" style={sectionStyle}>
 -        <div style={contentStyle}>
--          <p style={eyebrowStyle}>Chi siamo</p>
--          <h1
+-          <h2
 -            style={{
--              margin: "0 0 1.5rem",
--              maxWidth: "14ch",
--              fontSize: "clamp(2.75rem, 8vw, 5.5rem)",
--              lineHeight: 0.95,
+-              margin: "0 0 1rem",
+-              fontSize: "clamp(2rem, 5vw, 3.25rem)",
+-              lineHeight: 1,
 -              color: "#0f172a",
 -            }}
 -          >
--            Un ristorante costruito sulla cura dei dettagli.
--          </h1>
+-            Una storia fatta di ritmo, materia prima e ospitalita.
+-          </h2>
 -          <p style={bodyStyle}>
--            La nostra cucina parte da ingredienti stagionali, tecnica pulita e
--            un servizio attento. Ogni scelta, dal menu alla sala, e pensata per
--            offrire un&apos;esperienza contemporanea ma accogliente.
+-            Siamo nati con un&apos;idea semplice: creare un luogo in cui la cucina
+-            italiana incontri una sensibilita piu essenziale, precisa e
+-            attuale. Il risultato e un ambiente caldo, piatti riconoscibili e
+-            una proposta che cambia con naturalezza durante l&apos;anno.
 -          </p>
 -        </div>
 -      </section>
-+      <AboutHeroSection />
++      <StorySection />
  
-       <section id="story" style={sectionStyle}>
+       <section id="philosophy" style={{ ...sectionStyle, borderBottom: "none" }}>
          <div style={contentStyle}>
 
 codex
-The build passed. I’m adding the required report entry with only this task’s scope and result.
+The build is clean. I’m appending the task summary to the agent report now; that’s the only non-task file I need to touch to satisfy the project workflow.
 file update
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md
 @@ -220,2 +220,18 @@
  
-+Prepared TASK section-chi-siamo-about-hero (Create about-hero section on chi-siamo) for execution.
++Prepared TASK section-chi-siamo-story (Create story section on chi-siamo) for execution.
 +
-+Launching Codex for TASK section-chi-siamo-about-hero.
++Launching Codex for TASK section-chi-siamo-story.
 +
-+Completed TASK `section-chi-siamo-about-hero`.
++Completed TASK `section-chi-siamo-story`.
 +
-+- Added a reusable `AboutHeroSection` component in `src/components/AboutHeroSection.jsx`.
-+- Replaced the inline `about-hero` markup in `src/pages/ChiSiamo.jsx` so the chi-siamo page renders the dedicated hero section.
-+- Preserved the required `about-hero` section id and the page `h1` while leaving the existing `story` and `philosophy` sections unchanged.
++- Added a reusable `StorySection` component in `src/components/StorySection.jsx`.
++- Replaced the inline `story` block in `src/pages/ChiSiamo.jsx` so the page renders the dedicated editorial-content section.
++- Kept the required `story` section id and restaurant-focused narrative aligned with the existing `chi-siamo` page shell.
 +
-+TASK section-chi-siamo-about-hero executed by Codex.
++TASK section-chi-siamo-story executed by Codex.
 +Waiting for validation.
 +
-+TASK section-chi-siamo-about-hero completed successfully.
++TASK section-chi-siamo-story completed successfully.
 +Build passed.
 +
- TASK page-chi-siamo-shell executed by Codex.
-apply_patch(auto_approved=true) exited 0 in 56ms:
+ Prepared TASK section-chi-siamo-about-hero (Create about-hero section on chi-siamo) for execution.
+apply_patch(auto_approved=true) exited 0 in 59ms:
 Success. Updated the following files:
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index bce19f40a19fc464d19ef94694d91c241be5dff1..523a54fb3284ecd46e8dd0570167466d4aa81755
+index 57701834fe0ffc4d3c4975fe0ebc6fd4261085f7..6f4e09246e345e0a7ed90d725aeffd015ac6e00f
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
 @@ -218,6 +218,22 @@
  TASK page-chi-siamo-shell completed successfully.
  Build passed.
  
-+Prepared TASK section-chi-siamo-about-hero (Create about-hero section on chi-siamo) for execution.
++Prepared TASK section-chi-siamo-story (Create story section on chi-siamo) for execution.
 +
-+Launching Codex for TASK section-chi-siamo-about-hero.
++Launching Codex for TASK section-chi-siamo-story.
 +
-+Completed TASK `section-chi-siamo-about-hero`.
++Completed TASK `section-chi-siamo-story`.
 +
-+- Added a reusable `AboutHeroSection` component in `src/components/AboutHeroSection.jsx`.
-+- Replaced the inline `about-hero` markup in `src/pages/ChiSiamo.jsx` so the chi-siamo page renders the dedicated hero section.
-+- Preserved the required `about-hero` section id and the page `h1` while leaving the existing `story` and `philosophy` sections unchanged.
++- Added a reusable `StorySection` component in `src/components/StorySection.jsx`.
++- Replaced the inline `story` block in `src/pages/ChiSiamo.jsx` so the page renders the dedicated editorial-content section.
++- Kept the required `story` section id and restaurant-focused narrative aligned with the existing `chi-siamo` page shell.
 +
-+TASK section-chi-siamo-about-hero executed by Codex.
++TASK section-chi-siamo-story executed by Codex.
 +Waiting for validation.
 +
-+TASK section-chi-siamo-about-hero completed successfully.
++TASK section-chi-siamo-story completed successfully.
 +Build passed.
 +
- TASK page-chi-siamo-shell executed by Codex.
- Waiting for validation.
+ Prepared TASK section-chi-siamo-about-hero (Create about-hero section on chi-siamo) for execution.
  
-diff --git a/src/components/AboutHeroSection.jsx b/src/components/AboutHeroSection.jsx
+ Launching Codex for TASK section-chi-siamo-about-hero.
+diff --git a/src/components/StorySection.jsx b/src/components/StorySection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..28a05ffea38835939c8269538927ecf1be554cb3
+index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f426a2cfa
 --- /dev/null
-+++ b/src/components/AboutHeroSection.jsx
-@@ -0,0 +1,149 @@
-+const values = [
++++ b/src/components/StorySection.jsx
+@@ -0,0 +1,156 @@
++const storyMoments = [
 +  {
-+    title: "Stagionalita",
-+    text: "Il menu segue il tempo degli ingredienti, con piatti che cambiano senza perdere equilibrio.",
++    label: "Origine",
++    text: "Il progetto nasce dal desiderio di offrire una cucina italiana nitida, contemporanea e leggibile, senza perdere calore umano.",
 +  },
 +  {
-+    title: "Precisione",
-+    text: "Ogni dettaglio, dalla cucina alla sala, e misurato per mantenere il servizio chiaro e naturale.",
++    label: "Metodo",
++    text: "Lavoriamo su ingredienti stagionali, preparazioni essenziali e un servizio che accompagna il tavolo con naturalezza.",
 +  },
 +  {
-+    title: "Accoglienza",
-+    text: "L'esperienza resta contemporanea, ma sempre calda, leggibile e pensata per far tornare le persone.",
++    label: "Atmosfera",
++    text: "Sala, luci e ritmo del servizio sono pensati per lasciare spazio alla conversazione e far percepire ogni dettaglio con equilibrio.",
 +  },
 +]
 +
 +const styles = {
 +  section: {
-+    position: "relative",
-+    overflow: "hidden",
 +    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
++    borderBottom: "1px solid rgba(15, 23, 42, 0.08)",
 +    background:
-+      "radial-gradient(circle at top left, rgba(249, 115, 22, 0.16), transparent 28%), linear-gradient(135deg, #fffaf5 0%, #ffffff 52%, #f8fafc 100%)",
++      "linear-gradient(180deg, #ffffff 0%, #fffaf5 100%)",
 +  },
 +  shell: {
 +    maxWidth: "1280px",
@@ -2300,18 +2261,17 @@ index 0000000000000000000000000000000000000000..28a05ffea38835939c8269538927ecf1
 +  },
 +  layout: {
 +    display: "grid",
-+    gap: "1.5rem",
-+    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-+    alignItems: "end",
++    gap: "2rem",
++    gridTemplateColumns: "minmax(0, 1.2fr) minmax(0, 0.8fr)",
++    alignItems: "start",
 +  },
-+  content: {
++  intro: {
 +    display: "grid",
 +    gap: "1.25rem",
-+    maxWidth: "760px",
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    fontSize: "0.85rem",
++    fontSize: "0.78rem",
 +    fontWeight: 700,
 +    letterSpacing: "0.18em",
 +    textTransform: "uppercase",
@@ -2319,35 +2279,34 @@ index 0000000000000000000000000000000000000000..28a05ffea38835939c8269538927ecf1
 +  },
 +  title: {
 +    margin: 0,
-+    maxWidth: "11ch",
-+    fontSize: "clamp(3rem, 9vw, 5.9rem)",
-+    lineHeight: 0.92,
++    maxWidth: "12ch",
++    fontSize: "clamp(2.4rem, 6vw, 4.8rem)",
++    lineHeight: 0.95,
 +    letterSpacing: "-0.05em",
 +    color: "#111111",
 +    textWrap: "balance",
 +  },
 +  lead: {
 +    margin: 0,
-+    maxWidth: "40rem",
-+    fontSize: "clamp(1.05rem, 2.6vw, 1.28rem)",
-+    lineHeight: 1.75,
-+    color: "#52525b",
++    maxWidth: "42rem",
++    fontSize: "clamp(1.05rem, 2.2vw, 1.25rem)",
++    lineHeight: 1.8,
++    color: "#475569",
 +  },
-+  note: {
++  emphasis: {
 +    margin: 0,
-+    fontSize: "0.95rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.08em",
-+    textTransform: "uppercase",
++    maxWidth: "32rem",
++    fontSize: "1rem",
++    lineHeight: 1.8,
 +    color: "#0f172a",
 +  },
 +  panel: {
 +    display: "grid",
 +    gap: "1rem",
 +    padding: "clamp(1.5rem, 4vw, 2rem)",
-+    borderRadius: "1.75rem",
++    borderRadius: "1.5rem",
 +    backgroundColor: "#0f172a",
-+    boxShadow: "0 24px 70px rgba(15, 23, 42, 0.12)",
++    boxShadow: "0 20px 60px rgba(15, 23, 42, 0.1)",
 +  },
 +  panelTitle: {
 +    margin: 0,
@@ -2357,58 +2316,68 @@ index 0000000000000000000000000000000000000000..28a05ffea38835939c8269538927ecf1
 +    textTransform: "uppercase",
 +    color: "#fb923c",
 +  },
-+  valueList: {
++  list: {
 +    margin: 0,
 +    padding: 0,
 +    listStyle: "none",
 +    display: "grid",
 +    gap: "1rem",
 +  },
-+  valueItem: {
++  item: {
 +    display: "grid",
 +    gap: "0.35rem",
 +    paddingTop: "1rem",
 +    borderTop: "1px solid rgba(255, 255, 255, 0.12)",
 +  },
-+  valueHeading: {
++  itemLabel: {
 +    margin: 0,
-+    fontSize: "1.15rem",
-+    lineHeight: 1.2,
++    fontSize: "1rem",
++    fontWeight: 700,
 +    color: "#ffffff",
 +  },
-+  valueText: {
++  itemText: {
 +    margin: 0,
 +    fontSize: "0.98rem",
 +    lineHeight: 1.7,
-+    color: "rgba(255, 255, 255, 0.74)",
++    color: "rgba(255, 255, 255, 0.76)",
 +  },
 +}
 +
-+export default function AboutHeroSection() {
++export default function StorySection() {
 +  return (
-+    <section id="about-hero" aria-labelledby="about-hero-title" style={styles.section}>
++    <section id="story" aria-labelledby="story-title" style={styles.section}>
 +      <div style={styles.shell}>
-+        <div style={styles.layout}>
-+          <div style={styles.content}>
-+            <p style={styles.eyebrow}>Chi siamo</p>
-+            <h1 id="about-hero-title" style={styles.title}>
-+              Un ristorante costruito sulla cura dei dettagli.
-+            </h1>
++        <div
++          style={{
++            ...styles.layout,
++            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
++          }}
++        >
++          <div style={styles.intro}>
++            <p style={styles.eyebrow}>La nostra storia</p>
++            <h2 id="story-title" style={styles.title}>
++              Una visione italiana resa piu essenziale.
++            </h2>
 +            <p style={styles.lead}>
-+              La nostra cucina parte da ingredienti stagionali, tecnica pulita e un
-+              servizio attento. Ogni scelta, dal menu alla sala, e pensata per offrire
-+              un'esperienza contemporanea ma accogliente.
++              Siamo partiti da un&apos;idea semplice: creare un luogo in cui la cucina
++              resti riconoscibile, ma venga alleggerita da tutto cio che e superfluo.
++              Per questo il menu cambia con il ritmo della stagione, i sapori sono netti
++              e ogni piatto cerca equilibrio prima dell&apos;effetto.
 +            </p>
-+            <p style={styles.note}>Cucina essenziale, ritmo preciso, ospitalita senza eccessi.</p>
++            <p style={styles.emphasis}>
++              Vogliamo che l&apos;esperienza sia contemporanea, curata e accessibile:
++              abbastanza precisa da farsi ricordare, abbastanza naturale da far sentire
++              ogni ospite al posto giusto.
++            </p>
 +          </div>
 +
-+          <aside aria-label="Valori del ristorante" style={styles.panel}>
-+            <p style={styles.panelTitle}>Cosa guida il nostro lavoro</p>
-+            <ul style={styles.valueList}>
-+              {values.map((value) => (
-+                <li key={value.title} style={styles.valueItem}>
-+                  <p style={styles.valueHeading}>{value.title}</p>
-+                  <p style={styles.valueText}>{value.text}</p>
++          <aside aria-label="Momenti chiave della nostra storia" style={styles.panel}>
++            <p style={styles.panelTitle}>Come prendiamo forma</p>
++            <ul style={styles.list}>
++              {storyMoments.map((moment) => (
++                <li key={moment.label} style={styles.item}>
++                  <p style={styles.itemLabel}>{moment.label}</p>
++                  <p style={styles.itemText}>{moment.text}</p>
 +                </li>
 +              ))}
 +            </ul>
@@ -2419,101 +2388,100 @@ index 0000000000000000000000000000000000000000..28a05ffea38835939c8269538927ecf1
 +  )
 +}
 diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
-index df8266bf453f2fab5170aac4945090e77e237bf4..d7eb19dca8dd4c545b86698838f6c6ed51b4c4c1
+index d7eb19dca8dd4c545b86698838f6c6ed51b4c4c1..0157e66899343329a65c6dc7440bbdd4ccf6411d
 --- a/src/pages/ChiSiamo.jsx
 +++ b/src/pages/ChiSiamo.jsx
-@@ -1,3 +1,5 @@
-+import AboutHeroSection from "../components/AboutHeroSection"
-+
+@@ -1,4 +1,5 @@
+ import AboutHeroSection from "../components/AboutHeroSection"
++import StorySection from "../components/StorySection"
+ 
  export default function ChiSiamo() {
    const sectionStyle = {
-     padding: "4rem 0",
-@@ -28,27 +30,7 @@
- 
+@@ -31,27 +32,7 @@
    return (
      <>
--      <section id="about-hero" style={sectionStyle}>
+       <AboutHeroSection />
+-
+-      <section id="story" style={sectionStyle}>
 -        <div style={contentStyle}>
--          <p style={eyebrowStyle}>Chi siamo</p>
--          <h1
+-          <h2
 -            style={{
--              margin: "0 0 1.5rem",
--              maxWidth: "14ch",
--              fontSize: "clamp(2.75rem, 8vw, 5.5rem)",
--              lineHeight: 0.95,
+-              margin: "0 0 1rem",
+-              fontSize: "clamp(2rem, 5vw, 3.25rem)",
+-              lineHeight: 1,
 -              color: "#0f172a",
 -            }}
 -          >
--            Un ristorante costruito sulla cura dei dettagli.
--          </h1>
+-            Una storia fatta di ritmo, materia prima e ospitalita.
+-          </h2>
 -          <p style={bodyStyle}>
--            La nostra cucina parte da ingredienti stagionali, tecnica pulita e
--            un servizio attento. Ogni scelta, dal menu alla sala, e pensata per
--            offrire un&apos;esperienza contemporanea ma accogliente.
+-            Siamo nati con un&apos;idea semplice: creare un luogo in cui la cucina
+-            italiana incontri una sensibilita piu essenziale, precisa e
+-            attuale. Il risultato e un ambiente caldo, piatti riconoscibili e
+-            una proposta che cambia con naturalezza durante l&apos;anno.
 -          </p>
 -        </div>
 -      </section>
-+      <AboutHeroSection />
++      <StorySection />
  
-       <section id="story" style={sectionStyle}>
+       <section id="philosophy" style={{ ...sectionStyle, borderBottom: "none" }}>
          <div style={contentStyle}>
 
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index bce19f40a19fc464d19ef94694d91c241be5dff1..523a54fb3284ecd46e8dd0570167466d4aa81755
+index 57701834fe0ffc4d3c4975fe0ebc6fd4261085f7..6f4e09246e345e0a7ed90d725aeffd015ac6e00f
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
 @@ -218,6 +218,22 @@
  TASK page-chi-siamo-shell completed successfully.
  Build passed.
  
-+Prepared TASK section-chi-siamo-about-hero (Create about-hero section on chi-siamo) for execution.
++Prepared TASK section-chi-siamo-story (Create story section on chi-siamo) for execution.
 +
-+Launching Codex for TASK section-chi-siamo-about-hero.
++Launching Codex for TASK section-chi-siamo-story.
 +
-+Completed TASK `section-chi-siamo-about-hero`.
++Completed TASK `section-chi-siamo-story`.
 +
-+- Added a reusable `AboutHeroSection` component in `src/components/AboutHeroSection.jsx`.
-+- Replaced the inline `about-hero` markup in `src/pages/ChiSiamo.jsx` so the chi-siamo page renders the dedicated hero section.
-+- Preserved the required `about-hero` section id and the page `h1` while leaving the existing `story` and `philosophy` sections unchanged.
++- Added a reusable `StorySection` component in `src/components/StorySection.jsx`.
++- Replaced the inline `story` block in `src/pages/ChiSiamo.jsx` so the page renders the dedicated editorial-content section.
++- Kept the required `story` section id and restaurant-focused narrative aligned with the existing `chi-siamo` page shell.
 +
-+TASK section-chi-siamo-about-hero executed by Codex.
++TASK section-chi-siamo-story executed by Codex.
 +Waiting for validation.
 +
-+TASK section-chi-siamo-about-hero completed successfully.
++TASK section-chi-siamo-story completed successfully.
 +Build passed.
 +
- TASK page-chi-siamo-shell executed by Codex.
- Waiting for validation.
+ Prepared TASK section-chi-siamo-about-hero (Create about-hero section on chi-siamo) for execution.
  
-diff --git a/src/components/AboutHeroSection.jsx b/src/components/AboutHeroSection.jsx
+ Launching Codex for TASK section-chi-siamo-about-hero.
+diff --git a/src/components/StorySection.jsx b/src/components/StorySection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..28a05ffea38835939c8269538927ecf1be554cb3
+index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f426a2cfa
 --- /dev/null
-+++ b/src/components/AboutHeroSection.jsx
-@@ -0,0 +1,149 @@
-+const values = [
++++ b/src/components/StorySection.jsx
+@@ -0,0 +1,156 @@
++const storyMoments = [
 +  {
-+    title: "Stagionalita",
-+    text: "Il menu segue il tempo degli ingredienti, con piatti che cambiano senza perdere equilibrio.",
++    label: "Origine",
++    text: "Il progetto nasce dal desiderio di offrire una cucina italiana nitida, contemporanea e leggibile, senza perdere calore umano.",
 +  },
 +  {
-+    title: "Precisione",
-+    text: "Ogni dettaglio, dalla cucina alla sala, e misurato per mantenere il servizio chiaro e naturale.",
++    label: "Metodo",
++    text: "Lavoriamo su ingredienti stagionali, preparazioni essenziali e un servizio che accompagna il tavolo con naturalezza.",
 +  },
 +  {
-+    title: "Accoglienza",
-+    text: "L'esperienza resta contemporanea, ma sempre calda, leggibile e pensata per far tornare le persone.",
++    label: "Atmosfera",
++    text: "Sala, luci e ritmo del servizio sono pensati per lasciare spazio alla conversazione e far percepire ogni dettaglio con equilibrio.",
 +  },
 +]
 +
 +const styles = {
 +  section: {
-+    position: "relative",
-+    overflow: "hidden",
 +    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
++    borderBottom: "1px solid rgba(15, 23, 42, 0.08)",
 +    background:
-+      "radial-gradient(circle at top left, rgba(249, 115, 22, 0.16), transparent 28%), linear-gradient(135deg, #fffaf5 0%, #ffffff 52%, #f8fafc 100%)",
++      "linear-gradient(180deg, #ffffff 0%, #fffaf5 100%)",
 +  },
 +  shell: {
 +    maxWidth: "1280px",
@@ -2523,18 +2491,17 @@ index 0000000000000000000000000000000000000000..28a05ffea38835939c8269538927ecf1
 +  },
 +  layout: {
 +    display: "grid",
-+    gap: "1.5rem",
-+    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-+    alignItems: "end",
++    gap: "2rem",
++    gridTemplateColumns: "minmax(0, 1.2fr) minmax(0, 0.8fr)",
++    alignItems: "start",
 +  },
-+  content: {
++  intro: {
 +    display: "grid",
 +    gap: "1.25rem",
-+    maxWidth: "760px",
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    fontSize: "0.85rem",
++    fontSize: "0.78rem",
 +    fontWeight: 700,
 +    letterSpacing: "0.18em",
 +    textTransform: "uppercase",
@@ -2542,35 +2509,34 @@ index 0000000000000000000000000000000000000000..28a05ffea38835939c8269538927ecf1
 +  },
 +  title: {
 +    margin: 0,
-+    maxWidth: "11ch",
-+    fontSize: "clamp(3rem, 9vw, 5.9rem)",
-+    lineHeight: 0.92,
++    maxWidth: "12ch",
++    fontSize: "clamp(2.4rem, 6vw, 4.8rem)",
++    lineHeight: 0.95,
 +    letterSpacing: "-0.05em",
 +    color: "#111111",
 +    textWrap: "balance",
 +  },
 +  lead: {
 +    margin: 0,
-+    maxWidth: "40rem",
-+    fontSize: "clamp(1.05rem, 2.6vw, 1.28rem)",
-+    lineHeight: 1.75,
-+    color: "#52525b",
++    maxWidth: "42rem",
++    fontSize: "clamp(1.05rem, 2.2vw, 1.25rem)",
++    lineHeight: 1.8,
++    color: "#475569",
 +  },
-+  note: {
++  emphasis: {
 +    margin: 0,
-+    fontSize: "0.95rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.08em",
-+    textTransform: "uppercase",
++    maxWidth: "32rem",
++    fontSize: "1rem",
++    lineHeight: 1.8,
 +    color: "#0f172a",
 +  },
 +  panel: {
 +    display: "grid",
 +    gap: "1rem",
 +    padding: "clamp(1.5rem, 4vw, 2rem)",
-+    borderRadius: "1.75rem",
++    borderRadius: "1.5rem",
 +    backgroundColor: "#0f172a",
-+    boxShadow: "0 24px 70px rgba(15, 23, 42, 0.12)",
++    boxShadow: "0 20px 60px rgba(15, 23, 42, 0.1)",
 +  },
 +  panelTitle: {
 +    margin: 0,
@@ -2580,58 +2546,68 @@ index 0000000000000000000000000000000000000000..28a05ffea38835939c8269538927ecf1
 +    textTransform: "uppercase",
 +    color: "#fb923c",
 +  },
-+  valueList: {
++  list: {
 +    margin: 0,
 +    padding: 0,
 +    listStyle: "none",
 +    display: "grid",
 +    gap: "1rem",
 +  },
-+  valueItem: {
++  item: {
 +    display: "grid",
 +    gap: "0.35rem",
 +    paddingTop: "1rem",
 +    borderTop: "1px solid rgba(255, 255, 255, 0.12)",
 +  },
-+  valueHeading: {
++  itemLabel: {
 +    margin: 0,
-+    fontSize: "1.15rem",
-+    lineHeight: 1.2,
++    fontSize: "1rem",
++    fontWeight: 700,
 +    color: "#ffffff",
 +  },
-+  valueText: {
++  itemText: {
 +    margin: 0,
 +    fontSize: "0.98rem",
 +    lineHeight: 1.7,
-+    color: "rgba(255, 255, 255, 0.74)",
++    color: "rgba(255, 255, 255, 0.76)",
 +  },
 +}
 +
-+export default function AboutHeroSection() {
++export default function StorySection() {
 +  return (
-+    <section id="about-hero" aria-labelledby="about-hero-title" style={styles.section}>
++    <section id="story" aria-labelledby="story-title" style={styles.section}>
 +      <div style={styles.shell}>
-+        <div style={styles.layout}>
-+          <div style={styles.content}>
-+            <p style={styles.eyebrow}>Chi siamo</p>
-+            <h1 id="about-hero-title" style={styles.title}>
-+              Un ristorante costruito sulla cura dei dettagli.
-+            </h1>
++        <div
++          style={{
++            ...styles.layout,
++            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
++          }}
++        >
++          <div style={styles.intro}>
++            <p style={styles.eyebrow}>La nostra storia</p>
++            <h2 id="story-title" style={styles.title}>
++              Una visione italiana resa piu essenziale.
++            </h2>
 +            <p style={styles.lead}>
-+              La nostra cucina parte da ingredienti stagionali, tecnica pulita e un
-+              servizio attento. Ogni scelta, dal menu alla sala, e pensata per offrire
-+              un'esperienza contemporanea ma accogliente.
++              Siamo partiti da un&apos;idea semplice: creare un luogo in cui la cucina
++              resti riconoscibile, ma venga alleggerita da tutto cio che e superfluo.
++              Per questo il menu cambia con il ritmo della stagione, i sapori sono netti
++              e ogni piatto cerca equilibrio prima dell&apos;effetto.
 +            </p>
-+            <p style={styles.note}>Cucina essenziale, ritmo preciso, ospitalita senza eccessi.</p>
++            <p style={styles.emphasis}>
++              Vogliamo che l&apos;esperienza sia contemporanea, curata e accessibile:
++              abbastanza precisa da farsi ricordare, abbastanza naturale da far sentire
++              ogni ospite al posto giusto.
++            </p>
 +          </div>
 +
-+          <aside aria-label="Valori del ristorante" style={styles.panel}>
-+            <p style={styles.panelTitle}>Cosa guida il nostro lavoro</p>
-+            <ul style={styles.valueList}>
-+              {values.map((value) => (
-+                <li key={value.title} style={styles.valueItem}>
-+                  <p style={styles.valueHeading}>{value.title}</p>
-+                  <p style={styles.valueText}>{value.text}</p>
++          <aside aria-label="Momenti chiave della nostra storia" style={styles.panel}>
++            <p style={styles.panelTitle}>Come prendiamo forma</p>
++            <ul style={styles.list}>
++              {storyMoments.map((moment) => (
++                <li key={moment.label} style={styles.item}>
++                  <p style={styles.itemLabel}>{moment.label}</p>
++                  <p style={styles.itemText}>{moment.text}</p>
 +                </li>
 +              ))}
 +            </ul>
@@ -2642,107 +2618,106 @@ index 0000000000000000000000000000000000000000..28a05ffea38835939c8269538927ecf1
 +  )
 +}
 diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
-index df8266bf453f2fab5170aac4945090e77e237bf4..d7eb19dca8dd4c545b86698838f6c6ed51b4c4c1
+index d7eb19dca8dd4c545b86698838f6c6ed51b4c4c1..0157e66899343329a65c6dc7440bbdd4ccf6411d
 --- a/src/pages/ChiSiamo.jsx
 +++ b/src/pages/ChiSiamo.jsx
-@@ -1,3 +1,5 @@
-+import AboutHeroSection from "../components/AboutHeroSection"
-+
+@@ -1,4 +1,5 @@
+ import AboutHeroSection from "../components/AboutHeroSection"
++import StorySection from "../components/StorySection"
+ 
  export default function ChiSiamo() {
    const sectionStyle = {
-     padding: "4rem 0",
-@@ -28,27 +30,7 @@
- 
+@@ -31,27 +32,7 @@
    return (
      <>
--      <section id="about-hero" style={sectionStyle}>
+       <AboutHeroSection />
+-
+-      <section id="story" style={sectionStyle}>
 -        <div style={contentStyle}>
--          <p style={eyebrowStyle}>Chi siamo</p>
--          <h1
+-          <h2
 -            style={{
--              margin: "0 0 1.5rem",
--              maxWidth: "14ch",
--              fontSize: "clamp(2.75rem, 8vw, 5.5rem)",
--              lineHeight: 0.95,
+-              margin: "0 0 1rem",
+-              fontSize: "clamp(2rem, 5vw, 3.25rem)",
+-              lineHeight: 1,
 -              color: "#0f172a",
 -            }}
 -          >
--            Un ristorante costruito sulla cura dei dettagli.
--          </h1>
+-            Una storia fatta di ritmo, materia prima e ospitalita.
+-          </h2>
 -          <p style={bodyStyle}>
--            La nostra cucina parte da ingredienti stagionali, tecnica pulita e
--            un servizio attento. Ogni scelta, dal menu alla sala, e pensata per
--            offrire un&apos;esperienza contemporanea ma accogliente.
+-            Siamo nati con un&apos;idea semplice: creare un luogo in cui la cucina
+-            italiana incontri una sensibilita piu essenziale, precisa e
+-            attuale. Il risultato e un ambiente caldo, piatti riconoscibili e
+-            una proposta che cambia con naturalezza durante l&apos;anno.
 -          </p>
 -        </div>
 -      </section>
-+      <AboutHeroSection />
++      <StorySection />
  
-       <section id="story" style={sectionStyle}>
+       <section id="philosophy" style={{ ...sectionStyle, borderBottom: "none" }}>
          <div style={contentStyle}>
 
 codex
-Modified files: [src/components/AboutHeroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/AboutHeroSection.jsx), [src/pages/ChiSiamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/ChiSiamo.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md).
+Modified files: [src/components/StorySection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/StorySection.jsx), [src/pages/ChiSiamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/ChiSiamo.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md)
 
-Implemented the `about-hero` section for the `chi-siamo` page by extracting it into a dedicated reusable component and rendering it from the page shell. The new hero keeps the required `about-hero` section id and page `h1`, and adds a more visually dominant editorial layout while leaving `story` and `philosophy` unchanged.
+Implemented the `story` section for `chi-siamo` as a dedicated editorial-content component. [src/components/StorySection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/StorySection.jsx) adds a two-column narrative layout with restaurant-focused copy and an editorial aside, and [src/pages/ChiSiamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/ChiSiamo.jsx) now renders that component in place of the previous inline block.
 
-Build result: `npm run build` passed successfully with a production Vite build.
+Build result: `npm run build` passed successfully with Vite production output generated. I also logged the task completion in [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md).
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index bce19f40a19fc464d19ef94694d91c241be5dff1..523a54fb3284ecd46e8dd0570167466d4aa81755
+index 57701834fe0ffc4d3c4975fe0ebc6fd4261085f7..6f4e09246e345e0a7ed90d725aeffd015ac6e00f
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
 @@ -218,6 +218,22 @@
  TASK page-chi-siamo-shell completed successfully.
  Build passed.
  
-+Prepared TASK section-chi-siamo-about-hero (Create about-hero section on chi-siamo) for execution.
++Prepared TASK section-chi-siamo-story (Create story section on chi-siamo) for execution.
 +
-+Launching Codex for TASK section-chi-siamo-about-hero.
++Launching Codex for TASK section-chi-siamo-story.
 +
-+Completed TASK `section-chi-siamo-about-hero`.
++Completed TASK `section-chi-siamo-story`.
 +
-+- Added a reusable `AboutHeroSection` component in `src/components/AboutHeroSection.jsx`.
-+- Replaced the inline `about-hero` markup in `src/pages/ChiSiamo.jsx` so the chi-siamo page renders the dedicated hero section.
-+- Preserved the required `about-hero` section id and the page `h1` while leaving the existing `story` and `philosophy` sections unchanged.
++- Added a reusable `StorySection` component in `src/components/StorySection.jsx`.
++- Replaced the inline `story` block in `src/pages/ChiSiamo.jsx` so the page renders the dedicated editorial-content section.
++- Kept the required `story` section id and restaurant-focused narrative aligned with the existing `chi-siamo` page shell.
 +
-+TASK section-chi-siamo-about-hero executed by Codex.
++TASK section-chi-siamo-story executed by Codex.
 +Waiting for validation.
 +
-+TASK section-chi-siamo-about-hero completed successfully.
++TASK section-chi-siamo-story completed successfully.
 +Build passed.
 +
- TASK page-chi-siamo-shell executed by Codex.
- Waiting for validation.
+ Prepared TASK section-chi-siamo-about-hero (Create about-hero section on chi-siamo) for execution.
  
-diff --git a/src/components/AboutHeroSection.jsx b/src/components/AboutHeroSection.jsx
+ Launching Codex for TASK section-chi-siamo-about-hero.
+diff --git a/src/components/StorySection.jsx b/src/components/StorySection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..28a05ffea38835939c8269538927ecf1be554cb3
+index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f426a2cfa
 --- /dev/null
-+++ b/src/components/AboutHeroSection.jsx
-@@ -0,0 +1,149 @@
-+const values = [
++++ b/src/components/StorySection.jsx
+@@ -0,0 +1,156 @@
++const storyMoments = [
 +  {
-+    title: "Stagionalita",
-+    text: "Il menu segue il tempo degli ingredienti, con piatti che cambiano senza perdere equilibrio.",
++    label: "Origine",
++    text: "Il progetto nasce dal desiderio di offrire una cucina italiana nitida, contemporanea e leggibile, senza perdere calore umano.",
 +  },
 +  {
-+    title: "Precisione",
-+    text: "Ogni dettaglio, dalla cucina alla sala, e misurato per mantenere il servizio chiaro e naturale.",
++    label: "Metodo",
++    text: "Lavoriamo su ingredienti stagionali, preparazioni essenziali e un servizio che accompagna il tavolo con naturalezza.",
 +  },
 +  {
-+    title: "Accoglienza",
-+    text: "L'esperienza resta contemporanea, ma sempre calda, leggibile e pensata per far tornare le persone.",
++    label: "Atmosfera",
++    text: "Sala, luci e ritmo del servizio sono pensati per lasciare spazio alla conversazione e far percepire ogni dettaglio con equilibrio.",
 +  },
 +]
 +
 +const styles = {
 +  section: {
-+    position: "relative",
-+    overflow: "hidden",
 +    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
++    borderBottom: "1px solid rgba(15, 23, 42, 0.08)",
 +    background:
-+      "radial-gradient(circle at top left, rgba(249, 115, 22, 0.16), transparent 28%), linear-gradient(135deg, #fffaf5 0%, #ffffff 52%, #f8fafc 100%)",
++      "linear-gradient(180deg, #ffffff 0%, #fffaf5 100%)",
 +  },
 +  shell: {
 +    maxWidth: "1280px",
@@ -2752,18 +2727,17 @@ index 0000000000000000000000000000000000000000..28a05ffea38835939c8269538927ecf1
 +  },
 +  layout: {
 +    display: "grid",
-+    gap: "1.5rem",
-+    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-+    alignItems: "end",
++    gap: "2rem",
++    gridTemplateColumns: "minmax(0, 1.2fr) minmax(0, 0.8fr)",
++    alignItems: "start",
 +  },
-+  content: {
++  intro: {
 +    display: "grid",
 +    gap: "1.25rem",
-+    maxWidth: "760px",
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    fontSize: "0.85rem",
++    fontSize: "0.78rem",
 +    fontWeight: 700,
 +    letterSpacing: "0.18em",
 +    textTransform: "uppercase",
@@ -2771,35 +2745,34 @@ index 0000000000000000000000000000000000000000..28a05ffea38835939c8269538927ecf1
 +  },
 +  title: {
 +    margin: 0,
-+    maxWidth: "11ch",
-+    fontSize: "clamp(3rem, 9vw, 5.9rem)",
-+    lineHeight: 0.92,
++    maxWidth: "12ch",
++    fontSize: "clamp(2.4rem, 6vw, 4.8rem)",
++    lineHeight: 0.95,
 +    letterSpacing: "-0.05em",
 +    color: "#111111",
 +    textWrap: "balance",
 +  },
 +  lead: {
 +    margin: 0,
-+    maxWidth: "40rem",
-+    fontSize: "clamp(1.05rem, 2.6vw, 1.28rem)",
-+    lineHeight: 1.75,
-+    color: "#52525b",
++    maxWidth: "42rem",
++    fontSize: "clamp(1.05rem, 2.2vw, 1.25rem)",
++    lineHeight: 1.8,
++    color: "#475569",
 +  },
-+  note: {
++  emphasis: {
 +    margin: 0,
-+    fontSize: "0.95rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.08em",
-+    textTransform: "uppercase",
++    maxWidth: "32rem",
++    fontSize: "1rem",
++    lineHeight: 1.8,
 +    color: "#0f172a",
 +  },
 +  panel: {
 +    display: "grid",
 +    gap: "1rem",
 +    padding: "clamp(1.5rem, 4vw, 2rem)",
-+    borderRadius: "1.75rem",
++    borderRadius: "1.5rem",
 +    backgroundColor: "#0f172a",
-+    boxShadow: "0 24px 70px rgba(15, 23, 42, 0.12)",
++    boxShadow: "0 20px 60px rgba(15, 23, 42, 0.1)",
 +  },
 +  panelTitle: {
 +    margin: 0,
@@ -2809,58 +2782,68 @@ index 0000000000000000000000000000000000000000..28a05ffea38835939c8269538927ecf1
 +    textTransform: "uppercase",
 +    color: "#fb923c",
 +  },
-+  valueList: {
++  list: {
 +    margin: 0,
 +    padding: 0,
 +    listStyle: "none",
 +    display: "grid",
 +    gap: "1rem",
 +  },
-+  valueItem: {
++  item: {
 +    display: "grid",
 +    gap: "0.35rem",
 +    paddingTop: "1rem",
 +    borderTop: "1px solid rgba(255, 255, 255, 0.12)",
 +  },
-+  valueHeading: {
++  itemLabel: {
 +    margin: 0,
-+    fontSize: "1.15rem",
-+    lineHeight: 1.2,
++    fontSize: "1rem",
++    fontWeight: 700,
 +    color: "#ffffff",
 +  },
-+  valueText: {
++  itemText: {
 +    margin: 0,
 +    fontSize: "0.98rem",
 +    lineHeight: 1.7,
-+    color: "rgba(255, 255, 255, 0.74)",
++    color: "rgba(255, 255, 255, 0.76)",
 +  },
 +}
 +
-+export default function AboutHeroSection() {
++export default function StorySection() {
 +  return (
-+    <section id="about-hero" aria-labelledby="about-hero-title" style={styles.section}>
++    <section id="story" aria-labelledby="story-title" style={styles.section}>
 +      <div style={styles.shell}>
-+        <div style={styles.layout}>
-+          <div style={styles.content}>
-+            <p style={styles.eyebrow}>Chi siamo</p>
-+            <h1 id="about-hero-title" style={styles.title}>
-+              Un ristorante costruito sulla cura dei dettagli.
-+            </h1>
++        <div
++          style={{
++            ...styles.layout,
++            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
++          }}
++        >
++          <div style={styles.intro}>
++            <p style={styles.eyebrow}>La nostra storia</p>
++            <h2 id="story-title" style={styles.title}>
++              Una visione italiana resa piu essenziale.
++            </h2>
 +            <p style={styles.lead}>
-+              La nostra cucina parte da ingredienti stagionali, tecnica pulita e un
-+              servizio attento. Ogni scelta, dal menu alla sala, e pensata per offrire
-+              un'esperienza contemporanea ma accogliente.
++              Siamo partiti da un&apos;idea semplice: creare un luogo in cui la cucina
++              resti riconoscibile, ma venga alleggerita da tutto cio che e superfluo.
++              Per questo il menu cambia con il ritmo della stagione, i sapori sono netti
++              e ogni piatto cerca equilibrio prima dell&apos;effetto.
 +            </p>
-+            <p style={styles.note}>Cucina essenziale, ritmo preciso, ospitalita senza eccessi.</p>
++            <p style={styles.emphasis}>
++              Vogliamo che l&apos;esperienza sia contemporanea, curata e accessibile:
++              abbastanza precisa da farsi ricordare, abbastanza naturale da far sentire
++              ogni ospite al posto giusto.
++            </p>
 +          </div>
 +
-+          <aside aria-label="Valori del ristorante" style={styles.panel}>
-+            <p style={styles.panelTitle}>Cosa guida il nostro lavoro</p>
-+            <ul style={styles.valueList}>
-+              {values.map((value) => (
-+                <li key={value.title} style={styles.valueItem}>
-+                  <p style={styles.valueHeading}>{value.title}</p>
-+                  <p style={styles.valueText}>{value.text}</p>
++          <aside aria-label="Momenti chiave della nostra storia" style={styles.panel}>
++            <p style={styles.panelTitle}>Come prendiamo forma</p>
++            <ul style={styles.list}>
++              {storyMoments.map((moment) => (
++                <li key={moment.label} style={styles.item}>
++                  <p style={styles.itemLabel}>{moment.label}</p>
++                  <p style={styles.itemText}>{moment.text}</p>
 +                </li>
 +              ))}
 +            </ul>
@@ -2871,44 +2854,44 @@ index 0000000000000000000000000000000000000000..28a05ffea38835939c8269538927ecf1
 +  )
 +}
 diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
-index df8266bf453f2fab5170aac4945090e77e237bf4..d7eb19dca8dd4c545b86698838f6c6ed51b4c4c1
+index d7eb19dca8dd4c545b86698838f6c6ed51b4c4c1..0157e66899343329a65c6dc7440bbdd4ccf6411d
 --- a/src/pages/ChiSiamo.jsx
 +++ b/src/pages/ChiSiamo.jsx
-@@ -1,3 +1,5 @@
-+import AboutHeroSection from "../components/AboutHeroSection"
-+
+@@ -1,4 +1,5 @@
+ import AboutHeroSection from "../components/AboutHeroSection"
++import StorySection from "../components/StorySection"
+ 
  export default function ChiSiamo() {
    const sectionStyle = {
-     padding: "4rem 0",
-@@ -28,27 +30,7 @@
- 
+@@ -31,27 +32,7 @@
    return (
      <>
--      <section id="about-hero" style={sectionStyle}>
+       <AboutHeroSection />
+-
+-      <section id="story" style={sectionStyle}>
 -        <div style={contentStyle}>
--          <p style={eyebrowStyle}>Chi siamo</p>
--          <h1
+-          <h2
 -            style={{
--              margin: "0 0 1.5rem",
--              maxWidth: "14ch",
--              fontSize: "clamp(2.75rem, 8vw, 5.5rem)",
--              lineHeight: 0.95,
+-              margin: "0 0 1rem",
+-              fontSize: "clamp(2rem, 5vw, 3.25rem)",
+-              lineHeight: 1,
 -              color: "#0f172a",
 -            }}
 -          >
--            Un ristorante costruito sulla cura dei dettagli.
--          </h1>
+-            Una storia fatta di ritmo, materia prima e ospitalita.
+-          </h2>
 -          <p style={bodyStyle}>
--            La nostra cucina parte da ingredienti stagionali, tecnica pulita e
--            un servizio attento. Ogni scelta, dal menu alla sala, e pensata per
--            offrire un&apos;esperienza contemporanea ma accogliente.
+-            Siamo nati con un&apos;idea semplice: creare un luogo in cui la cucina
+-            italiana incontri una sensibilita piu essenziale, precisa e
+-            attuale. Il risultato e un ambiente caldo, piatti riconoscibili e
+-            una proposta che cambia con naturalezza durante l&apos;anno.
 -          </p>
 -        </div>
 -      </section>
-+      <AboutHeroSection />
++      <StorySection />
  
-       <section id="story" style={sectionStyle}>
+       <section id="philosophy" style={{ ...sectionStyle, borderBottom: "none" }}>
          <div style={contentStyle}>
 
 tokens used
-23.432
+19.843

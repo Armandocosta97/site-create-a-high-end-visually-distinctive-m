@@ -1,4 +1,5 @@
 import AboutHeroSection from "../components/AboutHeroSection"
+import StorySection from "../components/StorySection"
 
 export default function ChiSiamo() {
   const sectionStyle = {
@@ -31,27 +32,7 @@ export default function ChiSiamo() {
   return (
     <>
       <AboutHeroSection />
-
-      <section id="story" style={sectionStyle}>
-        <div style={contentStyle}>
-          <h2
-            style={{
-              margin: "0 0 1rem",
-              fontSize: "clamp(2rem, 5vw, 3.25rem)",
-              lineHeight: 1,
-              color: "#0f172a",
-            }}
-          >
-            Una storia fatta di ritmo, materia prima e ospitalita.
-          </h2>
-          <p style={bodyStyle}>
-            Siamo nati con un&apos;idea semplice: creare un luogo in cui la cucina
-            italiana incontri una sensibilita piu essenziale, precisa e
-            attuale. Il risultato e un ambiente caldo, piatti riconoscibili e
-            una proposta che cambia con naturalezza durante l&apos;anno.
-          </p>
-        </div>
-      </section>
+      <StorySection />
 
       <section id="philosophy" style={{ ...sectionStyle, borderBottom: "none" }}>
         <div style={contentStyle}>

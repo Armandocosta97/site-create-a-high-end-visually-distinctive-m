@@ -218,6 +218,22 @@ Waiting for validation.
 TASK page-chi-siamo-shell completed successfully.
 Build passed.
 
+Prepared TASK section-chi-siamo-story (Create story section on chi-siamo) for execution.
+
+Launching Codex for TASK section-chi-siamo-story.
+
+Completed TASK `section-chi-siamo-story`.
+
+- Added a reusable `StorySection` component in `src/components/StorySection.jsx`.
+- Replaced the inline `story` block in `src/pages/ChiSiamo.jsx` so the page renders the dedicated editorial-content section.
+- Kept the required `story` section id and restaurant-focused narrative aligned with the existing `chi-siamo` page shell.
+
+TASK section-chi-siamo-story executed by Codex.
+Waiting for validation.
+
+TASK section-chi-siamo-story completed successfully.
+Build passed.
+
 Prepared TASK section-chi-siamo-about-hero (Create about-hero section on chi-siamo) for execution.
 
 Launching Codex for TASK section-chi-siamo-about-hero.
@@ -249,4 +265,15 @@ TASK section-chi-siamo-about-hero executed by Codex.
 Waiting for validation.
 
 TASK section-chi-siamo-about-hero completed successfully.
+Build passed.
+Commit created for TASK section-chi-siamo-about-hero.
+
+Prepared TASK section-chi-siamo-story (Create story section on chi-siamo) for execution.
+
+Launching Codex for TASK section-chi-siamo-story.
+
+TASK section-chi-siamo-story executed by Codex.
+Waiting for validation.
+
+TASK section-chi-siamo-story completed successfully.
 Build passed.
