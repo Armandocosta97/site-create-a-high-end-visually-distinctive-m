@@ -88,3 +88,26 @@ Waiting for validation.
 
 TASK section-home-brand-story-preview completed successfully.
 Build passed.
+Commit created for TASK section-home-brand-story-preview.
+
+Prepared TASK cta-home-home-primary-cta (Add CTA home-primary-cta on home) for execution.
+
+Launching Codex for TASK cta-home-home-primary-cta.
+
+Completed TASK `cta-home-home-primary-cta`.
+
+- Verified the home hero includes the required primary CTA labeled `Start your project`.
+- Confirmed the CTA uses a valid internal route target to `/menu` within the existing hash-router setup.
+- No source edits were required because the allowed implementation already satisfied the task definition.
+
+TASK cta-home-home-primary-cta executed by Codex.
+Waiting for validation.
+
+TASK cta-home-home-primary-cta completed successfully.
+Build passed.
+
+TASK cta-home-home-primary-cta executed by Codex.
+Waiting for validation.
+
+TASK cta-home-home-primary-cta completed successfully.
+Build passed.
