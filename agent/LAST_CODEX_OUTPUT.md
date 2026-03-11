@@ -1,8 +1,18 @@
-Modified files: [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Home.jsx), [SignaturePreviewSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/SignaturePreviewSection.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md)
+Modified files:
+- [src/components/BrandStoryPreviewSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/BrandStoryPreviewSection.jsx)
+- [src/pages/Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Home.jsx)
+- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md)
 
-Implemented the home `signature-preview` section as a dedicated reusable component and rendered it from [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Home.jsx). The new section uses a responsive three-card grid to match the required `grid-cards-preview` type, with content focused on refined design, lightweight performance, and SEO-ready structure.
+What was implemented:
+- Added a reusable `BrandStoryPreviewSection` component for the home page `brand-story-preview` section.
+- Replaced the placeholder section in [src/pages/Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Home.jsx) with the new split-content preview component.
+- Kept the required section id `brand-story-preview` and linked the section CTA to the existing `/chi-siamo` route.
+- Updated [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md) with the task summary.
 
-Build result: `npm run build` passed successfully with a production Vite build.
+Build result:
+- `npm run build` passed successfully.
+
+I did not run browser-based validation in this turn.
 
 OpenAI Codex v0.111.0 (research preview)
 --------
@@ -13,7 +23,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cdda8-0ef8-7fb0-bc5b-3523e4fe8ee9
+session id: 019cdda9-274e-71c0-a7a2-3db96def58d4
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1150,10 +1160,10 @@ It must feel like a modern digital product studio.
 ```
 
 ## Current task id
-section-home-signature-preview
+section-home-brand-story-preview
 
 ## Current task title
-Create signature-preview section on home
+Create brand-story-preview section on home
 
 ## Current task type
 section
@@ -1162,8 +1172,8 @@ section
 ```json
 {
   "pageId": "home",
-  "sectionId": "signature-preview",
-  "sectionType": "grid-cards-preview"
+  "sectionId": "brand-story-preview",
+  "sectionType": "split-content-preview"
 }
 ```
 
@@ -1172,13 +1182,13 @@ section
 
 ## Files allowed
 - src/pages/Home.jsx
-- src/components/SignaturePreviewSection.jsx
+- src/components/BrandStoryPreviewSection.jsx
 - src/components
 
 ## Definition of done
-- section signature-preview exists on home
-- section signature-preview matches type grid-cards-preview
-- section signature-preview is rendered in page home
+- section brand-story-preview exists on home
+- section brand-story-preview matches type split-content-preview
+- section brand-story-preview is rendered in page home
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1207,23 +1217,21 @@ section
 
 mcp startup: no servers
 codex
-I’m implementing the `signature-preview` section for the home page and will first inspect the current home page shell and the existing component structure so the change stays within the task boundary.
+I’m executing `section-home-brand-story-preview`. First I’m reading the current home page, current task prompt, and the relevant source-of-truth files so I can add only this section and keep the existing routing/layout intact.
 exec
 /bin/zsh -lc "sed -n '1,220p' src/pages/Home.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "pwd && rg --files src agent | rg 'Home.jsx|SignaturePreviewSection|AGENT_REPORT.md|components/.+\\.jsx"'$'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,220p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,220p' site-spec.json" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,220p' docs/DEVELOPMENT_METHOD.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc 'rg --files src/components' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 51ms:
 import HeroSection from "../components/HeroSection"
+import SignaturePreviewSection from "../components/SignaturePreviewSection"
 
 export default function Home() {
   return (
     <>
       <HeroSection />
-      <section id="signature-preview" aria-labelledby="signature-preview-title">
-        <h2 id="signature-preview-title">What sets the work apart</h2>
-        <p>
-          The homepage introduces Alai Web through a clean editorial rhythm: thoughtful design,
-          lightweight builds, and business-focused digital experiences.
-        </p>
-      </section>
+      <SignaturePreviewSection />
 
       <section id="brand-story-preview" aria-labelledby="brand-story-preview-title">
         <h2 id="brand-story-preview-title">Built with clarity before embellishment</h2>
@@ -1231,29 +1239,82 @@ export default function Home() {
           This shell establishes the required structure for the home page and keeps the core
           messaging, sections, and CTAs ready for the next implementation tasks.
         </p>
+      </section>
+    </>
+  )
+}
  succeeded in 51ms:
-/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m
-agent/AGENT_REPORT.md
-src/pages/Home.jsx
+# CURRENT TASK EXECUTION PROMPT
+
+You are the coding executor for this project.
+
+## Project path
+site-create-a-high-end-visually-distinctive-m
+
+## Source of truth files
+- brief/original-prompt.md
+- brief/brief-summary.md
+- site-spec.json
+- docs/DEVELOPMENT_METHOD.md
+- agent/TASK_GRAPH.json
+- agent/TASK_STATE.json
+- agent/CURRENT_TASK_PROMPT.md
+
+## Development method
+# Development Method
+
+All sites must follow these rules.
+ succeeded in 51ms:
+{
+  "originalPrompt": "Create a high-end, visually distinctive multi-page website for a modern web agency called Alai Web.\n\nThe agency builds:\n- modern websites\n- fast websites\n- SEO-ready websites\n- custom business websites\n- elegant digital experiences for small businesses\n\nThe positioning of the brand is:\n\n\"Beautiful. Fast. Effective.\"\n\nThe site must communicate that Alai Web creates websites that are:\n- visually refined\n- technically solid\n- lightweight\n- SEO friendly\n- designed for real businesses\n\nIMPORTANT STRUCTURE\n\nThis must be a REAL multi-page website.\n\nCreate separate pages with real routes:\n\n- Home\n- Services\n- Portfolio\n- Process\n- About\n- Contact\n\nEach page must have a clear purpose.\nDo NOT collapse everything into the homepage.\nDo NOT simulate pages using anchor sections.\n\nDESIGN PRINCIPLE\n\nThe website must feel like a premium modern design studio.\n\nAvoid generic template style.\nAvoid repetitive card grids.\nAvoid UI patterns that look like cheap startup templates.\n\nPrefer:\n\n- large typographic sections\n- editorial layouts\n- split image/text compositions\n- asymmetrical blocks\n- strong visual rhythm\n- bold headlines\n- large spacing\n- full width sections\n- layered backgrounds\n- minimal containers\n- occasional cards only when necessary\n\nIMPORTANT:\nDo NOT build the entire site as repeated service cards.\nServices should often appear as rows, editorial blocks, or split layouts.\n\nVISUAL STYLE\n\nModern digital agency aesthetic.\n\nClean.\nSharp.\nConfident.\nMinimal but expressive.\n\nInspired by:\nmodern SaaS sites\ncreative digital studios\npremium design portfolios.\n\nCOLOR PALETTE\n\nPrimary brand color: ORANGE.\n\nSuggested palette:\n\nbackground: #ffffff\ntext: #111111\nbrand orange: #F97316\ndark section: #0f172a\nlight gray: #f5f5f5\n\nOrange must be used as:\n- accent color\n- CTA color\n- highlight elements\n- interactive states\n\nAvoid overusing orange for large backgrounds.\n\nTYPOGRAPHY\n\nStrong typographic hierarchy.\n\nHeadlines:\nlarge, bold, modern\n\nBody text:\nclean sans serif\n\nUse typography as a design element.\nLarge titles should drive sections.\n\nLAYOUT\n\nPrefer sections like:\n\nHero\nSplit layout (text + image)\nText driven sections\nEditorial feature blocks\nProcess timeline\nPortfolio previews\nFull width highlight bands\n\nAvoid stacking 6 identical cards.\n\nHOME PAGE STRUCTURE\n\n1. Hero section\n\nStrong, bold, minimal.\n\nHeadline idea:\n\nWebsites that look great\nand actually work.\n\nSubtext:\n\nAlai Web builds fast, modern websites designed to convert visitors into real customers.\n\nPrimary CTA:\nStart your project\n\nSecondary CTA:\nSee our work\n\nHero design should feel powerful and spacious.\n\n2. Value proposition section\n\nExplain clearly what Alai Web offers.\n\nAvoid cards.\nUse 2-3 strong typographic blocks.\n\nExamples:\n\nBeautiful design\nFast performance\nSEO foundations\n\n3. Portfolio preview\n\nLarge project previews.\n\nImage left / text right style.\n\nShow 3 example projects.\n\n4. How we work preview\n\nSimple process explanation.\n\nPrefer horizontal flow instead of cards.\n\nExample steps:\n\n1 Discovery\n2 Design\n3 Build\n4 Launch\n\n5. CTA section\n\nEncourage visitors to start a project.\n\nSERVICES PAGE\n\nExplain services clearly.\n\nPossible services:\n\nBusiness websites\nLanding pages\nWebsite redesign\nPerformance optimization\nSEO-ready builds\n\nPresent services using:\n\neditorial sections\nsplit layouts\nicon rows\nnot repetitive card grids.\n\nPORTFOLIO PAGE\n\nVisual portfolio.\n\nLarge images.\nProject titles.\nShort description.\n\nPortfolio should feel modern and visual.\n\nAvoid tiny thumbnails.\n\nPROCESS PAGE\n\nExplain the workflow.\n\nSteps like:\n\nDiscovery\nStructure\nDesign\nDevelopment\nLaunch\n\nUse visual timeline or progressive sections.\n\nABOUT PAGE\n\nTell the story of Alai Web.\n\nExplain:\n\n- philosophy\n- approach\n- design mindset\n- focus on performance and simplicity\n\nTone should feel human and confident.\n\nCONTACT PAGE\n\nSimple and effective.\n\nInclude:\n\ncontact form\nemail placeholder\noptional WhatsApp CTA\nproject inquiry CTA\n\nExample email:\n\nhello@alaiweb.com\n\nCTA examples:\n\nStart your project\nTell us about your idea\nLet's build something great\n\nFOOTER\n\nClean modern footer.\n\nInclude:\n\nbrand name\nshort tagline\nnavigation links\ncontact email\ncopyright\n\nRESPONSIVE\n\nFully responsive.\n\nNo horizontal overflow.\nTypography must scale correctly.\nHero must remain strong on mobile.\n\nQUALITY EXPECTATION\n\nThe final site must look like a real modern web agency website.\n\nIt must feel:\n\nmodern\nfast\nminimal\nprofessional\ndistinct\n\nIt must NOT look like a generic template.\n\nIt must NOT look like restaurant or salon websites.\n\nIt must feel like a modern digital product studio.",
+  "siteName": "site-create-a-high-end-visually-distinctive-m",
+  "businessType": "restaurant",
+  "architecture": "multi-page",
+  "routing": {
+    "mode": "hash"
+  },
+  "pages": [
+    {
+      "id": "home",
+      "route": "/",
+      "role": "landing",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero"
+        },
+        {
+          "id": "signature-preview",
+ succeeded in 51ms:
+# Development Method
+
+All sites must follow these rules.
+
+## Objective
+- Generate production-ready static websites that are clear, stable, responsive, modular, and easy to validate.
+- Prioritize correctness before visual polish.
+- Prefer predictable implementation over improvisation.
+
+## Source of Truth
+- The human prompt is not the implementation source of truth.
+- `site-spec.json` is the only source of truth for pages, sections, navigation, routing, and required features.
+- If supported by the project architecture, `content.json` is the source of truth for copy, labels, CTA text, and contact details.
+- If supported by the project architecture, `theme.json` is the source of truth for colors, typography, spacing, radius, and visual tokens.
+- The implementation flow must be: `prompt -> site-spec.json -> tasks -> code`.
+- Never implement pages, routes, sections, navigation items, or features that are not defined in the spec.
+
+## Core Principles
+- Build for users first: clarity, speed, and clear actions.
+- Keep code modular: reusable components with clear responsibilities.
+ succeeded in 51ms:
+src/components/SignaturePreviewSection.jsx
 src/components/HeroSection.jsx
 codex
-The home page shell still has placeholder markup for this section. I’m reading the surrounding component patterns before replacing that stub with a reusable section component.
+The home page still has a placeholder `brand-story-preview` block. I’m checking the existing component style so the new split-content section fits the current codebase instead of introducing a one-off pattern.
 exec
-/bin/zsh -lc 'find src -maxdepth 3 -type f | sort' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,260p' src/components/HeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 52ms:
-src/App.css
-src/App.jsx
-src/assets/react.svg
-src/components/HeroSection.jsx
-src/index.css
-src/layout/Layout.jsx
-src/main.jsx
-src/pages/ChiSiamo.jsx
-src/pages/Contatti.jsx
-src/pages/Gallery.jsx
-src/pages/Home.jsx
-src/pages/Menu.jsx
- succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,260p' src/components/HeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,260p' src/components/SignaturePreviewSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 52ms:
 import { Link } from "react-router-dom"
 
 const styles = {
@@ -1274,11 +1335,7 @@ const styles = {
   eyebrow: {
     margin: 0,
     fontSize: "0.85rem",
-codex
-I’ve confirmed the project is still at an early shell stage, so I can keep this change tight: add one reusable component, wire it into `Home.jsx`, then run a build and append the task summary to the agent report.
-exec
-/bin/zsh -lc "sed -n '1,220p' src/index.css" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 52ms:
+ succeeded in 52ms:
 # AGENT REPORT
 
 Project created.
@@ -1300,46 +1357,6 @@ Waiting for validation.
 TASK page-home-shell completed successfully.
 Build passed.
  succeeded in 52ms:
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-codex
-I’m editing the home page now: replacing the placeholder `signature-preview` block with a dedicated component that matches the required `grid-cards-preview` type and stays aligned with the existing editorial/orange visual direction.
-file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Home.jsx
-@@ -1,2 +1,3 @@
- import HeroSection from "../components/HeroSection"
-+import SignaturePreviewSection from "../components/SignaturePreviewSection"
- 
-@@ -6,9 +7,3 @@
-       <HeroSection />
--      <section id="signature-preview" aria-labelledby="signature-preview-title">
--        <h2 id="signature-preview-title">What sets the work apart</h2>
--        <p>
--          The homepage introduces Alai Web through a clean editorial rhythm: thoughtful design,
--          lightweight builds, and business-focused digital experiences.
--        </p>
--      </section>
-+      <SignaturePreviewSection />
- 
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/SignaturePreviewSection.jsx
 const signatureItems = [
   {
     number: "01",
@@ -1360,23 +1377,61 @@ const signatureItems = [
       "Semantic markup and purposeful content layouts create a stronger foundation for visibility and conversion.",
   },
 ]
+codex
+I have enough context. Next I’m replacing the placeholder with a dedicated `BrandStoryPreviewSection` component, then I’ll wire it into `Home.jsx`, run the build, and append the task summary to `agent/AGENT_REPORT.md` as required by the project instructions.
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Home.jsx
+@@ -1,2 +1,3 @@
+ import HeroSection from "../components/HeroSection"
++import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
+ import SignaturePreviewSection from "../components/SignaturePreviewSection"
+@@ -8,10 +9,3 @@
+       <SignaturePreviewSection />
+-
+-      <section id="brand-story-preview" aria-labelledby="brand-story-preview-title">
+-        <h2 id="brand-story-preview-title">Built with clarity before embellishment</h2>
+-        <p>
+-          This shell establishes the required structure for the home page and keeps the core
+-          messaging, sections, and CTAs ready for the next implementation tasks.
+-        </p>
+-      </section>
++      <BrandStoryPreviewSection />
+     </>
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/BrandStoryPreviewSection.jsx
+import { Link } from "react-router-dom"
+
+const principles = [
+  "Clarity in structure, so visitors always know where to go next.",
+  "Restraint in design, so every detail supports the message instead of distracting from it.",
+  "Performance in delivery, so the final site feels fast, polished, and dependable.",
+]
 
 const styles = {
   section: {
     padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
     background:
-      "linear-gradient(180deg, #ffffff 0%, #fff7f1 52%, #ffffff 100%)",
+      "linear-gradient(180deg, #ffffff 0%, #ffffff 28%, #f8fafc 100%)",
   },
   shell: {
     maxWidth: "1280px",
     margin: "0 auto",
     display: "grid",
-    gap: "2.5rem",
+    gap: "2rem",
   },
-  intro: {
+  layout: {
     display: "grid",
-    gap: "1rem",
-    maxWidth: "780px",
+    gap: "1.5rem",
+    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+    alignItems: "stretch",
+  },
+  contentPanel: {
+    display: "grid",
+    gap: "1.25rem",
+    padding: "clamp(1.75rem, 4vw, 3rem)",
+    borderRadius: "2rem",
+    backgroundColor: "#0f172a",
+    color: "#ffffff",
+    boxShadow: "0 24px 70px rgba(15, 23, 42, 0.14)",
   },
   eyebrow: {
     margin: 0,
@@ -1384,148 +1439,164 @@ const styles = {
     fontWeight: 700,
     letterSpacing: "0.18em",
     textTransform: "uppercase",
-    color: "#f97316",
+    color: "#fb923c",
   },
   title: {
     margin: 0,
-    fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
+    maxWidth: "12ch",
+    fontSize: "clamp(2.5rem, 6vw, 4.75rem)",
     lineHeight: 0.95,
     letterSpacing: "-0.05em",
-    color: "#111111",
     textWrap: "balance",
   },
   lead: {
     margin: 0,
-    maxWidth: "44rem",
-    fontSize: "clamp(1rem, 2.2vw, 1.2rem)",
-    lineHeight: 1.7,
-    color: "#52525b",
+    maxWidth: "34rem",
+    fontSize: "clamp(1rem, 2.3vw, 1.18rem)",
+    lineHeight: 1.75,
+    color: "rgba(255, 255, 255, 0.76)",
   },
-  grid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-    gap: "1rem",
-  },
-  card: {
-    minHeight: "100%",
-    display: "grid",
-    gap: "1rem",
-    padding: "1.5rem",
-    border: "1px solid rgba(17, 17, 17, 0.08)",
-    borderRadius: "1.75rem",
-    backgroundColor: "rgba(255, 255, 255, 0.92)",
-    boxShadow: "0 18px 48px rgba(15, 23, 42, 0.08)",
-  },
-  number: {
+  action: {
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
-    width: "3rem",
-    height: "3rem",
+    width: "fit-content",
+    minHeight: "3.5rem",
+    padding: "0.95rem 1.4rem",
     borderRadius: "999px",
-    backgroundColor: "#111111",
+    backgroundColor: "#f97316",
     color: "#ffffff",
+    fontWeight: 700,
+  },
+  detailPanel: {
+    display: "grid",
+    gap: "1rem",
+    padding: "clamp(1.75rem, 4vw, 3rem)",
+    borderRadius: "2rem",
+    border: "1px solid rgba(17, 17, 17, 0.08)",
+    background:
+      "linear-gradient(160deg, rgba(255, 247, 237, 0.96), rgba(255, 255, 255, 0.98))",
+    boxShadow: "0 18px 48px rgba(15, 23, 42, 0.08)",
+  },
+  kicker: {
+    margin: 0,
     fontSize: "0.95rem",
     fontWeight: 700,
     letterSpacing: "0.08em",
+    textTransform: "uppercase",
+    color: "#f97316",
   },
-  cardTitle: {
+  list: {
     margin: 0,
-    fontSize: "1.45rem",
-    lineHeight: 1.05,
+    padding: 0,
+    listStyle: "none",
+    display: "grid",
+    gap: "1rem",
+  },
+  item: {
+    paddingTop: "1rem",
+    borderTop: "1px solid rgba(17, 17, 17, 0.08)",
+    fontSize: "1rem",
+    lineHeight: 1.75,
+    color: "#3f3f46",
+  },
+  highlight: {
+    margin: 0,
+    fontSize: "clamp(1.4rem, 3vw, 2rem)",
+    lineHeight: 1.15,
     letterSpacing: "-0.04em",
     color: "#111111",
   },
-  description: {
-    margin: 0,
-    fontSize: "1rem",
-    lineHeight: 1.7,
-    color: "#52525b",
-  },
 }
 
-export default function SignaturePreviewSection() {
+export default function BrandStoryPreviewSection() {
   return (
     <section
-      id="signature-preview"
-      aria-labelledby="signature-preview-title"
+      id="brand-story-preview"
+      aria-labelledby="brand-story-preview-title"
       style={styles.section}
     >
       <div style={styles.shell}>
-        <div style={styles.intro}>
-          <p style={styles.eyebrow}>Signature preview</p>
-          <h2 id="signature-preview-title" style={styles.title}>
-            Three traits shape every Alai Web project.
-          </h2>
-          <p style={styles.lead}>
-            The work is intentionally balanced: strong visual identity, technical restraint,
-            and a structure that helps real businesses turn attention into inquiries.
-          </p>
-        </div>
+        <div style={styles.layout}>
+          <div style={styles.contentPanel}>
+            <p style={styles.eyebrow}>Brand story preview</p>
+            <h2 id="brand-story-preview-title" style={styles.title}>
+              Designed with a calm hand and a technical eye.
+            </h2>
+            <p style={styles.lead}>
+              Alai Web builds websites for businesses that want something cleaner than a
+              template and more useful than a visual refresh. Every project aims to feel
+              editorial, fast, and easy to trust.
+            </p>
+            <Link to="/chi-siamo" style={styles.action}>
+              Learn how Alai Web works
+            </Link>
+          </div>
 
-        <div style={styles.grid}>
-          {signatureItems.map((item) => (
-            <article key={item.number} style={styles.card}>
-              <span aria-hidden="true" style={styles.number}>
-                {item.number}
-              </span>
-              <h3 style={styles.cardTitle}>{item.title}</h3>
-              <p style={styles.description}>{item.description}</p>
-            </article>
-          ))}
+          <div style={styles.detailPanel}>
+            <p style={styles.kicker}>What drives the work</p>
+            <p style={styles.highlight}>
+              The goal is not to add more interface. It is to make the right message land
+              faster.
+            </p>
+            <ul style={styles.list}>
+              {principles.map((principle) => (
+                <li key={principle} style={styles.item}>
+                  {principle}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>
   )
 }
-apply_patch(auto_approved=true) exited 0 in 44ms:
+apply_patch(auto_approved=true) exited 0 in 46ms:
 Success. Updated the following files:
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/SignaturePreviewSection.jsx
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/BrandStoryPreviewSection.jsx
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Home.jsx
 file update:
-diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
+diff --git a/src/components/BrandStoryPreviewSection.jsx b/src/components/BrandStoryPreviewSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..1bbc671b6d4eaf62b6dbf10f7d2bef3f75e930e1
+index 0000000000000000000000000000000000000000..bf6c66645019cac106a365ccc5965e174987fbf9
 --- /dev/null
-+++ b/src/components/SignaturePreviewSection.jsx
-@@ -0,0 +1,138 @@
-+const signatureItems = [
-+  {
-+    number: "01",
-+    title: "Refined visual systems",
-+    description:
-+      "Clear typography, measured spacing, and art direction that gives small businesses a sharper digital presence.",
-+  },
-+  {
-+    number: "02",
-+    title: "Fast, lightweight builds",
-+    description:
-+      "Lean front-end decisions keep the experience responsive, readable, and easy to navigate on every screen.",
-+  },
-+  {
-+    number: "03",
-+    title: "SEO-ready structure",
-+    description:
-+      "Semantic markup and purposeful content layouts create a stronger foundation for visibility and conversion.",
-+  },
++++ b/src/components/BrandStoryPreviewSection.jsx
+@@ -0,0 +1,154 @@
++import { Link } from "react-router-dom"
++
++const principles = [
++  "Clarity in structure, so visitors always know where to go next.",
++  "Restraint in design, so every detail supports the message instead of distracting from it.",
++  "Performance in delivery, so the final site feels fast, polished, and dependable.",
 +]
 +
 +const styles = {
 +  section: {
 +    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
 +    background:
-+      "linear-gradient(180deg, #ffffff 0%, #fff7f1 52%, #ffffff 100%)",
++      "linear-gradient(180deg, #ffffff 0%, #ffffff 28%, #f8fafc 100%)",
 +  },
 +  shell: {
 +    maxWidth: "1280px",
 +    margin: "0 auto",
 +    display: "grid",
-+    gap: "2.5rem",
++    gap: "2rem",
 +  },
-+  intro: {
++  layout: {
 +    display: "grid",
-+    gap: "1rem",
-+    maxWidth: "780px",
++    gap: "1.5rem",
++    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
++    alignItems: "stretch",
++  },
++  contentPanel: {
++    display: "grid",
++    gap: "1.25rem",
++    padding: "clamp(1.75rem, 4vw, 3rem)",
++    borderRadius: "2rem",
++    backgroundColor: "#0f172a",
++    color: "#ffffff",
++    boxShadow: "0 24px 70px rgba(15, 23, 42, 0.14)",
 +  },
 +  eyebrow: {
 +    margin: 0,
@@ -1533,168 +1604,187 @@ index 0000000000000000000000000000000000000000..1bbc671b6d4eaf62b6dbf10f7d2bef3f
 +    fontWeight: 700,
 +    letterSpacing: "0.18em",
 +    textTransform: "uppercase",
-+    color: "#f97316",
++    color: "#fb923c",
 +  },
 +  title: {
 +    margin: 0,
-+    fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
++    maxWidth: "12ch",
++    fontSize: "clamp(2.5rem, 6vw, 4.75rem)",
 +    lineHeight: 0.95,
 +    letterSpacing: "-0.05em",
-+    color: "#111111",
 +    textWrap: "balance",
 +  },
 +  lead: {
 +    margin: 0,
-+    maxWidth: "44rem",
-+    fontSize: "clamp(1rem, 2.2vw, 1.2rem)",
-+    lineHeight: 1.7,
-+    color: "#52525b",
++    maxWidth: "34rem",
++    fontSize: "clamp(1rem, 2.3vw, 1.18rem)",
++    lineHeight: 1.75,
++    color: "rgba(255, 255, 255, 0.76)",
 +  },
-+  grid: {
-+    display: "grid",
-+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-+    gap: "1rem",
-+  },
-+  card: {
-+    minHeight: "100%",
-+    display: "grid",
-+    gap: "1rem",
-+    padding: "1.5rem",
-+    border: "1px solid rgba(17, 17, 17, 0.08)",
-+    borderRadius: "1.75rem",
-+    backgroundColor: "rgba(255, 255, 255, 0.92)",
-+    boxShadow: "0 18px 48px rgba(15, 23, 42, 0.08)",
-+  },
-+  number: {
++  action: {
 +    display: "inline-flex",
 +    alignItems: "center",
 +    justifyContent: "center",
-+    width: "3rem",
-+    height: "3rem",
++    width: "fit-content",
++    minHeight: "3.5rem",
++    padding: "0.95rem 1.4rem",
 +    borderRadius: "999px",
-+    backgroundColor: "#111111",
++    backgroundColor: "#f97316",
 +    color: "#ffffff",
++    fontWeight: 700,
++  },
++  detailPanel: {
++    display: "grid",
++    gap: "1rem",
++    padding: "clamp(1.75rem, 4vw, 3rem)",
++    borderRadius: "2rem",
++    border: "1px solid rgba(17, 17, 17, 0.08)",
++    background:
++      "linear-gradient(160deg, rgba(255, 247, 237, 0.96), rgba(255, 255, 255, 0.98))",
++    boxShadow: "0 18px 48px rgba(15, 23, 42, 0.08)",
++  },
++  kicker: {
++    margin: 0,
 +    fontSize: "0.95rem",
 +    fontWeight: 700,
 +    letterSpacing: "0.08em",
++    textTransform: "uppercase",
++    color: "#f97316",
 +  },
-+  cardTitle: {
++  list: {
 +    margin: 0,
-+    fontSize: "1.45rem",
-+    lineHeight: 1.05,
++    padding: 0,
++    listStyle: "none",
++    display: "grid",
++    gap: "1rem",
++  },
++  item: {
++    paddingTop: "1rem",
++    borderTop: "1px solid rgba(17, 17, 17, 0.08)",
++    fontSize: "1rem",
++    lineHeight: 1.75,
++    color: "#3f3f46",
++  },
++  highlight: {
++    margin: 0,
++    fontSize: "clamp(1.4rem, 3vw, 2rem)",
++    lineHeight: 1.15,
 +    letterSpacing: "-0.04em",
 +    color: "#111111",
 +  },
-+  description: {
-+    margin: 0,
-+    fontSize: "1rem",
-+    lineHeight: 1.7,
-+    color: "#52525b",
-+  },
 +}
 +
-+export default function SignaturePreviewSection() {
++export default function BrandStoryPreviewSection() {
 +  return (
 +    <section
-+      id="signature-preview"
-+      aria-labelledby="signature-preview-title"
++      id="brand-story-preview"
++      aria-labelledby="brand-story-preview-title"
 +      style={styles.section}
 +    >
 +      <div style={styles.shell}>
-+        <div style={styles.intro}>
-+          <p style={styles.eyebrow}>Signature preview</p>
-+          <h2 id="signature-preview-title" style={styles.title}>
-+            Three traits shape every Alai Web project.
-+          </h2>
-+          <p style={styles.lead}>
-+            The work is intentionally balanced: strong visual identity, technical restraint,
-+            and a structure that helps real businesses turn attention into inquiries.
-+          </p>
-+        </div>
++        <div style={styles.layout}>
++          <div style={styles.contentPanel}>
++            <p style={styles.eyebrow}>Brand story preview</p>
++            <h2 id="brand-story-preview-title" style={styles.title}>
++              Designed with a calm hand and a technical eye.
++            </h2>
++            <p style={styles.lead}>
++              Alai Web builds websites for businesses that want something cleaner than a
++              template and more useful than a visual refresh. Every project aims to feel
++              editorial, fast, and easy to trust.
++            </p>
++            <Link to="/chi-siamo" style={styles.action}>
++              Learn how Alai Web works
++            </Link>
++          </div>
 +
-+        <div style={styles.grid}>
-+          {signatureItems.map((item) => (
-+            <article key={item.number} style={styles.card}>
-+              <span aria-hidden="true" style={styles.number}>
-+                {item.number}
-+              </span>
-+              <h3 style={styles.cardTitle}>{item.title}</h3>
-+              <p style={styles.description}>{item.description}</p>
-+            </article>
-+          ))}
++          <div style={styles.detailPanel}>
++            <p style={styles.kicker}>What drives the work</p>
++            <p style={styles.highlight}>
++              The goal is not to add more interface. It is to make the right message land
++              faster.
++            </p>
++            <ul style={styles.list}>
++              {principles.map((principle) => (
++                <li key={principle} style={styles.item}>
++                  {principle}
++                </li>
++              ))}
++            </ul>
++          </div>
 +        </div>
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index 5c7d51986421ad86c8e61b79eb72ed681b4812fd..b960535eb67da119ff3254e3317dfc87457c0cc2
+index b960535eb67da119ff3254e3317dfc87457c0cc2..c5c88700699470ae57d4b8dcf18df9464b8a22f4
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -1,16 +1,11 @@
+@@ -1,4 +1,5 @@
  import HeroSection from "../components/HeroSection"
-+import SignaturePreviewSection from "../components/SignaturePreviewSection"
++import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
+ import SignaturePreviewSection from "../components/SignaturePreviewSection"
  
  export default function Home() {
-   return (
+@@ -6,14 +7,7 @@
      <>
        <HeroSection />
--      <section id="signature-preview" aria-labelledby="signature-preview-title">
--        <h2 id="signature-preview-title">What sets the work apart</h2>
+       <SignaturePreviewSection />
+-
+-      <section id="brand-story-preview" aria-labelledby="brand-story-preview-title">
+-        <h2 id="brand-story-preview-title">Built with clarity before embellishment</h2>
 -        <p>
--          The homepage introduces Alai Web through a clean editorial rhythm: thoughtful design,
--          lightweight builds, and business-focused digital experiences.
+-          This shell establishes the required structure for the home page and keeps the core
+-          messaging, sections, and CTAs ready for the next implementation tasks.
 -        </p>
 -      </section>
-+      <SignaturePreviewSection />
- 
-       <section id="brand-story-preview" aria-labelledby="brand-story-preview-title">
-         <h2 id="brand-story-preview-title">Built with clarity before embellishment</h2>
++      <BrandStoryPreviewSection />
+     </>
+   )
+ }
 
 file update:
-diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
+diff --git a/src/components/BrandStoryPreviewSection.jsx b/src/components/BrandStoryPreviewSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..1bbc671b6d4eaf62b6dbf10f7d2bef3f75e930e1
+index 0000000000000000000000000000000000000000..bf6c66645019cac106a365ccc5965e174987fbf9
 --- /dev/null
-+++ b/src/components/SignaturePreviewSection.jsx
-@@ -0,0 +1,138 @@
-+const signatureItems = [
-+  {
-+    number: "01",
-+    title: "Refined visual systems",
-+    description:
-+      "Clear typography, measured spacing, and art direction that gives small businesses a sharper digital presence.",
-+  },
-+  {
-+    number: "02",
-+    title: "Fast, lightweight builds",
-+    description:
-+      "Lean front-end decisions keep the experience responsive, readable, and easy to navigate on every screen.",
-+  },
-+  {
-+    number: "03",
-+    title: "SEO-ready structure",
-+    description:
-+      "Semantic markup and purposeful content layouts create a stronger foundation for visibility and conversion.",
-+  },
++++ b/src/components/BrandStoryPreviewSection.jsx
+@@ -0,0 +1,154 @@
++import { Link } from "react-router-dom"
++
++const principles = [
++  "Clarity in structure, so visitors always know where to go next.",
++  "Restraint in design, so every detail supports the message instead of distracting from it.",
++  "Performance in delivery, so the final site feels fast, polished, and dependable.",
 +]
 +
 +const styles = {
 +  section: {
 +    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
 +    background:
-+      "linear-gradient(180deg, #ffffff 0%, #fff7f1 52%, #ffffff 100%)",
++      "linear-gradient(180deg, #ffffff 0%, #ffffff 28%, #f8fafc 100%)",
 +  },
 +  shell: {
 +    maxWidth: "1280px",
 +    margin: "0 auto",
 +    display: "grid",
-+    gap: "2.5rem",
++    gap: "2rem",
 +  },
-+  intro: {
++  layout: {
 +    display: "grid",
-+    gap: "1rem",
-+    maxWidth: "780px",
++    gap: "1.5rem",
++    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
++    alignItems: "stretch",
++  },
++  contentPanel: {
++    display: "grid",
++    gap: "1.25rem",
++    padding: "clamp(1.75rem, 4vw, 3rem)",
++    borderRadius: "2rem",
++    backgroundColor: "#0f172a",
++    color: "#ffffff",
++    boxShadow: "0 24px 70px rgba(15, 23, 42, 0.14)",
 +  },
 +  eyebrow: {
 +    margin: 0,
@@ -1702,203 +1792,226 @@ index 0000000000000000000000000000000000000000..1bbc671b6d4eaf62b6dbf10f7d2bef3f
 +    fontWeight: 700,
 +    letterSpacing: "0.18em",
 +    textTransform: "uppercase",
-+    color: "#f97316",
++    color: "#fb923c",
 +  },
 +  title: {
 +    margin: 0,
-+    fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
++    maxWidth: "12ch",
++    fontSize: "clamp(2.5rem, 6vw, 4.75rem)",
 +    lineHeight: 0.95,
 +    letterSpacing: "-0.05em",
-+    color: "#111111",
 +    textWrap: "balance",
 +  },
 +  lead: {
 +    margin: 0,
-+    maxWidth: "44rem",
-+    fontSize: "clamp(1rem, 2.2vw, 1.2rem)",
-+    lineHeight: 1.7,
-+    color: "#52525b",
++    maxWidth: "34rem",
++    fontSize: "clamp(1rem, 2.3vw, 1.18rem)",
++    lineHeight: 1.75,
++    color: "rgba(255, 255, 255, 0.76)",
 +  },
-+  grid: {
-+    display: "grid",
-+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-+    gap: "1rem",
-+  },
-+  card: {
-+    minHeight: "100%",
-+    display: "grid",
-+    gap: "1rem",
-+    padding: "1.5rem",
-+    border: "1px solid rgba(17, 17, 17, 0.08)",
-+    borderRadius: "1.75rem",
-+    backgroundColor: "rgba(255, 255, 255, 0.92)",
-+    boxShadow: "0 18px 48px rgba(15, 23, 42, 0.08)",
-+  },
-+  number: {
++  action: {
 +    display: "inline-flex",
 +    alignItems: "center",
 +    justifyContent: "center",
-+    width: "3rem",
-+    height: "3rem",
++    width: "fit-content",
++    minHeight: "3.5rem",
++    padding: "0.95rem 1.4rem",
 +    borderRadius: "999px",
-+    backgroundColor: "#111111",
++    backgroundColor: "#f97316",
 +    color: "#ffffff",
++    fontWeight: 700,
++  },
++  detailPanel: {
++    display: "grid",
++    gap: "1rem",
++    padding: "clamp(1.75rem, 4vw, 3rem)",
++    borderRadius: "2rem",
++    border: "1px solid rgba(17, 17, 17, 0.08)",
++    background:
++      "linear-gradient(160deg, rgba(255, 247, 237, 0.96), rgba(255, 255, 255, 0.98))",
++    boxShadow: "0 18px 48px rgba(15, 23, 42, 0.08)",
++  },
++  kicker: {
++    margin: 0,
 +    fontSize: "0.95rem",
 +    fontWeight: 700,
 +    letterSpacing: "0.08em",
++    textTransform: "uppercase",
++    color: "#f97316",
 +  },
-+  cardTitle: {
++  list: {
 +    margin: 0,
-+    fontSize: "1.45rem",
-+    lineHeight: 1.05,
++    padding: 0,
++    listStyle: "none",
++    display: "grid",
++    gap: "1rem",
++  },
++  item: {
++    paddingTop: "1rem",
++    borderTop: "1px solid rgba(17, 17, 17, 0.08)",
++    fontSize: "1rem",
++    lineHeight: 1.75,
++    color: "#3f3f46",
++  },
++  highlight: {
++    margin: 0,
++    fontSize: "clamp(1.4rem, 3vw, 2rem)",
++    lineHeight: 1.15,
 +    letterSpacing: "-0.04em",
 +    color: "#111111",
 +  },
-+  description: {
-+    margin: 0,
-+    fontSize: "1rem",
-+    lineHeight: 1.7,
-+    color: "#52525b",
-+  },
 +}
 +
-+export default function SignaturePreviewSection() {
++export default function BrandStoryPreviewSection() {
 +  return (
 +    <section
-+      id="signature-preview"
-+      aria-labelledby="signature-preview-title"
++      id="brand-story-preview"
++      aria-labelledby="brand-story-preview-title"
 +      style={styles.section}
 +    >
 +      <div style={styles.shell}>
-+        <div style={styles.intro}>
-+          <p style={styles.eyebrow}>Signature preview</p>
-+          <h2 id="signature-preview-title" style={styles.title}>
-+            Three traits shape every Alai Web project.
-+          </h2>
-+          <p style={styles.lead}>
-+            The work is intentionally balanced: strong visual identity, technical restraint,
-+            and a structure that helps real businesses turn attention into inquiries.
-+          </p>
-+        </div>
++        <div style={styles.layout}>
++          <div style={styles.contentPanel}>
++            <p style={styles.eyebrow}>Brand story preview</p>
++            <h2 id="brand-story-preview-title" style={styles.title}>
++              Designed with a calm hand and a technical eye.
++            </h2>
++            <p style={styles.lead}>
++              Alai Web builds websites for businesses that want something cleaner than a
++              template and more useful than a visual refresh. Every project aims to feel
++              editorial, fast, and easy to trust.
++            </p>
++            <Link to="/chi-siamo" style={styles.action}>
++              Learn how Alai Web works
++            </Link>
++          </div>
 +
-+        <div style={styles.grid}>
-+          {signatureItems.map((item) => (
-+            <article key={item.number} style={styles.card}>
-+              <span aria-hidden="true" style={styles.number}>
-+                {item.number}
-+              </span>
-+              <h3 style={styles.cardTitle}>{item.title}</h3>
-+              <p style={styles.description}>{item.description}</p>
-+            </article>
-+          ))}
++          <div style={styles.detailPanel}>
++            <p style={styles.kicker}>What drives the work</p>
++            <p style={styles.highlight}>
++              The goal is not to add more interface. It is to make the right message land
++              faster.
++            </p>
++            <ul style={styles.list}>
++              {principles.map((principle) => (
++                <li key={principle} style={styles.item}>
++                  {principle}
++                </li>
++              ))}
++            </ul>
++          </div>
 +        </div>
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index 5c7d51986421ad86c8e61b79eb72ed681b4812fd..b960535eb67da119ff3254e3317dfc87457c0cc2
+index b960535eb67da119ff3254e3317dfc87457c0cc2..c5c88700699470ae57d4b8dcf18df9464b8a22f4
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -1,16 +1,11 @@
+@@ -1,4 +1,5 @@
  import HeroSection from "../components/HeroSection"
-+import SignaturePreviewSection from "../components/SignaturePreviewSection"
++import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
+ import SignaturePreviewSection from "../components/SignaturePreviewSection"
  
  export default function Home() {
-   return (
+@@ -6,14 +7,7 @@
      <>
        <HeroSection />
--      <section id="signature-preview" aria-labelledby="signature-preview-title">
--        <h2 id="signature-preview-title">What sets the work apart</h2>
+       <SignaturePreviewSection />
+-
+-      <section id="brand-story-preview" aria-labelledby="brand-story-preview-title">
+-        <h2 id="brand-story-preview-title">Built with clarity before embellishment</h2>
 -        <p>
--          The homepage introduces Alai Web through a clean editorial rhythm: thoughtful design,
--          lightweight builds, and business-focused digital experiences.
+-          This shell establishes the required structure for the home page and keeps the core
+-          messaging, sections, and CTAs ready for the next implementation tasks.
 -        </p>
 -      </section>
-+      <SignaturePreviewSection />
- 
-       <section id="brand-story-preview" aria-labelledby="brand-story-preview-title">
-         <h2 id="brand-story-preview-title">Built with clarity before embellishment</h2>
++      <BrandStoryPreviewSection />
+     </>
+   )
+ }
 
 codex
-The section component is in place. I’m running the build now to catch any integration issues before updating the agent report.
+The section component is in place and mounted on the home page. I’m running the build now to catch any integration issues before I update the task report.
 exec
-/bin/zsh -lc 'git diff -- src/pages/Home.jsx src/components/SignaturePreviewSection.jsx' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 51ms:
+/bin/zsh -lc 'git diff -- src/pages/Home.jsx src/components/BrandStoryPreviewSection.jsx' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 52ms:
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index 5c7d519..b960535 100644
+index b960535..c5c8870 100644
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -1,16 +1,11 @@
+@@ -1,4 +1,5 @@
  import HeroSection from "../components/HeroSection"
-+import SignaturePreviewSection from "../components/SignaturePreviewSection"
++import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
+ import SignaturePreviewSection from "../components/SignaturePreviewSection"
  
  export default function Home() {
-   return (
+@@ -6,14 +7,7 @@ export default function Home() {
      <>
        <HeroSection />
--      <section id="signature-preview" aria-labelledby="signature-preview-title">
--        <h2 id="signature-preview-title">What sets the work apart</h2>
+       <SignaturePreviewSection />
+-
+-      <section id="brand-story-preview" aria-labelledby="brand-story-preview-title">
+-        <h2 id="brand-story-preview-title">Built with clarity before embellishment</h2>
 -        <p>
--          The homepage introduces Alai Web through a clean editorial rhythm: thoughtful design,
--          lightweight builds, and business-focused digital experiences.
--        </p>
--      </section>
-+      <SignaturePreviewSection />
+-          This shell establishes the required structure for the home page and keeps the core
+-          messaging, sections, and CTAs ready for the next implementation tasks.
 exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 861ms:
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 859ms:
+
+> site-create-a-high-end-visually-distinctive-m@0.0.0 build
+> vite build
+
 vite v7.3.1 building client environment for production...
 transforming...
-✓ 49 modules transformed.
+✓ 50 modules transformed.
 rendering chunks...
 computing gzip size...
 dist/index.html                   0.50 kB │ gzip:  0.32 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-Bgy_R5Ag.js   238.25 kB │ gzip: 75.92 kB
-✓ built in 550ms
+dist/assets/index-D2RY8jbI.js   241.02 kB │ gzip: 76.47 kB
+✓ built in 596ms
 file update:
-diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
+diff --git a/src/components/BrandStoryPreviewSection.jsx b/src/components/BrandStoryPreviewSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..1bbc671b6d4eaf62b6dbf10f7d2bef3f75e930e1
+index 0000000000000000000000000000000000000000..bf6c66645019cac106a365ccc5965e174987fbf9
 --- /dev/null
-+++ b/src/components/SignaturePreviewSection.jsx
-@@ -0,0 +1,138 @@
-+const signatureItems = [
-+  {
-+    number: "01",
-+    title: "Refined visual systems",
-+    description:
-+      "Clear typography, measured spacing, and art direction that gives small businesses a sharper digital presence.",
-+  },
-+  {
-+    number: "02",
-+    title: "Fast, lightweight builds",
-+    description:
-+      "Lean front-end decisions keep the experience responsive, readable, and easy to navigate on every screen.",
-+  },
-+  {
-+    number: "03",
-+    title: "SEO-ready structure",
-+    description:
-+      "Semantic markup and purposeful content layouts create a stronger foundation for visibility and conversion.",
-+  },
++++ b/src/components/BrandStoryPreviewSection.jsx
+@@ -0,0 +1,154 @@
++import { Link } from "react-router-dom"
++
++const principles = [
++  "Clarity in structure, so visitors always know where to go next.",
++  "Restraint in design, so every detail supports the message instead of distracting from it.",
++  "Performance in delivery, so the final site feels fast, polished, and dependable.",
 +]
 +
 +const styles = {
 +  section: {
 +    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
 +    background:
-+      "linear-gradient(180deg, #ffffff 0%, #fff7f1 52%, #ffffff 100%)",
++      "linear-gradient(180deg, #ffffff 0%, #ffffff 28%, #f8fafc 100%)",
 +  },
 +  shell: {
 +    maxWidth: "1280px",
 +    margin: "0 auto",
 +    display: "grid",
-+    gap: "2.5rem",
++    gap: "2rem",
 +  },
-+  intro: {
++  layout: {
 +    display: "grid",
-+    gap: "1rem",
-+    maxWidth: "780px",
++    gap: "1.5rem",
++    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
++    alignItems: "stretch",
++  },
++  contentPanel: {
++    display: "grid",
++    gap: "1.25rem",
++    padding: "clamp(1.75rem, 4vw, 3rem)",
++    borderRadius: "2rem",
++    backgroundColor: "#0f172a",
++    color: "#ffffff",
++    boxShadow: "0 24px 70px rgba(15, 23, 42, 0.14)",
 +  },
 +  eyebrow: {
 +    margin: 0,
@@ -1906,209 +2019,228 @@ index 0000000000000000000000000000000000000000..1bbc671b6d4eaf62b6dbf10f7d2bef3f
 +    fontWeight: 700,
 +    letterSpacing: "0.18em",
 +    textTransform: "uppercase",
-+    color: "#f97316",
++    color: "#fb923c",
 +  },
 +  title: {
 +    margin: 0,
-+    fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
++    maxWidth: "12ch",
++    fontSize: "clamp(2.5rem, 6vw, 4.75rem)",
 +    lineHeight: 0.95,
 +    letterSpacing: "-0.05em",
-+    color: "#111111",
 +    textWrap: "balance",
 +  },
 +  lead: {
 +    margin: 0,
-+    maxWidth: "44rem",
-+    fontSize: "clamp(1rem, 2.2vw, 1.2rem)",
-+    lineHeight: 1.7,
-+    color: "#52525b",
++    maxWidth: "34rem",
++    fontSize: "clamp(1rem, 2.3vw, 1.18rem)",
++    lineHeight: 1.75,
++    color: "rgba(255, 255, 255, 0.76)",
 +  },
-+  grid: {
-+    display: "grid",
-+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-+    gap: "1rem",
-+  },
-+  card: {
-+    minHeight: "100%",
-+    display: "grid",
-+    gap: "1rem",
-+    padding: "1.5rem",
-+    border: "1px solid rgba(17, 17, 17, 0.08)",
-+    borderRadius: "1.75rem",
-+    backgroundColor: "rgba(255, 255, 255, 0.92)",
-+    boxShadow: "0 18px 48px rgba(15, 23, 42, 0.08)",
-+  },
-+  number: {
++  action: {
 +    display: "inline-flex",
 +    alignItems: "center",
 +    justifyContent: "center",
-+    width: "3rem",
-+    height: "3rem",
++    width: "fit-content",
++    minHeight: "3.5rem",
++    padding: "0.95rem 1.4rem",
 +    borderRadius: "999px",
-+    backgroundColor: "#111111",
++    backgroundColor: "#f97316",
 +    color: "#ffffff",
++    fontWeight: 700,
++  },
++  detailPanel: {
++    display: "grid",
++    gap: "1rem",
++    padding: "clamp(1.75rem, 4vw, 3rem)",
++    borderRadius: "2rem",
++    border: "1px solid rgba(17, 17, 17, 0.08)",
++    background:
++      "linear-gradient(160deg, rgba(255, 247, 237, 0.96), rgba(255, 255, 255, 0.98))",
++    boxShadow: "0 18px 48px rgba(15, 23, 42, 0.08)",
++  },
++  kicker: {
++    margin: 0,
 +    fontSize: "0.95rem",
 +    fontWeight: 700,
 +    letterSpacing: "0.08em",
++    textTransform: "uppercase",
++    color: "#f97316",
 +  },
-+  cardTitle: {
++  list: {
 +    margin: 0,
-+    fontSize: "1.45rem",
-+    lineHeight: 1.05,
++    padding: 0,
++    listStyle: "none",
++    display: "grid",
++    gap: "1rem",
++  },
++  item: {
++    paddingTop: "1rem",
++    borderTop: "1px solid rgba(17, 17, 17, 0.08)",
++    fontSize: "1rem",
++    lineHeight: 1.75,
++    color: "#3f3f46",
++  },
++  highlight: {
++    margin: 0,
++    fontSize: "clamp(1.4rem, 3vw, 2rem)",
++    lineHeight: 1.15,
 +    letterSpacing: "-0.04em",
 +    color: "#111111",
 +  },
-+  description: {
-+    margin: 0,
-+    fontSize: "1rem",
-+    lineHeight: 1.7,
-+    color: "#52525b",
-+  },
 +}
 +
-+export default function SignaturePreviewSection() {
++export default function BrandStoryPreviewSection() {
 +  return (
 +    <section
-+      id="signature-preview"
-+      aria-labelledby="signature-preview-title"
++      id="brand-story-preview"
++      aria-labelledby="brand-story-preview-title"
 +      style={styles.section}
 +    >
 +      <div style={styles.shell}>
-+        <div style={styles.intro}>
-+          <p style={styles.eyebrow}>Signature preview</p>
-+          <h2 id="signature-preview-title" style={styles.title}>
-+            Three traits shape every Alai Web project.
-+          </h2>
-+          <p style={styles.lead}>
-+            The work is intentionally balanced: strong visual identity, technical restraint,
-+            and a structure that helps real businesses turn attention into inquiries.
-+          </p>
-+        </div>
++        <div style={styles.layout}>
++          <div style={styles.contentPanel}>
++            <p style={styles.eyebrow}>Brand story preview</p>
++            <h2 id="brand-story-preview-title" style={styles.title}>
++              Designed with a calm hand and a technical eye.
++            </h2>
++            <p style={styles.lead}>
++              Alai Web builds websites for businesses that want something cleaner than a
++              template and more useful than a visual refresh. Every project aims to feel
++              editorial, fast, and easy to trust.
++            </p>
++            <Link to="/chi-siamo" style={styles.action}>
++              Learn how Alai Web works
++            </Link>
++          </div>
 +
-+        <div style={styles.grid}>
-+          {signatureItems.map((item) => (
-+            <article key={item.number} style={styles.card}>
-+              <span aria-hidden="true" style={styles.number}>
-+                {item.number}
-+              </span>
-+              <h3 style={styles.cardTitle}>{item.title}</h3>
-+              <p style={styles.description}>{item.description}</p>
-+            </article>
-+          ))}
++          <div style={styles.detailPanel}>
++            <p style={styles.kicker}>What drives the work</p>
++            <p style={styles.highlight}>
++              The goal is not to add more interface. It is to make the right message land
++              faster.
++            </p>
++            <ul style={styles.list}>
++              {principles.map((principle) => (
++                <li key={principle} style={styles.item}>
++                  {principle}
++                </li>
++              ))}
++            </ul>
++          </div>
 +        </div>
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index 5c7d51986421ad86c8e61b79eb72ed681b4812fd..b960535eb67da119ff3254e3317dfc87457c0cc2
+index b960535eb67da119ff3254e3317dfc87457c0cc2..c5c88700699470ae57d4b8dcf18df9464b8a22f4
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -1,16 +1,11 @@
+@@ -1,4 +1,5 @@
  import HeroSection from "../components/HeroSection"
-+import SignaturePreviewSection from "../components/SignaturePreviewSection"
++import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
+ import SignaturePreviewSection from "../components/SignaturePreviewSection"
  
  export default function Home() {
-   return (
+@@ -6,14 +7,7 @@
      <>
        <HeroSection />
--      <section id="signature-preview" aria-labelledby="signature-preview-title">
--        <h2 id="signature-preview-title">What sets the work apart</h2>
+       <SignaturePreviewSection />
+-
+-      <section id="brand-story-preview" aria-labelledby="brand-story-preview-title">
+-        <h2 id="brand-story-preview-title">Built with clarity before embellishment</h2>
 -        <p>
--          The homepage introduces Alai Web through a clean editorial rhythm: thoughtful design,
--          lightweight builds, and business-focused digital experiences.
+-          This shell establishes the required structure for the home page and keeps the core
+-          messaging, sections, and CTAs ready for the next implementation tasks.
 -        </p>
 -      </section>
-+      <SignaturePreviewSection />
- 
-       <section id="brand-story-preview" aria-labelledby="brand-story-preview-title">
-         <h2 id="brand-story-preview-title">Built with clarity before embellishment</h2>
++      <BrandStoryPreviewSection />
+     </>
+   )
+ }
 
 codex
-The build passed. I’m appending the task result to `agent/AGENT_REPORT.md` now and keeping that update limited to the required execution log for this task.
+The build is clean. I’m appending the task result to `agent/AGENT_REPORT.md` now; that’s the only non-allowed-file change, and it’s required by the project’s completion rules.
 file update
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md
-@@ -49 +49,13 @@
- Launching Codex for TASK section-home-signature-preview.
+@@ -72 +72,13 @@
+ Launching Codex for TASK section-home-brand-story-preview.
 +
-+Completed TASK `section-home-signature-preview`.
++Completed TASK `section-home-brand-story-preview`.
 +
-+- Added a reusable `SignaturePreviewSection` component in `src/components/SignaturePreviewSection.jsx`.
-+- Replaced the placeholder home section with a three-item grid preview covering design, performance, and SEO foundations.
-+- Kept the section mounted on the home page with the required `signature-preview` section id.
++- Added a reusable `BrandStoryPreviewSection` component in `src/components/BrandStoryPreviewSection.jsx`.
++- Replaced the placeholder home block with a split-content preview pairing brand narrative copy with principle highlights.
++- Mounted the new section on the home page with the required `brand-story-preview` section id.
 +
-+TASK section-home-signature-preview executed by Codex.
++TASK section-home-brand-story-preview executed by Codex.
 +Waiting for validation.
 +
-+TASK section-home-signature-preview completed successfully.
++TASK section-home-brand-story-preview completed successfully.
 +Build passed.
-apply_patch(auto_approved=true) exited 0 in 58ms:
+apply_patch(auto_approved=true) exited 0 in 56ms:
 Success. Updated the following files:
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 1f0592cd6be864602c838289cc952ebaf6ba802c..221b88f0c29804a4475a376693ef1d7b4fe084eb
+index 71781710d9c5073fc559fcf65cf4a36208f32f18..ccfb37a3991de925d5a117dfcf17b91af9c3563c
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -47,3 +47,15 @@
- Prepared TASK section-home-signature-preview (Create signature-preview section on home) for execution.
+@@ -70,3 +70,15 @@
+ Prepared TASK section-home-brand-story-preview (Create brand-story-preview section on home) for execution.
  
- Launching Codex for TASK section-home-signature-preview.
+ Launching Codex for TASK section-home-brand-story-preview.
 +
-+Completed TASK `section-home-signature-preview`.
++Completed TASK `section-home-brand-story-preview`.
 +
-+- Added a reusable `SignaturePreviewSection` component in `src/components/SignaturePreviewSection.jsx`.
-+- Replaced the placeholder home section with a three-item grid preview covering design, performance, and SEO foundations.
-+- Kept the section mounted on the home page with the required `signature-preview` section id.
++- Added a reusable `BrandStoryPreviewSection` component in `src/components/BrandStoryPreviewSection.jsx`.
++- Replaced the placeholder home block with a split-content preview pairing brand narrative copy with principle highlights.
++- Mounted the new section on the home page with the required `brand-story-preview` section id.
 +
-+TASK section-home-signature-preview executed by Codex.
++TASK section-home-brand-story-preview executed by Codex.
 +Waiting for validation.
 +
-+TASK section-home-signature-preview completed successfully.
++TASK section-home-brand-story-preview completed successfully.
 +Build passed.
-diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
+diff --git a/src/components/BrandStoryPreviewSection.jsx b/src/components/BrandStoryPreviewSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..1bbc671b6d4eaf62b6dbf10f7d2bef3f75e930e1
+index 0000000000000000000000000000000000000000..bf6c66645019cac106a365ccc5965e174987fbf9
 --- /dev/null
-+++ b/src/components/SignaturePreviewSection.jsx
-@@ -0,0 +1,138 @@
-+const signatureItems = [
-+  {
-+    number: "01",
-+    title: "Refined visual systems",
-+    description:
-+      "Clear typography, measured spacing, and art direction that gives small businesses a sharper digital presence.",
-+  },
-+  {
-+    number: "02",
-+    title: "Fast, lightweight builds",
-+    description:
-+      "Lean front-end decisions keep the experience responsive, readable, and easy to navigate on every screen.",
-+  },
-+  {
-+    number: "03",
-+    title: "SEO-ready structure",
-+    description:
-+      "Semantic markup and purposeful content layouts create a stronger foundation for visibility and conversion.",
-+  },
++++ b/src/components/BrandStoryPreviewSection.jsx
+@@ -0,0 +1,154 @@
++import { Link } from "react-router-dom"
++
++const principles = [
++  "Clarity in structure, so visitors always know where to go next.",
++  "Restraint in design, so every detail supports the message instead of distracting from it.",
++  "Performance in delivery, so the final site feels fast, polished, and dependable.",
 +]
 +
 +const styles = {
 +  section: {
 +    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
 +    background:
-+      "linear-gradient(180deg, #ffffff 0%, #fff7f1 52%, #ffffff 100%)",
++      "linear-gradient(180deg, #ffffff 0%, #ffffff 28%, #f8fafc 100%)",
 +  },
 +  shell: {
 +    maxWidth: "1280px",
 +    margin: "0 auto",
 +    display: "grid",
-+    gap: "2.5rem",
++    gap: "2rem",
 +  },
-+  intro: {
++  layout: {
 +    display: "grid",
-+    gap: "1rem",
-+    maxWidth: "780px",
++    gap: "1.5rem",
++    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
++    alignItems: "stretch",
++  },
++  contentPanel: {
++    display: "grid",
++    gap: "1.25rem",
++    padding: "clamp(1.75rem, 4vw, 3rem)",
++    borderRadius: "2rem",
++    backgroundColor: "#0f172a",
++    color: "#ffffff",
++    boxShadow: "0 24px 70px rgba(15, 23, 42, 0.14)",
 +  },
 +  eyebrow: {
 +    margin: 0,
@@ -2116,188 +2248,207 @@ index 0000000000000000000000000000000000000000..1bbc671b6d4eaf62b6dbf10f7d2bef3f
 +    fontWeight: 700,
 +    letterSpacing: "0.18em",
 +    textTransform: "uppercase",
-+    color: "#f97316",
++    color: "#fb923c",
 +  },
 +  title: {
 +    margin: 0,
-+    fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
++    maxWidth: "12ch",
++    fontSize: "clamp(2.5rem, 6vw, 4.75rem)",
 +    lineHeight: 0.95,
 +    letterSpacing: "-0.05em",
-+    color: "#111111",
 +    textWrap: "balance",
 +  },
 +  lead: {
 +    margin: 0,
-+    maxWidth: "44rem",
-+    fontSize: "clamp(1rem, 2.2vw, 1.2rem)",
-+    lineHeight: 1.7,
-+    color: "#52525b",
++    maxWidth: "34rem",
++    fontSize: "clamp(1rem, 2.3vw, 1.18rem)",
++    lineHeight: 1.75,
++    color: "rgba(255, 255, 255, 0.76)",
 +  },
-+  grid: {
-+    display: "grid",
-+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-+    gap: "1rem",
-+  },
-+  card: {
-+    minHeight: "100%",
-+    display: "grid",
-+    gap: "1rem",
-+    padding: "1.5rem",
-+    border: "1px solid rgba(17, 17, 17, 0.08)",
-+    borderRadius: "1.75rem",
-+    backgroundColor: "rgba(255, 255, 255, 0.92)",
-+    boxShadow: "0 18px 48px rgba(15, 23, 42, 0.08)",
-+  },
-+  number: {
++  action: {
 +    display: "inline-flex",
 +    alignItems: "center",
 +    justifyContent: "center",
-+    width: "3rem",
-+    height: "3rem",
++    width: "fit-content",
++    minHeight: "3.5rem",
++    padding: "0.95rem 1.4rem",
 +    borderRadius: "999px",
-+    backgroundColor: "#111111",
++    backgroundColor: "#f97316",
 +    color: "#ffffff",
++    fontWeight: 700,
++  },
++  detailPanel: {
++    display: "grid",
++    gap: "1rem",
++    padding: "clamp(1.75rem, 4vw, 3rem)",
++    borderRadius: "2rem",
++    border: "1px solid rgba(17, 17, 17, 0.08)",
++    background:
++      "linear-gradient(160deg, rgba(255, 247, 237, 0.96), rgba(255, 255, 255, 0.98))",
++    boxShadow: "0 18px 48px rgba(15, 23, 42, 0.08)",
++  },
++  kicker: {
++    margin: 0,
 +    fontSize: "0.95rem",
 +    fontWeight: 700,
 +    letterSpacing: "0.08em",
++    textTransform: "uppercase",
++    color: "#f97316",
 +  },
-+  cardTitle: {
++  list: {
 +    margin: 0,
-+    fontSize: "1.45rem",
-+    lineHeight: 1.05,
++    padding: 0,
++    listStyle: "none",
++    display: "grid",
++    gap: "1rem",
++  },
++  item: {
++    paddingTop: "1rem",
++    borderTop: "1px solid rgba(17, 17, 17, 0.08)",
++    fontSize: "1rem",
++    lineHeight: 1.75,
++    color: "#3f3f46",
++  },
++  highlight: {
++    margin: 0,
++    fontSize: "clamp(1.4rem, 3vw, 2rem)",
++    lineHeight: 1.15,
 +    letterSpacing: "-0.04em",
 +    color: "#111111",
 +  },
-+  description: {
-+    margin: 0,
-+    fontSize: "1rem",
-+    lineHeight: 1.7,
-+    color: "#52525b",
-+  },
 +}
 +
-+export default function SignaturePreviewSection() {
++export default function BrandStoryPreviewSection() {
 +  return (
 +    <section
-+      id="signature-preview"
-+      aria-labelledby="signature-preview-title"
++      id="brand-story-preview"
++      aria-labelledby="brand-story-preview-title"
 +      style={styles.section}
 +    >
 +      <div style={styles.shell}>
-+        <div style={styles.intro}>
-+          <p style={styles.eyebrow}>Signature preview</p>
-+          <h2 id="signature-preview-title" style={styles.title}>
-+            Three traits shape every Alai Web project.
-+          </h2>
-+          <p style={styles.lead}>
-+            The work is intentionally balanced: strong visual identity, technical restraint,
-+            and a structure that helps real businesses turn attention into inquiries.
-+          </p>
-+        </div>
++        <div style={styles.layout}>
++          <div style={styles.contentPanel}>
++            <p style={styles.eyebrow}>Brand story preview</p>
++            <h2 id="brand-story-preview-title" style={styles.title}>
++              Designed with a calm hand and a technical eye.
++            </h2>
++            <p style={styles.lead}>
++              Alai Web builds websites for businesses that want something cleaner than a
++              template and more useful than a visual refresh. Every project aims to feel
++              editorial, fast, and easy to trust.
++            </p>
++            <Link to="/chi-siamo" style={styles.action}>
++              Learn how Alai Web works
++            </Link>
++          </div>
 +
-+        <div style={styles.grid}>
-+          {signatureItems.map((item) => (
-+            <article key={item.number} style={styles.card}>
-+              <span aria-hidden="true" style={styles.number}>
-+                {item.number}
-+              </span>
-+              <h3 style={styles.cardTitle}>{item.title}</h3>
-+              <p style={styles.description}>{item.description}</p>
-+            </article>
-+          ))}
++          <div style={styles.detailPanel}>
++            <p style={styles.kicker}>What drives the work</p>
++            <p style={styles.highlight}>
++              The goal is not to add more interface. It is to make the right message land
++              faster.
++            </p>
++            <ul style={styles.list}>
++              {principles.map((principle) => (
++                <li key={principle} style={styles.item}>
++                  {principle}
++                </li>
++              ))}
++            </ul>
++          </div>
 +        </div>
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index 5c7d51986421ad86c8e61b79eb72ed681b4812fd..b960535eb67da119ff3254e3317dfc87457c0cc2
+index b960535eb67da119ff3254e3317dfc87457c0cc2..c5c88700699470ae57d4b8dcf18df9464b8a22f4
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -1,16 +1,11 @@
+@@ -1,4 +1,5 @@
  import HeroSection from "../components/HeroSection"
-+import SignaturePreviewSection from "../components/SignaturePreviewSection"
++import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
+ import SignaturePreviewSection from "../components/SignaturePreviewSection"
  
  export default function Home() {
-   return (
+@@ -6,14 +7,7 @@
      <>
        <HeroSection />
--      <section id="signature-preview" aria-labelledby="signature-preview-title">
--        <h2 id="signature-preview-title">What sets the work apart</h2>
+       <SignaturePreviewSection />
+-
+-      <section id="brand-story-preview" aria-labelledby="brand-story-preview-title">
+-        <h2 id="brand-story-preview-title">Built with clarity before embellishment</h2>
 -        <p>
--          The homepage introduces Alai Web through a clean editorial rhythm: thoughtful design,
--          lightweight builds, and business-focused digital experiences.
+-          This shell establishes the required structure for the home page and keeps the core
+-          messaging, sections, and CTAs ready for the next implementation tasks.
 -        </p>
 -      </section>
-+      <SignaturePreviewSection />
- 
-       <section id="brand-story-preview" aria-labelledby="brand-story-preview-title">
-         <h2 id="brand-story-preview-title">Built with clarity before embellishment</h2>
++      <BrandStoryPreviewSection />
+     </>
+   )
+ }
 
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 1f0592cd6be864602c838289cc952ebaf6ba802c..221b88f0c29804a4475a376693ef1d7b4fe084eb
+index 71781710d9c5073fc559fcf65cf4a36208f32f18..ccfb37a3991de925d5a117dfcf17b91af9c3563c
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -47,3 +47,15 @@
- Prepared TASK section-home-signature-preview (Create signature-preview section on home) for execution.
+@@ -70,3 +70,15 @@
+ Prepared TASK section-home-brand-story-preview (Create brand-story-preview section on home) for execution.
  
- Launching Codex for TASK section-home-signature-preview.
+ Launching Codex for TASK section-home-brand-story-preview.
 +
-+Completed TASK `section-home-signature-preview`.
++Completed TASK `section-home-brand-story-preview`.
 +
-+- Added a reusable `SignaturePreviewSection` component in `src/components/SignaturePreviewSection.jsx`.
-+- Replaced the placeholder home section with a three-item grid preview covering design, performance, and SEO foundations.
-+- Kept the section mounted on the home page with the required `signature-preview` section id.
++- Added a reusable `BrandStoryPreviewSection` component in `src/components/BrandStoryPreviewSection.jsx`.
++- Replaced the placeholder home block with a split-content preview pairing brand narrative copy with principle highlights.
++- Mounted the new section on the home page with the required `brand-story-preview` section id.
 +
-+TASK section-home-signature-preview executed by Codex.
++TASK section-home-brand-story-preview executed by Codex.
 +Waiting for validation.
 +
-+TASK section-home-signature-preview completed successfully.
++TASK section-home-brand-story-preview completed successfully.
 +Build passed.
-diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
+diff --git a/src/components/BrandStoryPreviewSection.jsx b/src/components/BrandStoryPreviewSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..1bbc671b6d4eaf62b6dbf10f7d2bef3f75e930e1
+index 0000000000000000000000000000000000000000..bf6c66645019cac106a365ccc5965e174987fbf9
 --- /dev/null
-+++ b/src/components/SignaturePreviewSection.jsx
-@@ -0,0 +1,138 @@
-+const signatureItems = [
-+  {
-+    number: "01",
-+    title: "Refined visual systems",
-+    description:
-+      "Clear typography, measured spacing, and art direction that gives small businesses a sharper digital presence.",
-+  },
-+  {
-+    number: "02",
-+    title: "Fast, lightweight builds",
-+    description:
-+      "Lean front-end decisions keep the experience responsive, readable, and easy to navigate on every screen.",
-+  },
-+  {
-+    number: "03",
-+    title: "SEO-ready structure",
-+    description:
-+      "Semantic markup and purposeful content layouts create a stronger foundation for visibility and conversion.",
-+  },
++++ b/src/components/BrandStoryPreviewSection.jsx
+@@ -0,0 +1,154 @@
++import { Link } from "react-router-dom"
++
++const principles = [
++  "Clarity in structure, so visitors always know where to go next.",
++  "Restraint in design, so every detail supports the message instead of distracting from it.",
++  "Performance in delivery, so the final site feels fast, polished, and dependable.",
 +]
 +
 +const styles = {
 +  section: {
 +    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
 +    background:
-+      "linear-gradient(180deg, #ffffff 0%, #fff7f1 52%, #ffffff 100%)",
++      "linear-gradient(180deg, #ffffff 0%, #ffffff 28%, #f8fafc 100%)",
 +  },
 +  shell: {
 +    maxWidth: "1280px",
 +    margin: "0 auto",
 +    display: "grid",
-+    gap: "2.5rem",
++    gap: "2rem",
 +  },
-+  intro: {
++  layout: {
 +    display: "grid",
-+    gap: "1rem",
-+    maxWidth: "780px",
++    gap: "1.5rem",
++    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
++    alignItems: "stretch",
++  },
++  contentPanel: {
++    display: "grid",
++    gap: "1.25rem",
++    padding: "clamp(1.75rem, 4vw, 3rem)",
++    borderRadius: "2rem",
++    backgroundColor: "#0f172a",
++    color: "#ffffff",
++    boxShadow: "0 24px 70px rgba(15, 23, 42, 0.14)",
 +  },
 +  eyebrow: {
 +    margin: 0,
@@ -2305,194 +2456,223 @@ index 0000000000000000000000000000000000000000..1bbc671b6d4eaf62b6dbf10f7d2bef3f
 +    fontWeight: 700,
 +    letterSpacing: "0.18em",
 +    textTransform: "uppercase",
-+    color: "#f97316",
++    color: "#fb923c",
 +  },
 +  title: {
 +    margin: 0,
-+    fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
++    maxWidth: "12ch",
++    fontSize: "clamp(2.5rem, 6vw, 4.75rem)",
 +    lineHeight: 0.95,
 +    letterSpacing: "-0.05em",
-+    color: "#111111",
 +    textWrap: "balance",
 +  },
 +  lead: {
 +    margin: 0,
-+    maxWidth: "44rem",
-+    fontSize: "clamp(1rem, 2.2vw, 1.2rem)",
-+    lineHeight: 1.7,
-+    color: "#52525b",
++    maxWidth: "34rem",
++    fontSize: "clamp(1rem, 2.3vw, 1.18rem)",
++    lineHeight: 1.75,
++    color: "rgba(255, 255, 255, 0.76)",
 +  },
-+  grid: {
-+    display: "grid",
-+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-+    gap: "1rem",
-+  },
-+  card: {
-+    minHeight: "100%",
-+    display: "grid",
-+    gap: "1rem",
-+    padding: "1.5rem",
-+    border: "1px solid rgba(17, 17, 17, 0.08)",
-+    borderRadius: "1.75rem",
-+    backgroundColor: "rgba(255, 255, 255, 0.92)",
-+    boxShadow: "0 18px 48px rgba(15, 23, 42, 0.08)",
-+  },
-+  number: {
++  action: {
 +    display: "inline-flex",
 +    alignItems: "center",
 +    justifyContent: "center",
-+    width: "3rem",
-+    height: "3rem",
++    width: "fit-content",
++    minHeight: "3.5rem",
++    padding: "0.95rem 1.4rem",
 +    borderRadius: "999px",
-+    backgroundColor: "#111111",
++    backgroundColor: "#f97316",
 +    color: "#ffffff",
++    fontWeight: 700,
++  },
++  detailPanel: {
++    display: "grid",
++    gap: "1rem",
++    padding: "clamp(1.75rem, 4vw, 3rem)",
++    borderRadius: "2rem",
++    border: "1px solid rgba(17, 17, 17, 0.08)",
++    background:
++      "linear-gradient(160deg, rgba(255, 247, 237, 0.96), rgba(255, 255, 255, 0.98))",
++    boxShadow: "0 18px 48px rgba(15, 23, 42, 0.08)",
++  },
++  kicker: {
++    margin: 0,
 +    fontSize: "0.95rem",
 +    fontWeight: 700,
 +    letterSpacing: "0.08em",
++    textTransform: "uppercase",
++    color: "#f97316",
 +  },
-+  cardTitle: {
++  list: {
 +    margin: 0,
-+    fontSize: "1.45rem",
-+    lineHeight: 1.05,
++    padding: 0,
++    listStyle: "none",
++    display: "grid",
++    gap: "1rem",
++  },
++  item: {
++    paddingTop: "1rem",
++    borderTop: "1px solid rgba(17, 17, 17, 0.08)",
++    fontSize: "1rem",
++    lineHeight: 1.75,
++    color: "#3f3f46",
++  },
++  highlight: {
++    margin: 0,
++    fontSize: "clamp(1.4rem, 3vw, 2rem)",
++    lineHeight: 1.15,
 +    letterSpacing: "-0.04em",
 +    color: "#111111",
 +  },
-+  description: {
-+    margin: 0,
-+    fontSize: "1rem",
-+    lineHeight: 1.7,
-+    color: "#52525b",
-+  },
 +}
 +
-+export default function SignaturePreviewSection() {
++export default function BrandStoryPreviewSection() {
 +  return (
 +    <section
-+      id="signature-preview"
-+      aria-labelledby="signature-preview-title"
++      id="brand-story-preview"
++      aria-labelledby="brand-story-preview-title"
 +      style={styles.section}
 +    >
 +      <div style={styles.shell}>
-+        <div style={styles.intro}>
-+          <p style={styles.eyebrow}>Signature preview</p>
-+          <h2 id="signature-preview-title" style={styles.title}>
-+            Three traits shape every Alai Web project.
-+          </h2>
-+          <p style={styles.lead}>
-+            The work is intentionally balanced: strong visual identity, technical restraint,
-+            and a structure that helps real businesses turn attention into inquiries.
-+          </p>
-+        </div>
++        <div style={styles.layout}>
++          <div style={styles.contentPanel}>
++            <p style={styles.eyebrow}>Brand story preview</p>
++            <h2 id="brand-story-preview-title" style={styles.title}>
++              Designed with a calm hand and a technical eye.
++            </h2>
++            <p style={styles.lead}>
++              Alai Web builds websites for businesses that want something cleaner than a
++              template and more useful than a visual refresh. Every project aims to feel
++              editorial, fast, and easy to trust.
++            </p>
++            <Link to="/chi-siamo" style={styles.action}>
++              Learn how Alai Web works
++            </Link>
++          </div>
 +
-+        <div style={styles.grid}>
-+          {signatureItems.map((item) => (
-+            <article key={item.number} style={styles.card}>
-+              <span aria-hidden="true" style={styles.number}>
-+                {item.number}
-+              </span>
-+              <h3 style={styles.cardTitle}>{item.title}</h3>
-+              <p style={styles.description}>{item.description}</p>
-+            </article>
-+          ))}
++          <div style={styles.detailPanel}>
++            <p style={styles.kicker}>What drives the work</p>
++            <p style={styles.highlight}>
++              The goal is not to add more interface. It is to make the right message land
++              faster.
++            </p>
++            <ul style={styles.list}>
++              {principles.map((principle) => (
++                <li key={principle} style={styles.item}>
++                  {principle}
++                </li>
++              ))}
++            </ul>
++          </div>
 +        </div>
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index 5c7d51986421ad86c8e61b79eb72ed681b4812fd..b960535eb67da119ff3254e3317dfc87457c0cc2
+index b960535eb67da119ff3254e3317dfc87457c0cc2..c5c88700699470ae57d4b8dcf18df9464b8a22f4
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -1,16 +1,11 @@
+@@ -1,4 +1,5 @@
  import HeroSection from "../components/HeroSection"
-+import SignaturePreviewSection from "../components/SignaturePreviewSection"
++import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
+ import SignaturePreviewSection from "../components/SignaturePreviewSection"
  
  export default function Home() {
-   return (
+@@ -6,14 +7,7 @@
      <>
        <HeroSection />
--      <section id="signature-preview" aria-labelledby="signature-preview-title">
--        <h2 id="signature-preview-title">What sets the work apart</h2>
+       <SignaturePreviewSection />
+-
+-      <section id="brand-story-preview" aria-labelledby="brand-story-preview-title">
+-        <h2 id="brand-story-preview-title">Built with clarity before embellishment</h2>
 -        <p>
--          The homepage introduces Alai Web through a clean editorial rhythm: thoughtful design,
--          lightweight builds, and business-focused digital experiences.
+-          This shell establishes the required structure for the home page and keeps the core
+-          messaging, sections, and CTAs ready for the next implementation tasks.
 -        </p>
 -      </section>
-+      <SignaturePreviewSection />
- 
-       <section id="brand-story-preview" aria-labelledby="brand-story-preview-title">
-         <h2 id="brand-story-preview-title">Built with clarity before embellishment</h2>
++      <BrandStoryPreviewSection />
+     </>
+   )
+ }
 
 codex
-Modified files: [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Home.jsx), [SignaturePreviewSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/SignaturePreviewSection.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md)
+Modified files:
+- [src/components/BrandStoryPreviewSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/BrandStoryPreviewSection.jsx)
+- [src/pages/Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Home.jsx)
+- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md)
 
-Implemented the home `signature-preview` section as a dedicated reusable component and rendered it from [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Home.jsx). The new section uses a responsive three-card grid to match the required `grid-cards-preview` type, with content focused on refined design, lightweight performance, and SEO-ready structure.
+What was implemented:
+- Added a reusable `BrandStoryPreviewSection` component for the home page `brand-story-preview` section.
+- Replaced the placeholder section in [src/pages/Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Home.jsx) with the new split-content preview component.
+- Kept the required section id `brand-story-preview` and linked the section CTA to the existing `/chi-siamo` route.
+- Updated [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md) with the task summary.
 
-Build result: `npm run build` passed successfully with a production Vite build.
+Build result:
+- `npm run build` passed successfully.
+
+I did not run browser-based validation in this turn.
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 1f0592cd6be864602c838289cc952ebaf6ba802c..221b88f0c29804a4475a376693ef1d7b4fe084eb
+index 71781710d9c5073fc559fcf65cf4a36208f32f18..ccfb37a3991de925d5a117dfcf17b91af9c3563c
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -47,3 +47,15 @@
- Prepared TASK section-home-signature-preview (Create signature-preview section on home) for execution.
+@@ -70,3 +70,15 @@
+ Prepared TASK section-home-brand-story-preview (Create brand-story-preview section on home) for execution.
  
- Launching Codex for TASK section-home-signature-preview.
+ Launching Codex for TASK section-home-brand-story-preview.
 +
-+Completed TASK `section-home-signature-preview`.
++Completed TASK `section-home-brand-story-preview`.
 +
-+- Added a reusable `SignaturePreviewSection` component in `src/components/SignaturePreviewSection.jsx`.
-+- Replaced the placeholder home section with a three-item grid preview covering design, performance, and SEO foundations.
-+- Kept the section mounted on the home page with the required `signature-preview` section id.
++- Added a reusable `BrandStoryPreviewSection` component in `src/components/BrandStoryPreviewSection.jsx`.
++- Replaced the placeholder home block with a split-content preview pairing brand narrative copy with principle highlights.
++- Mounted the new section on the home page with the required `brand-story-preview` section id.
 +
-+TASK section-home-signature-preview executed by Codex.
++TASK section-home-brand-story-preview executed by Codex.
 +Waiting for validation.
 +
-+TASK section-home-signature-preview completed successfully.
++TASK section-home-brand-story-preview completed successfully.
 +Build passed.
-diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
+diff --git a/src/components/BrandStoryPreviewSection.jsx b/src/components/BrandStoryPreviewSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..1bbc671b6d4eaf62b6dbf10f7d2bef3f75e930e1
+index 0000000000000000000000000000000000000000..bf6c66645019cac106a365ccc5965e174987fbf9
 --- /dev/null
-+++ b/src/components/SignaturePreviewSection.jsx
-@@ -0,0 +1,138 @@
-+const signatureItems = [
-+  {
-+    number: "01",
-+    title: "Refined visual systems",
-+    description:
-+      "Clear typography, measured spacing, and art direction that gives small businesses a sharper digital presence.",
-+  },
-+  {
-+    number: "02",
-+    title: "Fast, lightweight builds",
-+    description:
-+      "Lean front-end decisions keep the experience responsive, readable, and easy to navigate on every screen.",
-+  },
-+  {
-+    number: "03",
-+    title: "SEO-ready structure",
-+    description:
-+      "Semantic markup and purposeful content layouts create a stronger foundation for visibility and conversion.",
-+  },
++++ b/src/components/BrandStoryPreviewSection.jsx
+@@ -0,0 +1,154 @@
++import { Link } from "react-router-dom"
++
++const principles = [
++  "Clarity in structure, so visitors always know where to go next.",
++  "Restraint in design, so every detail supports the message instead of distracting from it.",
++  "Performance in delivery, so the final site feels fast, polished, and dependable.",
 +]
 +
 +const styles = {
 +  section: {
 +    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
 +    background:
-+      "linear-gradient(180deg, #ffffff 0%, #fff7f1 52%, #ffffff 100%)",
++      "linear-gradient(180deg, #ffffff 0%, #ffffff 28%, #f8fafc 100%)",
 +  },
 +  shell: {
 +    maxWidth: "1280px",
 +    margin: "0 auto",
 +    display: "grid",
-+    gap: "2.5rem",
++    gap: "2rem",
 +  },
-+  intro: {
++  layout: {
 +    display: "grid",
-+    gap: "1rem",
-+    maxWidth: "780px",
++    gap: "1.5rem",
++    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
++    alignItems: "stretch",
++  },
++  contentPanel: {
++    display: "grid",
++    gap: "1.25rem",
++    padding: "clamp(1.75rem, 4vw, 3rem)",
++    borderRadius: "2rem",
++    backgroundColor: "#0f172a",
++    color: "#ffffff",
++    boxShadow: "0 24px 70px rgba(15, 23, 42, 0.14)",
 +  },
 +  eyebrow: {
 +    margin: 0,
@@ -2500,123 +2680,145 @@ index 0000000000000000000000000000000000000000..1bbc671b6d4eaf62b6dbf10f7d2bef3f
 +    fontWeight: 700,
 +    letterSpacing: "0.18em",
 +    textTransform: "uppercase",
-+    color: "#f97316",
++    color: "#fb923c",
 +  },
 +  title: {
 +    margin: 0,
-+    fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
++    maxWidth: "12ch",
++    fontSize: "clamp(2.5rem, 6vw, 4.75rem)",
 +    lineHeight: 0.95,
 +    letterSpacing: "-0.05em",
-+    color: "#111111",
 +    textWrap: "balance",
 +  },
 +  lead: {
 +    margin: 0,
-+    maxWidth: "44rem",
-+    fontSize: "clamp(1rem, 2.2vw, 1.2rem)",
-+    lineHeight: 1.7,
-+    color: "#52525b",
++    maxWidth: "34rem",
++    fontSize: "clamp(1rem, 2.3vw, 1.18rem)",
++    lineHeight: 1.75,
++    color: "rgba(255, 255, 255, 0.76)",
 +  },
-+  grid: {
-+    display: "grid",
-+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-+    gap: "1rem",
-+  },
-+  card: {
-+    minHeight: "100%",
-+    display: "grid",
-+    gap: "1rem",
-+    padding: "1.5rem",
-+    border: "1px solid rgba(17, 17, 17, 0.08)",
-+    borderRadius: "1.75rem",
-+    backgroundColor: "rgba(255, 255, 255, 0.92)",
-+    boxShadow: "0 18px 48px rgba(15, 23, 42, 0.08)",
-+  },
-+  number: {
++  action: {
 +    display: "inline-flex",
 +    alignItems: "center",
 +    justifyContent: "center",
-+    width: "3rem",
-+    height: "3rem",
++    width: "fit-content",
++    minHeight: "3.5rem",
++    padding: "0.95rem 1.4rem",
 +    borderRadius: "999px",
-+    backgroundColor: "#111111",
++    backgroundColor: "#f97316",
 +    color: "#ffffff",
++    fontWeight: 700,
++  },
++  detailPanel: {
++    display: "grid",
++    gap: "1rem",
++    padding: "clamp(1.75rem, 4vw, 3rem)",
++    borderRadius: "2rem",
++    border: "1px solid rgba(17, 17, 17, 0.08)",
++    background:
++      "linear-gradient(160deg, rgba(255, 247, 237, 0.96), rgba(255, 255, 255, 0.98))",
++    boxShadow: "0 18px 48px rgba(15, 23, 42, 0.08)",
++  },
++  kicker: {
++    margin: 0,
 +    fontSize: "0.95rem",
 +    fontWeight: 700,
 +    letterSpacing: "0.08em",
++    textTransform: "uppercase",
++    color: "#f97316",
 +  },
-+  cardTitle: {
++  list: {
 +    margin: 0,
-+    fontSize: "1.45rem",
-+    lineHeight: 1.05,
++    padding: 0,
++    listStyle: "none",
++    display: "grid",
++    gap: "1rem",
++  },
++  item: {
++    paddingTop: "1rem",
++    borderTop: "1px solid rgba(17, 17, 17, 0.08)",
++    fontSize: "1rem",
++    lineHeight: 1.75,
++    color: "#3f3f46",
++  },
++  highlight: {
++    margin: 0,
++    fontSize: "clamp(1.4rem, 3vw, 2rem)",
++    lineHeight: 1.15,
 +    letterSpacing: "-0.04em",
 +    color: "#111111",
 +  },
-+  description: {
-+    margin: 0,
-+    fontSize: "1rem",
-+    lineHeight: 1.7,
-+    color: "#52525b",
-+  },
 +}
 +
-+export default function SignaturePreviewSection() {
++export default function BrandStoryPreviewSection() {
 +  return (
 +    <section
-+      id="signature-preview"
-+      aria-labelledby="signature-preview-title"
++      id="brand-story-preview"
++      aria-labelledby="brand-story-preview-title"
 +      style={styles.section}
 +    >
 +      <div style={styles.shell}>
-+        <div style={styles.intro}>
-+          <p style={styles.eyebrow}>Signature preview</p>
-+          <h2 id="signature-preview-title" style={styles.title}>
-+            Three traits shape every Alai Web project.
-+          </h2>
-+          <p style={styles.lead}>
-+            The work is intentionally balanced: strong visual identity, technical restraint,
-+            and a structure that helps real businesses turn attention into inquiries.
-+          </p>
-+        </div>
++        <div style={styles.layout}>
++          <div style={styles.contentPanel}>
++            <p style={styles.eyebrow}>Brand story preview</p>
++            <h2 id="brand-story-preview-title" style={styles.title}>
++              Designed with a calm hand and a technical eye.
++            </h2>
++            <p style={styles.lead}>
++              Alai Web builds websites for businesses that want something cleaner than a
++              template and more useful than a visual refresh. Every project aims to feel
++              editorial, fast, and easy to trust.
++            </p>
++            <Link to="/chi-siamo" style={styles.action}>
++              Learn how Alai Web works
++            </Link>
++          </div>
 +
-+        <div style={styles.grid}>
-+          {signatureItems.map((item) => (
-+            <article key={item.number} style={styles.card}>
-+              <span aria-hidden="true" style={styles.number}>
-+                {item.number}
-+              </span>
-+              <h3 style={styles.cardTitle}>{item.title}</h3>
-+              <p style={styles.description}>{item.description}</p>
-+            </article>
-+          ))}
++          <div style={styles.detailPanel}>
++            <p style={styles.kicker}>What drives the work</p>
++            <p style={styles.highlight}>
++              The goal is not to add more interface. It is to make the right message land
++              faster.
++            </p>
++            <ul style={styles.list}>
++              {principles.map((principle) => (
++                <li key={principle} style={styles.item}>
++                  {principle}
++                </li>
++              ))}
++            </ul>
++          </div>
 +        </div>
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index 5c7d51986421ad86c8e61b79eb72ed681b4812fd..b960535eb67da119ff3254e3317dfc87457c0cc2
+index b960535eb67da119ff3254e3317dfc87457c0cc2..c5c88700699470ae57d4b8dcf18df9464b8a22f4
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -1,16 +1,11 @@
+@@ -1,4 +1,5 @@
  import HeroSection from "../components/HeroSection"
-+import SignaturePreviewSection from "../components/SignaturePreviewSection"
++import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
+ import SignaturePreviewSection from "../components/SignaturePreviewSection"
  
  export default function Home() {
-   return (
+@@ -6,14 +7,7 @@
      <>
        <HeroSection />
--      <section id="signature-preview" aria-labelledby="signature-preview-title">
--        <h2 id="signature-preview-title">What sets the work apart</h2>
+       <SignaturePreviewSection />
+-
+-      <section id="brand-story-preview" aria-labelledby="brand-story-preview-title">
+-        <h2 id="brand-story-preview-title">Built with clarity before embellishment</h2>
 -        <p>
--          The homepage introduces Alai Web through a clean editorial rhythm: thoughtful design,
--          lightweight builds, and business-focused digital experiences.
+-          This shell establishes the required structure for the home page and keeps the core
+-          messaging, sections, and CTAs ready for the next implementation tasks.
 -        </p>
 -      </section>
-+      <SignaturePreviewSection />
- 
-       <section id="brand-story-preview" aria-labelledby="brand-story-preview-title">
-         <h2 id="brand-story-preview-title">Built with clarity before embellishment</h2>
++      <BrandStoryPreviewSection />
+     </>
+   )
+ }
 
 tokens used
-28.578
+22.192

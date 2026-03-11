@@ -1132,10 +1132,10 @@ It must feel like a modern digital product studio.
 ```
 
 ## Current task id
-section-home-signature-preview
+section-home-brand-story-preview
 
 ## Current task title
-Create signature-preview section on home
+Create brand-story-preview section on home
 
 ## Current task type
 section
@@ -1144,8 +1144,8 @@ section
 ```json
 {
   "pageId": "home",
-  "sectionId": "signature-preview",
-  "sectionType": "grid-cards-preview"
+  "sectionId": "brand-story-preview",
+  "sectionType": "split-content-preview"
 }
 ```
 
@@ -1154,13 +1154,13 @@ section
 
 ## Files allowed
 - src/pages/Home.jsx
-- src/components/SignaturePreviewSection.jsx
+- src/components/BrandStoryPreviewSection.jsx
 - src/components
 
 ## Definition of done
-- section signature-preview exists on home
-- section signature-preview matches type grid-cards-preview
-- section signature-preview is rendered in page home
+- section brand-story-preview exists on home
+- section brand-story-preview matches type split-content-preview
+- section brand-story-preview is rendered in page home
 
 ## Strict execution rules
 - Execute only this current task.
