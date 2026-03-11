@@ -442,3 +442,26 @@ Waiting for validation.
 
 TASK section-contatti-contact-details completed successfully.
 Build passed.
+Commit created for TASK section-contatti-contact-details.
+
+Prepared TASK section-contatti-opening-hours (Create opening-hours section on contatti) for execution.
+
+Launching Codex for TASK section-contatti-opening-hours.
+
+Completed TASK `section-contatti-opening-hours`.
+
+- Added a reusable `OpeningHoursSection` component in `src/components/OpeningHoursSection.jsx`.
+- Replaced the inline `opening-hours` markup in `src/pages/Contatti.jsx` so the contatti page renders the dedicated hours-block section component.
+- Preserved the required `opening-hours` section id and studio-hours content while keeping the page structure modular.
+
+TASK section-contatti-opening-hours executed by Codex.
+Waiting for validation.
+
+TASK section-contatti-opening-hours completed successfully.
+Build passed.
+
+TASK section-contatti-opening-hours executed by Codex.
+Waiting for validation.
+
+TASK section-contatti-opening-hours completed successfully.
+Build passed.

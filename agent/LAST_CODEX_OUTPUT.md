@@ -1,8 +1,8 @@
-Modified files: [ContactDetailsSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/ContactDetailsSection.jsx#L1), [Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx#L1), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md#L436)
+Modified files: [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx), [src/components/OpeningHoursSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/OpeningHoursSection.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md)
 
-Implemented the `contact-details` section as a dedicated reusable contact-block component in [ContactDetailsSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/ContactDetailsSection.jsx#L1). It renders the required `contact-details` section with email, phone, and WhatsApp actions using valid `mailto:`, `tel:`, and WhatsApp links, and it is now mounted on the contatti page in [Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx#L14).
+Implemented the `opening-hours` hours-block for the contatti page by extracting the existing inline section into a dedicated reusable component and rendering it from [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx). The new [src/components/OpeningHoursSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/OpeningHoursSection.jsx) keeps the required `opening-hours` section id, heading, and daily schedule content. I also appended the task summary to [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md).
 
-Build result: `npm run build` passed successfully with a production Vite build. I also updated [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md#L436) with the required task summary.
+Build result: `npm run build` passed with Vite production build succeeding. I did not run browser-based validation in this turn.
 
 OpenAI Codex v0.111.0 (research preview)
 --------
@@ -13,7 +13,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cddb9-f1e6-75e2-87bf-f09aed725cad
+session id: 019cddbb-4c4f-7de3-98e7-bb7b44dfdd86
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1150,10 +1150,10 @@ It must feel like a modern digital product studio.
 ```
 
 ## Current task id
-section-contatti-contact-details
+section-contatti-opening-hours
 
 ## Current task title
-Create contact-details section on contatti
+Create opening-hours section on contatti
 
 ## Current task type
 section
@@ -1162,8 +1162,8 @@ section
 ```json
 {
   "pageId": "contatti",
-  "sectionId": "contact-details",
-  "sectionType": "contact-block"
+  "sectionId": "opening-hours",
+  "sectionType": "hours-block"
 }
 ```
 
@@ -1172,13 +1172,13 @@ section
 
 ## Files allowed
 - src/pages/Contatti.jsx
-- src/components/ContactDetailsSection.jsx
+- src/components/OpeningHoursSection.jsx
 - src/components
 
 ## Definition of done
-- section contact-details exists on contatti
-- section contact-details matches type contact-block
-- section contact-details is rendered in page contatti
+- section opening-hours exists on contatti
+- section opening-hours matches type hours-block
+- section opening-hours is rendered in page contatti
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1207,31 +1207,53 @@ section
 
 mcp startup: no servers
 codex
-I’m implementing the `contact-details` section for the `contatti` page and will first inspect the current page shell, shared components, and task/report files so the change stays within the task boundary.
+I’m executing `section-contatti-opening-hours`. First I’m checking the current page shell, component structure, and task/source-of-truth files so the new hours block fits the existing implementation without touching unrelated sections.
 exec
 /bin/zsh -lc "sed -n '1,220p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
 /bin/zsh -lc "sed -n '1,220p' src/pages/Contatti.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "pwd && rg --files src agent brief docs | rg '"'^(src/pages/Contatti.jsx|src/components/|agent/AGENT_REPORT.md|agent/CURRENT_TASK_PROMPT.md|docs/DEVELOPMENT_METHOD.md|site-spec.json|brief/original-prompt.md|brief/brief-summary.md)$'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,220p' docs/DEVELOPMENT_METHOD.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "pwd && rg --files brief agent docs src | rg '"'^(brief/original-prompt.md|brief/brief-summary.md|agent/CURRENT_TASK_PROMPT.md|agent/TASK_STATE.json|agent/TASK_GRAPH.json|docs/DEVELOPMENT_METHOD.md|site-spec.json|src/pages/Contatti.jsx|src/components)'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 52ms:
 import ContactHeroSection from "../components/ContactHeroSection"
-
-const contactDetails = [
-  {
-    label: "Email",
-    value: "hello@alaiweb.com",
-    href: "mailto:hello@alaiweb.com",
-    description: "Share your goals, timeline, and current site status.",
-  },
-  {
-    label: "Phone",
-    value: "+39 02 9475 1280",
-    href: "tel:+390294751280",
-    description: "Call for a quick conversation about scope and priorities.",
-  },
-]
+import ContactDetailsSection from "../components/ContactDetailsSection"
 
 const officeHours = [
   { day: "Monday", hours: "09:00 - 18:00" },
   { day: "Tuesday", hours: "09:00 - 18:00" },
+  { day: "Wednesday", hours: "09:00 - 18:00" },
+  { day: "Thursday", hours: "09:00 - 18:00" },
+  { day: "Friday", hours: "09:00 - 16:00" },
+  { day: "Saturday", hours: "By request" },
+  { day: "Sunday", hours: "Closed" },
+]
+
+export default function Contatti() {
+  return (
+    <main>
+      <ContactHeroSection />
+      <ContactDetailsSection />
+
+      <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
+ succeeded in 52ms:
+# Development Method
+
+All sites must follow these rules.
+
+## Objective
+- Generate production-ready static websites that are clear, stable, responsive, modular, and easy to validate.
+- Prioritize correctness before visual polish.
+- Prefer predictable implementation over improvisation.
+
+## Source of Truth
+- The human prompt is not the implementation source of truth.
+- `site-spec.json` is the only source of truth for pages, sections, navigation, routing, and required features.
+- If supported by the project architecture, `content.json` is the source of truth for copy, labels, CTA text, and contact details.
+- If supported by the project architecture, `theme.json` is the source of truth for colors, typography, spacing, radius, and visual tokens.
+- The implementation flow must be: `prompt -> site-spec.json -> tasks -> code`.
+- Never implement pages, routes, sections, navigation items, or features that are not defined in the spec.
+
+## Core Principles
+- Build for users first: clarity, speed, and clear actions.
+- Keep code modular: reusable components with clear responsibilities.
  succeeded in 52ms:
 # CURRENT TASK EXECUTION PROMPT
 
@@ -1255,18 +1277,52 @@ site-create-a-high-end-visually-distinctive-m
 All sites must follow these rules.
  succeeded in 51ms:
 /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m
-brief/brief-summary.md
-agent/CURRENT_TASK_PROMPT.md
-agent/AGENT_REPORT.md
-brief/original-prompt.md
 docs/DEVELOPMENT_METHOD.md
+brief/brief-summary.md
+brief/original-prompt.md
+agent/TASK_GRAPH.json
+agent/CURRENT_TASK_PROMPT.md
+agent/TASK_STATE.json
 src/pages/Contatti.jsx
+src/components/FloatingWhatsAppButton.jsx
+src/components/AboutHeroSection.jsx
+src/components/StorySection.jsx
+src/components/BrandStoryPreviewSection.jsx
+src/components/PhilosophySection.jsx
+src/components/MenuCategoriesSection.jsx
+src/components/GalleryHeroSection.jsx
+src/components/SignaturePreviewSection.jsx
+src/components/ContactHeroSection.jsx
+src/components/GalleryGridSection.jsx
+src/components/MenuHeroSection.jsx
+src/components/HeroSection.jsx
 codex
-The `contatti` page already has inline contact markup. I’m checking surrounding component patterns before extracting that section into a dedicated `ContactDetailsSection` so the page stays modular and the current task remains the only change.
+The contact page already has an inline hours section, so I’m extracting that into a dedicated reusable component and keeping the page wiring minimal. I’m also checking nearby component patterns so the new file matches the existing style and doesn’t introduce build drift.
 exec
-/bin/zsh -lc "sed -n '1,220p' src/components/ContactHeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc 'rg --files src/components' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,240p' src/components/ContactDetailsSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,240p' src/components/ContactHeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,240p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 52ms:
+const contactDetails = [
+  {
+    label: "Email",
+    value: "hello@alaiweb.com",
+    href: "mailto:hello@alaiweb.com",
+    description: "Share your goals, timeline, and current site status.",
+  },
+  {
+    label: "Phone",
+    value: "+39 02 9475 1280",
+    href: "tel:+390294751280",
+    description: "Call for a quick conversation about scope and priorities.",
+  },
+  {
+    label: "WhatsApp",
+    value: "Message the studio",
+    href: "https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project.",
+    description:
+      "Ideal for early project questions, quick feedback, and scheduling the first call.",
+    isDark: true,
+ succeeded in 51ms:
 const styles = {
   section: {
     position: "relative",
@@ -1288,6 +1344,8 @@ const styles = {
     fontWeight: 700,
     letterSpacing: "0.12em",
  succeeded in 51ms:
+Total output lines: 240
+
 # AGENT REPORT
 
 Project created.
@@ -1306,821 +1364,10 @@ Completed TASK `page-home-shell`.
 TASK page-home-shell executed by Codex.
 Waiting for validation.
 
-TASK page-home-shell completed successfully.
-Build passed.
- succeeded in 50ms:
-src/components/FloatingWhatsAppButton.jsx
-src/components/AboutHeroSection.jsx
-src/components/StorySection.jsx
-src/components/BrandStoryPreviewSection.jsx
-src/components/PhilosophySection.jsx
-src/components/MenuCategoriesSection.jsx
-src/components/GalleryHeroSection.jsx
-src/components/SignaturePreviewSection.jsx
-src/components/ContactHeroSection.jsx
-src/components/GalleryGridSection.jsx
-src/components/MenuHeroSection.jsx
-src/components/HeroSection.jsx
 codex
-I’ve got enough context. Next I’m extracting the existing contact block into `src/components/ContactDetailsSection.jsx`, then wiring `Contatti.jsx` to render that component without touching the opening-hours section or any unrelated routing/layout code.
+I’ve got enough context. Next I’m patching `Contatti.jsx` to use a dedicated `OpeningHoursSection` component, then I’ll run the build and append the task result to `agent/AGENT_REPORT.md` as required.
 file update
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/ContactDetailsSection.jsx
-const contactDetails = [
-  {
-    label: "Email",
-    value: "hello@alaiweb.com",
-    href: "mailto:hello@alaiweb.com",
-    description: "Share your goals, timeline, and current site status.",
-  },
-  {
-    label: "Phone",
-    value: "+39 02 9475 1280",
-    href: "tel:+390294751280",
-    description: "Call for a quick conversation about scope and priorities.",
-  },
-  {
-    label: "WhatsApp",
-    value: "Message the studio",
-    href: "https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project.",
-    description:
-      "Ideal for early project questions, quick feedback, and scheduling the first call.",
-    isDark: true,
-    external: true,
-  },
-]
-
-const styles = {
-  section: {
-    padding: "0 1.5rem 3rem",
-  },
-  shell: {
-    maxWidth: "72rem",
-    margin: "0 auto",
-    display: "grid",
-    gap: "1.5rem",
-  },
-  title: {
-    margin: 0,
-    fontSize: "clamp(2rem, 5vw, 3.25rem)",
-  },
-  lead: {
-    margin: 0,
-    maxWidth: "42rem",
-    color: "rgba(17, 17, 17, 0.72)",
-    lineHeight: 1.7,
-  },
-  grid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-    gap: "1rem",
-  },
-  card: {
-    display: "grid",
-    gap: "0.75rem",
-    padding: "1.5rem",
-    borderRadius: "1.5rem",
-    backgroundColor: "#f5f5f5",
-    color: "#111111",
-    textDecoration: "none",
-  },
-  cardDark: {
-    backgroundColor: "#111111",
-    color: "#ffffff",
-  },
-  label: {
-    fontSize: "0.875rem",
-    fontWeight: 700,
-    letterSpacing: "0.08em",
-    textTransform: "uppercase",
-    color: "#f97316",
-  },
-  value: {
-    fontSize: "1.25rem",
-  },
-  description: {
-    color: "rgba(17, 17, 17, 0.72)",
-    lineHeight: 1.6,
-  },
-  descriptionDark: {
-    color: "rgba(255, 255, 255, 0.72)",
-  },
-}
-
-export default function ContactDetailsSection() {
-  return (
-    <section id="contact-details" aria-labelledby="contact-details-title" style={styles.section}>
-      <div style={styles.shell}>
-        <h2 id="contact-details-title" style={styles.title}>
-          Project conversations, without the friction.
-        </h2>
-        <p style={styles.lead}>
-          Use the channel that fits your workflow. Email is best for detailed briefs,
-          phone is best for quick alignment, and WhatsApp works well when you want to
-          move fast.
-        </p>
-        <div style={styles.grid}>
-          {contactDetails.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              target={item.external ? "_blank" : undefined}
-              rel={item.external ? "noreferrer" : undefined}
-              style={{
-                ...styles.card,
-                ...(item.isDark ? styles.cardDark : null),
-              }}
-            >
-              <span style={styles.label}>{item.label}</span>
-              <strong style={styles.value}>{item.value}</strong>
-              <span
-                style={{
-                  ...styles.description,
-                  ...(item.isDark ? styles.descriptionDark : null),
-                }}
-              >
-                {item.description}
-              </span>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx
-@@ -1,17 +1,3 @@
- import ContactHeroSection from "../components/ContactHeroSection"
--
--const contactDetails = [
--  {
--    label: "Email",
--    value: "hello@alaiweb.com",
--    href: "mailto:hello@alaiweb.com",
--    description: "Share your goals, timeline, and current site status.",
--  },
--  {
--    label: "Phone",
--    value: "+39 02 9475 1280",
--    href: "tel:+390294751280",
--    description: "Call for a quick conversation about scope and priorities.",
--  },
--]
-+import ContactDetailsSection from "../components/ContactDetailsSection"
- 
-@@ -31,99 +17,3 @@
-       <ContactHeroSection />
--
--      <section id="contact-details" style={{ padding: "0 1.5rem 3rem" }}>
--        <div
--          style={{
--            maxWidth: "72rem",
--            margin: "0 auto",
--            display: "grid",
--            gap: "1.5rem",
--          }}
--        >
--          <h2 style={{ margin: 0, fontSize: "clamp(2rem, 5vw, 3.25rem)" }}>
--            Project conversations, without the friction.
--          </h2>
--          <p
--            style={{
--              margin: 0,
--              maxWidth: "42rem",
--              color: "rgba(17, 17, 17, 0.72)",
--              lineHeight: 1.7,
--            }}
--          >
--            Use the channel that fits your workflow. Email is best for detailed
--            briefs, phone is best for quick alignment, and WhatsApp works well when
--            you want to move fast.
--          </p>
--          <div
--            style={{
--              display: "grid",
--              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
--              gap: "1rem",
--            }}
--          >
--            {contactDetails.map((item) => (
--              <a
--                key={item.label}
--                href={item.href}
--                style={{
--                  display: "grid",
--                  gap: "0.75rem",
--                  padding: "1.5rem",
--                  borderRadius: "1.5rem",
--                  backgroundColor: "#f5f5f5",
--                  color: "#111111",
--                  textDecoration: "none",
--                }}
--              >
--                <span
--                  style={{
--                    fontSize: "0.875rem",
--                    fontWeight: 700,
--                    letterSpacing: "0.08em",
--                    textTransform: "uppercase",
--                    color: "#f97316",
--                  }}
--                >
--                  {item.label}
--                </span>
--                <strong style={{ fontSize: "1.25rem" }}>{item.value}</strong>
--                <span style={{ color: "rgba(17, 17, 17, 0.72)", lineHeight: 1.6 }}>
--                  {item.description}
--                </span>
--              </a>
--            ))}
--            <a
--              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
--              target="_blank"
--              rel="noreferrer"
--              style={{
--                display: "grid",
--                gap: "0.75rem",
--                padding: "1.5rem",
--                borderRadius: "1.5rem",
--                backgroundColor: "#111111",
--                color: "#ffffff",
--                textDecoration: "none",
--              }}
--            >
--              <span
--                style={{
--                  fontSize: "0.875rem",
--                  fontWeight: 700,
--                  letterSpacing: "0.08em",
--                  textTransform: "uppercase",
--                  color: "#f97316",
--                }}
--              >
--                WhatsApp
--              </span>
--              <strong style={{ fontSize: "1.25rem" }}>Message the studio</strong>
--              <span style={{ color: "rgba(255, 255, 255, 0.72)", lineHeight: 1.6 }}>
--                Ideal for early project questions, quick feedback, and scheduling the
--                first call.
--              </span>
--            </a>
--          </div>
--        </div>
--      </section>
-+      <ContactDetailsSection />
- 
-apply_patch(auto_approved=true) exited 0 in 60ms:
-Success. Updated the following files:
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/ContactDetailsSection.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx
-file update:
-diff --git a/src/components/ContactDetailsSection.jsx b/src/components/ContactDetailsSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..d6fcc875ebb52774f978e6eae9fb65ffcfec21dd
---- /dev/null
-+++ b/src/components/ContactDetailsSection.jsx
-@@ -0,0 +1,122 @@
-+const contactDetails = [
-+  {
-+    label: "Email",
-+    value: "hello@alaiweb.com",
-+    href: "mailto:hello@alaiweb.com",
-+    description: "Share your goals, timeline, and current site status.",
-+  },
-+  {
-+    label: "Phone",
-+    value: "+39 02 9475 1280",
-+    href: "tel:+390294751280",
-+    description: "Call for a quick conversation about scope and priorities.",
-+  },
-+  {
-+    label: "WhatsApp",
-+    value: "Message the studio",
-+    href: "https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project.",
-+    description:
-+      "Ideal for early project questions, quick feedback, and scheduling the first call.",
-+    isDark: true,
-+    external: true,
-+  },
-+]
-+
-+const styles = {
-+  section: {
-+    padding: "0 1.5rem 3rem",
-+  },
-+  shell: {
-+    maxWidth: "72rem",
-+    margin: "0 auto",
-+    display: "grid",
-+    gap: "1.5rem",
-+  },
-+  title: {
-+    margin: 0,
-+    fontSize: "clamp(2rem, 5vw, 3.25rem)",
-+  },
-+  lead: {
-+    margin: 0,
-+    maxWidth: "42rem",
-+    color: "rgba(17, 17, 17, 0.72)",
-+    lineHeight: 1.7,
-+  },
-+  grid: {
-+    display: "grid",
-+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-+    gap: "1rem",
-+  },
-+  card: {
-+    display: "grid",
-+    gap: "0.75rem",
-+    padding: "1.5rem",
-+    borderRadius: "1.5rem",
-+    backgroundColor: "#f5f5f5",
-+    color: "#111111",
-+    textDecoration: "none",
-+  },
-+  cardDark: {
-+    backgroundColor: "#111111",
-+    color: "#ffffff",
-+  },
-+  label: {
-+    fontSize: "0.875rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.08em",
-+    textTransform: "uppercase",
-+    color: "#f97316",
-+  },
-+  value: {
-+    fontSize: "1.25rem",
-+  },
-+  description: {
-+    color: "rgba(17, 17, 17, 0.72)",
-+    lineHeight: 1.6,
-+  },
-+  descriptionDark: {
-+    color: "rgba(255, 255, 255, 0.72)",
-+  },
-+}
-+
-+export default function ContactDetailsSection() {
-+  return (
-+    <section id="contact-details" aria-labelledby="contact-details-title" style={styles.section}>
-+      <div style={styles.shell}>
-+        <h2 id="contact-details-title" style={styles.title}>
-+          Project conversations, without the friction.
-+        </h2>
-+        <p style={styles.lead}>
-+          Use the channel that fits your workflow. Email is best for detailed briefs,
-+          phone is best for quick alignment, and WhatsApp works well when you want to
-+          move fast.
-+        </p>
-+        <div style={styles.grid}>
-+          {contactDetails.map((item) => (
-+            <a
-+              key={item.label}
-+              href={item.href}
-+              target={item.external ? "_blank" : undefined}
-+              rel={item.external ? "noreferrer" : undefined}
-+              style={{
-+                ...styles.card,
-+                ...(item.isDark ? styles.cardDark : null),
-+              }}
-+            >
-+              <span style={styles.label}>{item.label}</span>
-+              <strong style={styles.value}>{item.value}</strong>
-+              <span
-+                style={{
-+                  ...styles.description,
-+                  ...(item.isDark ? styles.descriptionDark : null),
-+                }}
-+              >
-+                {item.description}
-+              </span>
-+            </a>
-+          ))}
-+        </div>
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 634f4a8aad060e5b424277f70429ea03f77d2224..d17e05ae578573df136ddb97d76eec75274005c4
---- a/src/pages/Contatti.jsx
-+++ b/src/pages/Contatti.jsx
-@@ -1,19 +1,5 @@
- import ContactHeroSection from "../components/ContactHeroSection"
--
--const contactDetails = [
--  {
--    label: "Email",
--    value: "hello@alaiweb.com",
--    href: "mailto:hello@alaiweb.com",
--    description: "Share your goals, timeline, and current site status.",
--  },
--  {
--    label: "Phone",
--    value: "+39 02 9475 1280",
--    href: "tel:+390294751280",
--    description: "Call for a quick conversation about scope and priorities.",
--  },
--]
-+import ContactDetailsSection from "../components/ContactDetailsSection"
- 
- const officeHours = [
-   { day: "Monday", hours: "09:00 - 18:00" },
-@@ -29,103 +15,7 @@
-   return (
-     <main>
-       <ContactHeroSection />
--
--      <section id="contact-details" style={{ padding: "0 1.5rem 3rem" }}>
--        <div
--          style={{
--            maxWidth: "72rem",
--            margin: "0 auto",
--            display: "grid",
--            gap: "1.5rem",
--          }}
--        >
--          <h2 style={{ margin: 0, fontSize: "clamp(2rem, 5vw, 3.25rem)" }}>
--            Project conversations, without the friction.
--          </h2>
--          <p
--            style={{
--              margin: 0,
--              maxWidth: "42rem",
--              color: "rgba(17, 17, 17, 0.72)",
--              lineHeight: 1.7,
--            }}
--          >
--            Use the channel that fits your workflow. Email is best for detailed
--            briefs, phone is best for quick alignment, and WhatsApp works well when
--            you want to move fast.
--          </p>
--          <div
--            style={{
--              display: "grid",
--              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
--              gap: "1rem",
--            }}
--          >
--            {contactDetails.map((item) => (
--              <a
--                key={item.label}
--                href={item.href}
--                style={{
--                  display: "grid",
--                  gap: "0.75rem",
--                  padding: "1.5rem",
--                  borderRadius: "1.5rem",
--                  backgroundColor: "#f5f5f5",
--                  color: "#111111",
--                  textDecoration: "none",
--                }}
--              >
--                <span
--                  style={{
--                    fontSize: "0.875rem",
--                    fontWeight: 700,
--                    letterSpacing: "0.08em",
--                    textTransform: "uppercase",
--                    color: "#f97316",
--                  }}
--                >
--                  {item.label}
--                </span>
--                <strong style={{ fontSize: "1.25rem" }}>{item.value}</strong>
--                <span style={{ color: "rgba(17, 17, 17, 0.72)", lineHeight: 1.6 }}>
--                  {item.description}
--                </span>
--              </a>
--            ))}
--            <a
--              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
--              target="_blank"
--              rel="noreferrer"
--              style={{
--                display: "grid",
--                gap: "0.75rem",
--                padding: "1.5rem",
--                borderRadius: "1.5rem",
--                backgroundColor: "#111111",
--                color: "#ffffff",
--                textDecoration: "none",
--              }}
--            >
--              <span
--                style={{
--                  fontSize: "0.875rem",
--                  fontWeight: 700,
--                  letterSpacing: "0.08em",
--                  textTransform: "uppercase",
--                  color: "#f97316",
--                }}
--              >
--                WhatsApp
--              </span>
--              <strong style={{ fontSize: "1.25rem" }}>Message the studio</strong>
--              <span style={{ color: "rgba(255, 255, 255, 0.72)", lineHeight: 1.6 }}>
--                Ideal for early project questions, quick feedback, and scheduling the
--                first call.
--              </span>
--            </a>
--          </div>
--        </div>
--      </section>
-+      <ContactDetailsSection />
- 
-       <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
-         <div
-
-file update:
-diff --git a/src/components/ContactDetailsSection.jsx b/src/components/ContactDetailsSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..d6fcc875ebb52774f978e6eae9fb65ffcfec21dd
---- /dev/null
-+++ b/src/components/ContactDetailsSection.jsx
-@@ -0,0 +1,122 @@
-+const contactDetails = [
-+  {
-+    label: "Email",
-+    value: "hello@alaiweb.com",
-+    href: "mailto:hello@alaiweb.com",
-+    description: "Share your goals, timeline, and current site status.",
-+  },
-+  {
-+    label: "Phone",
-+    value: "+39 02 9475 1280",
-+    href: "tel:+390294751280",
-+    description: "Call for a quick conversation about scope and priorities.",
-+  },
-+  {
-+    label: "WhatsApp",
-+    value: "Message the studio",
-+    href: "https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project.",
-+    description:
-+      "Ideal for early project questions, quick feedback, and scheduling the first call.",
-+    isDark: true,
-+    external: true,
-+  },
-+]
-+
-+const styles = {
-+  section: {
-+    padding: "0 1.5rem 3rem",
-+  },
-+  shell: {
-+    maxWidth: "72rem",
-+    margin: "0 auto",
-+    display: "grid",
-+    gap: "1.5rem",
-+  },
-+  title: {
-+    margin: 0,
-+    fontSize: "clamp(2rem, 5vw, 3.25rem)",
-+  },
-+  lead: {
-+    margin: 0,
-+    maxWidth: "42rem",
-+    color: "rgba(17, 17, 17, 0.72)",
-+    lineHeight: 1.7,
-+  },
-+  grid: {
-+    display: "grid",
-+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-+    gap: "1rem",
-+  },
-+  card: {
-+    display: "grid",
-+    gap: "0.75rem",
-+    padding: "1.5rem",
-+    borderRadius: "1.5rem",
-+    backgroundColor: "#f5f5f5",
-+    color: "#111111",
-+    textDecoration: "none",
-+  },
-+  cardDark: {
-+    backgroundColor: "#111111",
-+    color: "#ffffff",
-+  },
-+  label: {
-+    fontSize: "0.875rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.08em",
-+    textTransform: "uppercase",
-+    color: "#f97316",
-+  },
-+  value: {
-+    fontSize: "1.25rem",
-+  },
-+  description: {
-+    color: "rgba(17, 17, 17, 0.72)",
-+    lineHeight: 1.6,
-+  },
-+  descriptionDark: {
-+    color: "rgba(255, 255, 255, 0.72)",
-+  },
-+}
-+
-+export default function ContactDetailsSection() {
-+  return (
-+    <section id="contact-details" aria-labelledby="contact-details-title" style={styles.section}>
-+      <div style={styles.shell}>
-+        <h2 id="contact-details-title" style={styles.title}>
-+          Project conversations, without the friction.
-+        </h2>
-+        <p style={styles.lead}>
-+          Use the channel that fits your workflow. Email is best for detailed briefs,
-+          phone is best for quick alignment, and WhatsApp works well when you want to
-+          move fast.
-+        </p>
-+        <div style={styles.grid}>
-+          {contactDetails.map((item) => (
-+            <a
-+              key={item.label}
-+              href={item.href}
-+              target={item.external ? "_blank" : undefined}
-+              rel={item.external ? "noreferrer" : undefined}
-+              style={{
-+                ...styles.card,
-+                ...(item.isDark ? styles.cardDark : null),
-+              }}
-+            >
-+              <span style={styles.label}>{item.label}</span>
-+              <strong style={styles.value}>{item.value}</strong>
-+              <span
-+                style={{
-+                  ...styles.description,
-+                  ...(item.isDark ? styles.descriptionDark : null),
-+                }}
-+              >
-+                {item.description}
-+              </span>
-+            </a>
-+          ))}
-+        </div>
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 634f4a8aad060e5b424277f70429ea03f77d2224..d17e05ae578573df136ddb97d76eec75274005c4
---- a/src/pages/Contatti.jsx
-+++ b/src/pages/Contatti.jsx
-@@ -1,19 +1,5 @@
- import ContactHeroSection from "../components/ContactHeroSection"
--
--const contactDetails = [
--  {
--    label: "Email",
--    value: "hello@alaiweb.com",
--    href: "mailto:hello@alaiweb.com",
--    description: "Share your goals, timeline, and current site status.",
--  },
--  {
--    label: "Phone",
--    value: "+39 02 9475 1280",
--    href: "tel:+390294751280",
--    description: "Call for a quick conversation about scope and priorities.",
--  },
--]
-+import ContactDetailsSection from "../components/ContactDetailsSection"
- 
- const officeHours = [
-   { day: "Monday", hours: "09:00 - 18:00" },
-@@ -29,103 +15,7 @@
-   return (
-     <main>
-       <ContactHeroSection />
--
--      <section id="contact-details" style={{ padding: "0 1.5rem 3rem" }}>
--        <div
--          style={{
--            maxWidth: "72rem",
--            margin: "0 auto",
--            display: "grid",
--            gap: "1.5rem",
--          }}
--        >
--          <h2 style={{ margin: 0, fontSize: "clamp(2rem, 5vw, 3.25rem)" }}>
--            Project conversations, without the friction.
--          </h2>
--          <p
--            style={{
--              margin: 0,
--              maxWidth: "42rem",
--              color: "rgba(17, 17, 17, 0.72)",
--              lineHeight: 1.7,
--            }}
--          >
--            Use the channel that fits your workflow. Email is best for detailed
--            briefs, phone is best for quick alignment, and WhatsApp works well when
--            you want to move fast.
--          </p>
--          <div
--            style={{
--              display: "grid",
--              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
--              gap: "1rem",
--            }}
--          >
--            {contactDetails.map((item) => (
--              <a
--                key={item.label}
--                href={item.href}
--                style={{
--                  display: "grid",
--                  gap: "0.75rem",
--                  padding: "1.5rem",
--                  borderRadius: "1.5rem",
--                  backgroundColor: "#f5f5f5",
--                  color: "#111111",
--                  textDecoration: "none",
--                }}
--              >
--                <span
--                  style={{
--                    fontSize: "0.875rem",
--                    fontWeight: 700,
--                    letterSpacing: "0.08em",
--                    textTransform: "uppercase",
--                    color: "#f97316",
--                  }}
--                >
--                  {item.label}
--                </span>
--                <strong style={{ fontSize: "1.25rem" }}>{item.value}</strong>
--                <span style={{ color: "rgba(17, 17, 17, 0.72)", lineHeight: 1.6 }}>
--                  {item.description}
--                </span>
--              </a>
--            ))}
--            <a
--              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
--              target="_blank"
--              rel="noreferrer"
--              style={{
--                display: "grid",
--                gap: "0.75rem",
--                padding: "1.5rem",
--                borderRadius: "1.5rem",
--                backgroundColor: "#111111",
--                color: "#ffffff",
--                textDecoration: "none",
--              }}
--            >
--              <span
--                style={{
--                  fontSize: "0.875rem",
--                  fontWeight: 700,
--                  letterSpacing: "0.08em",
--                  textTransform: "uppercase",
--                  color: "#f97316",
--                }}
--              >
--                WhatsApp
--              </span>
--              <strong style={{ fontSize: "1.25rem" }}>Message the studio</strong>
--              <span style={{ color: "rgba(255, 255, 255, 0.72)", lineHeight: 1.6 }}>
--                Ideal for early project questions, quick feedback, and scheduling the
--                first call.
--              </span>
--            </a>
--          </div>
--        </div>
--      </section>
-+      <ContactDetailsSection />
- 
-       <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
-         <div
-
-codex
-The section is now isolated in its own component and mounted back into `Contatti.jsx`. I’m running the build next, then I’ll append the task summary to `agent/AGENT_REPORT.md` as required.
-exec
-/bin/zsh -lc "sed -n '1,220p' src/pages/Contatti.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,240p' src/components/ContactDetailsSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 52ms:
-const contactDetails = [
-  {
-    label: "Email",
-    value: "hello@alaiweb.com",
-    href: "mailto:hello@alaiweb.com",
-    description: "Share your goals, timeline, and current site status.",
-  },
-  {
-    label: "Phone",
-    value: "+39 02 9475 1280",
-    href: "tel:+390294751280",
-    description: "Call for a quick conversation about scope and priorities.",
-  },
-  {
-    label: "WhatsApp",
-    value: "Message the studio",
-    href: "https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project.",
-    description:
-      "Ideal for early project questions, quick feedback, and scheduling the first call.",
-    isDark: true,
- succeeded in 52ms:
-import ContactHeroSection from "../components/ContactHeroSection"
-import ContactDetailsSection from "../components/ContactDetailsSection"
-
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/OpeningHoursSection.jsx
 const officeHours = [
   { day: "Monday", hours: "09:00 - 18:00" },
   { day: "Tuesday", hours: "09:00 - 18:00" },
@@ -2131,151 +1378,599 @@ const officeHours = [
   { day: "Sunday", hours: "Closed" },
 ]
 
-export default function Contatti() {
-  return (
-    <main>
-      <ContactHeroSection />
-      <ContactDetailsSection />
+const styles = {
+  section: {
+    padding: "0 1.5rem 5rem",
+  },
+  shell: {
+    maxWidth: "72rem",
+    margin: "0 auto",
+    padding: "2rem",
+    borderRadius: "2rem",
+    backgroundColor: "#0f172a",
+    color: "#ffffff",
+    display: "grid",
+    gap: "1.5rem",
+  },
+  header: {
+    display: "grid",
+    gap: "0.75rem",
+  },
+  title: {
+    margin: 0,
+    fontSize: "clamp(2rem, 4vw, 3rem)",
+  },
+  lead: {
+    margin: 0,
+    maxWidth: "38rem",
+    color: "rgba(255, 255, 255, 0.72)",
+    lineHeight: 1.7,
+  },
+  list: {
+    display: "grid",
+    gap: "0.75rem",
+  },
+  row: {
+    display: "flex",
+    justifyContent: "space-between",
+    gap: "1rem",
+    paddingBottom: "0.75rem",
+    borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
+  },
+  hours: {
+    color: "rgba(255, 255, 255, 0.72)",
+    textAlign: "right",
+  },
+}
 
-      <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
+export default function OpeningHoursSection() {
+  return (
+    <section id="opening-hours" aria-labelledby="opening-hours-title" style={styles.section}>
+      <div style={styles.shell}>
+        <div style={styles.header}>
+          <h2 id="opening-hours-title" style={styles.title}>
+            Studio hours
+          </h2>
+          <p style={styles.lead}>
+            We keep our calendar focused so projects move quickly. If your launch is
+            urgent, mention the deadline in your first message and we will confirm
+            availability directly.
+          </p>
+        </div>
+        <div style={styles.list}>
+          {officeHours.map((entry) => (
+            <div key={entry.day} style={styles.row}>
+              <span>{entry.day}</span>
+              <span style={styles.hours}>{entry.hours}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx
+@@ -2,12 +2,3 @@
+ import ContactDetailsSection from "../components/ContactDetailsSection"
+-
+-const officeHours = [
+-  { day: "Monday", hours: "09:00 - 18:00" },
+-  { day: "Tuesday", hours: "09:00 - 18:00" },
+-  { day: "Wednesday", hours: "09:00 - 18:00" },
+-  { day: "Thursday", hours: "09:00 - 18:00" },
+-  { day: "Friday", hours: "09:00 - 16:00" },
+-  { day: "Saturday", hours: "By request" },
+-  { day: "Sunday", hours: "Closed" },
+-]
++import OpeningHoursSection from "../components/OpeningHoursSection"
+ 
+@@ -18,50 +9,3 @@
+       <ContactDetailsSection />
+-
+-      <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
+-        <div
+-          style={{
+-            maxWidth: "72rem",
+-            margin: "0 auto",
+-            padding: "2rem",
+-            borderRadius: "2rem",
+-            backgroundColor: "#0f172a",
+-            color: "#ffffff",
+-            display: "grid",
+-            gap: "1.5rem",
+-          }}
+-        >
+-          <div style={{ display: "grid", gap: "0.75rem" }}>
+-            <h2 style={{ margin: 0, fontSize: "clamp(2rem, 4vw, 3rem)" }}>
+-              Studio hours
+-            </h2>
+-            <p style={{ margin: 0, maxWidth: "38rem", color: "rgba(255, 255, 255, 0.72)" }}>
+-              We keep our calendar focused so projects move quickly. If your launch is
+-              urgent, mention the deadline in your first message and we will confirm
+-              availability directly.
+-            </p>
+-          </div>
+-          <div
+-            style={{
+-              display: "grid",
+-              gap: "0.75rem",
+-            }}
+-          >
+-            {officeHours.map((entry) => (
+-              <div
+-                key={entry.day}
+-                style={{
+-                  display: "flex",
+-                  justifyContent: "space-between",
+-                  gap: "1rem",
+-                  paddingBottom: "0.75rem",
+-                  borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
+-                }}
+-              >
+-                <span>{entry.day}</span>
+-                <span style={{ color: "rgba(255, 255, 255, 0.72)" }}>{entry.hours}</span>
+-              </div>
+-            ))}
+-          </div>
+-        </div>
+-      </section>
++      <OpeningHoursSection />
+     </main>
+apply_patch(auto_approved=true) exited 0 in 60ms:
+Success. Updated the following files:
+A src/components/OpeningHoursSection.jsx
+M src/pages/Contatti.jsx
+file update:
+diff --git a/src/components/OpeningHoursSection.jsx b/src/components/OpeningHoursSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..50f20f7ab76023a965dde33864b016231a323dec
+--- /dev/null
++++ b/src/components/OpeningHoursSection.jsx
+@@ -0,0 +1,81 @@
++const officeHours = [
++  { day: "Monday", hours: "09:00 - 18:00" },
++  { day: "Tuesday", hours: "09:00 - 18:00" },
++  { day: "Wednesday", hours: "09:00 - 18:00" },
++  { day: "Thursday", hours: "09:00 - 18:00" },
++  { day: "Friday", hours: "09:00 - 16:00" },
++  { day: "Saturday", hours: "By request" },
++  { day: "Sunday", hours: "Closed" },
++]
++
++const styles = {
++  section: {
++    padding: "0 1.5rem 5rem",
++  },
++  shell: {
++    maxWidth: "72rem",
++    margin: "0 auto",
++    padding: "2rem",
++    borderRadius: "2rem",
++    backgroundColor: "#0f172a",
++    color: "#ffffff",
++    display: "grid",
++    gap: "1.5rem",
++  },
++  header: {
++    display: "grid",
++    gap: "0.75rem",
++  },
++  title: {
++    margin: 0,
++    fontSize: "clamp(2rem, 4vw, 3rem)",
++  },
++  lead: {
++    margin: 0,
++    maxWidth: "38rem",
++    color: "rgba(255, 255, 255, 0.72)",
++    lineHeight: 1.7,
++  },
++  list: {
++    display: "grid",
++    gap: "0.75rem",
++  },
++  row: {
++    display: "flex",
++    justifyContent: "space-between",
++    gap: "1rem",
++    paddingBottom: "0.75rem",
++    borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
++  },
++  hours: {
++    color: "rgba(255, 255, 255, 0.72)",
++    textAlign: "right",
++  },
++}
++
++export default function OpeningHoursSection() {
++  return (
++    <section id="opening-hours" aria-labelledby="opening-hours-title" style={styles.section}>
++      <div style={styles.shell}>
++        <div style={styles.header}>
++          <h2 id="opening-hours-title" style={styles.title}>
++            Studio hours
++          </h2>
++          <p style={styles.lead}>
++            We keep our calendar focused so projects move quickly. If your launch is
++            urgent, mention the deadline in your first message and we will confirm
++            availability directly.
++          </p>
++        </div>
++        <div style={styles.list}>
++          {officeHours.map((entry) => (
++            <div key={entry.day} style={styles.row}>
++              <span>{entry.day}</span>
++              <span style={styles.hours}>{entry.hours}</span>
++            </div>
++          ))}
++        </div>
++      </div>
++    </section>
++  )
++}
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index d17e05ae578573df136ddb97d76eec75274005c4..45f7ff857f0af04da85926b2097eb7e62469c4fe
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,69 +1,13 @@
+ import ContactHeroSection from "../components/ContactHeroSection"
+ import ContactDetailsSection from "../components/ContactDetailsSection"
+-
+-const officeHours = [
+-  { day: "Monday", hours: "09:00 - 18:00" },
+-  { day: "Tuesday", hours: "09:00 - 18:00" },
+-  { day: "Wednesday", hours: "09:00 - 18:00" },
+-  { day: "Thursday", hours: "09:00 - 18:00" },
+-  { day: "Friday", hours: "09:00 - 16:00" },
+-  { day: "Saturday", hours: "By request" },
+-  { day: "Sunday", hours: "Closed" },
+-]
++import OpeningHoursSection from "../components/OpeningHoursSection"
+ 
+ export default function Contatti() {
+   return (
+     <main>
+       <ContactHeroSection />
+       <ContactDetailsSection />
+-
+-      <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
+-        <div
+-          style={{
+-            maxWidth: "72rem",
+-            margin: "0 auto",
+-            padding: "2rem",
+-            borderRadius: "2rem",
+-            backgroundColor: "#0f172a",
+-            color: "#ffffff",
+-            display: "grid",
+-            gap: "1.5rem",
+-          }}
+-        >
+-          <div style={{ display: "grid", gap: "0.75rem" }}>
+-            <h2 style={{ margin: 0, fontSize: "clamp(2rem, 4vw, 3rem)" }}>
+-              Studio hours
+-            </h2>
+-            <p style={{ margin: 0, maxWidth: "38rem", color: "rgba(255, 255, 255, 0.72)" }}>
+-              We keep our calendar focused so projects move quickly. If your launch is
+-              urgent, mention the deadline in your first message and we will confirm
+-              availability directly.
+-            </p>
+-          </div>
+-          <div
+-            style={{
+-              display: "grid",
+-              gap: "0.75rem",
+-            }}
+-          >
+-            {officeHours.map((entry) => (
+-              <div
+-                key={entry.day}
+-                style={{
+-                  display: "flex",
+-                  justifyContent: "space-between",
+-                  gap: "1rem",
+-                  paddingBottom: "0.75rem",
+-                  borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
+-                }}
+-              >
+-                <span>{entry.day}</span>
+-                <span style={{ color: "rgba(255, 255, 255, 0.72)" }}>{entry.hours}</span>
+-              </div>
+-            ))}
+-          </div>
+-        </div>
+-      </section>
++      <OpeningHoursSection />
+     </main>
+   )
+ }
+
+file update:
+diff --git a/src/components/OpeningHoursSection.jsx b/src/components/OpeningHoursSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..50f20f7ab76023a965dde33864b016231a323dec
+--- /dev/null
++++ b/src/components/OpeningHoursSection.jsx
+@@ -0,0 +1,81 @@
++const officeHours = [
++  { day: "Monday", hours: "09:00 - 18:00" },
++  { day: "Tuesday", hours: "09:00 - 18:00" },
++  { day: "Wednesday", hours: "09:00 - 18:00" },
++  { day: "Thursday", hours: "09:00 - 18:00" },
++  { day: "Friday", hours: "09:00 - 16:00" },
++  { day: "Saturday", hours: "By request" },
++  { day: "Sunday", hours: "Closed" },
++]
++
++const styles = {
++  section: {
++    padding: "0 1.5rem 5rem",
++  },
++  shell: {
++    maxWidth: "72rem",
++    margin: "0 auto",
++    padding: "2rem",
++    borderRadius: "2rem",
++    backgroundColor: "#0f172a",
++    color: "#ffffff",
++    display: "grid",
++    gap: "1.5rem",
++  },
++  header: {
++    display: "grid",
++    gap: "0.75rem",
++  },
++  title: {
++    margin: 0,
++    fontSize: "clamp(2rem, 4vw, 3rem)",
++  },
++  lead: {
++    margin: 0,
++    maxWidth: "38rem",
++    color: "rgba(255, 255, 255, 0.72)",
++    lineHeight: 1.7,
++  },
++  list: {
++    display: "grid",
++    gap: "0.75rem",
++  },
++  row: {
++    display: "flex",
++    justifyContent: "space-between",
++    gap: "1rem",
++    paddingBottom: "0.75rem",
++    borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
++  },
++  hours: {
++    color: "rgba(255, 255, 255, 0.72)",
++    textAlign: "right",
++  },
++}
++
++export default function OpeningHoursSection() {
++  return (
++    <section id="opening-hours" aria-labelledby="opening-hours-title" style={styles.section}>
++      <div style={styles.shell}>
++        <div style={styles.header}>
++          <h2 id="opening-hours-title" style={styles.title}>
++            Studio hours
++          </h2>
++          <p style={styles.lead}>
++            We keep our calendar focused so projects move quickly. If your launch is
++            urgent, mention the deadline in your first message and we will confirm
++            availability directly.
++          </p>
++        </div>
++        <div style={styles.list}>
++          {officeHours.map((entry) => (
++            <div key={entry.day} style={styles.row}>
++              <span>{entry.day}</span>
++              <span style={styles.hours}>{entry.hours}</span>
++            </div>
++          ))}
++        </div>
++      </div>
++    </section>
++  )
++}
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index d17e05ae578573df136ddb97d76eec75274005c4..45f7ff857f0af04da85926b2097eb7e62469c4fe
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,69 +1,13 @@
+ import ContactHeroSection from "../components/ContactHeroSection"
+ import ContactDetailsSection from "../components/ContactDetailsSection"
+-
+-const officeHours = [
+-  { day: "Monday", hours: "09:00 - 18:00" },
+-  { day: "Tuesday", hours: "09:00 - 18:00" },
+-  { day: "Wednesday", hours: "09:00 - 18:00" },
+-  { day: "Thursday", hours: "09:00 - 18:00" },
+-  { day: "Friday", hours: "09:00 - 16:00" },
+-  { day: "Saturday", hours: "By request" },
+-  { day: "Sunday", hours: "Closed" },
+-]
++import OpeningHoursSection from "../components/OpeningHoursSection"
+ 
+ export default function Contatti() {
+   return (
+     <main>
+       <ContactHeroSection />
+       <ContactDetailsSection />
+-
+-      <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
+-        <div
+-          style={{
+-            maxWidth: "72rem",
+-            margin: "0 auto",
+-            padding: "2rem",
+-            borderRadius: "2rem",
+-            backgroundColor: "#0f172a",
+-            color: "#ffffff",
+-            display: "grid",
+-            gap: "1.5rem",
+-          }}
+-        >
+-          <div style={{ display: "grid", gap: "0.75rem" }}>
+-            <h2 style={{ margin: 0, fontSize: "clamp(2rem, 4vw, 3rem)" }}>
+-              Studio hours
+-            </h2>
+-            <p style={{ margin: 0, maxWidth: "38rem", color: "rgba(255, 255, 255, 0.72)" }}>
+-              We keep our calendar focused so projects move quickly. If your launch is
+-              urgent, mention the deadline in your first message and we will confirm
+-              availability directly.
+-            </p>
+-          </div>
+-          <div
+-            style={{
+-              display: "grid",
+-              gap: "0.75rem",
+-            }}
+-          >
+-            {officeHours.map((entry) => (
+-              <div
+-                key={entry.day}
+-                style={{
+-                  display: "flex",
+-                  justifyContent: "space-between",
+-                  gap: "1rem",
+-                  paddingBottom: "0.75rem",
+-                  borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
+-                }}
+-              >
+-                <span>{entry.day}</span>
+-                <span style={{ color: "rgba(255, 255, 255, 0.72)" }}>{entry.hours}</span>
+-              </div>
+-            ))}
+-          </div>
+-        </div>
+-      </section>
++      <OpeningHoursSection />
+     </main>
+   )
+ }
+
+codex
+The section is now isolated in its own component and wired into the contatti page. I’m running the build next, then I’ll append a short task summary to the agent report with the exact outcome.
 exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 860ms:
+/bin/zsh -lc 'tail -n 80 agent/AGENT_REPORT.md' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 52ms:
+Prepared TASK section-chi-siamo-philosophy (Create philosophy section on chi-siamo) for execution.
+
+Launching Codex for TASK section-chi-siamo-philosophy.
+
+TASK section-chi-siamo-philosophy executed by Codex.
+Waiting for validation.
+
+TASK section-chi-siamo-philosophy completed successfully.
+Build passed.
+Commit created for TASK section-chi-siamo-philosophy.
+
+Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
+
+Launching Codex for TASK page-gallery-shell.
+
+TASK page-gallery-shell executed by Codex.
+Waiting for validation.
+
+TASK page-gallery-shell completed successfully.
+Build passed.
+exec
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 859ms:
 
 > site-create-a-high-end-visually-distinctive-m@0.0.0 build
 > vite build
 
 vite v7.3.1 building client environment for production...
 transforming...
-✓ 60 modules transformed.
+✓ 61 modules transformed.
 rendering chunks...
 computing gzip size...
 dist/index.html                   0.50 kB │ gzip:  0.32 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-D6SBjR2m.js   271.72 kB │ gzip: 83.88 kB
-✓ built in 585ms
+dist/assets/index-DXedkN5z.js   271.98 kB │ gzip: 83.92 kB
+✓ built in 580ms
 file update:
-diff --git a/src/components/ContactDetailsSection.jsx b/src/components/ContactDetailsSection.jsx
+diff --git a/src/components/OpeningHoursSection.jsx b/src/components/OpeningHoursSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..d6fcc875ebb52774f978e6eae9fb65ffcfec21dd
+index 0000000000000000000000000000000000000000..50f20f7ab76023a965dde33864b016231a323dec
 --- /dev/null
-+++ b/src/components/ContactDetailsSection.jsx
-@@ -0,0 +1,122 @@
-+const contactDetails = [
-+  {
-+    label: "Email",
-+    value: "hello@alaiweb.com",
-+    href: "mailto:hello@alaiweb.com",
-+    description: "Share your goals, timeline, and current site status.",
-+  },
-+  {
-+    label: "Phone",
-+    value: "+39 02 9475 1280",
-+    href: "tel:+390294751280",
-+    description: "Call for a quick conversation about scope and priorities.",
-+  },
-+  {
-+    label: "WhatsApp",
-+    value: "Message the studio",
-+    href: "https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project.",
-+    description:
-+      "Ideal for early project questions, quick feedback, and scheduling the first call.",
-+    isDark: true,
-+    external: true,
-+  },
++++ b/src/components/OpeningHoursSection.jsx
+@@ -0,0 +1,81 @@
++const officeHours = [
++  { day: "Monday", hours: "09:00 - 18:00" },
++  { day: "Tuesday", hours: "09:00 - 18:00" },
++  { day: "Wednesday", hours: "09:00 - 18:00" },
++  { day: "Thursday", hours: "09:00 - 18:00" },
++  { day: "Friday", hours: "09:00 - 16:00" },
++  { day: "Saturday", hours: "By request" },
++  { day: "Sunday", hours: "Closed" },
 +]
 +
 +const styles = {
 +  section: {
-+    padding: "0 1.5rem 3rem",
++    padding: "0 1.5rem 5rem",
 +  },
 +  shell: {
 +    maxWidth: "72rem",
 +    margin: "0 auto",
++    padding: "2rem",
++    borderRadius: "2rem",
++    backgroundColor: "#0f172a",
++    color: "#ffffff",
 +    display: "grid",
 +    gap: "1.5rem",
 +  },
++  header: {
++    display: "grid",
++    gap: "0.75rem",
++  },
 +  title: {
 +    margin: 0,
-+    fontSize: "clamp(2rem, 5vw, 3.25rem)",
++    fontSize: "clamp(2rem, 4vw, 3rem)",
 +  },
 +  lead: {
 +    margin: 0,
-+    maxWidth: "42rem",
-+    color: "rgba(17, 17, 17, 0.72)",
++    maxWidth: "38rem",
++    color: "rgba(255, 255, 255, 0.72)",
 +    lineHeight: 1.7,
 +  },
-+  grid: {
-+    display: "grid",
-+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-+    gap: "1rem",
-+  },
-+  card: {
++  list: {
 +    display: "grid",
 +    gap: "0.75rem",
-+    padding: "1.5rem",
-+    borderRadius: "1.5rem",
-+    backgroundColor: "#f5f5f5",
-+    color: "#111111",
-+    textDecoration: "none",
 +  },
-+  cardDark: {
-+    backgroundColor: "#111111",
-+    color: "#ffffff",
++  row: {
++    display: "flex",
++    justifyContent: "space-between",
++    gap: "1rem",
++    paddingBottom: "0.75rem",
++    borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
 +  },
-+  label: {
-+    fontSize: "0.875rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.08em",
-+    textTransform: "uppercase",
-+    color: "#f97316",
-+  },
-+  value: {
-+    fontSize: "1.25rem",
-+  },
-+  description: {
-+    color: "rgba(17, 17, 17, 0.72)",
-+    lineHeight: 1.6,
-+  },
-+  descriptionDark: {
++  hours: {
 +    color: "rgba(255, 255, 255, 0.72)",
++    textAlign: "right",
 +  },
 +}
 +
-+export default function ContactDetailsSection() {
++export default function OpeningHoursSection() {
 +  return (
-+    <section id="contact-details" aria-labelledby="contact-details-title" style={styles.section}>
++    <section id="opening-hours" aria-labelledby="opening-hours-title" style={styles.section}>
 +      <div style={styles.shell}>
-+        <h2 id="contact-details-title" style={styles.title}>
-+          Project conversations, without the friction.
-+        </h2>
-+        <p style={styles.lead}>
-+          Use the channel that fits your workflow. Email is best for detailed briefs,
-+          phone is best for quick alignment, and WhatsApp works well when you want to
-+          move fast.
-+        </p>
-+        <div style={styles.grid}>
-+          {contactDetails.map((item) => (
-+            <a
-+              key={item.label}
-+              href={item.href}
-+              target={item.external ? "_blank" : undefined}
-+              rel={item.external ? "noreferrer" : undefined}
-+              style={{
-+                ...styles.card,
-+                ...(item.isDark ? styles.cardDark : null),
-+              }}
-+            >
-+              <span style={styles.label}>{item.label}</span>
-+              <strong style={styles.value}>{item.value}</strong>
-+              <span
-+                style={{
-+                  ...styles.description,
-+                  ...(item.isDark ? styles.descriptionDark : null),
-+                }}
-+              >
-+                {item.description}
-+              </span>
-+            </a>
++        <div style={styles.header}>
++          <h2 id="opening-hours-title" style={styles.title}>
++            Studio hours
++          </h2>
++          <p style={styles.lead}>
++            We keep our calendar focused so projects move quickly. If your launch is
++            urgent, mention the deadline in your first message and we will confirm
++            availability directly.
++          </p>
++        </div>
++        <div style={styles.list}>
++          {officeHours.map((entry) => (
++            <div key={entry.day} style={styles.row}>
++              <span>{entry.day}</span>
++              <span style={styles.hours}>{entry.hours}</span>
++            </div>
 +          ))}
 +        </div>
 +      </div>
@@ -2283,312 +1978,205 @@ index 0000000000000000000000000000000000000000..d6fcc875ebb52774f978e6eae9fb65ff
 +  )
 +}
 diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 634f4a8aad060e5b424277f70429ea03f77d2224..d17e05ae578573df136ddb97d76eec75274005c4
+index d17e05ae578573df136ddb97d76eec75274005c4..45f7ff857f0af04da85926b2097eb7e62469c4fe
 --- a/src/pages/Contatti.jsx
 +++ b/src/pages/Contatti.jsx
-@@ -1,19 +1,5 @@
+@@ -1,69 +1,13 @@
  import ContactHeroSection from "../components/ContactHeroSection"
+ import ContactDetailsSection from "../components/ContactDetailsSection"
 -
--const contactDetails = [
--  {
--    label: "Email",
--    value: "hello@alaiweb.com",
--    href: "mailto:hello@alaiweb.com",
--    description: "Share your goals, timeline, and current site status.",
--  },
--  {
--    label: "Phone",
--    value: "+39 02 9475 1280",
--    href: "tel:+390294751280",
--    description: "Call for a quick conversation about scope and priorities.",
--  },
+-const officeHours = [
+-  { day: "Monday", hours: "09:00 - 18:00" },
+-  { day: "Tuesday", hours: "09:00 - 18:00" },
+-  { day: "Wednesday", hours: "09:00 - 18:00" },
+-  { day: "Thursday", hours: "09:00 - 18:00" },
+-  { day: "Friday", hours: "09:00 - 16:00" },
+-  { day: "Saturday", hours: "By request" },
+-  { day: "Sunday", hours: "Closed" },
 -]
-+import ContactDetailsSection from "../components/ContactDetailsSection"
++import OpeningHoursSection from "../components/OpeningHoursSection"
  
- const officeHours = [
-   { day: "Monday", hours: "09:00 - 18:00" },
-@@ -29,103 +15,7 @@
+ export default function Contatti() {
    return (
      <main>
        <ContactHeroSection />
+       <ContactDetailsSection />
 -
--      <section id="contact-details" style={{ padding: "0 1.5rem 3rem" }}>
+-      <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
 -        <div
 -          style={{
 -            maxWidth: "72rem",
 -            margin: "0 auto",
+-            padding: "2rem",
+-            borderRadius: "2rem",
+-            backgroundColor: "#0f172a",
+-            color: "#ffffff",
 -            display: "grid",
 -            gap: "1.5rem",
 -          }}
 -        >
--          <h2 style={{ margin: 0, fontSize: "clamp(2rem, 5vw, 3.25rem)" }}>
--            Project conversations, without the friction.
--          </h2>
--          <p
--            style={{
--              margin: 0,
--              maxWidth: "42rem",
--              color: "rgba(17, 17, 17, 0.72)",
--              lineHeight: 1.7,
--            }}
--          >
--            Use the channel that fits your workflow. Email is best for detailed
--            briefs, phone is best for quick alignment, and WhatsApp works well when
--            you want to move fast.
--          </p>
+-          <div style={{ display: "grid", gap: "0.75rem" }}>
+-            <h2 style={{ margin: 0, fontSize: "clamp(2rem, 4vw, 3rem)" }}>
+-              Studio hours
+-            </h2>
+-            <p style={{ margin: 0, maxWidth: "38rem", color: "rgba(255, 255, 255, 0.72)" }}>
+-              We keep our calendar focused so projects move quickly. If your launch is
+-              urgent, mention the deadline in your first message and we will confirm
+-              availability directly.
+-            </p>
+-          </div>
 -          <div
 -            style={{
 -              display: "grid",
--              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
--              gap: "1rem",
+-              gap: "0.75rem",
 -            }}
 -          >
--            {contactDetails.map((item) => (
--              <a
--                key={item.label}
--                href={item.href}
+-            {officeHours.map((entry) => (
+-              <div
+-                key={entry.day}
 -                style={{
--                  display: "grid",
--                  gap: "0.75rem",
--                  padding: "1.5rem",
--                  borderRadius: "1.5rem",
--                  backgroundColor: "#f5f5f5",
--                  color: "#111111",
--                  textDecoration: "none",
+-                  display: "flex",
+-                  justifyContent: "space-between",
+-                  gap: "1rem",
+-                  paddingBottom: "0.75rem",
+-                  borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
 -                }}
 -              >
--                <span
--                  style={{
--                    fontSize: "0.875rem",
--                    fontWeight: 700,
--                    letterSpacing: "0.08em",
--                    textTransform: "uppercase",
--                    color: "#f97316",
--                  }}
--                >
--                  {item.label}
--                </span>
--                <strong style={{ fontSize: "1.25rem" }}>{item.value}</strong>
--                <span style={{ color: "rgba(17, 17, 17, 0.72)", lineHeight: 1.6 }}>
--                  {item.description}
--                </span>
--              </a>
+-                <span>{entry.day}</span>
+-                <span style={{ color: "rgba(255, 255, 255, 0.72)" }}>{entry.hours}</span>
+-              </div>
 -            ))}
--            <a
--              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
--              target="_blank"
--              rel="noreferrer"
--              style={{
--                display: "grid",
--                gap: "0.75rem",
--                padding: "1.5rem",
--                borderRadius: "1.5rem",
--                backgroundColor: "#111111",
--                color: "#ffffff",
--                textDecoration: "none",
--              }}
--            >
--              <span
--                style={{
--                  fontSize: "0.875rem",
--                  fontWeight: 700,
--                  letterSpacing: "0.08em",
--                  textTransform: "uppercase",
--                  color: "#f97316",
--                }}
--              >
--                WhatsApp
--              </span>
--              <strong style={{ fontSize: "1.25rem" }}>Message the studio</strong>
--              <span style={{ color: "rgba(255, 255, 255, 0.72)", lineHeight: 1.6 }}>
--                Ideal for early project questions, quick feedback, and scheduling the
--                first call.
--              </span>
--            </a>
 -          </div>
 -        </div>
 -      </section>
-+      <ContactDetailsSection />
- 
-       <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
-         <div
++      <OpeningHoursSection />
+     </main>
+   )
+ }
 
 codex
-The build is clean. I’m only updating `agent/AGENT_REPORT.md` now with the short task summary required by the workflow.
+The build is clean. I’m adding the required AGENT_REPORT entry now, keeping it limited to this task and the verified build result.
 file update
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md
-@@ -220,2 +220,18 @@
- 
-+Prepared TASK section-contatti-contact-details (Create contact-details section on contatti) for execution.
+@@ -449 +449,13 @@
+ Launching Codex for TASK section-contatti-opening-hours.
 +
-+Launching Codex for TASK section-contatti-contact-details.
++Completed TASK `section-contatti-opening-hours`.
 +
-+Completed TASK `section-contatti-contact-details`.
++- Added a reusable `OpeningHoursSection` component in `src/components/OpeningHoursSection.jsx`.
++- Replaced the inline `opening-hours` markup in `src/pages/Contatti.jsx` so the contatti page renders the dedicated hours-block section component.
++- Preserved the required `opening-hours` section id and studio-hours content while keeping the page structure modular.
 +
-+- Added a reusable `ContactDetailsSection` component in `src/components/ContactDetailsSection.jsx`.
-+- Replaced the inline `contact-details` markup in `src/pages/Contatti.jsx` so the contatti page renders the dedicated contact-block section component.
-+- Preserved the required email, phone, and WhatsApp contact actions with valid `mailto:`, `tel:`, and WhatsApp links.
-+
-+TASK section-contatti-contact-details executed by Codex.
++TASK section-contatti-opening-hours executed by Codex.
 +Waiting for validation.
 +
-+TASK section-contatti-contact-details completed successfully.
++TASK section-contatti-opening-hours completed successfully.
 +Build passed.
-+
- Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
-apply_patch(auto_approved=true) exited 0 in 61ms:
+apply_patch(auto_approved=true) exited 0 in 57ms:
 Success. Updated the following files:
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md
+M agent/AGENT_REPORT.md
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index b3959ce1432221f6f472aaa96abe92343183acc4..974b0208d44c88d2c6647c0277ff0711c9448022
+index a74d36c203bd32c9aa5a408ba38e70b1dc81db69..afa08dcaba212d0dbc9ddcf9ab9ff85bd75a1dc8
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,22 @@
- TASK page-chi-siamo-shell completed successfully.
- Build passed.
+@@ -447,3 +447,15 @@
+ Prepared TASK section-contatti-opening-hours (Create opening-hours section on contatti) for execution.
  
-+Prepared TASK section-contatti-contact-details (Create contact-details section on contatti) for execution.
+ Launching Codex for TASK section-contatti-opening-hours.
 +
-+Launching Codex for TASK section-contatti-contact-details.
++Completed TASK `section-contatti-opening-hours`.
 +
-+Completed TASK `section-contatti-contact-details`.
++- Added a reusable `OpeningHoursSection` component in `src/components/OpeningHoursSection.jsx`.
++- Replaced the inline `opening-hours` markup in `src/pages/Contatti.jsx` so the contatti page renders the dedicated hours-block section component.
++- Preserved the required `opening-hours` section id and studio-hours content while keeping the page structure modular.
 +
-+- Added a reusable `ContactDetailsSection` component in `src/components/ContactDetailsSection.jsx`.
-+- Replaced the inline `contact-details` markup in `src/pages/Contatti.jsx` so the contatti page renders the dedicated contact-block section component.
-+- Preserved the required email, phone, and WhatsApp contact actions with valid `mailto:`, `tel:`, and WhatsApp links.
-+
-+TASK section-contatti-contact-details executed by Codex.
++TASK section-contatti-opening-hours executed by Codex.
 +Waiting for validation.
 +
-+TASK section-contatti-contact-details completed successfully.
++TASK section-contatti-opening-hours completed successfully.
 +Build passed.
-+
- Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
- 
- Launching Codex for TASK section-contatti-contact-hero.
-diff --git a/src/components/ContactDetailsSection.jsx b/src/components/ContactDetailsSection.jsx
+diff --git a/src/components/OpeningHoursSection.jsx b/src/components/OpeningHoursSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..d6fcc875ebb52774f978e6eae9fb65ffcfec21dd
+index 0000000000000000000000000000000000000000..50f20f7ab76023a965dde33864b016231a323dec
 --- /dev/null
-+++ b/src/components/ContactDetailsSection.jsx
-@@ -0,0 +1,122 @@
-+const contactDetails = [
-+  {
-+    label: "Email",
-+    value: "hello@alaiweb.com",
-+    href: "mailto:hello@alaiweb.com",
-+    description: "Share your goals, timeline, and current site status.",
-+  },
-+  {
-+    label: "Phone",
-+    value: "+39 02 9475 1280",
-+    href: "tel:+390294751280",
-+    description: "Call for a quick conversation about scope and priorities.",
-+  },
-+  {
-+    label: "WhatsApp",
-+    value: "Message the studio",
-+    href: "https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project.",
-+    description:
-+      "Ideal for early project questions, quick feedback, and scheduling the first call.",
-+    isDark: true,
-+    external: true,
-+  },
++++ b/src/components/OpeningHoursSection.jsx
+@@ -0,0 +1,81 @@
++const officeHours = [
++  { day: "Monday", hours: "09:00 - 18:00" },
++  { day: "Tuesday", hours: "09:00 - 18:00" },
++  { day: "Wednesday", hours: "09:00 - 18:00" },
++  { day: "Thursday", hours: "09:00 - 18:00" },
++  { day: "Friday", hours: "09:00 - 16:00" },
++  { day: "Saturday", hours: "By request" },
++  { day: "Sunday", hours: "Closed" },
 +]
 +
 +const styles = {
 +  section: {
-+    padding: "0 1.5rem 3rem",
++    padding: "0 1.5rem 5rem",
 +  },
 +  shell: {
 +    maxWidth: "72rem",
 +    margin: "0 auto",
++    padding: "2rem",
++    borderRadius: "2rem",
++    backgroundColor: "#0f172a",
++    color: "#ffffff",
 +    display: "grid",
 +    gap: "1.5rem",
 +  },
++  header: {
++    display: "grid",
++    gap: "0.75rem",
++  },
 +  title: {
 +    margin: 0,
-+    fontSize: "clamp(2rem, 5vw, 3.25rem)",
++    fontSize: "clamp(2rem, 4vw, 3rem)",
 +  },
 +  lead: {
 +    margin: 0,
-+    maxWidth: "42rem",
-+    color: "rgba(17, 17, 17, 0.72)",
++    maxWidth: "38rem",
++    color: "rgba(255, 255, 255, 0.72)",
 +    lineHeight: 1.7,
 +  },
-+  grid: {
-+    display: "grid",
-+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-+    gap: "1rem",
-+  },
-+  card: {
++  list: {
 +    display: "grid",
 +    gap: "0.75rem",
-+    padding: "1.5rem",
-+    borderRadius: "1.5rem",
-+    backgroundColor: "#f5f5f5",
-+    color: "#111111",
-+    textDecoration: "none",
 +  },
-+  cardDark: {
-+    backgroundColor: "#111111",
-+    color: "#ffffff",
++  row: {
++    display: "flex",
++    justifyContent: "space-between",
++    gap: "1rem",
++    paddingBottom: "0.75rem",
++    borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
 +  },
-+  label: {
-+    fontSize: "0.875rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.08em",
-+    textTransform: "uppercase",
-+    color: "#f97316",
-+  },
-+  value: {
-+    fontSize: "1.25rem",
-+  },
-+  description: {
-+    color: "rgba(17, 17, 17, 0.72)",
-+    lineHeight: 1.6,
-+  },
-+  descriptionDark: {
++  hours: {
 +    color: "rgba(255, 255, 255, 0.72)",
++    textAlign: "right",
 +  },
 +}
 +
-+export default function ContactDetailsSection() {
++export default function OpeningHoursSection() {
 +  return (
-+    <section id="contact-details" aria-labelledby="contact-details-title" style={styles.section}>
++    <section id="opening-hours" aria-labelledby="opening-hours-title" style={styles.section}>
 +      <div style={styles.shell}>
-+        <h2 id="contact-details-title" style={styles.title}>
-+          Project conversations, without the friction.
-+        </h2>
-+        <p style={styles.lead}>
-+          Use the channel that fits your workflow. Email is best for detailed briefs,
-+          phone is best for quick alignment, and WhatsApp works well when you want to
-+          move fast.
-+        </p>
-+        <div style={styles.grid}>
-+          {contactDetails.map((item) => (
-+            <a
-+              key={item.label}
-+              href={item.href}
-+              target={item.external ? "_blank" : undefined}
-+              rel={item.external ? "noreferrer" : undefined}
-+              style={{
-+                ...styles.card,
-+                ...(item.isDark ? styles.cardDark : null),
-+              }}
-+            >
-+              <span style={styles.label}>{item.label}</span>
-+              <strong style={styles.value}>{item.value}</strong>
-+              <span
-+                style={{
-+                  ...styles.description,
-+                  ...(item.isDark ? styles.descriptionDark : null),
-+                }}
-+              >
-+                {item.description}
-+              </span>
-+            </a>
++        <div style={styles.header}>
++          <h2 id="opening-hours-title" style={styles.title}>
++            Studio hours
++          </h2>
++          <p style={styles.lead}>
++            We keep our calendar focused so projects move quickly. If your launch is
++            urgent, mention the deadline in your first message and we will confirm
++            availability directly.
++          </p>
++        </div>
++        <div style={styles.list}>
++          {officeHours.map((entry) => (
++            <div key={entry.day} style={styles.row}>
++              <span>{entry.day}</span>
++              <span style={styles.hours}>{entry.hours}</span>
++            </div>
 +          ))}
 +        </div>
 +      </div>
@@ -2596,286 +2184,184 @@ index 0000000000000000000000000000000000000000..d6fcc875ebb52774f978e6eae9fb65ff
 +  )
 +}
 diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 634f4a8aad060e5b424277f70429ea03f77d2224..d17e05ae578573df136ddb97d76eec75274005c4
+index d17e05ae578573df136ddb97d76eec75274005c4..45f7ff857f0af04da85926b2097eb7e62469c4fe
 --- a/src/pages/Contatti.jsx
 +++ b/src/pages/Contatti.jsx
-@@ -1,19 +1,5 @@
+@@ -1,69 +1,13 @@
  import ContactHeroSection from "../components/ContactHeroSection"
+ import ContactDetailsSection from "../components/ContactDetailsSection"
 -
--const contactDetails = [
--  {
--    label: "Email",
--    value: "hello@alaiweb.com",
--    href: "mailto:hello@alaiweb.com",
--    description: "Share your goals, timeline, and current site status.",
--  },
--  {
--    label: "Phone",
--    value: "+39 02 9475 1280",
--    href: "tel:+390294751280",
--    description: "Call for a quick conversation about scope and priorities.",
--  },
+-const officeHours = [
+-  { day: "Monday", hours: "09:00 - 18:00" },
+-  { day: "Tuesday", hours: "09:00 - 18:00" },
+-  { day: "Wednesday", hours: "09:00 - 18:00" },
+-  { day: "Thursday", hours: "09:00 - 18:00" },
+-  { day: "Friday", hours: "09:00 - 16:00" },
+-  { day: "Saturday", hours: "By request" },
+-  { day: "Sunday", hours: "Closed" },
 -]
-+import ContactDetailsSection from "../components/ContactDetailsSection"
++import OpeningHoursSection from "../components/OpeningHoursSection"
  
- const officeHours = [
-   { day: "Monday", hours: "09:00 - 18:00" },
-@@ -29,103 +15,7 @@
+ export default function Contatti() {
    return (
      <main>
        <ContactHeroSection />
+       <ContactDetailsSection />
 -
--      <section id="contact-details" style={{ padding: "0 1.5rem 3rem" }}>
+-      <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
 -        <div
 -          style={{
 -            maxWidth: "72rem",
 -            margin: "0 auto",
+-            padding: "2rem",
+-            borderRadius: "2rem",
+-            backgroundColor: "#0f172a",
+-            color: "#ffffff",
 -            display: "grid",
 -            gap: "1.5rem",
 -          }}
 -        >
--          <h2 style={{ margin: 0, fontSize: "clamp(2rem, 5vw, 3.25rem)" }}>
--            Project conversations, without the friction.
--          </h2>
--          <p
--            style={{
--              margin: 0,
--              maxWidth: "42rem",
--              color: "rgba(17, 17, 17, 0.72)",
--              lineHeight: 1.7,
--            }}
--          >
--            Use the channel that fits your workflow. Email is best for detailed
--            briefs, phone is best for quick alignment, and WhatsApp works well when
--            you want to move fast.
--          </p>
+-          <div style={{ display: "grid", gap: "0.75rem" }}>
+-            <h2 style={{ margin: 0, fontSize: "clamp(2rem, 4vw, 3rem)" }}>
+-              Studio hours
+-            </h2>
+-            <p style={{ margin: 0, maxWidth: "38rem", color: "rgba(255, 255, 255, 0.72)" }}>
+-              We keep our calendar focused so projects move quickly. If your launch is
+-              urgent, mention the deadline in your first message and we will confirm
+-              availability directly.
+-            </p>
+-          </div>
 -          <div
 -            style={{
 -              display: "grid",
--              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
--              gap: "1rem",
+-              gap: "0.75rem",
 -            }}
 -          >
--            {contactDetails.map((item) => (
--              <a
--                key={item.label}
--                href={item.href}
+-            {officeHours.map((entry) => (
+-              <div
+-                key={entry.day}
 -                style={{
--                  display: "grid",
--                  gap: "0.75rem",
--                  padding: "1.5rem",
--                  borderRadius: "1.5rem",
--                  backgroundColor: "#f5f5f5",
--                  color: "#111111",
--                  textDecoration: "none",
+-                  display: "flex",
+-                  justifyContent: "space-between",
+-                  gap: "1rem",
+-                  paddingBottom: "0.75rem",
+-                  borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
 -                }}
 -              >
--                <span
--                  style={{
--                    fontSize: "0.875rem",
--                    fontWeight: 700,
--                    letterSpacing: "0.08em",
--                    textTransform: "uppercase",
--                    color: "#f97316",
--                  }}
--                >
--                  {item.label}
--                </span>
--                <strong style={{ fontSize: "1.25rem" }}>{item.value}</strong>
--                <span style={{ color: "rgba(17, 17, 17, 0.72)", lineHeight: 1.6 }}>
--                  {item.description}
--                </span>
--              </a>
+-                <span>{entry.day}</span>
+-                <span style={{ color: "rgba(255, 255, 255, 0.72)" }}>{entry.hours}</span>
+-              </div>
 -            ))}
--            <a
--              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
--              target="_blank"
--              rel="noreferrer"
--              style={{
--                display: "grid",
--                gap: "0.75rem",
--                padding: "1.5rem",
--                borderRadius: "1.5rem",
--                backgroundColor: "#111111",
--                color: "#ffffff",
--                textDecoration: "none",
--              }}
--            >
--              <span
--                style={{
--                  fontSize: "0.875rem",
--                  fontWeight: 700,
--                  letterSpacing: "0.08em",
--                  textTransform: "uppercase",
--                  color: "#f97316",
--                }}
--              >
--                WhatsApp
--              </span>
--              <strong style={{ fontSize: "1.25rem" }}>Message the studio</strong>
--              <span style={{ color: "rgba(255, 255, 255, 0.72)", lineHeight: 1.6 }}>
--                Ideal for early project questions, quick feedback, and scheduling the
--                first call.
--              </span>
--            </a>
 -          </div>
 -        </div>
 -      </section>
-+      <ContactDetailsSection />
- 
-       <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
-         <div
++      <OpeningHoursSection />
+     </main>
+   )
+ }
 
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index b3959ce1432221f6f472aaa96abe92343183acc4..974b0208d44c88d2c6647c0277ff0711c9448022
+index a74d36c203bd32c9aa5a408ba38e70b1dc81db69..afa08dcaba212d0dbc9ddcf9ab9ff85bd75a1dc8
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,22 @@
- TASK page-chi-siamo-shell completed successfully.
- Build passed.
+@@ -447,3 +447,15 @@
+ Prepared TASK section-contatti-opening-hours (Create opening-hours section on contatti) for execution.
  
-+Prepared TASK section-contatti-contact-details (Create contact-details section on contatti) for execution.
+ Launching Codex for TASK section-contatti-opening-hours.
 +
-+Launching Codex for TASK section-contatti-contact-details.
++Completed TASK `section-contatti-opening-hours`.
 +
-+Completed TASK `section-contatti-contact-details`.
++- Added a reusable `OpeningHoursSection` component in `src/components/OpeningHoursSection.jsx`.
++- Replaced the inline `opening-hours` markup in `src/pages/Contatti.jsx` so the contatti page renders the dedicated hours-block section component.
++- Preserved the required `opening-hours` section id and studio-hours content while keeping the page structure modular.
 +
-+- Added a reusable `ContactDetailsSection` component in `src/components/ContactDetailsSection.jsx`.
-+- Replaced the inline `contact-details` markup in `src/pages/Contatti.jsx` so the contatti page renders the dedicated contact-block section component.
-+- Preserved the required email, phone, and WhatsApp contact actions with valid `mailto:`, `tel:`, and WhatsApp links.
-+
-+TASK section-contatti-contact-details executed by Codex.
++TASK section-contatti-opening-hours executed by Codex.
 +Waiting for validation.
 +
-+TASK section-contatti-contact-details completed successfully.
++TASK section-contatti-opening-hours completed successfully.
 +Build passed.
-+
- Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
- 
- Launching Codex for TASK section-contatti-contact-hero.
-diff --git a/src/components/ContactDetailsSection.jsx b/src/components/ContactDetailsSection.jsx
+diff --git a/src/components/OpeningHoursSection.jsx b/src/components/OpeningHoursSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..d6fcc875ebb52774f978e6eae9fb65ffcfec21dd
+index 0000000000000000000000000000000000000000..50f20f7ab76023a965dde33864b016231a323dec
 --- /dev/null
-+++ b/src/components/ContactDetailsSection.jsx
-@@ -0,0 +1,122 @@
-+const contactDetails = [
-+  {
-+    label: "Email",
-+    value: "hello@alaiweb.com",
-+    href: "mailto:hello@alaiweb.com",
-+    description: "Share your goals, timeline, and current site status.",
-+  },
-+  {
-+    label: "Phone",
-+    value: "+39 02 9475 1280",
-+    href: "tel:+390294751280",
-+    description: "Call for a quick conversation about scope and priorities.",
-+  },
-+  {
-+    label: "WhatsApp",
-+    value: "Message the studio",
-+    href: "https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project.",
-+    description:
-+      "Ideal for early project questions, quick feedback, and scheduling the first call.",
-+    isDark: true,
-+    external: true,
-+  },
++++ b/src/components/OpeningHoursSection.jsx
+@@ -0,0 +1,81 @@
++const officeHours = [
++  { day: "Monday", hours: "09:00 - 18:00" },
++  { day: "Tuesday", hours: "09:00 - 18:00" },
++  { day: "Wednesday", hours: "09:00 - 18:00" },
++  { day: "Thursday", hours: "09:00 - 18:00" },
++  { day: "Friday", hours: "09:00 - 16:00" },
++  { day: "Saturday", hours: "By request" },
++  { day: "Sunday", hours: "Closed" },
 +]
 +
 +const styles = {
 +  section: {
-+    padding: "0 1.5rem 3rem",
++    padding: "0 1.5rem 5rem",
 +  },
 +  shell: {
 +    maxWidth: "72rem",
 +    margin: "0 auto",
++    padding: "2rem",
++    borderRadius: "2rem",
++    backgroundColor: "#0f172a",
++    color: "#ffffff",
 +    display: "grid",
 +    gap: "1.5rem",
 +  },
++  header: {
++    display: "grid",
++    gap: "0.75rem",
++  },
 +  title: {
 +    margin: 0,
-+    fontSize: "clamp(2rem, 5vw, 3.25rem)",
++    fontSize: "clamp(2rem, 4vw, 3rem)",
 +  },
 +  lead: {
 +    margin: 0,
-+    maxWidth: "42rem",
-+    color: "rgba(17, 17, 17, 0.72)",
++    maxWidth: "38rem",
++    color: "rgba(255, 255, 255, 0.72)",
 +    lineHeight: 1.7,
 +  },
-+  grid: {
-+    display: "grid",
-+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-+    gap: "1rem",
-+  },
-+  card: {
++  list: {
 +    display: "grid",
 +    gap: "0.75rem",
-+    padding: "1.5rem",
-+    borderRadius: "1.5rem",
-+    backgroundColor: "#f5f5f5",
-+    color: "#111111",
-+    textDecoration: "none",
 +  },
-+  cardDark: {
-+    backgroundColor: "#111111",
-+    color: "#ffffff",
++  row: {
++    display: "flex",
++    justifyContent: "space-between",
++    gap: "1rem",
++    paddingBottom: "0.75rem",
++    borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
 +  },
-+  label: {
-+    fontSize: "0.875rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.08em",
-+    textTransform: "uppercase",
-+    color: "#f97316",
-+  },
-+  value: {
-+    fontSize: "1.25rem",
-+  },
-+  description: {
-+    color: "rgba(17, 17, 17, 0.72)",
-+    lineHeight: 1.6,
-+  },
-+  descriptionDark: {
++  hours: {
 +    color: "rgba(255, 255, 255, 0.72)",
++    textAlign: "right",
 +  },
 +}
 +
-+export default function ContactDetailsSection() {
++export default function OpeningHoursSection() {
 +  return (
-+    <section id="contact-details" aria-labelledby="contact-details-title" style={styles.section}>
++    <section id="opening-hours" aria-labelledby="opening-hours-title" style={styles.section}>
 +      <div style={styles.shell}>
-+        <h2 id="contact-details-title" style={styles.title}>
-+          Project conversations, without the friction.
-+        </h2>
-+        <p style={styles.lead}>
-+          Use the channel that fits your workflow. Email is best for detailed briefs,
-+          phone is best for quick alignment, and WhatsApp works well when you want to
-+          move fast.
-+        </p>
-+        <div style={styles.grid}>
-+          {contactDetails.map((item) => (
-+            <a
-+              key={item.label}
-+              href={item.href}
-+              target={item.external ? "_blank" : undefined}
-+              rel={item.external ? "noreferrer" : undefined}
-+              style={{
-+                ...styles.card,
-+                ...(item.isDark ? styles.cardDark : null),
-+              }}
-+            >
-+              <span style={styles.label}>{item.label}</span>
-+              <strong style={styles.value}>{item.value}</strong>
-+              <span
-+                style={{
-+                  ...styles.description,
-+                  ...(item.isDark ? styles.descriptionDark : null),
-+                }}
-+              >
-+                {item.description}
-+              </span>
-+            </a>
++        <div style={styles.header}>
++          <h2 id="opening-hours-title" style={styles.title}>
++            Studio hours
++          </h2>
++          <p style={styles.lead}>
++            We keep our calendar focused so projects move quickly. If your launch is
++            urgent, mention the deadline in your first message and we will confirm
++            availability directly.
++          </p>
++        </div>
++        <div style={styles.list}>
++          {officeHours.map((entry) => (
++            <div key={entry.day} style={styles.row}>
++              <span>{entry.day}</span>
++              <span style={styles.hours}>{entry.hours}</span>
++            </div>
 +          ))}
 +        </div>
 +      </div>
@@ -2883,354 +2369,190 @@ index 0000000000000000000000000000000000000000..d6fcc875ebb52774f978e6eae9fb65ff
 +  )
 +}
 diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 634f4a8aad060e5b424277f70429ea03f77d2224..d17e05ae578573df136ddb97d76eec75274005c4
+index d17e05ae578573df136ddb97d76eec75274005c4..45f7ff857f0af04da85926b2097eb7e62469c4fe
 --- a/src/pages/Contatti.jsx
 +++ b/src/pages/Contatti.jsx
-@@ -1,19 +1,5 @@
+@@ -1,69 +1,13 @@
  import ContactHeroSection from "../components/ContactHeroSection"
+ import ContactDetailsSection from "../components/ContactDetailsSection"
 -
--const contactDetails = [
--  {
--    label: "Email",
--    value: "hello@alaiweb.com",
--    href: "mailto:hello@alaiweb.com",
--    description: "Share your goals, timeline, and current site status.",
--  },
--  {
--    label: "Phone",
--    value: "+39 02 9475 1280",
--    href: "tel:+390294751280",
--    description: "Call for a quick conversation about scope and priorities.",
--  },
+-const officeHours = [
+-  { day: "Monday", hours: "09:00 - 18:00" },
+-  { day: "Tuesday", hours: "09:00 - 18:00" },
+-  { day: "Wednesday", hours: "09:00 - 18:00" },
+-  { day: "Thursday", hours: "09:00 - 18:00" },
+-  { day: "Friday", hours: "09:00 - 16:00" },
+-  { day: "Saturday", hours: "By request" },
+-  { day: "Sunday", hours: "Closed" },
 -]
-+import ContactDetailsSection from "../components/ContactDetailsSection"
++import OpeningHoursSection from "../components/OpeningHoursSection"
  
- const officeHours = [
-   { day: "Monday", hours: "09:00 - 18:00" },
-@@ -29,103 +15,7 @@
+ export default function Contatti() {
    return (
      <main>
        <ContactHeroSection />
+       <ContactDetailsSection />
 -
--      <section id="contact-details" style={{ padding: "0 1.5rem 3rem" }}>
+-      <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
 -        <div
 -          style={{
 -            maxWidth: "72rem",
 -            margin: "0 auto",
+-            padding: "2rem",
+-            borderRadius: "2rem",
+-            backgroundColor: "#0f172a",
+-            color: "#ffffff",
 -            display: "grid",
 -            gap: "1.5rem",
 -          }}
 -        >
--          <h2 style={{ margin: 0, fontSize: "clamp(2rem, 5vw, 3.25rem)" }}>
--            Project conversations, without the friction.
--          </h2>
--          <p
--            style={{
--              margin: 0,
--              maxWidth: "42rem",
--              color: "rgba(17, 17, 17, 0.72)",
--              lineHeight: 1.7,
--            }}
--          >
--            Use the channel that fits your workflow. Email is best for detailed
--            briefs, phone is best for quick alignment, and WhatsApp works well when
--            you want to move fast.
--          </p>
+-          <div style={{ display: "grid", gap: "0.75rem" }}>
+-            <h2 style={{ margin: 0, fontSize: "clamp(2rem, 4vw, 3rem)" }}>
+-              Studio hours
+-            </h2>
+-            <p style={{ margin: 0, maxWidth: "38rem", color: "rgba(255, 255, 255, 0.72)" }}>
+-              We keep our calendar focused so projects move quickly. If your launch is
+-              urgent, mention the deadline in your first message and we will confirm
+-              availability directly.
+-            </p>
+-          </div>
 -          <div
 -            style={{
 -              display: "grid",
--              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
--              gap: "1rem",
+-              gap: "0.75rem",
 -            }}
 -          >
--            {contactDetails.map((item) => (
--              <a
--                key={item.label}
--                href={item.href}
+-            {officeHours.map((entry) => (
+-              <div
+-                key={entry.day}
 -                style={{
--                  display: "grid",
--                  gap: "0.75rem",
--                  padding: "1.5rem",
--                  borderRadius: "1.5rem",
--                  backgroundColor: "#f5f5f5",
--                  color: "#111111",
--                  textDecoration: "none",
+-                  display: "flex",
+-                  justifyContent: "space-between",
+-                  gap: "1rem",
+-                  paddingBottom: "0.75rem",
+-                  borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
 -                }}
 -              >
--                <span
--                  style={{
--                    fontSize: "0.875rem",
--                    fontWeight: 700,
--                    letterSpacing: "0.08em",
--                    textTransform: "uppercase",
--                    color: "#f97316",
--                  }}
--                >
--                  {item.label}
--                </span>
--                <strong style={{ fontSize: "1.25rem" }}>{item.value}</strong>
--                <span style={{ color: "rgba(17, 17, 17, 0.72)", lineHeight: 1.6 }}>
--                  {item.description}
--                </span>
--              </a>
+-                <span>{entry.day}</span>
+-                <span style={{ color: "rgba(255, 255, 255, 0.72)" }}>{entry.hours}</span>
+-              </div>
 -            ))}
--            <a
--              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
--              target="_blank"
--              rel="noreferrer"
--              style={{
--                display: "grid",
--                gap: "0.75rem",
--                padding: "1.5rem",
--                borderRadius: "1.5rem",
--                backgroundColor: "#111111",
--                color: "#ffffff",
--                textDecoration: "none",
--              }}
--            >
--              <span
--                style={{
--                  fontSize: "0.875rem",
--                  fontWeight: 700,
--                  letterSpacing: "0.08em",
--                  textTransform: "uppercase",
--                  color: "#f97316",
--                }}
--              >
--                WhatsApp
--              </span>
--              <strong style={{ fontSize: "1.25rem" }}>Message the studio</strong>
--              <span style={{ color: "rgba(255, 255, 255, 0.72)", lineHeight: 1.6 }}>
--                Ideal for early project questions, quick feedback, and scheduling the
--                first call.
--              </span>
--            </a>
 -          </div>
 -        </div>
 -      </section>
-+      <ContactDetailsSection />
- 
-       <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
-         <div
++      <OpeningHoursSection />
+     </main>
+   )
+ }
 
 codex
-I’ve finished the task work and verified it builds. I’m pulling exact line references from the changed files so the handoff is precise.
-exec
-/bin/zsh -lc "nl -ba src/components/ContactDetailsSection.jsx | sed -n '1,220p'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "nl -ba src/pages/Contatti.jsx | sed -n '1,220p'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc 'nl -ba agent/AGENT_REPORT.md | tail -n 40' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 51ms:
-     1	const contactDetails = [
-     2	  {
-     3	    label: "Email",
-     4	    value: "hello@alaiweb.com",
-     5	    href: "mailto:hello@alaiweb.com",
-     6	    description: "Share your goals, timeline, and current site status.",
-     7	  },
-     8	  {
-     9	    label: "Phone",
-    10	    value: "+39 02 9475 1280",
-    11	    href: "tel:+390294751280",
-    12	    description: "Call for a quick conversation about scope and priorities.",
-    13	  },
-    14	  {
-    15	    label: "WhatsApp",
-    16	    value: "Message the studio",
-    17	    href: "https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project.",
-    18	    description:
-    19	      "Ideal for early project questions, quick feedback, and scheduling the first call.",
-    20	    isDark: true,
- succeeded in 51ms:
-     1	import ContactHeroSection from "../components/ContactHeroSection"
-     2	import ContactDetailsSection from "../components/ContactDetailsSection"
-     3	
-     4	const officeHours = [
-     5	  { day: "Monday", hours: "09:00 - 18:00" },
-     6	  { day: "Tuesday", hours: "09:00 - 18:00" },
-     7	  { day: "Wednesday", hours: "09:00 - 18:00" },
-     8	  { day: "Thursday", hours: "09:00 - 18:00" },
-     9	  { day: "Friday", hours: "09:00 - 16:00" },
-    10	  { day: "Saturday", hours: "By request" },
-    11	  { day: "Sunday", hours: "Closed" },
-    12	]
-    13	
-    14	export default function Contatti() {
-    15	  return (
-    16	    <main>
-    17	      <ContactHeroSection />
-    18	      <ContactDetailsSection />
-    19	
-    20	      <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
- succeeded in 51ms:
-   399	TASK section-gallery-gallery-hero completed successfully.
-   400	Build passed.
-   401	Commit created for TASK section-gallery-gallery-hero.
-   402	
-   403	Prepared TASK section-gallery-gallery-grid (Create gallery-grid section on gallery) for execution.
-   404	
-   405	Launching Codex for TASK section-gallery-gallery-grid.
-   406	
-   407	TASK section-gallery-gallery-grid executed by Codex.
-   408	Waiting for validation.
-   409	
-   410	TASK section-gallery-gallery-grid completed successfully.
-   411	Build passed.
-   412	Commit created for TASK section-gallery-gallery-grid.
-   413	
-   414	Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
-   415	
-   416	Launching Codex for TASK page-contatti-shell.
-   417	
-   418	TASK page-contatti-shell executed by Codex.
+Modified files: [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx), [src/components/OpeningHoursSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/OpeningHoursSection.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md)
+
+Implemented the `opening-hours` hours-block for the contatti page by extracting the existing inline section into a dedicated reusable component and rendering it from [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx). The new [src/components/OpeningHoursSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/OpeningHoursSection.jsx) keeps the required `opening-hours` section id, heading, and daily schedule content. I also appended the task summary to [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md).
+
+Build result: `npm run build` passed with Vite production build succeeding. I did not run browser-based validation in this turn.
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index b3959ce1432221f6f472aaa96abe92343183acc4..974b0208d44c88d2c6647c0277ff0711c9448022
+index a74d36c203bd32c9aa5a408ba38e70b1dc81db69..afa08dcaba212d0dbc9ddcf9ab9ff85bd75a1dc8
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,22 @@
- TASK page-chi-siamo-shell completed successfully.
- Build passed.
+@@ -447,3 +447,15 @@
+ Prepared TASK section-contatti-opening-hours (Create opening-hours section on contatti) for execution.
  
-+Prepared TASK section-contatti-contact-details (Create contact-details section on contatti) for execution.
+ Launching Codex for TASK section-contatti-opening-hours.
 +
-+Launching Codex for TASK section-contatti-contact-details.
++Completed TASK `section-contatti-opening-hours`.
 +
-+Completed TASK `section-contatti-contact-details`.
++- Added a reusable `OpeningHoursSection` component in `src/components/OpeningHoursSection.jsx`.
++- Replaced the inline `opening-hours` markup in `src/pages/Contatti.jsx` so the contatti page renders the dedicated hours-block section component.
++- Preserved the required `opening-hours` section id and studio-hours content while keeping the page structure modular.
 +
-+- Added a reusable `ContactDetailsSection` component in `src/components/ContactDetailsSection.jsx`.
-+- Replaced the inline `contact-details` markup in `src/pages/Contatti.jsx` so the contatti page renders the dedicated contact-block section component.
-+- Preserved the required email, phone, and WhatsApp contact actions with valid `mailto:`, `tel:`, and WhatsApp links.
-+
-+TASK section-contatti-contact-details executed by Codex.
++TASK section-contatti-opening-hours executed by Codex.
 +Waiting for validation.
 +
-+TASK section-contatti-contact-details completed successfully.
++TASK section-contatti-opening-hours completed successfully.
 +Build passed.
-+
- Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
- 
- Launching Codex for TASK section-contatti-contact-hero.
-diff --git a/src/components/ContactDetailsSection.jsx b/src/components/ContactDetailsSection.jsx
+diff --git a/src/components/OpeningHoursSection.jsx b/src/components/OpeningHoursSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..d6fcc875ebb52774f978e6eae9fb65ffcfec21dd
+index 0000000000000000000000000000000000000000..50f20f7ab76023a965dde33864b016231a323dec
 --- /dev/null
-+++ b/src/components/ContactDetailsSection.jsx
-@@ -0,0 +1,122 @@
-+const contactDetails = [
-+  {
-+    label: "Email",
-+    value: "hello@alaiweb.com",
-+    href: "mailto:hello@alaiweb.com",
-+    description: "Share your goals, timeline, and current site status.",
-+  },
-+  {
-+    label: "Phone",
-+    value: "+39 02 9475 1280",
-+    href: "tel:+390294751280",
-+    description: "Call for a quick conversation about scope and priorities.",
-+  },
-+  {
-+    label: "WhatsApp",
-+    value: "Message the studio",
-+    href: "https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project.",
-+    description:
-+      "Ideal for early project questions, quick feedback, and scheduling the first call.",
-+    isDark: true,
-+    external: true,
-+  },
++++ b/src/components/OpeningHoursSection.jsx
+@@ -0,0 +1,81 @@
++const officeHours = [
++  { day: "Monday", hours: "09:00 - 18:00" },
++  { day: "Tuesday", hours: "09:00 - 18:00" },
++  { day: "Wednesday", hours: "09:00 - 18:00" },
++  { day: "Thursday", hours: "09:00 - 18:00" },
++  { day: "Friday", hours: "09:00 - 16:00" },
++  { day: "Saturday", hours: "By request" },
++  { day: "Sunday", hours: "Closed" },
 +]
 +
 +const styles = {
 +  section: {
-+    padding: "0 1.5rem 3rem",
++    padding: "0 1.5rem 5rem",
 +  },
 +  shell: {
 +    maxWidth: "72rem",
 +    margin: "0 auto",
++    padding: "2rem",
++    borderRadius: "2rem",
++    backgroundColor: "#0f172a",
++    color: "#ffffff",
 +    display: "grid",
 +    gap: "1.5rem",
 +  },
++  header: {
++    display: "grid",
++    gap: "0.75rem",
++  },
 +  title: {
 +    margin: 0,
-+    fontSize: "clamp(2rem, 5vw, 3.25rem)",
++    fontSize: "clamp(2rem, 4vw, 3rem)",
 +  },
 +  lead: {
 +    margin: 0,
-+    maxWidth: "42rem",
-+    color: "rgba(17, 17, 17, 0.72)",
++    maxWidth: "38rem",
++    color: "rgba(255, 255, 255, 0.72)",
 +    lineHeight: 1.7,
 +  },
-+  grid: {
-+    display: "grid",
-+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-+    gap: "1rem",
-+  },
-+  card: {
++  list: {
 +    display: "grid",
 +    gap: "0.75rem",
-+    padding: "1.5rem",
-+    borderRadius: "1.5rem",
-+    backgroundColor: "#f5f5f5",
-+    color: "#111111",
-+    textDecoration: "none",
 +  },
-+  cardDark: {
-+    backgroundColor: "#111111",
-+    color: "#ffffff",
++  row: {
++    display: "flex",
++    justifyContent: "space-between",
++    gap: "1rem",
++    paddingBottom: "0.75rem",
++    borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
 +  },
-+  label: {
-+    fontSize: "0.875rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.08em",
-+    textTransform: "uppercase",
-+    color: "#f97316",
-+  },
-+  value: {
-+    fontSize: "1.25rem",
-+  },
-+  description: {
-+    color: "rgba(17, 17, 17, 0.72)",
-+    lineHeight: 1.6,
-+  },
-+  descriptionDark: {
++  hours: {
 +    color: "rgba(255, 255, 255, 0.72)",
++    textAlign: "right",
 +  },
 +}
 +
-+export default function ContactDetailsSection() {
++export default function OpeningHoursSection() {
 +  return (
-+    <section id="contact-details" aria-labelledby="contact-details-title" style={styles.section}>
++    <section id="opening-hours" aria-labelledby="opening-hours-title" style={styles.section}>
 +      <div style={styles.shell}>
-+        <h2 id="contact-details-title" style={styles.title}>
-+          Project conversations, without the friction.
-+        </h2>
-+        <p style={styles.lead}>
-+          Use the channel that fits your workflow. Email is best for detailed briefs,
-+          phone is best for quick alignment, and WhatsApp works well when you want to
-+          move fast.
-+        </p>
-+        <div style={styles.grid}>
-+          {contactDetails.map((item) => (
-+            <a
-+              key={item.label}
-+              href={item.href}
-+              target={item.external ? "_blank" : undefined}
-+              rel={item.external ? "noreferrer" : undefined}
-+              style={{
-+                ...styles.card,
-+                ...(item.isDark ? styles.cardDark : null),
-+              }}
-+            >
-+              <span style={styles.label}>{item.label}</span>
-+              <strong style={styles.value}>{item.value}</strong>
-+              <span
-+                style={{
-+                  ...styles.description,
-+                  ...(item.isDark ? styles.descriptionDark : null),
-+                }}
-+              >
-+                {item.description}
-+              </span>
-+            </a>
++        <div style={styles.header}>
++          <h2 id="opening-hours-title" style={styles.title}>
++            Studio hours
++          </h2>
++          <p style={styles.lead}>
++            We keep our calendar focused so projects move quickly. If your launch is
++            urgent, mention the deadline in your first message and we will confirm
++            availability directly.
++          </p>
++        </div>
++        <div style={styles.list}>
++          {officeHours.map((entry) => (
++            <div key={entry.day} style={styles.row}>
++              <span>{entry.day}</span>
++              <span style={styles.hours}>{entry.hours}</span>
++            </div>
 +          ))}
 +        </div>
 +      </div>
@@ -3238,430 +2560,81 @@ index 0000000000000000000000000000000000000000..d6fcc875ebb52774f978e6eae9fb65ff
 +  )
 +}
 diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 634f4a8aad060e5b424277f70429ea03f77d2224..d17e05ae578573df136ddb97d76eec75274005c4
+index d17e05ae578573df136ddb97d76eec75274005c4..45f7ff857f0af04da85926b2097eb7e62469c4fe
 --- a/src/pages/Contatti.jsx
 +++ b/src/pages/Contatti.jsx
-@@ -1,19 +1,5 @@
+@@ -1,69 +1,13 @@
  import ContactHeroSection from "../components/ContactHeroSection"
+ import ContactDetailsSection from "../components/ContactDetailsSection"
 -
--const contactDetails = [
--  {
--    label: "Email",
--    value: "hello@alaiweb.com",
--    href: "mailto:hello@alaiweb.com",
--    description: "Share your goals, timeline, and current site status.",
--  },
--  {
--    label: "Phone",
--    value: "+39 02 9475 1280",
--    href: "tel:+390294751280",
--    description: "Call for a quick conversation about scope and priorities.",
--  },
+-const officeHours = [
+-  { day: "Monday", hours: "09:00 - 18:00" },
+-  { day: "Tuesday", hours: "09:00 - 18:00" },
+-  { day: "Wednesday", hours: "09:00 - 18:00" },
+-  { day: "Thursday", hours: "09:00 - 18:00" },
+-  { day: "Friday", hours: "09:00 - 16:00" },
+-  { day: "Saturday", hours: "By request" },
+-  { day: "Sunday", hours: "Closed" },
 -]
-+import ContactDetailsSection from "../components/ContactDetailsSection"
++import OpeningHoursSection from "../components/OpeningHoursSection"
  
- const officeHours = [
-   { day: "Monday", hours: "09:00 - 18:00" },
-@@ -29,103 +15,7 @@
+ export default function Contatti() {
    return (
      <main>
        <ContactHeroSection />
+       <ContactDetailsSection />
 -
--      <section id="contact-details" style={{ padding: "0 1.5rem 3rem" }}>
+-      <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
 -        <div
 -          style={{
 -            maxWidth: "72rem",
 -            margin: "0 auto",
+-            padding: "2rem",
+-            borderRadius: "2rem",
+-            backgroundColor: "#0f172a",
+-            color: "#ffffff",
 -            display: "grid",
 -            gap: "1.5rem",
 -          }}
 -        >
--          <h2 style={{ margin: 0, fontSize: "clamp(2rem, 5vw, 3.25rem)" }}>
--            Project conversations, without the friction.
--          </h2>
--          <p
--            style={{
--              margin: 0,
--              maxWidth: "42rem",
--              color: "rgba(17, 17, 17, 0.72)",
--              lineHeight: 1.7,
--            }}
--          >
--            Use the channel that fits your workflow. Email is best for detailed
--            briefs, phone is best for quick alignment, and WhatsApp works well when
--            you want to move fast.
--          </p>
+-          <div style={{ display: "grid", gap: "0.75rem" }}>
+-            <h2 style={{ margin: 0, fontSize: "clamp(2rem, 4vw, 3rem)" }}>
+-              Studio hours
+-            </h2>
+-            <p style={{ margin: 0, maxWidth: "38rem", color: "rgba(255, 255, 255, 0.72)" }}>
+-              We keep our calendar focused so projects move quickly. If your launch is
+-              urgent, mention the deadline in your first message and we will confirm
+-              availability directly.
+-            </p>
+-          </div>
 -          <div
 -            style={{
 -              display: "grid",
--              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
--              gap: "1rem",
+-              gap: "0.75rem",
 -            }}
 -          >
--            {contactDetails.map((item) => (
--              <a
--                key={item.label}
--                href={item.href}
+-            {officeHours.map((entry) => (
+-              <div
+-                key={entry.day}
 -                style={{
--                  display: "grid",
--                  gap: "0.75rem",
--                  padding: "1.5rem",
--                  borderRadius: "1.5rem",
--                  backgroundColor: "#f5f5f5",
--                  color: "#111111",
--                  textDecoration: "none",
+-                  display: "flex",
+-                  justifyContent: "space-between",
+-                  gap: "1rem",
+-                  paddingBottom: "0.75rem",
+-                  borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
 -                }}
 -              >
--                <span
--                  style={{
--                    fontSize: "0.875rem",
--                    fontWeight: 700,
--                    letterSpacing: "0.08em",
--                    textTransform: "uppercase",
--                    color: "#f97316",
--                  }}
--                >
--                  {item.label}
--                </span>
--                <strong style={{ fontSize: "1.25rem" }}>{item.value}</strong>
--                <span style={{ color: "rgba(17, 17, 17, 0.72)", lineHeight: 1.6 }}>
--                  {item.description}
--                </span>
--              </a>
+-                <span>{entry.day}</span>
+-                <span style={{ color: "rgba(255, 255, 255, 0.72)" }}>{entry.hours}</span>
+-              </div>
 -            ))}
--            <a
--              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
--              target="_blank"
--              rel="noreferrer"
--              style={{
--                display: "grid",
--                gap: "0.75rem",
--                padding: "1.5rem",
--                borderRadius: "1.5rem",
--                backgroundColor: "#111111",
--                color: "#ffffff",
--                textDecoration: "none",
--              }}
--            >
--              <span
--                style={{
--                  fontSize: "0.875rem",
--                  fontWeight: 700,
--                  letterSpacing: "0.08em",
--                  textTransform: "uppercase",
--                  color: "#f97316",
--                }}
--              >
--                WhatsApp
--              </span>
--              <strong style={{ fontSize: "1.25rem" }}>Message the studio</strong>
--              <span style={{ color: "rgba(255, 255, 255, 0.72)", lineHeight: 1.6 }}>
--                Ideal for early project questions, quick feedback, and scheduling the
--                first call.
--              </span>
--            </a>
 -          </div>
 -        </div>
 -      </section>
-+      <ContactDetailsSection />
- 
-       <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
-         <div
-
-codex
-I’ve got the exact file references. The task is complete; no further source changes are needed.
-codex
-Modified files: [ContactDetailsSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/ContactDetailsSection.jsx#L1), [Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx#L1), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md#L436)
-
-Implemented the `contact-details` section as a dedicated reusable contact-block component in [ContactDetailsSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/ContactDetailsSection.jsx#L1). It renders the required `contact-details` section with email, phone, and WhatsApp actions using valid `mailto:`, `tel:`, and WhatsApp links, and it is now mounted on the contatti page in [Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx#L14).
-
-Build result: `npm run build` passed successfully with a production Vite build. I also updated [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md#L436) with the required task summary.
-file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index b3959ce1432221f6f472aaa96abe92343183acc4..974b0208d44c88d2c6647c0277ff0711c9448022
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,22 @@
- TASK page-chi-siamo-shell completed successfully.
- Build passed.
- 
-+Prepared TASK section-contatti-contact-details (Create contact-details section on contatti) for execution.
-+
-+Launching Codex for TASK section-contatti-contact-details.
-+
-+Completed TASK `section-contatti-contact-details`.
-+
-+- Added a reusable `ContactDetailsSection` component in `src/components/ContactDetailsSection.jsx`.
-+- Replaced the inline `contact-details` markup in `src/pages/Contatti.jsx` so the contatti page renders the dedicated contact-block section component.
-+- Preserved the required email, phone, and WhatsApp contact actions with valid `mailto:`, `tel:`, and WhatsApp links.
-+
-+TASK section-contatti-contact-details executed by Codex.
-+Waiting for validation.
-+
-+TASK section-contatti-contact-details completed successfully.
-+Build passed.
-+
- Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
- 
- Launching Codex for TASK section-contatti-contact-hero.
-diff --git a/src/components/ContactDetailsSection.jsx b/src/components/ContactDetailsSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..d6fcc875ebb52774f978e6eae9fb65ffcfec21dd
---- /dev/null
-+++ b/src/components/ContactDetailsSection.jsx
-@@ -0,0 +1,122 @@
-+const contactDetails = [
-+  {
-+    label: "Email",
-+    value: "hello@alaiweb.com",
-+    href: "mailto:hello@alaiweb.com",
-+    description: "Share your goals, timeline, and current site status.",
-+  },
-+  {
-+    label: "Phone",
-+    value: "+39 02 9475 1280",
-+    href: "tel:+390294751280",
-+    description: "Call for a quick conversation about scope and priorities.",
-+  },
-+  {
-+    label: "WhatsApp",
-+    value: "Message the studio",
-+    href: "https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project.",
-+    description:
-+      "Ideal for early project questions, quick feedback, and scheduling the first call.",
-+    isDark: true,
-+    external: true,
-+  },
-+]
-+
-+const styles = {
-+  section: {
-+    padding: "0 1.5rem 3rem",
-+  },
-+  shell: {
-+    maxWidth: "72rem",
-+    margin: "0 auto",
-+    display: "grid",
-+    gap: "1.5rem",
-+  },
-+  title: {
-+    margin: 0,
-+    fontSize: "clamp(2rem, 5vw, 3.25rem)",
-+  },
-+  lead: {
-+    margin: 0,
-+    maxWidth: "42rem",
-+    color: "rgba(17, 17, 17, 0.72)",
-+    lineHeight: 1.7,
-+  },
-+  grid: {
-+    display: "grid",
-+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-+    gap: "1rem",
-+  },
-+  card: {
-+    display: "grid",
-+    gap: "0.75rem",
-+    padding: "1.5rem",
-+    borderRadius: "1.5rem",
-+    backgroundColor: "#f5f5f5",
-+    color: "#111111",
-+    textDecoration: "none",
-+  },
-+  cardDark: {
-+    backgroundColor: "#111111",
-+    color: "#ffffff",
-+  },
-+  label: {
-+    fontSize: "0.875rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.08em",
-+    textTransform: "uppercase",
-+    color: "#f97316",
-+  },
-+  value: {
-+    fontSize: "1.25rem",
-+  },
-+  description: {
-+    color: "rgba(17, 17, 17, 0.72)",
-+    lineHeight: 1.6,
-+  },
-+  descriptionDark: {
-+    color: "rgba(255, 255, 255, 0.72)",
-+  },
-+}
-+
-+export default function ContactDetailsSection() {
-+  return (
-+    <section id="contact-details" aria-labelledby="contact-details-title" style={styles.section}>
-+      <div style={styles.shell}>
-+        <h2 id="contact-details-title" style={styles.title}>
-+          Project conversations, without the friction.
-+        </h2>
-+        <p style={styles.lead}>
-+          Use the channel that fits your workflow. Email is best for detailed briefs,
-+          phone is best for quick alignment, and WhatsApp works well when you want to
-+          move fast.
-+        </p>
-+        <div style={styles.grid}>
-+          {contactDetails.map((item) => (
-+            <a
-+              key={item.label}
-+              href={item.href}
-+              target={item.external ? "_blank" : undefined}
-+              rel={item.external ? "noreferrer" : undefined}
-+              style={{
-+                ...styles.card,
-+                ...(item.isDark ? styles.cardDark : null),
-+              }}
-+            >
-+              <span style={styles.label}>{item.label}</span>
-+              <strong style={styles.value}>{item.value}</strong>
-+              <span
-+                style={{
-+                  ...styles.description,
-+                  ...(item.isDark ? styles.descriptionDark : null),
-+                }}
-+              >
-+                {item.description}
-+              </span>
-+            </a>
-+          ))}
-+        </div>
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 634f4a8aad060e5b424277f70429ea03f77d2224..d17e05ae578573df136ddb97d76eec75274005c4
---- a/src/pages/Contatti.jsx
-+++ b/src/pages/Contatti.jsx
-@@ -1,19 +1,5 @@
- import ContactHeroSection from "../components/ContactHeroSection"
--
--const contactDetails = [
--  {
--    label: "Email",
--    value: "hello@alaiweb.com",
--    href: "mailto:hello@alaiweb.com",
--    description: "Share your goals, timeline, and current site status.",
--  },
--  {
--    label: "Phone",
--    value: "+39 02 9475 1280",
--    href: "tel:+390294751280",
--    description: "Call for a quick conversation about scope and priorities.",
--  },
--]
-+import ContactDetailsSection from "../components/ContactDetailsSection"
- 
- const officeHours = [
-   { day: "Monday", hours: "09:00 - 18:00" },
-@@ -29,103 +15,7 @@
-   return (
-     <main>
-       <ContactHeroSection />
--
--      <section id="contact-details" style={{ padding: "0 1.5rem 3rem" }}>
--        <div
--          style={{
--            maxWidth: "72rem",
--            margin: "0 auto",
--            display: "grid",
--            gap: "1.5rem",
--          }}
--        >
--          <h2 style={{ margin: 0, fontSize: "clamp(2rem, 5vw, 3.25rem)" }}>
--            Project conversations, without the friction.
--          </h2>
--          <p
--            style={{
--              margin: 0,
--              maxWidth: "42rem",
--              color: "rgba(17, 17, 17, 0.72)",
--              lineHeight: 1.7,
--            }}
--          >
--            Use the channel that fits your workflow. Email is best for detailed
--            briefs, phone is best for quick alignment, and WhatsApp works well when
--            you want to move fast.
--          </p>
--          <div
--            style={{
--              display: "grid",
--              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
--              gap: "1rem",
--            }}
--          >
--            {contactDetails.map((item) => (
--              <a
--                key={item.label}
--                href={item.href}
--                style={{
--                  display: "grid",
--                  gap: "0.75rem",
--                  padding: "1.5rem",
--                  borderRadius: "1.5rem",
--                  backgroundColor: "#f5f5f5",
--                  color: "#111111",
--                  textDecoration: "none",
--                }}
--              >
--                <span
--                  style={{
--                    fontSize: "0.875rem",
--                    fontWeight: 700,
--                    letterSpacing: "0.08em",
--                    textTransform: "uppercase",
--                    color: "#f97316",
--                  }}
--                >
--                  {item.label}
--                </span>
--                <strong style={{ fontSize: "1.25rem" }}>{item.value}</strong>
--                <span style={{ color: "rgba(17, 17, 17, 0.72)", lineHeight: 1.6 }}>
--                  {item.description}
--                </span>
--              </a>
--            ))}
--            <a
--              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
--              target="_blank"
--              rel="noreferrer"
--              style={{
--                display: "grid",
--                gap: "0.75rem",
--                padding: "1.5rem",
--                borderRadius: "1.5rem",
--                backgroundColor: "#111111",
--                color: "#ffffff",
--                textDecoration: "none",
--              }}
--            >
--              <span
--                style={{
--                  fontSize: "0.875rem",
--                  fontWeight: 700,
--                  letterSpacing: "0.08em",
--                  textTransform: "uppercase",
--                  color: "#f97316",
--                }}
--              >
--                WhatsApp
--              </span>
--              <strong style={{ fontSize: "1.25rem" }}>Message the studio</strong>
--              <span style={{ color: "rgba(255, 255, 255, 0.72)", lineHeight: 1.6 }}>
--                Ideal for early project questions, quick feedback, and scheduling the
--                first call.
--              </span>
--            </a>
--          </div>
--        </div>
--      </section>
-+      <ContactDetailsSection />
- 
-       <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
-         <div
++      <OpeningHoursSection />
+     </main>
+   )
+ }
 
 tokens used
-32.409
+20.940
