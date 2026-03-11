@@ -1,8 +1,8 @@
-Modified files: [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx), [src/components/OpeningHoursSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/OpeningHoursSection.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md)
+Modified files: [ContactDetailsSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/ContactDetailsSection.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md)
 
-Implemented the `opening-hours` hours-block for the contatti page by extracting the existing inline section into a dedicated reusable component and rendering it from [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx). The new [src/components/OpeningHoursSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/OpeningHoursSection.jsx) keeps the required `opening-hours` section id, heading, and daily schedule content. I also appended the task summary to [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md).
+Implemented the `contatti-whatsapp` CTA as a visible body-level action inside the contact details section on the `contatti` page. The new CTA uses a valid WhatsApp deep link and sits in the page body, distinct from the existing hero actions, so it satisfies the required placement without changing routing or unrelated sections.
 
-Build result: `npm run build` passed with Vite production build succeeding. I did not run browser-based validation in this turn.
+Build result: `npm run build` passed successfully.
 
 OpenAI Codex v0.111.0 (research preview)
 --------
@@ -13,7 +13,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cddbb-4c4f-7de3-98e7-bb7b44dfdd86
+session id: 019cddbc-532d-75c3-b491-13f9638bbb31
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1150,20 +1150,25 @@ It must feel like a modern digital product studio.
 ```
 
 ## Current task id
-section-contatti-opening-hours
+cta-contatti-contatti-whatsapp
 
 ## Current task title
-Create opening-hours section on contatti
+Add CTA contatti-whatsapp on contatti
 
 ## Current task type
-section
+cta
 
 ## Current task target
 ```json
 {
   "pageId": "contatti",
-  "sectionId": "opening-hours",
-  "sectionType": "hours-block"
+  "ctaId": "contatti-whatsapp",
+  "ctaKind": "external",
+  "destination": {
+    "type": "whatsapp",
+    "value": "whatsapp"
+  },
+  "placement": "body"
 }
 ```
 
@@ -1172,13 +1177,12 @@ section
 
 ## Files allowed
 - src/pages/Contatti.jsx
-- src/components/OpeningHoursSection.jsx
 - src/components
 
 ## Definition of done
-- section opening-hours exists on contatti
-- section opening-hours matches type hours-block
-- section opening-hours is rendered in page contatti
+- CTA contatti-whatsapp exists on contatti
+- CTA contatti-whatsapp is visible in placement body
+- CTA contatti-whatsapp points to a valid destination
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1207,15 +1211,60 @@ section
 
 mcp startup: no servers
 codex
-I’m executing `section-contatti-opening-hours`. First I’m checking the current page shell, component structure, and task/source-of-truth files so the new hours block fits the existing implementation without touching unrelated sections.
+I’m implementing the WhatsApp CTA for the `contatti` page, then I’ll run a build check and update the agent report as required by the task workflow.
 exec
-/bin/zsh -lc "sed -n '1,220p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,220p' src/pages/Contatti.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,220p' docs/DEVELOPMENT_METHOD.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "pwd && rg --files brief agent docs src | rg '"'^(brief/original-prompt.md|brief/brief-summary.md|agent/CURRENT_TASK_PROMPT.md|agent/TASK_STATE.json|agent/TASK_GRAPH.json|docs/DEVELOPMENT_METHOD.md|site-spec.json|src/pages/Contatti.jsx|src/components)'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,240p' src/pages/Contatti.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "rg --files src agent brief docs | rg '"'^(src/pages/Contatti.jsx|src/components|agent/AGENT_REPORT.md|agent/CURRENT_TASK_PROMPT.md|agent/TASK_STATE.json|site-spec.json|docs/DEVELOPMENT_METHOD.md|brief/original-prompt.md|brief/brief-summary.md)$'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 51ms:
 import ContactHeroSection from "../components/ContactHeroSection"
 import ContactDetailsSection from "../components/ContactDetailsSection"
+import OpeningHoursSection from "../components/OpeningHoursSection"
 
+export default function Contatti() {
+  return (
+    <main>
+      <ContactHeroSection />
+      <ContactDetailsSection />
+      <OpeningHoursSection />
+    </main>
+  )
+}
+ succeeded in 51ms:
+Total output lines: 220
+
+# AGENT REPORT
+
+Project created.
+
+Prepared TASK page-home-shell (Create home page shell) for execution.
+
+Launching Codex for TASK page-home-shell.
+
+Completed TASK `page-home-shell`.
+
+- Replaced placeholder home page content with a semantic `main` shell.
+- Kept the home route mounted in the existing hash router setup.
+- Added the required home sections: `hero`, `signature-preview`, and `brand-story-preview`.
+- Added working internal CTAs to `/menu` and `/contatti`.
+
+TASK page-home-shell executed by Codex.
+Waiting for validation.
+
+ succeeded in 52ms:
+docs/DEVELOPMENT_METHOD.md
+agent/TASK_STATE.json
+agent/AGENT_REPORT.md
+agent/CURRENT_TASK_PROMPT.md
+src/pages/Contatti.jsx
+brief/brief-summary.md
+brief/original-prompt.md
+codex
+I’ve confirmed `Contatti.jsx` is still just the page shell. Next I’m checking the existing contact components so the WhatsApp CTA lands in the body without introducing a one-off pattern.
+exec
+/bin/zsh -lc "sed -n '1,260p' src/components/ContactDetailsSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,260p' src/components/ContactHeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,260p' src/components/OpeningHoursSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc 'rg --files src/components' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 52ms:
 const officeHours = [
   { day: "Monday", hours: "09:00 - 18:00" },
   { day: "Tuesday", hours: "09:00 - 18:00" },
@@ -1226,82 +1275,38 @@ const officeHours = [
   { day: "Sunday", hours: "Closed" },
 ]
 
-export default function Contatti() {
-  return (
-    <main>
-      <ContactHeroSection />
-      <ContactDetailsSection />
-
-      <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
+const styles = {
+  section: {
+    padding: "0 1.5rem 5rem",
+  },
+  shell: {
+    maxWidth: "72rem",
+    margin: "0 auto",
+    padding: "2rem",
+    borderRadius: "2rem",
+    backgroundColor: "#0f172a",
  succeeded in 52ms:
-# Development Method
-
-All sites must follow these rules.
-
-## Objective
-- Generate production-ready static websites that are clear, stable, responsive, modular, and easy to validate.
-- Prioritize correctness before visual polish.
-- Prefer predictable implementation over improvisation.
-
-## Source of Truth
-- The human prompt is not the implementation source of truth.
-- `site-spec.json` is the only source of truth for pages, sections, navigation, routing, and required features.
-- If supported by the project architecture, `content.json` is the source of truth for copy, labels, CTA text, and contact details.
-- If supported by the project architecture, `theme.json` is the source of truth for colors, typography, spacing, radius, and visual tokens.
-- The implementation flow must be: `prompt -> site-spec.json -> tasks -> code`.
-- Never implement pages, routes, sections, navigation items, or features that are not defined in the spec.
-
-## Core Principles
-- Build for users first: clarity, speed, and clear actions.
-- Keep code modular: reusable components with clear responsibilities.
+const styles = {
+  section: {
+    position: "relative",
+    overflow: "hidden",
+    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem) clamp(3rem, 6vw, 4rem)",
+    background:
+      "radial-gradient(circle at top left, rgba(249, 115, 22, 0.16), transparent 30%), linear-gradient(180deg, rgba(249, 115, 22, 0.08) 0%, #ffffff 72%)",
+  },
+  shell: {
+    maxWidth: "1280px",
+    margin: "0 auto",
+    display: "grid",
+    gap: "1.5rem",
+  },
+  eyebrow: {
+    margin: 0,
+    color: "#f97316",
+    fontSize: "0.875rem",
+    fontWeight: 700,
+    letterSpacing: "0.12em",
  succeeded in 52ms:
-# CURRENT TASK EXECUTION PROMPT
-
-You are the coding executor for this project.
-
-## Project path
-site-create-a-high-end-visually-distinctive-m
-
-## Source of truth files
-- brief/original-prompt.md
-- brief/brief-summary.md
-- site-spec.json
-- docs/DEVELOPMENT_METHOD.md
-- agent/TASK_GRAPH.json
-- agent/TASK_STATE.json
-- agent/CURRENT_TASK_PROMPT.md
-
-## Development method
-# Development Method
-
-All sites must follow these rules.
- succeeded in 51ms:
-/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m
-docs/DEVELOPMENT_METHOD.md
-brief/brief-summary.md
-brief/original-prompt.md
-agent/TASK_GRAPH.json
-agent/CURRENT_TASK_PROMPT.md
-agent/TASK_STATE.json
-src/pages/Contatti.jsx
-src/components/FloatingWhatsAppButton.jsx
-src/components/AboutHeroSection.jsx
-src/components/StorySection.jsx
-src/components/BrandStoryPreviewSection.jsx
-src/components/PhilosophySection.jsx
-src/components/MenuCategoriesSection.jsx
-src/components/GalleryHeroSection.jsx
-src/components/SignaturePreviewSection.jsx
-src/components/ContactHeroSection.jsx
-src/components/GalleryGridSection.jsx
-src/components/MenuHeroSection.jsx
-src/components/HeroSection.jsx
-codex
-The contact page already has an inline hours section, so I’m extracting that into a dedicated reusable component and keeping the page wiring minimal. I’m also checking nearby component patterns so the new file matches the existing style and doesn’t introduce build drift.
-exec
-/bin/zsh -lc "sed -n '1,240p' src/components/ContactDetailsSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,240p' src/components/ContactHeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,240p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 52ms:
 const contactDetails = [
   {
     label: "Email",
@@ -1323,559 +1328,221 @@ const contactDetails = [
       "Ideal for early project questions, quick feedback, and scheduling the first call.",
     isDark: true,
  succeeded in 51ms:
-const styles = {
-  section: {
-    position: "relative",
-    overflow: "hidden",
-    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem) clamp(3rem, 6vw, 4rem)",
-    background:
-      "radial-gradient(circle at top left, rgba(249, 115, 22, 0.16), transparent 30%), linear-gradient(180deg, rgba(249, 115, 22, 0.08) 0%, #ffffff 72%)",
-  },
-  shell: {
-    maxWidth: "1280px",
-    margin: "0 auto",
-    display: "grid",
-    gap: "1.5rem",
-  },
-  eyebrow: {
-    margin: 0,
-    color: "#f97316",
-    fontSize: "0.875rem",
-    fontWeight: 700,
-    letterSpacing: "0.12em",
- succeeded in 51ms:
-Total output lines: 240
-
-# AGENT REPORT
-
-Project created.
-
-Prepared TASK page-home-shell (Create home page shell) for execution.
-
-Launching Codex for TASK page-home-shell.
-
-Completed TASK `page-home-shell`.
-
-- Replaced placeholder home page content with a semantic `main` shell.
-- Kept the home route mounted in the existing hash router setup.
-- Added the required home sections: `hero`, `signature-preview`, and `brand-story-preview`.
-- Added working internal CTAs to `/menu` and `/contatti`.
-
-TASK page-home-shell executed by Codex.
-Waiting for validation.
-
+src/components/FloatingWhatsAppButton.jsx
+src/components/AboutHeroSection.jsx
+src/components/StorySection.jsx
+src/components/BrandStoryPreviewSection.jsx
+src/components/PhilosophySection.jsx
+src/components/OpeningHoursSection.jsx
+src/components/MenuCategoriesSection.jsx
+src/components/GalleryHeroSection.jsx
+src/components/SignaturePreviewSection.jsx
+src/components/ContactHeroSection.jsx
+src/components/GalleryGridSection.jsx
+src/components/MenuHeroSection.jsx
+src/components/HeroSection.jsx
+src/components/ContactDetailsSection.jsx
 codex
-I’ve got enough context. Next I’m patching `Contatti.jsx` to use a dedicated `OpeningHoursSection` component, then I’ll run the build and append the task result to `agent/AGENT_REPORT.md` as required.
+I found an existing WhatsApp link in the hero, but this task requires a separate body CTA. I’m adding a distinct WhatsApp action inside the contact details section so the required placement is satisfied without changing the page structure.
 file update
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/OpeningHoursSection.jsx
-const officeHours = [
-  { day: "Monday", hours: "09:00 - 18:00" },
-  { day: "Tuesday", hours: "09:00 - 18:00" },
-  { day: "Wednesday", hours: "09:00 - 18:00" },
-  { day: "Thursday", hours: "09:00 - 18:00" },
-  { day: "Friday", hours: "09:00 - 16:00" },
-  { day: "Saturday", hours: "By request" },
-  { day: "Sunday", hours: "Closed" },
-]
-
-const styles = {
-  section: {
-    padding: "0 1.5rem 5rem",
-  },
-  shell: {
-    maxWidth: "72rem",
-    margin: "0 auto",
-    padding: "2rem",
-    borderRadius: "2rem",
-    backgroundColor: "#0f172a",
-    color: "#ffffff",
-    display: "grid",
-    gap: "1.5rem",
-  },
-  header: {
-    display: "grid",
-    gap: "0.75rem",
-  },
-  title: {
-    margin: 0,
-    fontSize: "clamp(2rem, 4vw, 3rem)",
-  },
-  lead: {
-    margin: 0,
-    maxWidth: "38rem",
-    color: "rgba(255, 255, 255, 0.72)",
-    lineHeight: 1.7,
-  },
-  list: {
-    display: "grid",
-    gap: "0.75rem",
-  },
-  row: {
-    display: "flex",
-    justifyContent: "space-between",
-    gap: "1rem",
-    paddingBottom: "0.75rem",
-    borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
-  },
-  hours: {
-    color: "rgba(255, 255, 255, 0.72)",
-    textAlign: "right",
-  },
-}
-
-export default function OpeningHoursSection() {
-  return (
-    <section id="opening-hours" aria-labelledby="opening-hours-title" style={styles.section}>
-      <div style={styles.shell}>
-        <div style={styles.header}>
-          <h2 id="opening-hours-title" style={styles.title}>
-            Studio hours
-          </h2>
-          <p style={styles.lead}>
-            We keep our calendar focused so projects move quickly. If your launch is
-            urgent, mention the deadline in your first message and we will confirm
-            availability directly.
-          </p>
-        </div>
-        <div style={styles.list}>
-          {officeHours.map((entry) => (
-            <div key={entry.day} style={styles.row}>
-              <span>{entry.day}</span>
-              <span style={styles.hours}>{entry.hours}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx
-@@ -2,12 +2,3 @@
- import ContactDetailsSection from "../components/ContactDetailsSection"
--
--const officeHours = [
--  { day: "Monday", hours: "09:00 - 18:00" },
--  { day: "Tuesday", hours: "09:00 - 18:00" },
--  { day: "Wednesday", hours: "09:00 - 18:00" },
--  { day: "Thursday", hours: "09:00 - 18:00" },
--  { day: "Friday", hours: "09:00 - 16:00" },
--  { day: "Saturday", hours: "By request" },
--  { day: "Sunday", hours: "Closed" },
--]
-+import OpeningHoursSection from "../components/OpeningHoursSection"
- 
-@@ -18,50 +9,3 @@
-       <ContactDetailsSection />
--
--      <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
--        <div
--          style={{
--            maxWidth: "72rem",
--            margin: "0 auto",
--            padding: "2rem",
--            borderRadius: "2rem",
--            backgroundColor: "#0f172a",
--            color: "#ffffff",
--            display: "grid",
--            gap: "1.5rem",
--          }}
--        >
--          <div style={{ display: "grid", gap: "0.75rem" }}>
--            <h2 style={{ margin: 0, fontSize: "clamp(2rem, 4vw, 3rem)" }}>
--              Studio hours
--            </h2>
--            <p style={{ margin: 0, maxWidth: "38rem", color: "rgba(255, 255, 255, 0.72)" }}>
--              We keep our calendar focused so projects move quickly. If your launch is
--              urgent, mention the deadline in your first message and we will confirm
--              availability directly.
--            </p>
--          </div>
--          <div
--            style={{
--              display: "grid",
--              gap: "0.75rem",
--            }}
--          >
--            {officeHours.map((entry) => (
--              <div
--                key={entry.day}
--                style={{
--                  display: "flex",
--                  justifyContent: "space-between",
--                  gap: "1rem",
--                  paddingBottom: "0.75rem",
--                  borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
--                }}
--              >
--                <span>{entry.day}</span>
--                <span style={{ color: "rgba(255, 255, 255, 0.72)" }}>{entry.hours}</span>
--              </div>
--            ))}
--          </div>
--        </div>
--      </section>
-+      <OpeningHoursSection />
-     </main>
-apply_patch(auto_approved=true) exited 0 in 60ms:
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/ContactDetailsSection.jsx
+@@ -44,2 +44,35 @@
+   },
++  ctaBlock: {
++    display: "grid",
++    gap: "1rem",
++    padding: "1.5rem",
++    borderRadius: "1.75rem",
++    background:
++      "linear-gradient(135deg, rgba(249, 115, 22, 0.14), rgba(17, 17, 17, 0.04))",
++    border: "1px solid rgba(17, 17, 17, 0.08)",
++  },
++  ctaTitle: {
++    margin: 0,
++    fontSize: "clamp(1.5rem, 3vw, 2rem)",
++    color: "#111111",
++  },
++  ctaText: {
++    margin: 0,
++    maxWidth: "42rem",
++    color: "rgba(17, 17, 17, 0.72)",
++    lineHeight: 1.7,
++  },
++  ctaAction: {
++    display: "inline-flex",
++    alignItems: "center",
++    justifyContent: "center",
++    width: "fit-content",
++    minHeight: "3rem",
++    padding: "0.875rem 1.5rem",
++    borderRadius: "999px",
++    backgroundColor: "#111111",
++    color: "#ffffff",
++    fontWeight: 700,
++    textDecoration: "none",
++  },
+   grid: {
+@@ -93,2 +126,17 @@
+         </p>
++        <div style={styles.ctaBlock}>
++          <h3 style={styles.ctaTitle}>Prefer to start with a quick WhatsApp message?</h3>
++          <p style={styles.ctaText}>
++            Send a short brief and we will reply with the next best step for your
++            project, timeline, and budget range.
++          </p>
++          <a
++            href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
++            target="_blank"
++            rel="noreferrer"
++            style={styles.ctaAction}
++          >
++            Chat on WhatsApp
++          </a>
++        </div>
+         <div style={styles.grid}>
+apply_patch(auto_approved=true) exited 0 in 37ms:
 Success. Updated the following files:
-A src/components/OpeningHoursSection.jsx
-M src/pages/Contatti.jsx
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/ContactDetailsSection.jsx
 file update:
-diff --git a/src/components/OpeningHoursSection.jsx b/src/components/OpeningHoursSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..50f20f7ab76023a965dde33864b016231a323dec
---- /dev/null
-+++ b/src/components/OpeningHoursSection.jsx
-@@ -0,0 +1,81 @@
-+const officeHours = [
-+  { day: "Monday", hours: "09:00 - 18:00" },
-+  { day: "Tuesday", hours: "09:00 - 18:00" },
-+  { day: "Wednesday", hours: "09:00 - 18:00" },
-+  { day: "Thursday", hours: "09:00 - 18:00" },
-+  { day: "Friday", hours: "09:00 - 16:00" },
-+  { day: "Saturday", hours: "By request" },
-+  { day: "Sunday", hours: "Closed" },
-+]
-+
-+const styles = {
-+  section: {
-+    padding: "0 1.5rem 5rem",
-+  },
-+  shell: {
-+    maxWidth: "72rem",
-+    margin: "0 auto",
-+    padding: "2rem",
-+    borderRadius: "2rem",
-+    backgroundColor: "#0f172a",
-+    color: "#ffffff",
+diff --git a/src/components/ContactDetailsSection.jsx b/src/components/ContactDetailsSection.jsx
+index d6fcc875ebb52774f978e6eae9fb65ffcfec21dd..ab4609bb7c9447d225495bb3eb18d547b4db76a5
+--- a/src/components/ContactDetailsSection.jsx
++++ b/src/components/ContactDetailsSection.jsx
+@@ -42,6 +42,39 @@
+     color: "rgba(17, 17, 17, 0.72)",
+     lineHeight: 1.7,
+   },
++  ctaBlock: {
 +    display: "grid",
-+    gap: "1.5rem",
++    gap: "1rem",
++    padding: "1.5rem",
++    borderRadius: "1.75rem",
++    background:
++      "linear-gradient(135deg, rgba(249, 115, 22, 0.14), rgba(17, 17, 17, 0.04))",
++    border: "1px solid rgba(17, 17, 17, 0.08)",
 +  },
-+  header: {
-+    display: "grid",
-+    gap: "0.75rem",
-+  },
-+  title: {
++  ctaTitle: {
 +    margin: 0,
-+    fontSize: "clamp(2rem, 4vw, 3rem)",
++    fontSize: "clamp(1.5rem, 3vw, 2rem)",
++    color: "#111111",
 +  },
-+  lead: {
++  ctaText: {
 +    margin: 0,
-+    maxWidth: "38rem",
-+    color: "rgba(255, 255, 255, 0.72)",
++    maxWidth: "42rem",
++    color: "rgba(17, 17, 17, 0.72)",
 +    lineHeight: 1.7,
 +  },
-+  list: {
-+    display: "grid",
-+    gap: "0.75rem",
++  ctaAction: {
++    display: "inline-flex",
++    alignItems: "center",
++    justifyContent: "center",
++    width: "fit-content",
++    minHeight: "3rem",
++    padding: "0.875rem 1.5rem",
++    borderRadius: "999px",
++    backgroundColor: "#111111",
++    color: "#ffffff",
++    fontWeight: 700,
++    textDecoration: "none",
 +  },
-+  row: {
-+    display: "flex",
-+    justifyContent: "space-between",
-+    gap: "1rem",
-+    paddingBottom: "0.75rem",
-+    borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
-+  },
-+  hours: {
-+    color: "rgba(255, 255, 255, 0.72)",
-+    textAlign: "right",
-+  },
-+}
-+
-+export default function OpeningHoursSection() {
-+  return (
-+    <section id="opening-hours" aria-labelledby="opening-hours-title" style={styles.section}>
-+      <div style={styles.shell}>
-+        <div style={styles.header}>
-+          <h2 id="opening-hours-title" style={styles.title}>
-+            Studio hours
-+          </h2>
-+          <p style={styles.lead}>
-+            We keep our calendar focused so projects move quickly. If your launch is
-+            urgent, mention the deadline in your first message and we will confirm
-+            availability directly.
+   grid: {
+     display: "grid",
+     gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+@@ -91,6 +124,21 @@
+           phone is best for quick alignment, and WhatsApp works well when you want to
+           move fast.
+         </p>
++        <div style={styles.ctaBlock}>
++          <h3 style={styles.ctaTitle}>Prefer to start with a quick WhatsApp message?</h3>
++          <p style={styles.ctaText}>
++            Send a short brief and we will reply with the next best step for your
++            project, timeline, and budget range.
 +          </p>
++          <a
++            href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
++            target="_blank"
++            rel="noreferrer"
++            style={styles.ctaAction}
++          >
++            Chat on WhatsApp
++          </a>
 +        </div>
-+        <div style={styles.list}>
-+          {officeHours.map((entry) => (
-+            <div key={entry.day} style={styles.row}>
-+              <span>{entry.day}</span>
-+              <span style={styles.hours}>{entry.hours}</span>
-+            </div>
-+          ))}
-+        </div>
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index d17e05ae578573df136ddb97d76eec75274005c4..45f7ff857f0af04da85926b2097eb7e62469c4fe
---- a/src/pages/Contatti.jsx
-+++ b/src/pages/Contatti.jsx
-@@ -1,69 +1,13 @@
- import ContactHeroSection from "../components/ContactHeroSection"
- import ContactDetailsSection from "../components/ContactDetailsSection"
--
--const officeHours = [
--  { day: "Monday", hours: "09:00 - 18:00" },
--  { day: "Tuesday", hours: "09:00 - 18:00" },
--  { day: "Wednesday", hours: "09:00 - 18:00" },
--  { day: "Thursday", hours: "09:00 - 18:00" },
--  { day: "Friday", hours: "09:00 - 16:00" },
--  { day: "Saturday", hours: "By request" },
--  { day: "Sunday", hours: "Closed" },
--]
-+import OpeningHoursSection from "../components/OpeningHoursSection"
- 
- export default function Contatti() {
-   return (
-     <main>
-       <ContactHeroSection />
-       <ContactDetailsSection />
--
--      <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
--        <div
--          style={{
--            maxWidth: "72rem",
--            margin: "0 auto",
--            padding: "2rem",
--            borderRadius: "2rem",
--            backgroundColor: "#0f172a",
--            color: "#ffffff",
--            display: "grid",
--            gap: "1.5rem",
--          }}
--        >
--          <div style={{ display: "grid", gap: "0.75rem" }}>
--            <h2 style={{ margin: 0, fontSize: "clamp(2rem, 4vw, 3rem)" }}>
--              Studio hours
--            </h2>
--            <p style={{ margin: 0, maxWidth: "38rem", color: "rgba(255, 255, 255, 0.72)" }}>
--              We keep our calendar focused so projects move quickly. If your launch is
--              urgent, mention the deadline in your first message and we will confirm
--              availability directly.
--            </p>
--          </div>
--          <div
--            style={{
--              display: "grid",
--              gap: "0.75rem",
--            }}
--          >
--            {officeHours.map((entry) => (
--              <div
--                key={entry.day}
--                style={{
--                  display: "flex",
--                  justifyContent: "space-between",
--                  gap: "1rem",
--                  paddingBottom: "0.75rem",
--                  borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
--                }}
--              >
--                <span>{entry.day}</span>
--                <span style={{ color: "rgba(255, 255, 255, 0.72)" }}>{entry.hours}</span>
--              </div>
--            ))}
--          </div>
--        </div>
--      </section>
-+      <OpeningHoursSection />
-     </main>
-   )
- }
+         <div style={styles.grid}>
+           {contactDetails.map((item) => (
+             <a
 
 file update:
-diff --git a/src/components/OpeningHoursSection.jsx b/src/components/OpeningHoursSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..50f20f7ab76023a965dde33864b016231a323dec
---- /dev/null
-+++ b/src/components/OpeningHoursSection.jsx
-@@ -0,0 +1,81 @@
-+const officeHours = [
-+  { day: "Monday", hours: "09:00 - 18:00" },
-+  { day: "Tuesday", hours: "09:00 - 18:00" },
-+  { day: "Wednesday", hours: "09:00 - 18:00" },
-+  { day: "Thursday", hours: "09:00 - 18:00" },
-+  { day: "Friday", hours: "09:00 - 16:00" },
-+  { day: "Saturday", hours: "By request" },
-+  { day: "Sunday", hours: "Closed" },
-+]
-+
-+const styles = {
-+  section: {
-+    padding: "0 1.5rem 5rem",
-+  },
-+  shell: {
-+    maxWidth: "72rem",
-+    margin: "0 auto",
-+    padding: "2rem",
-+    borderRadius: "2rem",
-+    backgroundColor: "#0f172a",
-+    color: "#ffffff",
+diff --git a/src/components/ContactDetailsSection.jsx b/src/components/ContactDetailsSection.jsx
+index d6fcc875ebb52774f978e6eae9fb65ffcfec21dd..ab4609bb7c9447d225495bb3eb18d547b4db76a5
+--- a/src/components/ContactDetailsSection.jsx
++++ b/src/components/ContactDetailsSection.jsx
+@@ -42,6 +42,39 @@
+     color: "rgba(17, 17, 17, 0.72)",
+     lineHeight: 1.7,
+   },
++  ctaBlock: {
 +    display: "grid",
-+    gap: "1.5rem",
++    gap: "1rem",
++    padding: "1.5rem",
++    borderRadius: "1.75rem",
++    background:
++      "linear-gradient(135deg, rgba(249, 115, 22, 0.14), rgba(17, 17, 17, 0.04))",
++    border: "1px solid rgba(17, 17, 17, 0.08)",
 +  },
-+  header: {
-+    display: "grid",
-+    gap: "0.75rem",
-+  },
-+  title: {
++  ctaTitle: {
 +    margin: 0,
-+    fontSize: "clamp(2rem, 4vw, 3rem)",
++    fontSize: "clamp(1.5rem, 3vw, 2rem)",
++    color: "#111111",
 +  },
-+  lead: {
++  ctaText: {
 +    margin: 0,
-+    maxWidth: "38rem",
-+    color: "rgba(255, 255, 255, 0.72)",
++    maxWidth: "42rem",
++    color: "rgba(17, 17, 17, 0.72)",
 +    lineHeight: 1.7,
 +  },
-+  list: {
-+    display: "grid",
-+    gap: "0.75rem",
++  ctaAction: {
++    display: "inline-flex",
++    alignItems: "center",
++    justifyContent: "center",
++    width: "fit-content",
++    minHeight: "3rem",
++    padding: "0.875rem 1.5rem",
++    borderRadius: "999px",
++    backgroundColor: "#111111",
++    color: "#ffffff",
++    fontWeight: 700,
++    textDecoration: "none",
 +  },
-+  row: {
-+    display: "flex",
-+    justifyContent: "space-between",
-+    gap: "1rem",
-+    paddingBottom: "0.75rem",
-+    borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
-+  },
-+  hours: {
-+    color: "rgba(255, 255, 255, 0.72)",
-+    textAlign: "right",
-+  },
-+}
-+
-+export default function OpeningHoursSection() {
-+  return (
-+    <section id="opening-hours" aria-labelledby="opening-hours-title" style={styles.section}>
-+      <div style={styles.shell}>
-+        <div style={styles.header}>
-+          <h2 id="opening-hours-title" style={styles.title}>
-+            Studio hours
-+          </h2>
-+          <p style={styles.lead}>
-+            We keep our calendar focused so projects move quickly. If your launch is
-+            urgent, mention the deadline in your first message and we will confirm
-+            availability directly.
+   grid: {
+     display: "grid",
+     gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+@@ -91,6 +124,21 @@
+           phone is best for quick alignment, and WhatsApp works well when you want to
+           move fast.
+         </p>
++        <div style={styles.ctaBlock}>
++          <h3 style={styles.ctaTitle}>Prefer to start with a quick WhatsApp message?</h3>
++          <p style={styles.ctaText}>
++            Send a short brief and we will reply with the next best step for your
++            project, timeline, and budget range.
 +          </p>
++          <a
++            href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
++            target="_blank"
++            rel="noreferrer"
++            style={styles.ctaAction}
++          >
++            Chat on WhatsApp
++          </a>
 +        </div>
-+        <div style={styles.list}>
-+          {officeHours.map((entry) => (
-+            <div key={entry.day} style={styles.row}>
-+              <span>{entry.day}</span>
-+              <span style={styles.hours}>{entry.hours}</span>
-+            </div>
-+          ))}
-+        </div>
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index d17e05ae578573df136ddb97d76eec75274005c4..45f7ff857f0af04da85926b2097eb7e62469c4fe
---- a/src/pages/Contatti.jsx
-+++ b/src/pages/Contatti.jsx
-@@ -1,69 +1,13 @@
- import ContactHeroSection from "../components/ContactHeroSection"
- import ContactDetailsSection from "../components/ContactDetailsSection"
--
--const officeHours = [
--  { day: "Monday", hours: "09:00 - 18:00" },
--  { day: "Tuesday", hours: "09:00 - 18:00" },
--  { day: "Wednesday", hours: "09:00 - 18:00" },
--  { day: "Thursday", hours: "09:00 - 18:00" },
--  { day: "Friday", hours: "09:00 - 16:00" },
--  { day: "Saturday", hours: "By request" },
--  { day: "Sunday", hours: "Closed" },
--]
-+import OpeningHoursSection from "../components/OpeningHoursSection"
- 
- export default function Contatti() {
-   return (
-     <main>
-       <ContactHeroSection />
-       <ContactDetailsSection />
--
--      <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
--        <div
--          style={{
--            maxWidth: "72rem",
--            margin: "0 auto",
--            padding: "2rem",
--            borderRadius: "2rem",
--            backgroundColor: "#0f172a",
--            color: "#ffffff",
--            display: "grid",
--            gap: "1.5rem",
--          }}
--        >
--          <div style={{ display: "grid", gap: "0.75rem" }}>
--            <h2 style={{ margin: 0, fontSize: "clamp(2rem, 4vw, 3rem)" }}>
--              Studio hours
--            </h2>
--            <p style={{ margin: 0, maxWidth: "38rem", color: "rgba(255, 255, 255, 0.72)" }}>
--              We keep our calendar focused so projects move quickly. If your launch is
--              urgent, mention the deadline in your first message and we will confirm
--              availability directly.
--            </p>
--          </div>
--          <div
--            style={{
--              display: "grid",
--              gap: "0.75rem",
--            }}
--          >
--            {officeHours.map((entry) => (
--              <div
--                key={entry.day}
--                style={{
--                  display: "flex",
--                  justifyContent: "space-between",
--                  gap: "1rem",
--                  paddingBottom: "0.75rem",
--                  borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
--                }}
--              >
--                <span>{entry.day}</span>
--                <span style={{ color: "rgba(255, 255, 255, 0.72)" }}>{entry.hours}</span>
--              </div>
--            ))}
--          </div>
--        </div>
--      </section>
-+      <OpeningHoursSection />
-     </main>
-   )
- }
+         <div style={styles.grid}>
+           {contactDetails.map((item) => (
+             <a
 
 codex
-The section is now isolated in its own component and wired into the contatti page. I’m running the build next, then I’ll append a short task summary to the agent report with the exact outcome.
+The body CTA is in place inside the contact details section. I’m running the build now to verify the change didn’t break the app, then I’ll append the task summary to the agent report.
 exec
-/bin/zsh -lc 'tail -n 80 agent/AGENT_REPORT.md' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 52ms:
-Prepared TASK section-chi-siamo-philosophy (Create philosophy section on chi-siamo) for execution.
-
-Launching Codex for TASK section-chi-siamo-philosophy.
-
-TASK section-chi-siamo-philosophy executed by Codex.
-Waiting for validation.
-
-TASK section-chi-siamo-philosophy completed successfully.
-Build passed.
-Commit created for TASK section-chi-siamo-philosophy.
-
-Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
-
-Launching Codex for TASK page-gallery-shell.
-
-TASK page-gallery-shell executed by Codex.
-Waiting for validation.
-
-TASK page-gallery-shell completed successfully.
-Build passed.
-exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 859ms:
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 866ms:
 
 > site-create-a-high-end-visually-distinctive-m@0.0.0 build
 > vite build
@@ -1887,754 +1554,390 @@ rendering chunks...
 computing gzip size...
 dist/index.html                   0.50 kB │ gzip:  0.32 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-DXedkN5z.js   271.98 kB │ gzip: 83.92 kB
-✓ built in 580ms
+dist/assets/index-DHsPfy9g.js   273.05 kB │ gzip: 84.09 kB
+✓ built in 595ms
 file update:
-diff --git a/src/components/OpeningHoursSection.jsx b/src/components/OpeningHoursSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..50f20f7ab76023a965dde33864b016231a323dec
---- /dev/null
-+++ b/src/components/OpeningHoursSection.jsx
-@@ -0,0 +1,81 @@
-+const officeHours = [
-+  { day: "Monday", hours: "09:00 - 18:00" },
-+  { day: "Tuesday", hours: "09:00 - 18:00" },
-+  { day: "Wednesday", hours: "09:00 - 18:00" },
-+  { day: "Thursday", hours: "09:00 - 18:00" },
-+  { day: "Friday", hours: "09:00 - 16:00" },
-+  { day: "Saturday", hours: "By request" },
-+  { day: "Sunday", hours: "Closed" },
-+]
-+
-+const styles = {
-+  section: {
-+    padding: "0 1.5rem 5rem",
-+  },
-+  shell: {
-+    maxWidth: "72rem",
-+    margin: "0 auto",
-+    padding: "2rem",
-+    borderRadius: "2rem",
-+    backgroundColor: "#0f172a",
-+    color: "#ffffff",
+diff --git a/src/components/ContactDetailsSection.jsx b/src/components/ContactDetailsSection.jsx
+index d6fcc875ebb52774f978e6eae9fb65ffcfec21dd..ab4609bb7c9447d225495bb3eb18d547b4db76a5
+--- a/src/components/ContactDetailsSection.jsx
++++ b/src/components/ContactDetailsSection.jsx
+@@ -42,6 +42,39 @@
+     color: "rgba(17, 17, 17, 0.72)",
+     lineHeight: 1.7,
+   },
++  ctaBlock: {
 +    display: "grid",
-+    gap: "1.5rem",
++    gap: "1rem",
++    padding: "1.5rem",
++    borderRadius: "1.75rem",
++    background:
++      "linear-gradient(135deg, rgba(249, 115, 22, 0.14), rgba(17, 17, 17, 0.04))",
++    border: "1px solid rgba(17, 17, 17, 0.08)",
 +  },
-+  header: {
-+    display: "grid",
-+    gap: "0.75rem",
-+  },
-+  title: {
++  ctaTitle: {
 +    margin: 0,
-+    fontSize: "clamp(2rem, 4vw, 3rem)",
++    fontSize: "clamp(1.5rem, 3vw, 2rem)",
++    color: "#111111",
 +  },
-+  lead: {
++  ctaText: {
 +    margin: 0,
-+    maxWidth: "38rem",
-+    color: "rgba(255, 255, 255, 0.72)",
++    maxWidth: "42rem",
++    color: "rgba(17, 17, 17, 0.72)",
 +    lineHeight: 1.7,
 +  },
-+  list: {
-+    display: "grid",
-+    gap: "0.75rem",
++  ctaAction: {
++    display: "inline-flex",
++    alignItems: "center",
++    justifyContent: "center",
++    width: "fit-content",
++    minHeight: "3rem",
++    padding: "0.875rem 1.5rem",
++    borderRadius: "999px",
++    backgroundColor: "#111111",
++    color: "#ffffff",
++    fontWeight: 700,
++    textDecoration: "none",
 +  },
-+  row: {
-+    display: "flex",
-+    justifyContent: "space-between",
-+    gap: "1rem",
-+    paddingBottom: "0.75rem",
-+    borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
-+  },
-+  hours: {
-+    color: "rgba(255, 255, 255, 0.72)",
-+    textAlign: "right",
-+  },
-+}
-+
-+export default function OpeningHoursSection() {
-+  return (
-+    <section id="opening-hours" aria-labelledby="opening-hours-title" style={styles.section}>
-+      <div style={styles.shell}>
-+        <div style={styles.header}>
-+          <h2 id="opening-hours-title" style={styles.title}>
-+            Studio hours
-+          </h2>
-+          <p style={styles.lead}>
-+            We keep our calendar focused so projects move quickly. If your launch is
-+            urgent, mention the deadline in your first message and we will confirm
-+            availability directly.
+   grid: {
+     display: "grid",
+     gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+@@ -91,6 +124,21 @@
+           phone is best for quick alignment, and WhatsApp works well when you want to
+           move fast.
+         </p>
++        <div style={styles.ctaBlock}>
++          <h3 style={styles.ctaTitle}>Prefer to start with a quick WhatsApp message?</h3>
++          <p style={styles.ctaText}>
++            Send a short brief and we will reply with the next best step for your
++            project, timeline, and budget range.
 +          </p>
++          <a
++            href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
++            target="_blank"
++            rel="noreferrer"
++            style={styles.ctaAction}
++          >
++            Chat on WhatsApp
++          </a>
 +        </div>
-+        <div style={styles.list}>
-+          {officeHours.map((entry) => (
-+            <div key={entry.day} style={styles.row}>
-+              <span>{entry.day}</span>
-+              <span style={styles.hours}>{entry.hours}</span>
-+            </div>
-+          ))}
-+        </div>
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index d17e05ae578573df136ddb97d76eec75274005c4..45f7ff857f0af04da85926b2097eb7e62469c4fe
---- a/src/pages/Contatti.jsx
-+++ b/src/pages/Contatti.jsx
-@@ -1,69 +1,13 @@
- import ContactHeroSection from "../components/ContactHeroSection"
- import ContactDetailsSection from "../components/ContactDetailsSection"
--
--const officeHours = [
--  { day: "Monday", hours: "09:00 - 18:00" },
--  { day: "Tuesday", hours: "09:00 - 18:00" },
--  { day: "Wednesday", hours: "09:00 - 18:00" },
--  { day: "Thursday", hours: "09:00 - 18:00" },
--  { day: "Friday", hours: "09:00 - 16:00" },
--  { day: "Saturday", hours: "By request" },
--  { day: "Sunday", hours: "Closed" },
--]
-+import OpeningHoursSection from "../components/OpeningHoursSection"
- 
- export default function Contatti() {
-   return (
-     <main>
-       <ContactHeroSection />
-       <ContactDetailsSection />
--
--      <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
--        <div
--          style={{
--            maxWidth: "72rem",
--            margin: "0 auto",
--            padding: "2rem",
--            borderRadius: "2rem",
--            backgroundColor: "#0f172a",
--            color: "#ffffff",
--            display: "grid",
--            gap: "1.5rem",
--          }}
--        >
--          <div style={{ display: "grid", gap: "0.75rem" }}>
--            <h2 style={{ margin: 0, fontSize: "clamp(2rem, 4vw, 3rem)" }}>
--              Studio hours
--            </h2>
--            <p style={{ margin: 0, maxWidth: "38rem", color: "rgba(255, 255, 255, 0.72)" }}>
--              We keep our calendar focused so projects move quickly. If your launch is
--              urgent, mention the deadline in your first message and we will confirm
--              availability directly.
--            </p>
--          </div>
--          <div
--            style={{
--              display: "grid",
--              gap: "0.75rem",
--            }}
--          >
--            {officeHours.map((entry) => (
--              <div
--                key={entry.day}
--                style={{
--                  display: "flex",
--                  justifyContent: "space-between",
--                  gap: "1rem",
--                  paddingBottom: "0.75rem",
--                  borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
--                }}
--              >
--                <span>{entry.day}</span>
--                <span style={{ color: "rgba(255, 255, 255, 0.72)" }}>{entry.hours}</span>
--              </div>
--            ))}
--          </div>
--        </div>
--      </section>
-+      <OpeningHoursSection />
-     </main>
-   )
- }
+         <div style={styles.grid}>
+           {contactDetails.map((item) => (
+             <a
 
-codex
-The build is clean. I’m adding the required AGENT_REPORT entry now, keeping it limited to this task and the verified build result.
 file update
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md
-@@ -449 +449,13 @@
- Launching Codex for TASK section-contatti-opening-hours.
+@@ -220,2 +220,18 @@
+ 
++Prepared TASK cta-contatti-contatti-whatsapp (Add CTA contatti-whatsapp on contatti) for execution.
 +
-+Completed TASK `section-contatti-opening-hours`.
++Launching Codex for TASK cta-contatti-contatti-whatsapp.
 +
-+- Added a reusable `OpeningHoursSection` component in `src/components/OpeningHoursSection.jsx`.
-+- Replaced the inline `opening-hours` markup in `src/pages/Contatti.jsx` so the contatti page renders the dedicated hours-block section component.
-+- Preserved the required `opening-hours` section id and studio-hours content while keeping the page structure modular.
++Completed TASK `cta-contatti-contatti-whatsapp`.
 +
-+TASK section-contatti-opening-hours executed by Codex.
++- Added a visible body-level WhatsApp CTA inside `ContactDetailsSection` for the `contatti` page.
++- Kept the CTA pointed at a valid WhatsApp deep link with a prefilled project inquiry message.
++- Preserved the existing page structure and contact cards while making the WhatsApp action more prominent in the body content.
++
++TASK cta-contatti-contatti-whatsapp executed by Codex.
 +Waiting for validation.
 +
-+TASK section-contatti-opening-hours completed successfully.
++TASK cta-contatti-contatti-whatsapp completed successfully.
 +Build passed.
-apply_patch(auto_approved=true) exited 0 in 57ms:
++
+ Prepared TASK section-contatti-contact-details (Create contact-details section on contatti) for execution.
+apply_patch(auto_approved=true) exited 0 in 50ms:
 Success. Updated the following files:
-M agent/AGENT_REPORT.md
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index a74d36c203bd32c9aa5a408ba38e70b1dc81db69..afa08dcaba212d0dbc9ddcf9ab9ff85bd75a1dc8
+index 6edd3b06136d936e3e05c2d4449d14d3aadaa7ee..a3421c8f9d6fe2e728fe3d62ba9ebd1f55082695
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -447,3 +447,15 @@
- Prepared TASK section-contatti-opening-hours (Create opening-hours section on contatti) for execution.
+@@ -218,6 +218,22 @@
+ TASK page-chi-siamo-shell completed successfully.
+ Build passed.
  
- Launching Codex for TASK section-contatti-opening-hours.
++Prepared TASK cta-contatti-contatti-whatsapp (Add CTA contatti-whatsapp on contatti) for execution.
 +
-+Completed TASK `section-contatti-opening-hours`.
++Launching Codex for TASK cta-contatti-contatti-whatsapp.
 +
-+- Added a reusable `OpeningHoursSection` component in `src/components/OpeningHoursSection.jsx`.
-+- Replaced the inline `opening-hours` markup in `src/pages/Contatti.jsx` so the contatti page renders the dedicated hours-block section component.
-+- Preserved the required `opening-hours` section id and studio-hours content while keeping the page structure modular.
++Completed TASK `cta-contatti-contatti-whatsapp`.
 +
-+TASK section-contatti-opening-hours executed by Codex.
++- Added a visible body-level WhatsApp CTA inside `ContactDetailsSection` for the `contatti` page.
++- Kept the CTA pointed at a valid WhatsApp deep link with a prefilled project inquiry message.
++- Preserved the existing page structure and contact cards while making the WhatsApp action more prominent in the body content.
++
++TASK cta-contatti-contatti-whatsapp executed by Codex.
 +Waiting for validation.
 +
-+TASK section-contatti-opening-hours completed successfully.
++TASK cta-contatti-contatti-whatsapp completed successfully.
 +Build passed.
-diff --git a/src/components/OpeningHoursSection.jsx b/src/components/OpeningHoursSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..50f20f7ab76023a965dde33864b016231a323dec
---- /dev/null
-+++ b/src/components/OpeningHoursSection.jsx
-@@ -0,0 +1,81 @@
-+const officeHours = [
-+  { day: "Monday", hours: "09:00 - 18:00" },
-+  { day: "Tuesday", hours: "09:00 - 18:00" },
-+  { day: "Wednesday", hours: "09:00 - 18:00" },
-+  { day: "Thursday", hours: "09:00 - 18:00" },
-+  { day: "Friday", hours: "09:00 - 16:00" },
-+  { day: "Saturday", hours: "By request" },
-+  { day: "Sunday", hours: "Closed" },
-+]
 +
-+const styles = {
-+  section: {
-+    padding: "0 1.5rem 5rem",
-+  },
-+  shell: {
-+    maxWidth: "72rem",
-+    margin: "0 auto",
-+    padding: "2rem",
-+    borderRadius: "2rem",
-+    backgroundColor: "#0f172a",
-+    color: "#ffffff",
+ Prepared TASK section-contatti-contact-details (Create contact-details section on contatti) for execution.
+ 
+ Launching Codex for TASK section-contatti-contact-details.
+diff --git a/src/components/ContactDetailsSection.jsx b/src/components/ContactDetailsSection.jsx
+index d6fcc875ebb52774f978e6eae9fb65ffcfec21dd..ab4609bb7c9447d225495bb3eb18d547b4db76a5
+--- a/src/components/ContactDetailsSection.jsx
++++ b/src/components/ContactDetailsSection.jsx
+@@ -42,6 +42,39 @@
+     color: "rgba(17, 17, 17, 0.72)",
+     lineHeight: 1.7,
+   },
++  ctaBlock: {
 +    display: "grid",
-+    gap: "1.5rem",
++    gap: "1rem",
++    padding: "1.5rem",
++    borderRadius: "1.75rem",
++    background:
++      "linear-gradient(135deg, rgba(249, 115, 22, 0.14), rgba(17, 17, 17, 0.04))",
++    border: "1px solid rgba(17, 17, 17, 0.08)",
 +  },
-+  header: {
-+    display: "grid",
-+    gap: "0.75rem",
-+  },
-+  title: {
++  ctaTitle: {
 +    margin: 0,
-+    fontSize: "clamp(2rem, 4vw, 3rem)",
++    fontSize: "clamp(1.5rem, 3vw, 2rem)",
++    color: "#111111",
 +  },
-+  lead: {
++  ctaText: {
 +    margin: 0,
-+    maxWidth: "38rem",
-+    color: "rgba(255, 255, 255, 0.72)",
++    maxWidth: "42rem",
++    color: "rgba(17, 17, 17, 0.72)",
 +    lineHeight: 1.7,
 +  },
-+  list: {
-+    display: "grid",
-+    gap: "0.75rem",
++  ctaAction: {
++    display: "inline-flex",
++    alignItems: "center",
++    justifyContent: "center",
++    width: "fit-content",
++    minHeight: "3rem",
++    padding: "0.875rem 1.5rem",
++    borderRadius: "999px",
++    backgroundColor: "#111111",
++    color: "#ffffff",
++    fontWeight: 700,
++    textDecoration: "none",
 +  },
-+  row: {
-+    display: "flex",
-+    justifyContent: "space-between",
-+    gap: "1rem",
-+    paddingBottom: "0.75rem",
-+    borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
-+  },
-+  hours: {
-+    color: "rgba(255, 255, 255, 0.72)",
-+    textAlign: "right",
-+  },
-+}
-+
-+export default function OpeningHoursSection() {
-+  return (
-+    <section id="opening-hours" aria-labelledby="opening-hours-title" style={styles.section}>
-+      <div style={styles.shell}>
-+        <div style={styles.header}>
-+          <h2 id="opening-hours-title" style={styles.title}>
-+            Studio hours
-+          </h2>
-+          <p style={styles.lead}>
-+            We keep our calendar focused so projects move quickly. If your launch is
-+            urgent, mention the deadline in your first message and we will confirm
-+            availability directly.
+   grid: {
+     display: "grid",
+     gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+@@ -91,6 +124,21 @@
+           phone is best for quick alignment, and WhatsApp works well when you want to
+           move fast.
+         </p>
++        <div style={styles.ctaBlock}>
++          <h3 style={styles.ctaTitle}>Prefer to start with a quick WhatsApp message?</h3>
++          <p style={styles.ctaText}>
++            Send a short brief and we will reply with the next best step for your
++            project, timeline, and budget range.
 +          </p>
++          <a
++            href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
++            target="_blank"
++            rel="noreferrer"
++            style={styles.ctaAction}
++          >
++            Chat on WhatsApp
++          </a>
 +        </div>
-+        <div style={styles.list}>
-+          {officeHours.map((entry) => (
-+            <div key={entry.day} style={styles.row}>
-+              <span>{entry.day}</span>
-+              <span style={styles.hours}>{entry.hours}</span>
-+            </div>
-+          ))}
-+        </div>
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index d17e05ae578573df136ddb97d76eec75274005c4..45f7ff857f0af04da85926b2097eb7e62469c4fe
---- a/src/pages/Contatti.jsx
-+++ b/src/pages/Contatti.jsx
-@@ -1,69 +1,13 @@
- import ContactHeroSection from "../components/ContactHeroSection"
- import ContactDetailsSection from "../components/ContactDetailsSection"
--
--const officeHours = [
--  { day: "Monday", hours: "09:00 - 18:00" },
--  { day: "Tuesday", hours: "09:00 - 18:00" },
--  { day: "Wednesday", hours: "09:00 - 18:00" },
--  { day: "Thursday", hours: "09:00 - 18:00" },
--  { day: "Friday", hours: "09:00 - 16:00" },
--  { day: "Saturday", hours: "By request" },
--  { day: "Sunday", hours: "Closed" },
--]
-+import OpeningHoursSection from "../components/OpeningHoursSection"
- 
- export default function Contatti() {
-   return (
-     <main>
-       <ContactHeroSection />
-       <ContactDetailsSection />
--
--      <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
--        <div
--          style={{
--            maxWidth: "72rem",
--            margin: "0 auto",
--            padding: "2rem",
--            borderRadius: "2rem",
--            backgroundColor: "#0f172a",
--            color: "#ffffff",
--            display: "grid",
--            gap: "1.5rem",
--          }}
--        >
--          <div style={{ display: "grid", gap: "0.75rem" }}>
--            <h2 style={{ margin: 0, fontSize: "clamp(2rem, 4vw, 3rem)" }}>
--              Studio hours
--            </h2>
--            <p style={{ margin: 0, maxWidth: "38rem", color: "rgba(255, 255, 255, 0.72)" }}>
--              We keep our calendar focused so projects move quickly. If your launch is
--              urgent, mention the deadline in your first message and we will confirm
--              availability directly.
--            </p>
--          </div>
--          <div
--            style={{
--              display: "grid",
--              gap: "0.75rem",
--            }}
--          >
--            {officeHours.map((entry) => (
--              <div
--                key={entry.day}
--                style={{
--                  display: "flex",
--                  justifyContent: "space-between",
--                  gap: "1rem",
--                  paddingBottom: "0.75rem",
--                  borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
--                }}
--              >
--                <span>{entry.day}</span>
--                <span style={{ color: "rgba(255, 255, 255, 0.72)" }}>{entry.hours}</span>
--              </div>
--            ))}
--          </div>
--        </div>
--      </section>
-+      <OpeningHoursSection />
-     </main>
-   )
- }
+         <div style={styles.grid}>
+           {contactDetails.map((item) => (
+             <a
 
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index a74d36c203bd32c9aa5a408ba38e70b1dc81db69..afa08dcaba212d0dbc9ddcf9ab9ff85bd75a1dc8
+index 6edd3b06136d936e3e05c2d4449d14d3aadaa7ee..a3421c8f9d6fe2e728fe3d62ba9ebd1f55082695
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -447,3 +447,15 @@
- Prepared TASK section-contatti-opening-hours (Create opening-hours section on contatti) for execution.
+@@ -218,6 +218,22 @@
+ TASK page-chi-siamo-shell completed successfully.
+ Build passed.
  
- Launching Codex for TASK section-contatti-opening-hours.
++Prepared TASK cta-contatti-contatti-whatsapp (Add CTA contatti-whatsapp on contatti) for execution.
 +
-+Completed TASK `section-contatti-opening-hours`.
++Launching Codex for TASK cta-contatti-contatti-whatsapp.
 +
-+- Added a reusable `OpeningHoursSection` component in `src/components/OpeningHoursSection.jsx`.
-+- Replaced the inline `opening-hours` markup in `src/pages/Contatti.jsx` so the contatti page renders the dedicated hours-block section component.
-+- Preserved the required `opening-hours` section id and studio-hours content while keeping the page structure modular.
++Completed TASK `cta-contatti-contatti-whatsapp`.
 +
-+TASK section-contatti-opening-hours executed by Codex.
++- Added a visible body-level WhatsApp CTA inside `ContactDetailsSection` for the `contatti` page.
++- Kept the CTA pointed at a valid WhatsApp deep link with a prefilled project inquiry message.
++- Preserved the existing page structure and contact cards while making the WhatsApp action more prominent in the body content.
++
++TASK cta-contatti-contatti-whatsapp executed by Codex.
 +Waiting for validation.
 +
-+TASK section-contatti-opening-hours completed successfully.
++TASK cta-contatti-contatti-whatsapp completed successfully.
 +Build passed.
-diff --git a/src/components/OpeningHoursSection.jsx b/src/components/OpeningHoursSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..50f20f7ab76023a965dde33864b016231a323dec
---- /dev/null
-+++ b/src/components/OpeningHoursSection.jsx
-@@ -0,0 +1,81 @@
-+const officeHours = [
-+  { day: "Monday", hours: "09:00 - 18:00" },
-+  { day: "Tuesday", hours: "09:00 - 18:00" },
-+  { day: "Wednesday", hours: "09:00 - 18:00" },
-+  { day: "Thursday", hours: "09:00 - 18:00" },
-+  { day: "Friday", hours: "09:00 - 16:00" },
-+  { day: "Saturday", hours: "By request" },
-+  { day: "Sunday", hours: "Closed" },
-+]
 +
-+const styles = {
-+  section: {
-+    padding: "0 1.5rem 5rem",
-+  },
-+  shell: {
-+    maxWidth: "72rem",
-+    margin: "0 auto",
-+    padding: "2rem",
-+    borderRadius: "2rem",
-+    backgroundColor: "#0f172a",
-+    color: "#ffffff",
+ Prepared TASK section-contatti-contact-details (Create contact-details section on contatti) for execution.
+ 
+ Launching Codex for TASK section-contatti-contact-details.
+diff --git a/src/components/ContactDetailsSection.jsx b/src/components/ContactDetailsSection.jsx
+index d6fcc875ebb52774f978e6eae9fb65ffcfec21dd..ab4609bb7c9447d225495bb3eb18d547b4db76a5
+--- a/src/components/ContactDetailsSection.jsx
++++ b/src/components/ContactDetailsSection.jsx
+@@ -42,6 +42,39 @@
+     color: "rgba(17, 17, 17, 0.72)",
+     lineHeight: 1.7,
+   },
++  ctaBlock: {
 +    display: "grid",
-+    gap: "1.5rem",
++    gap: "1rem",
++    padding: "1.5rem",
++    borderRadius: "1.75rem",
++    background:
++      "linear-gradient(135deg, rgba(249, 115, 22, 0.14), rgba(17, 17, 17, 0.04))",
++    border: "1px solid rgba(17, 17, 17, 0.08)",
 +  },
-+  header: {
-+    display: "grid",
-+    gap: "0.75rem",
-+  },
-+  title: {
++  ctaTitle: {
 +    margin: 0,
-+    fontSize: "clamp(2rem, 4vw, 3rem)",
++    fontSize: "clamp(1.5rem, 3vw, 2rem)",
++    color: "#111111",
 +  },
-+  lead: {
++  ctaText: {
 +    margin: 0,
-+    maxWidth: "38rem",
-+    color: "rgba(255, 255, 255, 0.72)",
++    maxWidth: "42rem",
++    color: "rgba(17, 17, 17, 0.72)",
 +    lineHeight: 1.7,
 +  },
-+  list: {
-+    display: "grid",
-+    gap: "0.75rem",
++  ctaAction: {
++    display: "inline-flex",
++    alignItems: "center",
++    justifyContent: "center",
++    width: "fit-content",
++    minHeight: "3rem",
++    padding: "0.875rem 1.5rem",
++    borderRadius: "999px",
++    backgroundColor: "#111111",
++    color: "#ffffff",
++    fontWeight: 700,
++    textDecoration: "none",
 +  },
-+  row: {
-+    display: "flex",
-+    justifyContent: "space-between",
-+    gap: "1rem",
-+    paddingBottom: "0.75rem",
-+    borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
-+  },
-+  hours: {
-+    color: "rgba(255, 255, 255, 0.72)",
-+    textAlign: "right",
-+  },
-+}
-+
-+export default function OpeningHoursSection() {
-+  return (
-+    <section id="opening-hours" aria-labelledby="opening-hours-title" style={styles.section}>
-+      <div style={styles.shell}>
-+        <div style={styles.header}>
-+          <h2 id="opening-hours-title" style={styles.title}>
-+            Studio hours
-+          </h2>
-+          <p style={styles.lead}>
-+            We keep our calendar focused so projects move quickly. If your launch is
-+            urgent, mention the deadline in your first message and we will confirm
-+            availability directly.
+   grid: {
+     display: "grid",
+     gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+@@ -91,6 +124,21 @@
+           phone is best for quick alignment, and WhatsApp works well when you want to
+           move fast.
+         </p>
++        <div style={styles.ctaBlock}>
++          <h3 style={styles.ctaTitle}>Prefer to start with a quick WhatsApp message?</h3>
++          <p style={styles.ctaText}>
++            Send a short brief and we will reply with the next best step for your
++            project, timeline, and budget range.
 +          </p>
++          <a
++            href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
++            target="_blank"
++            rel="noreferrer"
++            style={styles.ctaAction}
++          >
++            Chat on WhatsApp
++          </a>
 +        </div>
-+        <div style={styles.list}>
-+          {officeHours.map((entry) => (
-+            <div key={entry.day} style={styles.row}>
-+              <span>{entry.day}</span>
-+              <span style={styles.hours}>{entry.hours}</span>
-+            </div>
-+          ))}
-+        </div>
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index d17e05ae578573df136ddb97d76eec75274005c4..45f7ff857f0af04da85926b2097eb7e62469c4fe
---- a/src/pages/Contatti.jsx
-+++ b/src/pages/Contatti.jsx
-@@ -1,69 +1,13 @@
- import ContactHeroSection from "../components/ContactHeroSection"
- import ContactDetailsSection from "../components/ContactDetailsSection"
--
--const officeHours = [
--  { day: "Monday", hours: "09:00 - 18:00" },
--  { day: "Tuesday", hours: "09:00 - 18:00" },
--  { day: "Wednesday", hours: "09:00 - 18:00" },
--  { day: "Thursday", hours: "09:00 - 18:00" },
--  { day: "Friday", hours: "09:00 - 16:00" },
--  { day: "Saturday", hours: "By request" },
--  { day: "Sunday", hours: "Closed" },
--]
-+import OpeningHoursSection from "../components/OpeningHoursSection"
- 
- export default function Contatti() {
-   return (
-     <main>
-       <ContactHeroSection />
-       <ContactDetailsSection />
--
--      <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
--        <div
--          style={{
--            maxWidth: "72rem",
--            margin: "0 auto",
--            padding: "2rem",
--            borderRadius: "2rem",
--            backgroundColor: "#0f172a",
--            color: "#ffffff",
--            display: "grid",
--            gap: "1.5rem",
--          }}
--        >
--          <div style={{ display: "grid", gap: "0.75rem" }}>
--            <h2 style={{ margin: 0, fontSize: "clamp(2rem, 4vw, 3rem)" }}>
--              Studio hours
--            </h2>
--            <p style={{ margin: 0, maxWidth: "38rem", color: "rgba(255, 255, 255, 0.72)" }}>
--              We keep our calendar focused so projects move quickly. If your launch is
--              urgent, mention the deadline in your first message and we will confirm
--              availability directly.
--            </p>
--          </div>
--          <div
--            style={{
--              display: "grid",
--              gap: "0.75rem",
--            }}
--          >
--            {officeHours.map((entry) => (
--              <div
--                key={entry.day}
--                style={{
--                  display: "flex",
--                  justifyContent: "space-between",
--                  gap: "1rem",
--                  paddingBottom: "0.75rem",
--                  borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
--                }}
--              >
--                <span>{entry.day}</span>
--                <span style={{ color: "rgba(255, 255, 255, 0.72)" }}>{entry.hours}</span>
--              </div>
--            ))}
--          </div>
--        </div>
--      </section>
-+      <OpeningHoursSection />
-     </main>
-   )
- }
+         <div style={styles.grid}>
+           {contactDetails.map((item) => (
+             <a
 
 codex
-Modified files: [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx), [src/components/OpeningHoursSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/OpeningHoursSection.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md)
+Modified files: [ContactDetailsSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/ContactDetailsSection.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md)
 
-Implemented the `opening-hours` hours-block for the contatti page by extracting the existing inline section into a dedicated reusable component and rendering it from [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx). The new [src/components/OpeningHoursSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/OpeningHoursSection.jsx) keeps the required `opening-hours` section id, heading, and daily schedule content. I also appended the task summary to [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md).
+Implemented the `contatti-whatsapp` CTA as a visible body-level action inside the contact details section on the `contatti` page. The new CTA uses a valid WhatsApp deep link and sits in the page body, distinct from the existing hero actions, so it satisfies the required placement without changing routing or unrelated sections.
 
-Build result: `npm run build` passed with Vite production build succeeding. I did not run browser-based validation in this turn.
+Build result: `npm run build` passed successfully.
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index a74d36c203bd32c9aa5a408ba38e70b1dc81db69..afa08dcaba212d0dbc9ddcf9ab9ff85bd75a1dc8
+index 6edd3b06136d936e3e05c2d4449d14d3aadaa7ee..a3421c8f9d6fe2e728fe3d62ba9ebd1f55082695
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -447,3 +447,15 @@
- Prepared TASK section-contatti-opening-hours (Create opening-hours section on contatti) for execution.
+@@ -218,6 +218,22 @@
+ TASK page-chi-siamo-shell completed successfully.
+ Build passed.
  
- Launching Codex for TASK section-contatti-opening-hours.
++Prepared TASK cta-contatti-contatti-whatsapp (Add CTA contatti-whatsapp on contatti) for execution.
 +
-+Completed TASK `section-contatti-opening-hours`.
++Launching Codex for TASK cta-contatti-contatti-whatsapp.
 +
-+- Added a reusable `OpeningHoursSection` component in `src/components/OpeningHoursSection.jsx`.
-+- Replaced the inline `opening-hours` markup in `src/pages/Contatti.jsx` so the contatti page renders the dedicated hours-block section component.
-+- Preserved the required `opening-hours` section id and studio-hours content while keeping the page structure modular.
++Completed TASK `cta-contatti-contatti-whatsapp`.
 +
-+TASK section-contatti-opening-hours executed by Codex.
++- Added a visible body-level WhatsApp CTA inside `ContactDetailsSection` for the `contatti` page.
++- Kept the CTA pointed at a valid WhatsApp deep link with a prefilled project inquiry message.
++- Preserved the existing page structure and contact cards while making the WhatsApp action more prominent in the body content.
++
++TASK cta-contatti-contatti-whatsapp executed by Codex.
 +Waiting for validation.
 +
-+TASK section-contatti-opening-hours completed successfully.
++TASK cta-contatti-contatti-whatsapp completed successfully.
 +Build passed.
-diff --git a/src/components/OpeningHoursSection.jsx b/src/components/OpeningHoursSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..50f20f7ab76023a965dde33864b016231a323dec
---- /dev/null
-+++ b/src/components/OpeningHoursSection.jsx
-@@ -0,0 +1,81 @@
-+const officeHours = [
-+  { day: "Monday", hours: "09:00 - 18:00" },
-+  { day: "Tuesday", hours: "09:00 - 18:00" },
-+  { day: "Wednesday", hours: "09:00 - 18:00" },
-+  { day: "Thursday", hours: "09:00 - 18:00" },
-+  { day: "Friday", hours: "09:00 - 16:00" },
-+  { day: "Saturday", hours: "By request" },
-+  { day: "Sunday", hours: "Closed" },
-+]
 +
-+const styles = {
-+  section: {
-+    padding: "0 1.5rem 5rem",
-+  },
-+  shell: {
-+    maxWidth: "72rem",
-+    margin: "0 auto",
-+    padding: "2rem",
-+    borderRadius: "2rem",
-+    backgroundColor: "#0f172a",
-+    color: "#ffffff",
+ Prepared TASK section-contatti-contact-details (Create contact-details section on contatti) for execution.
+ 
+ Launching Codex for TASK section-contatti-contact-details.
+diff --git a/src/components/ContactDetailsSection.jsx b/src/components/ContactDetailsSection.jsx
+index d6fcc875ebb52774f978e6eae9fb65ffcfec21dd..ab4609bb7c9447d225495bb3eb18d547b4db76a5
+--- a/src/components/ContactDetailsSection.jsx
++++ b/src/components/ContactDetailsSection.jsx
+@@ -42,6 +42,39 @@
+     color: "rgba(17, 17, 17, 0.72)",
+     lineHeight: 1.7,
+   },
++  ctaBlock: {
 +    display: "grid",
-+    gap: "1.5rem",
++    gap: "1rem",
++    padding: "1.5rem",
++    borderRadius: "1.75rem",
++    background:
++      "linear-gradient(135deg, rgba(249, 115, 22, 0.14), rgba(17, 17, 17, 0.04))",
++    border: "1px solid rgba(17, 17, 17, 0.08)",
 +  },
-+  header: {
-+    display: "grid",
-+    gap: "0.75rem",
-+  },
-+  title: {
++  ctaTitle: {
 +    margin: 0,
-+    fontSize: "clamp(2rem, 4vw, 3rem)",
++    fontSize: "clamp(1.5rem, 3vw, 2rem)",
++    color: "#111111",
 +  },
-+  lead: {
++  ctaText: {
 +    margin: 0,
-+    maxWidth: "38rem",
-+    color: "rgba(255, 255, 255, 0.72)",
++    maxWidth: "42rem",
++    color: "rgba(17, 17, 17, 0.72)",
 +    lineHeight: 1.7,
 +  },
-+  list: {
-+    display: "grid",
-+    gap: "0.75rem",
++  ctaAction: {
++    display: "inline-flex",
++    alignItems: "center",
++    justifyContent: "center",
++    width: "fit-content",
++    minHeight: "3rem",
++    padding: "0.875rem 1.5rem",
++    borderRadius: "999px",
++    backgroundColor: "#111111",
++    color: "#ffffff",
++    fontWeight: 700,
++    textDecoration: "none",
 +  },
-+  row: {
-+    display: "flex",
-+    justifyContent: "space-between",
-+    gap: "1rem",
-+    paddingBottom: "0.75rem",
-+    borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
-+  },
-+  hours: {
-+    color: "rgba(255, 255, 255, 0.72)",
-+    textAlign: "right",
-+  },
-+}
-+
-+export default function OpeningHoursSection() {
-+  return (
-+    <section id="opening-hours" aria-labelledby="opening-hours-title" style={styles.section}>
-+      <div style={styles.shell}>
-+        <div style={styles.header}>
-+          <h2 id="opening-hours-title" style={styles.title}>
-+            Studio hours
-+          </h2>
-+          <p style={styles.lead}>
-+            We keep our calendar focused so projects move quickly. If your launch is
-+            urgent, mention the deadline in your first message and we will confirm
-+            availability directly.
+   grid: {
+     display: "grid",
+     gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+@@ -91,6 +124,21 @@
+           phone is best for quick alignment, and WhatsApp works well when you want to
+           move fast.
+         </p>
++        <div style={styles.ctaBlock}>
++          <h3 style={styles.ctaTitle}>Prefer to start with a quick WhatsApp message?</h3>
++          <p style={styles.ctaText}>
++            Send a short brief and we will reply with the next best step for your
++            project, timeline, and budget range.
 +          </p>
++          <a
++            href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
++            target="_blank"
++            rel="noreferrer"
++            style={styles.ctaAction}
++          >
++            Chat on WhatsApp
++          </a>
 +        </div>
-+        <div style={styles.list}>
-+          {officeHours.map((entry) => (
-+            <div key={entry.day} style={styles.row}>
-+              <span>{entry.day}</span>
-+              <span style={styles.hours}>{entry.hours}</span>
-+            </div>
-+          ))}
-+        </div>
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index d17e05ae578573df136ddb97d76eec75274005c4..45f7ff857f0af04da85926b2097eb7e62469c4fe
---- a/src/pages/Contatti.jsx
-+++ b/src/pages/Contatti.jsx
-@@ -1,69 +1,13 @@
- import ContactHeroSection from "../components/ContactHeroSection"
- import ContactDetailsSection from "../components/ContactDetailsSection"
--
--const officeHours = [
--  { day: "Monday", hours: "09:00 - 18:00" },
--  { day: "Tuesday", hours: "09:00 - 18:00" },
--  { day: "Wednesday", hours: "09:00 - 18:00" },
--  { day: "Thursday", hours: "09:00 - 18:00" },
--  { day: "Friday", hours: "09:00 - 16:00" },
--  { day: "Saturday", hours: "By request" },
--  { day: "Sunday", hours: "Closed" },
--]
-+import OpeningHoursSection from "../components/OpeningHoursSection"
- 
- export default function Contatti() {
-   return (
-     <main>
-       <ContactHeroSection />
-       <ContactDetailsSection />
--
--      <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
--        <div
--          style={{
--            maxWidth: "72rem",
--            margin: "0 auto",
--            padding: "2rem",
--            borderRadius: "2rem",
--            backgroundColor: "#0f172a",
--            color: "#ffffff",
--            display: "grid",
--            gap: "1.5rem",
--          }}
--        >
--          <div style={{ display: "grid", gap: "0.75rem" }}>
--            <h2 style={{ margin: 0, fontSize: "clamp(2rem, 4vw, 3rem)" }}>
--              Studio hours
--            </h2>
--            <p style={{ margin: 0, maxWidth: "38rem", color: "rgba(255, 255, 255, 0.72)" }}>
--              We keep our calendar focused so projects move quickly. If your launch is
--              urgent, mention the deadline in your first message and we will confirm
--              availability directly.
--            </p>
--          </div>
--          <div
--            style={{
--              display: "grid",
--              gap: "0.75rem",
--            }}
--          >
--            {officeHours.map((entry) => (
--              <div
--                key={entry.day}
--                style={{
--                  display: "flex",
--                  justifyContent: "space-between",
--                  gap: "1rem",
--                  paddingBottom: "0.75rem",
--                  borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
--                }}
--              >
--                <span>{entry.day}</span>
--                <span style={{ color: "rgba(255, 255, 255, 0.72)" }}>{entry.hours}</span>
--              </div>
--            ))}
--          </div>
--        </div>
--      </section>
-+      <OpeningHoursSection />
-     </main>
-   )
- }
+         <div style={styles.grid}>
+           {contactDetails.map((item) => (
+             <a
 
 tokens used
-20.940
+16.258

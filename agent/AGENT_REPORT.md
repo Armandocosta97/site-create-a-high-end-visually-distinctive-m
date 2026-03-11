@@ -218,6 +218,22 @@ Waiting for validation.
 TASK page-chi-siamo-shell completed successfully.
 Build passed.
 
+Prepared TASK cta-contatti-contatti-whatsapp (Add CTA contatti-whatsapp on contatti) for execution.
+
+Launching Codex for TASK cta-contatti-contatti-whatsapp.
+
+Completed TASK `cta-contatti-contatti-whatsapp`.
+
+- Added a visible body-level WhatsApp CTA inside `ContactDetailsSection` for the `contatti` page.
+- Kept the CTA pointed at a valid WhatsApp deep link with a prefilled project inquiry message.
+- Preserved the existing page structure and contact cards while making the WhatsApp action more prominent in the body content.
+
+TASK cta-contatti-contatti-whatsapp executed by Codex.
+Waiting for validation.
+
+TASK cta-contatti-contatti-whatsapp completed successfully.
+Build passed.
+
 Prepared TASK section-contatti-contact-details (Create contact-details section on contatti) for execution.
 
 Launching Codex for TASK section-contatti-contact-details.
@@ -464,4 +480,15 @@ TASK section-contatti-opening-hours executed by Codex.
 Waiting for validation.
 
 TASK section-contatti-opening-hours completed successfully.
+Build passed.
+Commit created for TASK section-contatti-opening-hours.
+
+Prepared TASK cta-contatti-contatti-whatsapp (Add CTA contatti-whatsapp on contatti) for execution.
+
+Launching Codex for TASK cta-contatti-contatti-whatsapp.
+
+TASK cta-contatti-contatti-whatsapp executed by Codex.
+Waiting for validation.
+
+TASK cta-contatti-contatti-whatsapp completed successfully.
 Build passed.

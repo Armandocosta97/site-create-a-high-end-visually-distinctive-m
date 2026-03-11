@@ -42,6 +42,39 @@ const styles = {
     color: "rgba(17, 17, 17, 0.72)",
     lineHeight: 1.7,
   },
+  ctaBlock: {
+    display: "grid",
+    gap: "1rem",
+    padding: "1.5rem",
+    borderRadius: "1.75rem",
+    background:
+      "linear-gradient(135deg, rgba(249, 115, 22, 0.14), rgba(17, 17, 17, 0.04))",
+    border: "1px solid rgba(17, 17, 17, 0.08)",
+  },
+  ctaTitle: {
+    margin: 0,
+    fontSize: "clamp(1.5rem, 3vw, 2rem)",
+    color: "#111111",
+  },
+  ctaText: {
+    margin: 0,
+    maxWidth: "42rem",
+    color: "rgba(17, 17, 17, 0.72)",
+    lineHeight: 1.7,
+  },
+  ctaAction: {
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "fit-content",
+    minHeight: "3rem",
+    padding: "0.875rem 1.5rem",
+    borderRadius: "999px",
+    backgroundColor: "#111111",
+    color: "#ffffff",
+    fontWeight: 700,
+    textDecoration: "none",
+  },
   grid: {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
@@ -91,6 +124,21 @@ export default function ContactDetailsSection() {
           phone is best for quick alignment, and WhatsApp works well when you want to
           move fast.
         </p>
+        <div style={styles.ctaBlock}>
+          <h3 style={styles.ctaTitle}>Prefer to start with a quick WhatsApp message?</h3>
+          <p style={styles.ctaText}>
+            Send a short brief and we will reply with the next best step for your
+            project, timeline, and budget range.
+          </p>
+          <a
+            href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
+            target="_blank"
+            rel="noreferrer"
+            style={styles.ctaAction}
+          >
+            Chat on WhatsApp
+          </a>
+        </div>
         <div style={styles.grid}>
           {contactDetails.map((item) => (
             <a
