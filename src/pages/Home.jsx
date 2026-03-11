@@ -1,16 +1,11 @@
 import HeroSection from "../components/HeroSection"
+import SignaturePreviewSection from "../components/SignaturePreviewSection"
 
 export default function Home() {
   return (
     <>
       <HeroSection />
-      <section id="signature-preview" aria-labelledby="signature-preview-title">
-        <h2 id="signature-preview-title">What sets the work apart</h2>
-        <p>
-          The homepage introduces Alai Web through a clean editorial rhythm: thoughtful design,
-          lightweight builds, and business-focused digital experiences.
-        </p>
-      </section>
+      <SignaturePreviewSection />
 
       <section id="brand-story-preview" aria-labelledby="brand-story-preview-title">
         <h2 id="brand-story-preview-title">Built with clarity before embellishment</h2>

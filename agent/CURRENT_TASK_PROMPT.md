@@ -1132,10 +1132,10 @@ It must feel like a modern digital product studio.
 ```
 
 ## Current task id
-section-home-hero
+section-home-signature-preview
 
 ## Current task title
-Create hero section on home
+Create signature-preview section on home
 
 ## Current task type
 section
@@ -1144,8 +1144,8 @@ section
 ```json
 {
   "pageId": "home",
-  "sectionId": "hero",
-  "sectionType": "hero"
+  "sectionId": "signature-preview",
+  "sectionType": "grid-cards-preview"
 }
 ```
 
@@ -1154,13 +1154,13 @@ section
 
 ## Files allowed
 - src/pages/Home.jsx
-- src/components/HeroSection.jsx
+- src/components/SignaturePreviewSection.jsx
 - src/components
 
 ## Definition of done
-- section hero exists on home
-- section hero matches type hero
-- section hero is rendered in page home
+- section signature-preview exists on home
+- section signature-preview matches type grid-cards-preview
+- section signature-preview is rendered in page home
 
 ## Strict execution rules
 - Execute only this current task.
