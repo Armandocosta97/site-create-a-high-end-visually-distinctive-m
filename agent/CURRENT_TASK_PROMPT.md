@@ -1132,10 +1132,10 @@ It must feel like a modern digital product studio.
 ```
 
 ## Current task id
-section-chi-siamo-story
+section-chi-siamo-philosophy
 
 ## Current task title
-Create story section on chi-siamo
+Create philosophy section on chi-siamo
 
 ## Current task type
 section
@@ -1144,8 +1144,8 @@ section
 ```json
 {
   "pageId": "chi-siamo",
-  "sectionId": "story",
-  "sectionType": "editorial-content"
+  "sectionId": "philosophy",
+  "sectionType": "split-content"
 }
 ```
 
@@ -1154,13 +1154,13 @@ section
 
 ## Files allowed
 - src/pages/ChiSiamo.jsx
-- src/components/StorySection.jsx
+- src/components/PhilosophySection.jsx
 - src/components
 
 ## Definition of done
-- section story exists on chi-siamo
-- section story matches type editorial-content
-- section story is rendered in page chi-siamo
+- section philosophy exists on chi-siamo
+- section philosophy matches type split-content
+- section philosophy is rendered in page chi-siamo
 
 ## Strict execution rules
 - Execute only this current task.

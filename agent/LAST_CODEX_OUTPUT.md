@@ -1,8 +1,8 @@
-Modified files: [src/components/StorySection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/StorySection.jsx), [src/pages/ChiSiamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/ChiSiamo.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md)
+Modified files: [src/components/PhilosophySection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/PhilosophySection.jsx), [src/pages/ChiSiamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/ChiSiamo.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md).
 
-Implemented the `story` section for `chi-siamo` as a dedicated editorial-content component. [src/components/StorySection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/StorySection.jsx) adds a two-column narrative layout with restaurant-focused copy and an editorial aside, and [src/pages/ChiSiamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/ChiSiamo.jsx) now renders that component in place of the previous inline block.
+Implemented the `philosophy` section on the `chi-siamo` page as a dedicated split-content component. The new section uses a two-column editorial layout with philosophy copy on one side and principle highlights on the other, and `ChiSiamo` now renders `PhilosophySection` instead of the previous inline placeholder.
 
-Build result: `npm run build` passed successfully with Vite production output generated. I also logged the task completion in [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md).
+Build result: `npm run build` passed successfully with Vite production output generated.
 
 OpenAI Codex v0.111.0 (research preview)
 --------
@@ -13,7 +13,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cddb1-d630-7971-822c-722bf8265e1c
+session id: 019cddb2-f279-7f90-9f2e-d0ea64685ef4
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1150,10 +1150,10 @@ It must feel like a modern digital product studio.
 ```
 
 ## Current task id
-section-chi-siamo-story
+section-chi-siamo-philosophy
 
 ## Current task title
-Create story section on chi-siamo
+Create philosophy section on chi-siamo
 
 ## Current task type
 section
@@ -1162,8 +1162,8 @@ section
 ```json
 {
   "pageId": "chi-siamo",
-  "sectionId": "story",
-  "sectionType": "editorial-content"
+  "sectionId": "philosophy",
+  "sectionType": "split-content"
 }
 ```
 
@@ -1172,13 +1172,13 @@ section
 
 ## Files allowed
 - src/pages/ChiSiamo.jsx
-- src/components/StorySection.jsx
+- src/components/PhilosophySection.jsx
 - src/components
 
 ## Definition of done
-- section story exists on chi-siamo
-- section story matches type editorial-content
-- section story is rendered in page chi-siamo
+- section philosophy exists on chi-siamo
+- section philosophy matches type split-content
+- section philosophy is rendered in page chi-siamo
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1207,33 +1207,11 @@ section
 
 mcp startup: no servers
 codex
-I’m implementing the `chi-siamo` story section and will first inspect the current page/component structure plus the task/source-of-truth files to keep the change scoped correctly.
+I’m implementing only the `chi-siamo` philosophy split section and checking the existing page/component structure first so the change stays within the current task scope.
 exec
-/bin/zsh -lc "sed -n '1,220p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
 /bin/zsh -lc "sed -n '1,220p' src/pages/ChiSiamo.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "pwd && rg --files . | rg '"'^(src|agent|brief|docs)/'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc 'rg -n "StorySection|editorial-content|ChiSiamo|About" src/components src/pages' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 51ms:
-import AboutHeroSection from "../components/AboutHeroSection"
-
-export default function ChiSiamo() {
-  const sectionStyle = {
-    padding: "4rem 0",
-    borderBottom: "1px solid rgba(15, 23, 42, 0.08)",
-  }
-
-  const contentStyle = {
-    width: "min(100%, 64rem)",
-    margin: "0 auto",
-  }
-
-  const eyebrowStyle = {
-    margin: "0 0 1rem",
-    fontSize: "0.75rem",
-    fontWeight: 700,
-    letterSpacing: "0.18em",
-    textTransform: "uppercase",
-    color: "#f97316",
- succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,220p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "pwd && rg --files src agent brief docs | rg 'ChiSiamo|PhilosophySection|AGENT_REPORT|CURRENT_TASK_PROMPT|TASK_STATE|TASK_GRAPH|site-spec|DEVELOPMENT_METHOD'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 53ms:
 # CURRENT TASK EXECUTION PROMPT
 
 You are the coding executor for this project.
@@ -1254,40 +1232,50 @@ site-create-a-high-end-visually-distinctive-m
 # Development Method
 
 All sites must follow these rules.
- exited 1 in 51ms:
+ succeeded in 53ms:
+import AboutHeroSection from "../components/AboutHeroSection"
+import StorySection from "../components/StorySection"
+
+export default function ChiSiamo() {
+  const sectionStyle = {
+    padding: "4rem 0",
+    borderBottom: "1px solid rgba(15, 23, 42, 0.08)",
+  }
+
+  const contentStyle = {
+    width: "min(100%, 64rem)",
+    margin: "0 auto",
+  }
+
+  const eyebrowStyle = {
+    margin: "0 0 1rem",
+    fontSize: "0.75rem",
+    fontWeight: 700,
+    letterSpacing: "0.18em",
+    textTransform: "uppercase",
+ succeeded in 53ms:
 /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m
- succeeded in 51ms:
-src/components/AboutHeroSection.jsx:116:export default function AboutHeroSection() {
-src/pages/ChiSiamo.jsx:1:import AboutHeroSection from "../components/AboutHeroSection"
-src/pages/ChiSiamo.jsx:3:export default function ChiSiamo() {
-src/pages/ChiSiamo.jsx:33:      <AboutHeroSection />
+agent/TASK_GRAPH.json
+agent/CURRENT_TASK_PROMPT.md
+agent/TASK_STATE.json
+agent/AGENT_REPORT.md
+docs/DEVELOPMENT_METHOD.md
+src/pages/ChiSiamo.jsx
 codex
-The `ChiSiamo` page already has an inline story block, so I’m replacing that with a dedicated editorial component and leaving the unrelated `philosophy` section intact. After that I’ll run the build and append the task note to the agent report.
+The page currently has an inline placeholder for `philosophy`. I’m replacing that with a dedicated split-content component so the section matches the task type and stays modular.
 exec
+/bin/zsh -lc 'ls src/components' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
 /bin/zsh -lc "sed -n '1,240p' src/components/AboutHeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "rg -n '\"build\"' package.json && sed -n '1,220p' package.json" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 52ms:
-# AGENT REPORT
-
-Project created.
-
-Prepared TASK page-home-shell (Create home page shell) for execution.
-
-Launching Codex for TASK page-home-shell.
-
-Completed TASK `page-home-shell`.
-
-- Replaced placeholder home page content with a semantic `main` shell.
-- Kept the home route mounted in the existing hash router setup.
-- Added the required home sections: `hero`, `signature-preview`, and `brand-story-preview`.
-- Added working internal CTAs to `/menu` and `/contatti`.
-
-TASK page-home-shell executed by Codex.
-Waiting for validation.
-
-TASK page-home-shell completed successfully.
-Build passed.
- succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,260p' src/components/StorySection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 53ms:
+AboutHeroSection.jsx
+BrandStoryPreviewSection.jsx
+FloatingWhatsAppButton.jsx
+HeroSection.jsx
+MenuCategoriesSection.jsx
+MenuHeroSection.jsx
+SignaturePreviewSection.jsx
+StorySection.jsx
+ succeeded in 53ms:
 const values = [
   {
     title: "Stagionalita",
@@ -1308,31 +1296,7 @@ const styles = {
     position: "relative",
     overflow: "hidden",
     padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
- succeeded in 51ms:
-8:    "build": "vite build",
-{
-  "name": "site-create-a-high-end-visually-distinctive-m",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "test:ui": "playwright test"
-  },
-  "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "react-router-dom": "^7.13.1"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.39.1",
-codex
-I’ve got the existing visual language: large editorial type, warm neutrals, dark accent panel. I’m matching that in a dedicated `StorySection` component so the `story` section becomes modular without spilling into future work.
-file update
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/StorySection.jsx
+ succeeded in 53ms:
 const storyMoments = [
   {
     label: "Origine",
@@ -1353,62 +1317,157 @@ const styles = {
     padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
     borderBottom: "1px solid rgba(15, 23, 42, 0.08)",
     background:
-      "linear-gradient(180deg, #ffffff 0%, #fffaf5 100%)",
+codex
+I’ve got the surrounding visual language. Next I’m extracting the philosophy block into a dedicated split layout component and wiring it into `ChiSiamo` without touching unrelated pages.
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/ChiSiamo.jsx
+@@ -1,2 +1,3 @@
+ import AboutHeroSection from "../components/AboutHeroSection"
++import PhilosophySection from "../components/PhilosophySection"
+ import StorySection from "../components/StorySection"
+@@ -4,29 +5,2 @@
+ export default function ChiSiamo() {
+-  const sectionStyle = {
+-    padding: "4rem 0",
+-    borderBottom: "1px solid rgba(15, 23, 42, 0.08)",
+-  }
+-
+-  const contentStyle = {
+-    width: "min(100%, 64rem)",
+-    margin: "0 auto",
+-  }
+-
+-  const eyebrowStyle = {
+-    margin: "0 0 1rem",
+-    fontSize: "0.75rem",
+-    fontWeight: 700,
+-    letterSpacing: "0.18em",
+-    textTransform: "uppercase",
+-    color: "#f97316",
+-  }
+-
+-  const bodyStyle = {
+-    margin: "0",
+-    maxWidth: "44rem",
+-    fontSize: "1.05rem",
+-    lineHeight: 1.7,
+-    color: "#475569",
+-  }
+-
+   return (
+@@ -35,22 +9,3 @@
+       <StorySection />
+-
+-      <section id="philosophy" style={{ ...sectionStyle, borderBottom: "none" }}>
+-        <div style={contentStyle}>
+-          <h2
+-            style={{
+-              margin: "0 0 1rem",
+-              fontSize: "clamp(2rem, 5vw, 3.25rem)",
+-              lineHeight: 1,
+-              color: "#0f172a",
+-            }}
+-          >
+-            La nostra filosofia
+-          </h2>
+-          <p style={bodyStyle}>
+-            Puntiamo su menu leggibili, sapori netti e una sala che lascia
+-            spazio alla conversazione. Qualita, stagionalita e semplicita sono
+-            i principi che guidano ogni servizio.
+-          </p>
+-        </div>
+-      </section>
++      <PhilosophySection />
+     </>
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/PhilosophySection.jsx
+const principles = [
+  {
+    title: "Semplicita leggibile",
+    text: "Riduciamo il rumore per dare spazio a sapori chiari, menu essenziali e scelte che restano immediate per chi si accomoda.",
+  },
+  {
+    title: "Tecnica senza ostentazione",
+    text: "La precisione e presente in cucina, ma non chiede attenzione. Serve a rendere il piatto nitido, coerente e naturale.",
+  },
+  {
+    title: "Esperienza che respira",
+    text: "Sala, tempi e servizio sono calibrati per accompagnare la conversazione e mantenere l'atmosfera rilassata ma curata.",
+  },
+]
+
+const styles = {
+  section: {
+    position: "relative",
+    overflow: "hidden",
+    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
+    background:
+      "linear-gradient(135deg, #0f172a 0%, #111827 56%, #1e293b 100%)",
+  },
+  glow: {
+    position: "absolute",
+    inset: "auto auto -8rem -6rem",
+    width: "20rem",
+    height: "20rem",
+    borderRadius: "999px",
+    background: "radial-gradient(circle, rgba(249, 115, 22, 0.34), transparent 68%)",
+    pointerEvents: "none",
   },
   shell: {
+    position: "relative",
+    zIndex: 1,
     maxWidth: "1280px",
     margin: "0 auto",
-    display: "grid",
-    gap: "2rem",
   },
   layout: {
     display: "grid",
     gap: "2rem",
-    gridTemplateColumns: "minmax(0, 1.2fr) minmax(0, 0.8fr)",
+    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
     alignItems: "start",
   },
   intro: {
     display: "grid",
     gap: "1.25rem",
+    maxWidth: "42rem",
   },
   eyebrow: {
     margin: 0,
-    fontSize: "0.78rem",
+    fontSize: "0.8rem",
     fontWeight: 700,
     letterSpacing: "0.18em",
     textTransform: "uppercase",
-    color: "#f97316",
+    color: "#fb923c",
   },
   title: {
     margin: 0,
-    maxWidth: "12ch",
-    fontSize: "clamp(2.4rem, 6vw, 4.8rem)",
-    lineHeight: 0.95,
+    maxWidth: "11ch",
+    fontSize: "clamp(2.5rem, 6vw, 4.8rem)",
+    lineHeight: 0.94,
     letterSpacing: "-0.05em",
-    color: "#111111",
+    color: "#ffffff",
     textWrap: "balance",
   },
   lead: {
     margin: 0,
-    maxWidth: "42rem",
-    fontSize: "clamp(1.05rem, 2.2vw, 1.25rem)",
+    fontSize: "clamp(1.05rem, 2.4vw, 1.22rem)",
     lineHeight: 1.8,
-    color: "#475569",
+    color: "rgba(255, 255, 255, 0.78)",
   },
   emphasis: {
     margin: 0,
-    maxWidth: "32rem",
-    fontSize: "1rem",
-    lineHeight: 1.8,
-    color: "#0f172a",
+    maxWidth: "34rem",
+    fontSize: "0.98rem",
+    lineHeight: 1.75,
+    color: "rgba(255, 255, 255, 0.64)",
   },
   panel: {
     display: "grid",
     gap: "1rem",
+    alignContent: "start",
     padding: "clamp(1.5rem, 4vw, 2rem)",
-    borderRadius: "1.5rem",
-    backgroundColor: "#0f172a",
-    boxShadow: "0 20px 60px rgba(15, 23, 42, 0.1)",
+    border: "1px solid rgba(255, 255, 255, 0.12)",
+    borderRadius: "1.75rem",
+    background: "rgba(255, 255, 255, 0.04)",
+    backdropFilter: "blur(8px)",
   },
   panelTitle: {
     margin: 0,
@@ -1416,7 +1475,7 @@ const styles = {
     fontWeight: 700,
     letterSpacing: "0.16em",
     textTransform: "uppercase",
-    color: "#fb923c",
+    color: "#fdba74",
   },
   list: {
     margin: 0,
@@ -1427,13 +1486,13 @@ const styles = {
   },
   item: {
     display: "grid",
-    gap: "0.35rem",
+    gap: "0.45rem",
     paddingTop: "1rem",
-    borderTop: "1px solid rgba(255, 255, 255, 0.12)",
+    borderTop: "1px solid rgba(255, 255, 255, 0.1)",
   },
-  itemLabel: {
+  itemTitle: {
     margin: 0,
-    fontSize: "1rem",
+    fontSize: "1.05rem",
     fontWeight: 700,
     color: "#ffffff",
   },
@@ -1441,45 +1500,39 @@ const styles = {
     margin: 0,
     fontSize: "0.98rem",
     lineHeight: 1.7,
-    color: "rgba(255, 255, 255, 0.76)",
+    color: "rgba(255, 255, 255, 0.72)",
   },
 }
 
-export default function StorySection() {
+export default function PhilosophySection() {
   return (
-    <section id="story" aria-labelledby="story-title" style={styles.section}>
+    <section id="philosophy" aria-labelledby="philosophy-title" style={styles.section}>
+      <div aria-hidden="true" style={styles.glow} />
       <div style={styles.shell}>
-        <div
-          style={{
-            ...styles.layout,
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-          }}
-        >
+        <div style={styles.layout}>
           <div style={styles.intro}>
-            <p style={styles.eyebrow}>La nostra storia</p>
-            <h2 id="story-title" style={styles.title}>
-              Una visione italiana resa piu essenziale.
+            <p style={styles.eyebrow}>La nostra filosofia</p>
+            <h2 id="philosophy-title" style={styles.title}>
+              Cucinare meno rumore, lasciare piu sostanza.
             </h2>
             <p style={styles.lead}>
-              Siamo partiti da un&apos;idea semplice: creare un luogo in cui la cucina
-              resti riconoscibile, ma venga alleggerita da tutto cio che e superfluo.
-              Per questo il menu cambia con il ritmo della stagione, i sapori sono netti
-              e ogni piatto cerca equilibrio prima dell&apos;effetto.
+              Crediamo che un ristorante funzioni davvero quando ogni elemento ha un
+              ruolo chiaro: ingredienti stagionali, tecnica pulita e una sala che non
+              forza il ritmo dell&apos;esperienza.
             </p>
             <p style={styles.emphasis}>
-              Vogliamo che l&apos;esperienza sia contemporanea, curata e accessibile:
-              abbastanza precisa da farsi ricordare, abbastanza naturale da far sentire
-              ogni ospite al posto giusto.
+              Per questo scegliamo equilibrio prima dell&apos;effetto, leggibilita prima
+              dell&apos;eccesso e un&apos;ospitalita precisa che resta sempre umana.
             </p>
           </div>
 
-          <aside aria-label="Momenti chiave della nostra storia" style={styles.panel}>
-            <p style={styles.panelTitle}>Come prendiamo forma</p>
+          <aside aria-label="Principi che guidano il ristorante" style={styles.panel}>
+            <p style={styles.panelTitle}>I principi che seguiamo</p>
             <ul style={styles.list}>
-              {storyMoments.map((moment) => (
-                <li key={moment.label} style={styles.item}>
-                  <p style={styles.itemLabel}>{moment.label}</p>
-                  <p style={styles.itemText}>{moment.text}</p>
+              {principles.map((principle) => (
+                <li key={principle.title} style={styles.item}>
+                  <p style={styles.itemTitle}>{principle.title}</p>
+                  <p style={styles.itemText}>{principle.text}</p>
                 </li>
               ))}
             </ul>
@@ -1489,123 +1542,105 @@ export default function StorySection() {
     </section>
   )
 }
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/ChiSiamo.jsx
-@@ -1,2 +1,3 @@
- import AboutHeroSection from "../components/AboutHeroSection"
-+import StorySection from "../components/StorySection"
- 
-@@ -33,23 +34,3 @@
-       <AboutHeroSection />
--
--      <section id="story" style={sectionStyle}>
--        <div style={contentStyle}>
--          <h2
--            style={{
--              margin: "0 0 1rem",
--              fontSize: "clamp(2rem, 5vw, 3.25rem)",
--              lineHeight: 1,
--              color: "#0f172a",
--            }}
--          >
--            Una storia fatta di ritmo, materia prima e ospitalita.
--          </h2>
--          <p style={bodyStyle}>
--            Siamo nati con un&apos;idea semplice: creare un luogo in cui la cucina
--            italiana incontri una sensibilita piu essenziale, precisa e
--            attuale. Il risultato e un ambiente caldo, piatti riconoscibili e
--            una proposta che cambia con naturalezza durante l&apos;anno.
--          </p>
--        </div>
--      </section>
-+      <StorySection />
- 
-apply_patch(auto_approved=true) exited 0 in 57ms:
+apply_patch(auto_approved=true) exited 0 in 45ms:
 Success. Updated the following files:
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/StorySection.jsx
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/PhilosophySection.jsx
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/ChiSiamo.jsx
 file update:
-diff --git a/src/components/StorySection.jsx b/src/components/StorySection.jsx
+diff --git a/src/components/PhilosophySection.jsx b/src/components/PhilosophySection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f426a2cfa
+index 0000000000000000000000000000000000000000..682caa8c09857570ac9e5468d1d5a98e865fdf48
 --- /dev/null
-+++ b/src/components/StorySection.jsx
-@@ -0,0 +1,156 @@
-+const storyMoments = [
++++ b/src/components/PhilosophySection.jsx
+@@ -0,0 +1,162 @@
++const principles = [
 +  {
-+    label: "Origine",
-+    text: "Il progetto nasce dal desiderio di offrire una cucina italiana nitida, contemporanea e leggibile, senza perdere calore umano.",
++    title: "Semplicita leggibile",
++    text: "Riduciamo il rumore per dare spazio a sapori chiari, menu essenziali e scelte che restano immediate per chi si accomoda.",
 +  },
 +  {
-+    label: "Metodo",
-+    text: "Lavoriamo su ingredienti stagionali, preparazioni essenziali e un servizio che accompagna il tavolo con naturalezza.",
++    title: "Tecnica senza ostentazione",
++    text: "La precisione e presente in cucina, ma non chiede attenzione. Serve a rendere il piatto nitido, coerente e naturale.",
 +  },
 +  {
-+    label: "Atmosfera",
-+    text: "Sala, luci e ritmo del servizio sono pensati per lasciare spazio alla conversazione e far percepire ogni dettaglio con equilibrio.",
++    title: "Esperienza che respira",
++    text: "Sala, tempi e servizio sono calibrati per accompagnare la conversazione e mantenere l'atmosfera rilassata ma curata.",
 +  },
 +]
 +
 +const styles = {
 +  section: {
++    position: "relative",
++    overflow: "hidden",
 +    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
-+    borderBottom: "1px solid rgba(15, 23, 42, 0.08)",
 +    background:
-+      "linear-gradient(180deg, #ffffff 0%, #fffaf5 100%)",
++      "linear-gradient(135deg, #0f172a 0%, #111827 56%, #1e293b 100%)",
++  },
++  glow: {
++    position: "absolute",
++    inset: "auto auto -8rem -6rem",
++    width: "20rem",
++    height: "20rem",
++    borderRadius: "999px",
++    background: "radial-gradient(circle, rgba(249, 115, 22, 0.34), transparent 68%)",
++    pointerEvents: "none",
 +  },
 +  shell: {
++    position: "relative",
++    zIndex: 1,
 +    maxWidth: "1280px",
 +    margin: "0 auto",
-+    display: "grid",
-+    gap: "2rem",
 +  },
 +  layout: {
 +    display: "grid",
 +    gap: "2rem",
-+    gridTemplateColumns: "minmax(0, 1.2fr) minmax(0, 0.8fr)",
++    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
 +    alignItems: "start",
 +  },
 +  intro: {
 +    display: "grid",
 +    gap: "1.25rem",
++    maxWidth: "42rem",
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    fontSize: "0.78rem",
++    fontSize: "0.8rem",
 +    fontWeight: 700,
 +    letterSpacing: "0.18em",
 +    textTransform: "uppercase",
-+    color: "#f97316",
++    color: "#fb923c",
 +  },
 +  title: {
 +    margin: 0,
-+    maxWidth: "12ch",
-+    fontSize: "clamp(2.4rem, 6vw, 4.8rem)",
-+    lineHeight: 0.95,
++    maxWidth: "11ch",
++    fontSize: "clamp(2.5rem, 6vw, 4.8rem)",
++    lineHeight: 0.94,
 +    letterSpacing: "-0.05em",
-+    color: "#111111",
++    color: "#ffffff",
 +    textWrap: "balance",
 +  },
 +  lead: {
 +    margin: 0,
-+    maxWidth: "42rem",
-+    fontSize: "clamp(1.05rem, 2.2vw, 1.25rem)",
++    fontSize: "clamp(1.05rem, 2.4vw, 1.22rem)",
 +    lineHeight: 1.8,
-+    color: "#475569",
++    color: "rgba(255, 255, 255, 0.78)",
 +  },
 +  emphasis: {
 +    margin: 0,
-+    maxWidth: "32rem",
-+    fontSize: "1rem",
-+    lineHeight: 1.8,
-+    color: "#0f172a",
++    maxWidth: "34rem",
++    fontSize: "0.98rem",
++    lineHeight: 1.75,
++    color: "rgba(255, 255, 255, 0.64)",
 +  },
 +  panel: {
 +    display: "grid",
 +    gap: "1rem",
++    alignContent: "start",
 +    padding: "clamp(1.5rem, 4vw, 2rem)",
-+    borderRadius: "1.5rem",
-+    backgroundColor: "#0f172a",
-+    boxShadow: "0 20px 60px rgba(15, 23, 42, 0.1)",
++    border: "1px solid rgba(255, 255, 255, 0.12)",
++    borderRadius: "1.75rem",
++    background: "rgba(255, 255, 255, 0.04)",
++    backdropFilter: "blur(8px)",
 +  },
 +  panelTitle: {
 +    margin: 0,
@@ -1613,7 +1648,7 @@ index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f
 +    fontWeight: 700,
 +    letterSpacing: "0.16em",
 +    textTransform: "uppercase",
-+    color: "#fb923c",
++    color: "#fdba74",
 +  },
 +  list: {
 +    margin: 0,
@@ -1624,13 +1659,13 @@ index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f
 +  },
 +  item: {
 +    display: "grid",
-+    gap: "0.35rem",
++    gap: "0.45rem",
 +    paddingTop: "1rem",
-+    borderTop: "1px solid rgba(255, 255, 255, 0.12)",
++    borderTop: "1px solid rgba(255, 255, 255, 0.1)",
 +  },
-+  itemLabel: {
++  itemTitle: {
 +    margin: 0,
-+    fontSize: "1rem",
++    fontSize: "1.05rem",
 +    fontWeight: 700,
 +    color: "#ffffff",
 +  },
@@ -1638,45 +1673,39 @@ index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f
 +    margin: 0,
 +    fontSize: "0.98rem",
 +    lineHeight: 1.7,
-+    color: "rgba(255, 255, 255, 0.76)",
++    color: "rgba(255, 255, 255, 0.72)",
 +  },
 +}
 +
-+export default function StorySection() {
++export default function PhilosophySection() {
 +  return (
-+    <section id="story" aria-labelledby="story-title" style={styles.section}>
++    <section id="philosophy" aria-labelledby="philosophy-title" style={styles.section}>
++      <div aria-hidden="true" style={styles.glow} />
 +      <div style={styles.shell}>
-+        <div
-+          style={{
-+            ...styles.layout,
-+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-+          }}
-+        >
++        <div style={styles.layout}>
 +          <div style={styles.intro}>
-+            <p style={styles.eyebrow}>La nostra storia</p>
-+            <h2 id="story-title" style={styles.title}>
-+              Una visione italiana resa piu essenziale.
++            <p style={styles.eyebrow}>La nostra filosofia</p>
++            <h2 id="philosophy-title" style={styles.title}>
++              Cucinare meno rumore, lasciare piu sostanza.
 +            </h2>
 +            <p style={styles.lead}>
-+              Siamo partiti da un&apos;idea semplice: creare un luogo in cui la cucina
-+              resti riconoscibile, ma venga alleggerita da tutto cio che e superfluo.
-+              Per questo il menu cambia con il ritmo della stagione, i sapori sono netti
-+              e ogni piatto cerca equilibrio prima dell&apos;effetto.
++              Crediamo che un ristorante funzioni davvero quando ogni elemento ha un
++              ruolo chiaro: ingredienti stagionali, tecnica pulita e una sala che non
++              forza il ritmo dell&apos;esperienza.
 +            </p>
 +            <p style={styles.emphasis}>
-+              Vogliamo che l&apos;esperienza sia contemporanea, curata e accessibile:
-+              abbastanza precisa da farsi ricordare, abbastanza naturale da far sentire
-+              ogni ospite al posto giusto.
++              Per questo scegliamo equilibrio prima dell&apos;effetto, leggibilita prima
++              dell&apos;eccesso e un&apos;ospitalita precisa che resta sempre umana.
 +            </p>
 +          </div>
 +
-+          <aside aria-label="Momenti chiave della nostra storia" style={styles.panel}>
-+            <p style={styles.panelTitle}>Come prendiamo forma</p>
++          <aside aria-label="Principi che guidano il ristorante" style={styles.panel}>
++            <p style={styles.panelTitle}>I principi che seguiamo</p>
 +            <ul style={styles.list}>
-+              {storyMoments.map((moment) => (
-+                <li key={moment.label} style={styles.item}>
-+                  <p style={styles.itemLabel}>{moment.label}</p>
-+                  <p style={styles.itemText}>{moment.text}</p>
++              {principles.map((principle) => (
++                <li key={principle.title} style={styles.item}>
++                  <p style={styles.itemTitle}>{principle.title}</p>
++                  <p style={styles.itemText}>{principle.text}</p>
 +                </li>
 +              ))}
 +            </ul>
@@ -1687,21 +1716,48 @@ index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f
 +  )
 +}
 diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
-index d7eb19dca8dd4c545b86698838f6c6ed51b4c4c1..0157e66899343329a65c6dc7440bbdd4ccf6411d
+index 0157e66899343329a65c6dc7440bbdd4ccf6411d..b300e2cd34cf511410e94fac255dc59f5e293762
 --- a/src/pages/ChiSiamo.jsx
 +++ b/src/pages/ChiSiamo.jsx
-@@ -1,4 +1,5 @@
+@@ -1,58 +1,13 @@
  import AboutHeroSection from "../components/AboutHeroSection"
-+import StorySection from "../components/StorySection"
++import PhilosophySection from "../components/PhilosophySection"
+ import StorySection from "../components/StorySection"
  
  export default function ChiSiamo() {
-   const sectionStyle = {
-@@ -31,27 +32,7 @@
+-  const sectionStyle = {
+-    padding: "4rem 0",
+-    borderBottom: "1px solid rgba(15, 23, 42, 0.08)",
+-  }
+-
+-  const contentStyle = {
+-    width: "min(100%, 64rem)",
+-    margin: "0 auto",
+-  }
+-
+-  const eyebrowStyle = {
+-    margin: "0 0 1rem",
+-    fontSize: "0.75rem",
+-    fontWeight: 700,
+-    letterSpacing: "0.18em",
+-    textTransform: "uppercase",
+-    color: "#f97316",
+-  }
+-
+-  const bodyStyle = {
+-    margin: "0",
+-    maxWidth: "44rem",
+-    fontSize: "1.05rem",
+-    lineHeight: 1.7,
+-    color: "#475569",
+-  }
+-
    return (
      <>
        <AboutHeroSection />
+       <StorySection />
 -
--      <section id="story" style={sectionStyle}>
+-      <section id="philosophy" style={{ ...sectionStyle, borderBottom: "none" }}>
 -        <div style={contentStyle}>
 -          <h2
 -            style={{
@@ -1711,104 +1767,115 @@ index d7eb19dca8dd4c545b86698838f6c6ed51b4c4c1..0157e66899343329a65c6dc7440bbdd4
 -              color: "#0f172a",
 -            }}
 -          >
--            Una storia fatta di ritmo, materia prima e ospitalita.
+-            La nostra filosofia
 -          </h2>
 -          <p style={bodyStyle}>
--            Siamo nati con un&apos;idea semplice: creare un luogo in cui la cucina
--            italiana incontri una sensibilita piu essenziale, precisa e
--            attuale. Il risultato e un ambiente caldo, piatti riconoscibili e
--            una proposta che cambia con naturalezza durante l&apos;anno.
+-            Puntiamo su menu leggibili, sapori netti e una sala che lascia
+-            spazio alla conversazione. Qualita, stagionalita e semplicita sono
+-            i principi che guidano ogni servizio.
 -          </p>
 -        </div>
 -      </section>
-+      <StorySection />
- 
-       <section id="philosophy" style={{ ...sectionStyle, borderBottom: "none" }}>
-         <div style={contentStyle}>
++      <PhilosophySection />
+     </>
+   )
+ }
 
 file update:
-diff --git a/src/components/StorySection.jsx b/src/components/StorySection.jsx
+diff --git a/src/components/PhilosophySection.jsx b/src/components/PhilosophySection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f426a2cfa
+index 0000000000000000000000000000000000000000..682caa8c09857570ac9e5468d1d5a98e865fdf48
 --- /dev/null
-+++ b/src/components/StorySection.jsx
-@@ -0,0 +1,156 @@
-+const storyMoments = [
++++ b/src/components/PhilosophySection.jsx
+@@ -0,0 +1,162 @@
++const principles = [
 +  {
-+    label: "Origine",
-+    text: "Il progetto nasce dal desiderio di offrire una cucina italiana nitida, contemporanea e leggibile, senza perdere calore umano.",
++    title: "Semplicita leggibile",
++    text: "Riduciamo il rumore per dare spazio a sapori chiari, menu essenziali e scelte che restano immediate per chi si accomoda.",
 +  },
 +  {
-+    label: "Metodo",
-+    text: "Lavoriamo su ingredienti stagionali, preparazioni essenziali e un servizio che accompagna il tavolo con naturalezza.",
++    title: "Tecnica senza ostentazione",
++    text: "La precisione e presente in cucina, ma non chiede attenzione. Serve a rendere il piatto nitido, coerente e naturale.",
 +  },
 +  {
-+    label: "Atmosfera",
-+    text: "Sala, luci e ritmo del servizio sono pensati per lasciare spazio alla conversazione e far percepire ogni dettaglio con equilibrio.",
++    title: "Esperienza che respira",
++    text: "Sala, tempi e servizio sono calibrati per accompagnare la conversazione e mantenere l'atmosfera rilassata ma curata.",
 +  },
 +]
 +
 +const styles = {
 +  section: {
++    position: "relative",
++    overflow: "hidden",
 +    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
-+    borderBottom: "1px solid rgba(15, 23, 42, 0.08)",
 +    background:
-+      "linear-gradient(180deg, #ffffff 0%, #fffaf5 100%)",
++      "linear-gradient(135deg, #0f172a 0%, #111827 56%, #1e293b 100%)",
++  },
++  glow: {
++    position: "absolute",
++    inset: "auto auto -8rem -6rem",
++    width: "20rem",
++    height: "20rem",
++    borderRadius: "999px",
++    background: "radial-gradient(circle, rgba(249, 115, 22, 0.34), transparent 68%)",
++    pointerEvents: "none",
 +  },
 +  shell: {
++    position: "relative",
++    zIndex: 1,
 +    maxWidth: "1280px",
 +    margin: "0 auto",
-+    display: "grid",
-+    gap: "2rem",
 +  },
 +  layout: {
 +    display: "grid",
 +    gap: "2rem",
-+    gridTemplateColumns: "minmax(0, 1.2fr) minmax(0, 0.8fr)",
++    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
 +    alignItems: "start",
 +  },
 +  intro: {
 +    display: "grid",
 +    gap: "1.25rem",
++    maxWidth: "42rem",
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    fontSize: "0.78rem",
++    fontSize: "0.8rem",
 +    fontWeight: 700,
 +    letterSpacing: "0.18em",
 +    textTransform: "uppercase",
-+    color: "#f97316",
++    color: "#fb923c",
 +  },
 +  title: {
 +    margin: 0,
-+    maxWidth: "12ch",
-+    fontSize: "clamp(2.4rem, 6vw, 4.8rem)",
-+    lineHeight: 0.95,
++    maxWidth: "11ch",
++    fontSize: "clamp(2.5rem, 6vw, 4.8rem)",
++    lineHeight: 0.94,
 +    letterSpacing: "-0.05em",
-+    color: "#111111",
++    color: "#ffffff",
 +    textWrap: "balance",
 +  },
 +  lead: {
 +    margin: 0,
-+    maxWidth: "42rem",
-+    fontSize: "clamp(1.05rem, 2.2vw, 1.25rem)",
++    fontSize: "clamp(1.05rem, 2.4vw, 1.22rem)",
 +    lineHeight: 1.8,
-+    color: "#475569",
++    color: "rgba(255, 255, 255, 0.78)",
 +  },
 +  emphasis: {
 +    margin: 0,
-+    maxWidth: "32rem",
-+    fontSize: "1rem",
-+    lineHeight: 1.8,
-+    color: "#0f172a",
++    maxWidth: "34rem",
++    fontSize: "0.98rem",
++    lineHeight: 1.75,
++    color: "rgba(255, 255, 255, 0.64)",
 +  },
 +  panel: {
 +    display: "grid",
 +    gap: "1rem",
++    alignContent: "start",
 +    padding: "clamp(1.5rem, 4vw, 2rem)",
-+    borderRadius: "1.5rem",
-+    backgroundColor: "#0f172a",
-+    boxShadow: "0 20px 60px rgba(15, 23, 42, 0.1)",
++    border: "1px solid rgba(255, 255, 255, 0.12)",
++    borderRadius: "1.75rem",
++    background: "rgba(255, 255, 255, 0.04)",
++    backdropFilter: "blur(8px)",
 +  },
 +  panelTitle: {
 +    margin: 0,
@@ -1816,7 +1883,7 @@ index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f
 +    fontWeight: 700,
 +    letterSpacing: "0.16em",
 +    textTransform: "uppercase",
-+    color: "#fb923c",
++    color: "#fdba74",
 +  },
 +  list: {
 +    margin: 0,
@@ -1827,13 +1894,13 @@ index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f
 +  },
 +  item: {
 +    display: "grid",
-+    gap: "0.35rem",
++    gap: "0.45rem",
 +    paddingTop: "1rem",
-+    borderTop: "1px solid rgba(255, 255, 255, 0.12)",
++    borderTop: "1px solid rgba(255, 255, 255, 0.1)",
 +  },
-+  itemLabel: {
++  itemTitle: {
 +    margin: 0,
-+    fontSize: "1rem",
++    fontSize: "1.05rem",
 +    fontWeight: 700,
 +    color: "#ffffff",
 +  },
@@ -1841,45 +1908,39 @@ index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f
 +    margin: 0,
 +    fontSize: "0.98rem",
 +    lineHeight: 1.7,
-+    color: "rgba(255, 255, 255, 0.76)",
++    color: "rgba(255, 255, 255, 0.72)",
 +  },
 +}
 +
-+export default function StorySection() {
++export default function PhilosophySection() {
 +  return (
-+    <section id="story" aria-labelledby="story-title" style={styles.section}>
++    <section id="philosophy" aria-labelledby="philosophy-title" style={styles.section}>
++      <div aria-hidden="true" style={styles.glow} />
 +      <div style={styles.shell}>
-+        <div
-+          style={{
-+            ...styles.layout,
-+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-+          }}
-+        >
++        <div style={styles.layout}>
 +          <div style={styles.intro}>
-+            <p style={styles.eyebrow}>La nostra storia</p>
-+            <h2 id="story-title" style={styles.title}>
-+              Una visione italiana resa piu essenziale.
++            <p style={styles.eyebrow}>La nostra filosofia</p>
++            <h2 id="philosophy-title" style={styles.title}>
++              Cucinare meno rumore, lasciare piu sostanza.
 +            </h2>
 +            <p style={styles.lead}>
-+              Siamo partiti da un&apos;idea semplice: creare un luogo in cui la cucina
-+              resti riconoscibile, ma venga alleggerita da tutto cio che e superfluo.
-+              Per questo il menu cambia con il ritmo della stagione, i sapori sono netti
-+              e ogni piatto cerca equilibrio prima dell&apos;effetto.
++              Crediamo che un ristorante funzioni davvero quando ogni elemento ha un
++              ruolo chiaro: ingredienti stagionali, tecnica pulita e una sala che non
++              forza il ritmo dell&apos;esperienza.
 +            </p>
 +            <p style={styles.emphasis}>
-+              Vogliamo che l&apos;esperienza sia contemporanea, curata e accessibile:
-+              abbastanza precisa da farsi ricordare, abbastanza naturale da far sentire
-+              ogni ospite al posto giusto.
++              Per questo scegliamo equilibrio prima dell&apos;effetto, leggibilita prima
++              dell&apos;eccesso e un&apos;ospitalita precisa che resta sempre umana.
 +            </p>
 +          </div>
 +
-+          <aside aria-label="Momenti chiave della nostra storia" style={styles.panel}>
-+            <p style={styles.panelTitle}>Come prendiamo forma</p>
++          <aside aria-label="Principi che guidano il ristorante" style={styles.panel}>
++            <p style={styles.panelTitle}>I principi che seguiamo</p>
 +            <ul style={styles.list}>
-+              {storyMoments.map((moment) => (
-+                <li key={moment.label} style={styles.item}>
-+                  <p style={styles.itemLabel}>{moment.label}</p>
-+                  <p style={styles.itemText}>{moment.text}</p>
++              {principles.map((principle) => (
++                <li key={principle.title} style={styles.item}>
++                  <p style={styles.itemTitle}>{principle.title}</p>
++                  <p style={styles.itemText}>{principle.text}</p>
 +                </li>
 +              ))}
 +            </ul>
@@ -1890,21 +1951,48 @@ index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f
 +  )
 +}
 diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
-index d7eb19dca8dd4c545b86698838f6c6ed51b4c4c1..0157e66899343329a65c6dc7440bbdd4ccf6411d
+index 0157e66899343329a65c6dc7440bbdd4ccf6411d..b300e2cd34cf511410e94fac255dc59f5e293762
 --- a/src/pages/ChiSiamo.jsx
 +++ b/src/pages/ChiSiamo.jsx
-@@ -1,4 +1,5 @@
+@@ -1,58 +1,13 @@
  import AboutHeroSection from "../components/AboutHeroSection"
-+import StorySection from "../components/StorySection"
++import PhilosophySection from "../components/PhilosophySection"
+ import StorySection from "../components/StorySection"
  
  export default function ChiSiamo() {
-   const sectionStyle = {
-@@ -31,27 +32,7 @@
+-  const sectionStyle = {
+-    padding: "4rem 0",
+-    borderBottom: "1px solid rgba(15, 23, 42, 0.08)",
+-  }
+-
+-  const contentStyle = {
+-    width: "min(100%, 64rem)",
+-    margin: "0 auto",
+-  }
+-
+-  const eyebrowStyle = {
+-    margin: "0 0 1rem",
+-    fontSize: "0.75rem",
+-    fontWeight: 700,
+-    letterSpacing: "0.18em",
+-    textTransform: "uppercase",
+-    color: "#f97316",
+-  }
+-
+-  const bodyStyle = {
+-    margin: "0",
+-    maxWidth: "44rem",
+-    fontSize: "1.05rem",
+-    lineHeight: 1.7,
+-    color: "#475569",
+-  }
+-
    return (
      <>
        <AboutHeroSection />
+       <StorySection />
 -
--      <section id="story" style={sectionStyle}>
+-      <section id="philosophy" style={{ ...sectionStyle, borderBottom: "none" }}>
 -        <div style={contentStyle}>
 -          <h2
 -            style={{
@@ -1914,143 +2002,154 @@ index d7eb19dca8dd4c545b86698838f6c6ed51b4c4c1..0157e66899343329a65c6dc7440bbdd4
 -              color: "#0f172a",
 -            }}
 -          >
--            Una storia fatta di ritmo, materia prima e ospitalita.
+-            La nostra filosofia
 -          </h2>
 -          <p style={bodyStyle}>
--            Siamo nati con un&apos;idea semplice: creare un luogo in cui la cucina
--            italiana incontri una sensibilita piu essenziale, precisa e
--            attuale. Il risultato e un ambiente caldo, piatti riconoscibili e
--            una proposta che cambia con naturalezza durante l&apos;anno.
+-            Puntiamo su menu leggibili, sapori netti e una sala che lascia
+-            spazio alla conversazione. Qualita, stagionalita e semplicita sono
+-            i principi che guidano ogni servizio.
 -          </p>
 -        </div>
 -      </section>
-+      <StorySection />
- 
-       <section id="philosophy" style={{ ...sectionStyle, borderBottom: "none" }}>
-         <div style={contentStyle}>
++      <PhilosophySection />
+     </>
+   )
+ }
 
 codex
-The section is now extracted and wired into `ChiSiamo`. I’m running the build check next, then I’ll record the task outcome in `agent/AGENT_REPORT.md` as required.
+The section is in place. I’m running the build now, then I’ll append a short task note to `agent/AGENT_REPORT.md` as required.
 exec
-/bin/zsh -lc "sed -n '1,260p' src/components/StorySection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 53ms:
-const storyMoments = [
-  {
-    label: "Origine",
-    text: "Il progetto nasce dal desiderio di offrire una cucina italiana nitida, contemporanea e leggibile, senza perdere calore umano.",
-  },
-  {
-    label: "Metodo",
-    text: "Lavoriamo su ingredienti stagionali, preparazioni essenziali e un servizio che accompagna il tavolo con naturalezza.",
-  },
-  {
-    label: "Atmosfera",
-    text: "Sala, luci e ritmo del servizio sono pensati per lasciare spazio alla conversazione e far percepire ogni dettaglio con equilibrio.",
-  },
-]
+/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 53ms:
+# AGENT REPORT
 
-const styles = {
-  section: {
-    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
-    borderBottom: "1px solid rgba(15, 23, 42, 0.08)",
-    background:
+Project created.
+
+Prepared TASK page-home-shell (Create home page shell) for execution.
+
+Launching Codex for TASK page-home-shell.
+
+Completed TASK `page-home-shell`.
+
+- Replaced placeholder home page content with a semantic `main` shell.
+- Kept the home route mounted in the existing hash router setup.
+- Added the required home sections: `hero`, `signature-preview`, and `brand-story-preview`.
+- Added working internal CTAs to `/menu` and `/contatti`.
+
+TASK page-home-shell executed by Codex.
+Waiting for validation.
+
+TASK page-home-shell completed successfully.
+Build passed.
 exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 817ms:
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 831ms:
 
 > site-create-a-high-end-visually-distinctive-m@0.0.0 build
 > vite build
 
 vite v7.3.1 building client environment for production...
 transforming...
-✓ 55 modules transformed.
+✓ 56 modules transformed.
 rendering chunks...
 computing gzip size...
 dist/index.html                   0.50 kB │ gzip:  0.32 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-CO0724vT.js   255.54 kB │ gzip: 80.31 kB
-✓ built in 558ms
+dist/assets/index-BKtlRSRB.js   258.38 kB │ gzip: 80.79 kB
+✓ built in 571ms
 file update:
-diff --git a/src/components/StorySection.jsx b/src/components/StorySection.jsx
+diff --git a/src/components/PhilosophySection.jsx b/src/components/PhilosophySection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f426a2cfa
+index 0000000000000000000000000000000000000000..682caa8c09857570ac9e5468d1d5a98e865fdf48
 --- /dev/null
-+++ b/src/components/StorySection.jsx
-@@ -0,0 +1,156 @@
-+const storyMoments = [
++++ b/src/components/PhilosophySection.jsx
+@@ -0,0 +1,162 @@
++const principles = [
 +  {
-+    label: "Origine",
-+    text: "Il progetto nasce dal desiderio di offrire una cucina italiana nitida, contemporanea e leggibile, senza perdere calore umano.",
++    title: "Semplicita leggibile",
++    text: "Riduciamo il rumore per dare spazio a sapori chiari, menu essenziali e scelte che restano immediate per chi si accomoda.",
 +  },
 +  {
-+    label: "Metodo",
-+    text: "Lavoriamo su ingredienti stagionali, preparazioni essenziali e un servizio che accompagna il tavolo con naturalezza.",
++    title: "Tecnica senza ostentazione",
++    text: "La precisione e presente in cucina, ma non chiede attenzione. Serve a rendere il piatto nitido, coerente e naturale.",
 +  },
 +  {
-+    label: "Atmosfera",
-+    text: "Sala, luci e ritmo del servizio sono pensati per lasciare spazio alla conversazione e far percepire ogni dettaglio con equilibrio.",
++    title: "Esperienza che respira",
++    text: "Sala, tempi e servizio sono calibrati per accompagnare la conversazione e mantenere l'atmosfera rilassata ma curata.",
 +  },
 +]
 +
 +const styles = {
 +  section: {
++    position: "relative",
++    overflow: "hidden",
 +    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
-+    borderBottom: "1px solid rgba(15, 23, 42, 0.08)",
 +    background:
-+      "linear-gradient(180deg, #ffffff 0%, #fffaf5 100%)",
++      "linear-gradient(135deg, #0f172a 0%, #111827 56%, #1e293b 100%)",
++  },
++  glow: {
++    position: "absolute",
++    inset: "auto auto -8rem -6rem",
++    width: "20rem",
++    height: "20rem",
++    borderRadius: "999px",
++    background: "radial-gradient(circle, rgba(249, 115, 22, 0.34), transparent 68%)",
++    pointerEvents: "none",
 +  },
 +  shell: {
++    position: "relative",
++    zIndex: 1,
 +    maxWidth: "1280px",
 +    margin: "0 auto",
-+    display: "grid",
-+    gap: "2rem",
 +  },
 +  layout: {
 +    display: "grid",
 +    gap: "2rem",
-+    gridTemplateColumns: "minmax(0, 1.2fr) minmax(0, 0.8fr)",
++    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
 +    alignItems: "start",
 +  },
 +  intro: {
 +    display: "grid",
 +    gap: "1.25rem",
++    maxWidth: "42rem",
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    fontSize: "0.78rem",
++    fontSize: "0.8rem",
 +    fontWeight: 700,
 +    letterSpacing: "0.18em",
 +    textTransform: "uppercase",
-+    color: "#f97316",
++    color: "#fb923c",
 +  },
 +  title: {
 +    margin: 0,
-+    maxWidth: "12ch",
-+    fontSize: "clamp(2.4rem, 6vw, 4.8rem)",
-+    lineHeight: 0.95,
++    maxWidth: "11ch",
++    fontSize: "clamp(2.5rem, 6vw, 4.8rem)",
++    lineHeight: 0.94,
 +    letterSpacing: "-0.05em",
-+    color: "#111111",
++    color: "#ffffff",
 +    textWrap: "balance",
 +  },
 +  lead: {
 +    margin: 0,
-+    maxWidth: "42rem",
-+    fontSize: "clamp(1.05rem, 2.2vw, 1.25rem)",
++    fontSize: "clamp(1.05rem, 2.4vw, 1.22rem)",
 +    lineHeight: 1.8,
-+    color: "#475569",
++    color: "rgba(255, 255, 255, 0.78)",
 +  },
 +  emphasis: {
 +    margin: 0,
-+    maxWidth: "32rem",
-+    fontSize: "1rem",
-+    lineHeight: 1.8,
-+    color: "#0f172a",
++    maxWidth: "34rem",
++    fontSize: "0.98rem",
++    lineHeight: 1.75,
++    color: "rgba(255, 255, 255, 0.64)",
 +  },
 +  panel: {
 +    display: "grid",
 +    gap: "1rem",
++    alignContent: "start",
 +    padding: "clamp(1.5rem, 4vw, 2rem)",
-+    borderRadius: "1.5rem",
-+    backgroundColor: "#0f172a",
-+    boxShadow: "0 20px 60px rgba(15, 23, 42, 0.1)",
++    border: "1px solid rgba(255, 255, 255, 0.12)",
++    borderRadius: "1.75rem",
++    background: "rgba(255, 255, 255, 0.04)",
++    backdropFilter: "blur(8px)",
 +  },
 +  panelTitle: {
 +    margin: 0,
@@ -2058,7 +2157,7 @@ index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f
 +    fontWeight: 700,
 +    letterSpacing: "0.16em",
 +    textTransform: "uppercase",
-+    color: "#fb923c",
++    color: "#fdba74",
 +  },
 +  list: {
 +    margin: 0,
@@ -2069,13 +2168,13 @@ index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f
 +  },
 +  item: {
 +    display: "grid",
-+    gap: "0.35rem",
++    gap: "0.45rem",
 +    paddingTop: "1rem",
-+    borderTop: "1px solid rgba(255, 255, 255, 0.12)",
++    borderTop: "1px solid rgba(255, 255, 255, 0.1)",
 +  },
-+  itemLabel: {
++  itemTitle: {
 +    margin: 0,
-+    fontSize: "1rem",
++    fontSize: "1.05rem",
 +    fontWeight: 700,
 +    color: "#ffffff",
 +  },
@@ -2083,45 +2182,39 @@ index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f
 +    margin: 0,
 +    fontSize: "0.98rem",
 +    lineHeight: 1.7,
-+    color: "rgba(255, 255, 255, 0.76)",
++    color: "rgba(255, 255, 255, 0.72)",
 +  },
 +}
 +
-+export default function StorySection() {
++export default function PhilosophySection() {
 +  return (
-+    <section id="story" aria-labelledby="story-title" style={styles.section}>
++    <section id="philosophy" aria-labelledby="philosophy-title" style={styles.section}>
++      <div aria-hidden="true" style={styles.glow} />
 +      <div style={styles.shell}>
-+        <div
-+          style={{
-+            ...styles.layout,
-+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-+          }}
-+        >
++        <div style={styles.layout}>
 +          <div style={styles.intro}>
-+            <p style={styles.eyebrow}>La nostra storia</p>
-+            <h2 id="story-title" style={styles.title}>
-+              Una visione italiana resa piu essenziale.
++            <p style={styles.eyebrow}>La nostra filosofia</p>
++            <h2 id="philosophy-title" style={styles.title}>
++              Cucinare meno rumore, lasciare piu sostanza.
 +            </h2>
 +            <p style={styles.lead}>
-+              Siamo partiti da un&apos;idea semplice: creare un luogo in cui la cucina
-+              resti riconoscibile, ma venga alleggerita da tutto cio che e superfluo.
-+              Per questo il menu cambia con il ritmo della stagione, i sapori sono netti
-+              e ogni piatto cerca equilibrio prima dell&apos;effetto.
++              Crediamo che un ristorante funzioni davvero quando ogni elemento ha un
++              ruolo chiaro: ingredienti stagionali, tecnica pulita e una sala che non
++              forza il ritmo dell&apos;esperienza.
 +            </p>
 +            <p style={styles.emphasis}>
-+              Vogliamo che l&apos;esperienza sia contemporanea, curata e accessibile:
-+              abbastanza precisa da farsi ricordare, abbastanza naturale da far sentire
-+              ogni ospite al posto giusto.
++              Per questo scegliamo equilibrio prima dell&apos;effetto, leggibilita prima
++              dell&apos;eccesso e un&apos;ospitalita precisa che resta sempre umana.
 +            </p>
 +          </div>
 +
-+          <aside aria-label="Momenti chiave della nostra storia" style={styles.panel}>
-+            <p style={styles.panelTitle}>Come prendiamo forma</p>
++          <aside aria-label="Principi che guidano il ristorante" style={styles.panel}>
++            <p style={styles.panelTitle}>I principi che seguiamo</p>
 +            <ul style={styles.list}>
-+              {storyMoments.map((moment) => (
-+                <li key={moment.label} style={styles.item}>
-+                  <p style={styles.itemLabel}>{moment.label}</p>
-+                  <p style={styles.itemText}>{moment.text}</p>
++              {principles.map((principle) => (
++                <li key={principle.title} style={styles.item}>
++                  <p style={styles.itemTitle}>{principle.title}</p>
++                  <p style={styles.itemText}>{principle.text}</p>
 +                </li>
 +              ))}
 +            </ul>
@@ -2132,21 +2225,48 @@ index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f
 +  )
 +}
 diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
-index d7eb19dca8dd4c545b86698838f6c6ed51b4c4c1..0157e66899343329a65c6dc7440bbdd4ccf6411d
+index 0157e66899343329a65c6dc7440bbdd4ccf6411d..b300e2cd34cf511410e94fac255dc59f5e293762
 --- a/src/pages/ChiSiamo.jsx
 +++ b/src/pages/ChiSiamo.jsx
-@@ -1,4 +1,5 @@
+@@ -1,58 +1,13 @@
  import AboutHeroSection from "../components/AboutHeroSection"
-+import StorySection from "../components/StorySection"
++import PhilosophySection from "../components/PhilosophySection"
+ import StorySection from "../components/StorySection"
  
  export default function ChiSiamo() {
-   const sectionStyle = {
-@@ -31,27 +32,7 @@
+-  const sectionStyle = {
+-    padding: "4rem 0",
+-    borderBottom: "1px solid rgba(15, 23, 42, 0.08)",
+-  }
+-
+-  const contentStyle = {
+-    width: "min(100%, 64rem)",
+-    margin: "0 auto",
+-  }
+-
+-  const eyebrowStyle = {
+-    margin: "0 0 1rem",
+-    fontSize: "0.75rem",
+-    fontWeight: 700,
+-    letterSpacing: "0.18em",
+-    textTransform: "uppercase",
+-    color: "#f97316",
+-  }
+-
+-  const bodyStyle = {
+-    margin: "0",
+-    maxWidth: "44rem",
+-    fontSize: "1.05rem",
+-    lineHeight: 1.7,
+-    color: "#475569",
+-  }
+-
    return (
      <>
        <AboutHeroSection />
+       <StorySection />
 -
--      <section id="story" style={sectionStyle}>
+-      <section id="philosophy" style={{ ...sectionStyle, borderBottom: "none" }}>
 -        <div style={contentStyle}>
 -          <h2
 -            style={{
@@ -2156,157 +2276,168 @@ index d7eb19dca8dd4c545b86698838f6c6ed51b4c4c1..0157e66899343329a65c6dc7440bbdd4
 -              color: "#0f172a",
 -            }}
 -          >
--            Una storia fatta di ritmo, materia prima e ospitalita.
+-            La nostra filosofia
 -          </h2>
 -          <p style={bodyStyle}>
--            Siamo nati con un&apos;idea semplice: creare un luogo in cui la cucina
--            italiana incontri una sensibilita piu essenziale, precisa e
--            attuale. Il risultato e un ambiente caldo, piatti riconoscibili e
--            una proposta che cambia con naturalezza durante l&apos;anno.
+-            Puntiamo su menu leggibili, sapori netti e una sala che lascia
+-            spazio alla conversazione. Qualita, stagionalita e semplicita sono
+-            i principi che guidano ogni servizio.
 -          </p>
 -        </div>
 -      </section>
-+      <StorySection />
- 
-       <section id="philosophy" style={{ ...sectionStyle, borderBottom: "none" }}>
-         <div style={contentStyle}>
++      <PhilosophySection />
+     </>
+   )
+ }
 
 codex
-The build is clean. I’m appending the task summary to the agent report now; that’s the only non-task file I need to touch to satisfy the project workflow.
+I’ve verified the build. Last step is updating the agent report with this task’s implementation summary, without touching task state.
 file update
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md
 @@ -220,2 +220,18 @@
  
-+Prepared TASK section-chi-siamo-story (Create story section on chi-siamo) for execution.
++Prepared TASK section-chi-siamo-philosophy (Create philosophy section on chi-siamo) for execution.
 +
-+Launching Codex for TASK section-chi-siamo-story.
++Launching Codex for TASK section-chi-siamo-philosophy.
 +
-+Completed TASK `section-chi-siamo-story`.
++Completed TASK `section-chi-siamo-philosophy`.
 +
-+- Added a reusable `StorySection` component in `src/components/StorySection.jsx`.
-+- Replaced the inline `story` block in `src/pages/ChiSiamo.jsx` so the page renders the dedicated editorial-content section.
-+- Kept the required `story` section id and restaurant-focused narrative aligned with the existing `chi-siamo` page shell.
++- Added a reusable `PhilosophySection` component in `src/components/PhilosophySection.jsx`.
++- Replaced the inline philosophy placeholder in `src/pages/ChiSiamo.jsx` so the page renders a dedicated split-content section.
++- Implemented restaurant-focused philosophy copy and principle highlights while preserving the required `philosophy` section id.
 +
-+TASK section-chi-siamo-story executed by Codex.
++TASK section-chi-siamo-philosophy executed by Codex.
 +Waiting for validation.
 +
-+TASK section-chi-siamo-story completed successfully.
++TASK section-chi-siamo-philosophy completed successfully.
 +Build passed.
 +
- Prepared TASK section-chi-siamo-about-hero (Create about-hero section on chi-siamo) for execution.
-apply_patch(auto_approved=true) exited 0 in 59ms:
+ Prepared TASK section-chi-siamo-story (Create story section on chi-siamo) for execution.
+apply_patch(auto_approved=true) exited 0 in 58ms:
 Success. Updated the following files:
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 57701834fe0ffc4d3c4975fe0ebc6fd4261085f7..6f4e09246e345e0a7ed90d725aeffd015ac6e00f
+index 6e336f8c45d0e1d14fc3d7b8621237fb5f21b66b..31edddece6388d71aaaa0572fbb32aa2094535c3
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
 @@ -218,6 +218,22 @@
  TASK page-chi-siamo-shell completed successfully.
  Build passed.
  
-+Prepared TASK section-chi-siamo-story (Create story section on chi-siamo) for execution.
++Prepared TASK section-chi-siamo-philosophy (Create philosophy section on chi-siamo) for execution.
 +
-+Launching Codex for TASK section-chi-siamo-story.
++Launching Codex for TASK section-chi-siamo-philosophy.
 +
-+Completed TASK `section-chi-siamo-story`.
++Completed TASK `section-chi-siamo-philosophy`.
 +
-+- Added a reusable `StorySection` component in `src/components/StorySection.jsx`.
-+- Replaced the inline `story` block in `src/pages/ChiSiamo.jsx` so the page renders the dedicated editorial-content section.
-+- Kept the required `story` section id and restaurant-focused narrative aligned with the existing `chi-siamo` page shell.
++- Added a reusable `PhilosophySection` component in `src/components/PhilosophySection.jsx`.
++- Replaced the inline philosophy placeholder in `src/pages/ChiSiamo.jsx` so the page renders a dedicated split-content section.
++- Implemented restaurant-focused philosophy copy and principle highlights while preserving the required `philosophy` section id.
 +
-+TASK section-chi-siamo-story executed by Codex.
++TASK section-chi-siamo-philosophy executed by Codex.
 +Waiting for validation.
 +
-+TASK section-chi-siamo-story completed successfully.
++TASK section-chi-siamo-philosophy completed successfully.
 +Build passed.
 +
- Prepared TASK section-chi-siamo-about-hero (Create about-hero section on chi-siamo) for execution.
+ Prepared TASK section-chi-siamo-story (Create story section on chi-siamo) for execution.
  
- Launching Codex for TASK section-chi-siamo-about-hero.
-diff --git a/src/components/StorySection.jsx b/src/components/StorySection.jsx
+ Launching Codex for TASK section-chi-siamo-story.
+diff --git a/src/components/PhilosophySection.jsx b/src/components/PhilosophySection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f426a2cfa
+index 0000000000000000000000000000000000000000..682caa8c09857570ac9e5468d1d5a98e865fdf48
 --- /dev/null
-+++ b/src/components/StorySection.jsx
-@@ -0,0 +1,156 @@
-+const storyMoments = [
++++ b/src/components/PhilosophySection.jsx
+@@ -0,0 +1,162 @@
++const principles = [
 +  {
-+    label: "Origine",
-+    text: "Il progetto nasce dal desiderio di offrire una cucina italiana nitida, contemporanea e leggibile, senza perdere calore umano.",
++    title: "Semplicita leggibile",
++    text: "Riduciamo il rumore per dare spazio a sapori chiari, menu essenziali e scelte che restano immediate per chi si accomoda.",
 +  },
 +  {
-+    label: "Metodo",
-+    text: "Lavoriamo su ingredienti stagionali, preparazioni essenziali e un servizio che accompagna il tavolo con naturalezza.",
++    title: "Tecnica senza ostentazione",
++    text: "La precisione e presente in cucina, ma non chiede attenzione. Serve a rendere il piatto nitido, coerente e naturale.",
 +  },
 +  {
-+    label: "Atmosfera",
-+    text: "Sala, luci e ritmo del servizio sono pensati per lasciare spazio alla conversazione e far percepire ogni dettaglio con equilibrio.",
++    title: "Esperienza che respira",
++    text: "Sala, tempi e servizio sono calibrati per accompagnare la conversazione e mantenere l'atmosfera rilassata ma curata.",
 +  },
 +]
 +
 +const styles = {
 +  section: {
++    position: "relative",
++    overflow: "hidden",
 +    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
-+    borderBottom: "1px solid rgba(15, 23, 42, 0.08)",
 +    background:
-+      "linear-gradient(180deg, #ffffff 0%, #fffaf5 100%)",
++      "linear-gradient(135deg, #0f172a 0%, #111827 56%, #1e293b 100%)",
++  },
++  glow: {
++    position: "absolute",
++    inset: "auto auto -8rem -6rem",
++    width: "20rem",
++    height: "20rem",
++    borderRadius: "999px",
++    background: "radial-gradient(circle, rgba(249, 115, 22, 0.34), transparent 68%)",
++    pointerEvents: "none",
 +  },
 +  shell: {
++    position: "relative",
++    zIndex: 1,
 +    maxWidth: "1280px",
 +    margin: "0 auto",
-+    display: "grid",
-+    gap: "2rem",
 +  },
 +  layout: {
 +    display: "grid",
 +    gap: "2rem",
-+    gridTemplateColumns: "minmax(0, 1.2fr) minmax(0, 0.8fr)",
++    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
 +    alignItems: "start",
 +  },
 +  intro: {
 +    display: "grid",
 +    gap: "1.25rem",
++    maxWidth: "42rem",
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    fontSize: "0.78rem",
++    fontSize: "0.8rem",
 +    fontWeight: 700,
 +    letterSpacing: "0.18em",
 +    textTransform: "uppercase",
-+    color: "#f97316",
++    color: "#fb923c",
 +  },
 +  title: {
 +    margin: 0,
-+    maxWidth: "12ch",
-+    fontSize: "clamp(2.4rem, 6vw, 4.8rem)",
-+    lineHeight: 0.95,
++    maxWidth: "11ch",
++    fontSize: "clamp(2.5rem, 6vw, 4.8rem)",
++    lineHeight: 0.94,
 +    letterSpacing: "-0.05em",
-+    color: "#111111",
++    color: "#ffffff",
 +    textWrap: "balance",
 +  },
 +  lead: {
 +    margin: 0,
-+    maxWidth: "42rem",
-+    fontSize: "clamp(1.05rem, 2.2vw, 1.25rem)",
++    fontSize: "clamp(1.05rem, 2.4vw, 1.22rem)",
 +    lineHeight: 1.8,
-+    color: "#475569",
++    color: "rgba(255, 255, 255, 0.78)",
 +  },
 +  emphasis: {
 +    margin: 0,
-+    maxWidth: "32rem",
-+    fontSize: "1rem",
-+    lineHeight: 1.8,
-+    color: "#0f172a",
++    maxWidth: "34rem",
++    fontSize: "0.98rem",
++    lineHeight: 1.75,
++    color: "rgba(255, 255, 255, 0.64)",
 +  },
 +  panel: {
 +    display: "grid",
 +    gap: "1rem",
++    alignContent: "start",
 +    padding: "clamp(1.5rem, 4vw, 2rem)",
-+    borderRadius: "1.5rem",
-+    backgroundColor: "#0f172a",
-+    boxShadow: "0 20px 60px rgba(15, 23, 42, 0.1)",
++    border: "1px solid rgba(255, 255, 255, 0.12)",
++    borderRadius: "1.75rem",
++    background: "rgba(255, 255, 255, 0.04)",
++    backdropFilter: "blur(8px)",
 +  },
 +  panelTitle: {
 +    margin: 0,
@@ -2314,7 +2445,7 @@ index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f
 +    fontWeight: 700,
 +    letterSpacing: "0.16em",
 +    textTransform: "uppercase",
-+    color: "#fb923c",
++    color: "#fdba74",
 +  },
 +  list: {
 +    margin: 0,
@@ -2325,13 +2456,13 @@ index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f
 +  },
 +  item: {
 +    display: "grid",
-+    gap: "0.35rem",
++    gap: "0.45rem",
 +    paddingTop: "1rem",
-+    borderTop: "1px solid rgba(255, 255, 255, 0.12)",
++    borderTop: "1px solid rgba(255, 255, 255, 0.1)",
 +  },
-+  itemLabel: {
++  itemTitle: {
 +    margin: 0,
-+    fontSize: "1rem",
++    fontSize: "1.05rem",
 +    fontWeight: 700,
 +    color: "#ffffff",
 +  },
@@ -2339,45 +2470,39 @@ index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f
 +    margin: 0,
 +    fontSize: "0.98rem",
 +    lineHeight: 1.7,
-+    color: "rgba(255, 255, 255, 0.76)",
++    color: "rgba(255, 255, 255, 0.72)",
 +  },
 +}
 +
-+export default function StorySection() {
++export default function PhilosophySection() {
 +  return (
-+    <section id="story" aria-labelledby="story-title" style={styles.section}>
++    <section id="philosophy" aria-labelledby="philosophy-title" style={styles.section}>
++      <div aria-hidden="true" style={styles.glow} />
 +      <div style={styles.shell}>
-+        <div
-+          style={{
-+            ...styles.layout,
-+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-+          }}
-+        >
++        <div style={styles.layout}>
 +          <div style={styles.intro}>
-+            <p style={styles.eyebrow}>La nostra storia</p>
-+            <h2 id="story-title" style={styles.title}>
-+              Una visione italiana resa piu essenziale.
++            <p style={styles.eyebrow}>La nostra filosofia</p>
++            <h2 id="philosophy-title" style={styles.title}>
++              Cucinare meno rumore, lasciare piu sostanza.
 +            </h2>
 +            <p style={styles.lead}>
-+              Siamo partiti da un&apos;idea semplice: creare un luogo in cui la cucina
-+              resti riconoscibile, ma venga alleggerita da tutto cio che e superfluo.
-+              Per questo il menu cambia con il ritmo della stagione, i sapori sono netti
-+              e ogni piatto cerca equilibrio prima dell&apos;effetto.
++              Crediamo che un ristorante funzioni davvero quando ogni elemento ha un
++              ruolo chiaro: ingredienti stagionali, tecnica pulita e una sala che non
++              forza il ritmo dell&apos;esperienza.
 +            </p>
 +            <p style={styles.emphasis}>
-+              Vogliamo che l&apos;esperienza sia contemporanea, curata e accessibile:
-+              abbastanza precisa da farsi ricordare, abbastanza naturale da far sentire
-+              ogni ospite al posto giusto.
++              Per questo scegliamo equilibrio prima dell&apos;effetto, leggibilita prima
++              dell&apos;eccesso e un&apos;ospitalita precisa che resta sempre umana.
 +            </p>
 +          </div>
 +
-+          <aside aria-label="Momenti chiave della nostra storia" style={styles.panel}>
-+            <p style={styles.panelTitle}>Come prendiamo forma</p>
++          <aside aria-label="Principi che guidano il ristorante" style={styles.panel}>
++            <p style={styles.panelTitle}>I principi che seguiamo</p>
 +            <ul style={styles.list}>
-+              {storyMoments.map((moment) => (
-+                <li key={moment.label} style={styles.item}>
-+                  <p style={styles.itemLabel}>{moment.label}</p>
-+                  <p style={styles.itemText}>{moment.text}</p>
++              {principles.map((principle) => (
++                <li key={principle.title} style={styles.item}>
++                  <p style={styles.itemTitle}>{principle.title}</p>
++                  <p style={styles.itemText}>{principle.text}</p>
 +                </li>
 +              ))}
 +            </ul>
@@ -2388,21 +2513,48 @@ index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f
 +  )
 +}
 diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
-index d7eb19dca8dd4c545b86698838f6c6ed51b4c4c1..0157e66899343329a65c6dc7440bbdd4ccf6411d
+index 0157e66899343329a65c6dc7440bbdd4ccf6411d..b300e2cd34cf511410e94fac255dc59f5e293762
 --- a/src/pages/ChiSiamo.jsx
 +++ b/src/pages/ChiSiamo.jsx
-@@ -1,4 +1,5 @@
+@@ -1,58 +1,13 @@
  import AboutHeroSection from "../components/AboutHeroSection"
-+import StorySection from "../components/StorySection"
++import PhilosophySection from "../components/PhilosophySection"
+ import StorySection from "../components/StorySection"
  
  export default function ChiSiamo() {
-   const sectionStyle = {
-@@ -31,27 +32,7 @@
+-  const sectionStyle = {
+-    padding: "4rem 0",
+-    borderBottom: "1px solid rgba(15, 23, 42, 0.08)",
+-  }
+-
+-  const contentStyle = {
+-    width: "min(100%, 64rem)",
+-    margin: "0 auto",
+-  }
+-
+-  const eyebrowStyle = {
+-    margin: "0 0 1rem",
+-    fontSize: "0.75rem",
+-    fontWeight: 700,
+-    letterSpacing: "0.18em",
+-    textTransform: "uppercase",
+-    color: "#f97316",
+-  }
+-
+-  const bodyStyle = {
+-    margin: "0",
+-    maxWidth: "44rem",
+-    fontSize: "1.05rem",
+-    lineHeight: 1.7,
+-    color: "#475569",
+-  }
+-
    return (
      <>
        <AboutHeroSection />
+       <StorySection />
 -
--      <section id="story" style={sectionStyle}>
+-      <section id="philosophy" style={{ ...sectionStyle, borderBottom: "none" }}>
 -        <div style={contentStyle}>
 -          <h2
 -            style={{
@@ -2412,131 +2564,142 @@ index d7eb19dca8dd4c545b86698838f6c6ed51b4c4c1..0157e66899343329a65c6dc7440bbdd4
 -              color: "#0f172a",
 -            }}
 -          >
--            Una storia fatta di ritmo, materia prima e ospitalita.
+-            La nostra filosofia
 -          </h2>
 -          <p style={bodyStyle}>
--            Siamo nati con un&apos;idea semplice: creare un luogo in cui la cucina
--            italiana incontri una sensibilita piu essenziale, precisa e
--            attuale. Il risultato e un ambiente caldo, piatti riconoscibili e
--            una proposta che cambia con naturalezza durante l&apos;anno.
+-            Puntiamo su menu leggibili, sapori netti e una sala che lascia
+-            spazio alla conversazione. Qualita, stagionalita e semplicita sono
+-            i principi che guidano ogni servizio.
 -          </p>
 -        </div>
 -      </section>
-+      <StorySection />
- 
-       <section id="philosophy" style={{ ...sectionStyle, borderBottom: "none" }}>
-         <div style={contentStyle}>
++      <PhilosophySection />
+     </>
+   )
+ }
 
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 57701834fe0ffc4d3c4975fe0ebc6fd4261085f7..6f4e09246e345e0a7ed90d725aeffd015ac6e00f
+index 6e336f8c45d0e1d14fc3d7b8621237fb5f21b66b..31edddece6388d71aaaa0572fbb32aa2094535c3
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
 @@ -218,6 +218,22 @@
  TASK page-chi-siamo-shell completed successfully.
  Build passed.
  
-+Prepared TASK section-chi-siamo-story (Create story section on chi-siamo) for execution.
++Prepared TASK section-chi-siamo-philosophy (Create philosophy section on chi-siamo) for execution.
 +
-+Launching Codex for TASK section-chi-siamo-story.
++Launching Codex for TASK section-chi-siamo-philosophy.
 +
-+Completed TASK `section-chi-siamo-story`.
++Completed TASK `section-chi-siamo-philosophy`.
 +
-+- Added a reusable `StorySection` component in `src/components/StorySection.jsx`.
-+- Replaced the inline `story` block in `src/pages/ChiSiamo.jsx` so the page renders the dedicated editorial-content section.
-+- Kept the required `story` section id and restaurant-focused narrative aligned with the existing `chi-siamo` page shell.
++- Added a reusable `PhilosophySection` component in `src/components/PhilosophySection.jsx`.
++- Replaced the inline philosophy placeholder in `src/pages/ChiSiamo.jsx` so the page renders a dedicated split-content section.
++- Implemented restaurant-focused philosophy copy and principle highlights while preserving the required `philosophy` section id.
 +
-+TASK section-chi-siamo-story executed by Codex.
++TASK section-chi-siamo-philosophy executed by Codex.
 +Waiting for validation.
 +
-+TASK section-chi-siamo-story completed successfully.
++TASK section-chi-siamo-philosophy completed successfully.
 +Build passed.
 +
- Prepared TASK section-chi-siamo-about-hero (Create about-hero section on chi-siamo) for execution.
+ Prepared TASK section-chi-siamo-story (Create story section on chi-siamo) for execution.
  
- Launching Codex for TASK section-chi-siamo-about-hero.
-diff --git a/src/components/StorySection.jsx b/src/components/StorySection.jsx
+ Launching Codex for TASK section-chi-siamo-story.
+diff --git a/src/components/PhilosophySection.jsx b/src/components/PhilosophySection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f426a2cfa
+index 0000000000000000000000000000000000000000..682caa8c09857570ac9e5468d1d5a98e865fdf48
 --- /dev/null
-+++ b/src/components/StorySection.jsx
-@@ -0,0 +1,156 @@
-+const storyMoments = [
++++ b/src/components/PhilosophySection.jsx
+@@ -0,0 +1,162 @@
++const principles = [
 +  {
-+    label: "Origine",
-+    text: "Il progetto nasce dal desiderio di offrire una cucina italiana nitida, contemporanea e leggibile, senza perdere calore umano.",
++    title: "Semplicita leggibile",
++    text: "Riduciamo il rumore per dare spazio a sapori chiari, menu essenziali e scelte che restano immediate per chi si accomoda.",
 +  },
 +  {
-+    label: "Metodo",
-+    text: "Lavoriamo su ingredienti stagionali, preparazioni essenziali e un servizio che accompagna il tavolo con naturalezza.",
++    title: "Tecnica senza ostentazione",
++    text: "La precisione e presente in cucina, ma non chiede attenzione. Serve a rendere il piatto nitido, coerente e naturale.",
 +  },
 +  {
-+    label: "Atmosfera",
-+    text: "Sala, luci e ritmo del servizio sono pensati per lasciare spazio alla conversazione e far percepire ogni dettaglio con equilibrio.",
++    title: "Esperienza che respira",
++    text: "Sala, tempi e servizio sono calibrati per accompagnare la conversazione e mantenere l'atmosfera rilassata ma curata.",
 +  },
 +]
 +
 +const styles = {
 +  section: {
++    position: "relative",
++    overflow: "hidden",
 +    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
-+    borderBottom: "1px solid rgba(15, 23, 42, 0.08)",
 +    background:
-+      "linear-gradient(180deg, #ffffff 0%, #fffaf5 100%)",
++      "linear-gradient(135deg, #0f172a 0%, #111827 56%, #1e293b 100%)",
++  },
++  glow: {
++    position: "absolute",
++    inset: "auto auto -8rem -6rem",
++    width: "20rem",
++    height: "20rem",
++    borderRadius: "999px",
++    background: "radial-gradient(circle, rgba(249, 115, 22, 0.34), transparent 68%)",
++    pointerEvents: "none",
 +  },
 +  shell: {
++    position: "relative",
++    zIndex: 1,
 +    maxWidth: "1280px",
 +    margin: "0 auto",
-+    display: "grid",
-+    gap: "2rem",
 +  },
 +  layout: {
 +    display: "grid",
 +    gap: "2rem",
-+    gridTemplateColumns: "minmax(0, 1.2fr) minmax(0, 0.8fr)",
++    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
 +    alignItems: "start",
 +  },
 +  intro: {
 +    display: "grid",
 +    gap: "1.25rem",
++    maxWidth: "42rem",
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    fontSize: "0.78rem",
++    fontSize: "0.8rem",
 +    fontWeight: 700,
 +    letterSpacing: "0.18em",
 +    textTransform: "uppercase",
-+    color: "#f97316",
++    color: "#fb923c",
 +  },
 +  title: {
 +    margin: 0,
-+    maxWidth: "12ch",
-+    fontSize: "clamp(2.4rem, 6vw, 4.8rem)",
-+    lineHeight: 0.95,
++    maxWidth: "11ch",
++    fontSize: "clamp(2.5rem, 6vw, 4.8rem)",
++    lineHeight: 0.94,
 +    letterSpacing: "-0.05em",
-+    color: "#111111",
++    color: "#ffffff",
 +    textWrap: "balance",
 +  },
 +  lead: {
 +    margin: 0,
-+    maxWidth: "42rem",
-+    fontSize: "clamp(1.05rem, 2.2vw, 1.25rem)",
++    fontSize: "clamp(1.05rem, 2.4vw, 1.22rem)",
 +    lineHeight: 1.8,
-+    color: "#475569",
++    color: "rgba(255, 255, 255, 0.78)",
 +  },
 +  emphasis: {
 +    margin: 0,
-+    maxWidth: "32rem",
-+    fontSize: "1rem",
-+    lineHeight: 1.8,
-+    color: "#0f172a",
++    maxWidth: "34rem",
++    fontSize: "0.98rem",
++    lineHeight: 1.75,
++    color: "rgba(255, 255, 255, 0.64)",
 +  },
 +  panel: {
 +    display: "grid",
 +    gap: "1rem",
++    alignContent: "start",
 +    padding: "clamp(1.5rem, 4vw, 2rem)",
-+    borderRadius: "1.5rem",
-+    backgroundColor: "#0f172a",
-+    boxShadow: "0 20px 60px rgba(15, 23, 42, 0.1)",
++    border: "1px solid rgba(255, 255, 255, 0.12)",
++    borderRadius: "1.75rem",
++    background: "rgba(255, 255, 255, 0.04)",
++    backdropFilter: "blur(8px)",
 +  },
 +  panelTitle: {
 +    margin: 0,
@@ -2544,7 +2707,7 @@ index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f
 +    fontWeight: 700,
 +    letterSpacing: "0.16em",
 +    textTransform: "uppercase",
-+    color: "#fb923c",
++    color: "#fdba74",
 +  },
 +  list: {
 +    margin: 0,
@@ -2555,13 +2718,13 @@ index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f
 +  },
 +  item: {
 +    display: "grid",
-+    gap: "0.35rem",
++    gap: "0.45rem",
 +    paddingTop: "1rem",
-+    borderTop: "1px solid rgba(255, 255, 255, 0.12)",
++    borderTop: "1px solid rgba(255, 255, 255, 0.1)",
 +  },
-+  itemLabel: {
++  itemTitle: {
 +    margin: 0,
-+    fontSize: "1rem",
++    fontSize: "1.05rem",
 +    fontWeight: 700,
 +    color: "#ffffff",
 +  },
@@ -2569,45 +2732,39 @@ index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f
 +    margin: 0,
 +    fontSize: "0.98rem",
 +    lineHeight: 1.7,
-+    color: "rgba(255, 255, 255, 0.76)",
++    color: "rgba(255, 255, 255, 0.72)",
 +  },
 +}
 +
-+export default function StorySection() {
++export default function PhilosophySection() {
 +  return (
-+    <section id="story" aria-labelledby="story-title" style={styles.section}>
++    <section id="philosophy" aria-labelledby="philosophy-title" style={styles.section}>
++      <div aria-hidden="true" style={styles.glow} />
 +      <div style={styles.shell}>
-+        <div
-+          style={{
-+            ...styles.layout,
-+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-+          }}
-+        >
++        <div style={styles.layout}>
 +          <div style={styles.intro}>
-+            <p style={styles.eyebrow}>La nostra storia</p>
-+            <h2 id="story-title" style={styles.title}>
-+              Una visione italiana resa piu essenziale.
++            <p style={styles.eyebrow}>La nostra filosofia</p>
++            <h2 id="philosophy-title" style={styles.title}>
++              Cucinare meno rumore, lasciare piu sostanza.
 +            </h2>
 +            <p style={styles.lead}>
-+              Siamo partiti da un&apos;idea semplice: creare un luogo in cui la cucina
-+              resti riconoscibile, ma venga alleggerita da tutto cio che e superfluo.
-+              Per questo il menu cambia con il ritmo della stagione, i sapori sono netti
-+              e ogni piatto cerca equilibrio prima dell&apos;effetto.
++              Crediamo che un ristorante funzioni davvero quando ogni elemento ha un
++              ruolo chiaro: ingredienti stagionali, tecnica pulita e una sala che non
++              forza il ritmo dell&apos;esperienza.
 +            </p>
 +            <p style={styles.emphasis}>
-+              Vogliamo che l&apos;esperienza sia contemporanea, curata e accessibile:
-+              abbastanza precisa da farsi ricordare, abbastanza naturale da far sentire
-+              ogni ospite al posto giusto.
++              Per questo scegliamo equilibrio prima dell&apos;effetto, leggibilita prima
++              dell&apos;eccesso e un&apos;ospitalita precisa che resta sempre umana.
 +            </p>
 +          </div>
 +
-+          <aside aria-label="Momenti chiave della nostra storia" style={styles.panel}>
-+            <p style={styles.panelTitle}>Come prendiamo forma</p>
++          <aside aria-label="Principi che guidano il ristorante" style={styles.panel}>
++            <p style={styles.panelTitle}>I principi che seguiamo</p>
 +            <ul style={styles.list}>
-+              {storyMoments.map((moment) => (
-+                <li key={moment.label} style={styles.item}>
-+                  <p style={styles.itemLabel}>{moment.label}</p>
-+                  <p style={styles.itemText}>{moment.text}</p>
++              {principles.map((principle) => (
++                <li key={principle.title} style={styles.item}>
++                  <p style={styles.itemTitle}>{principle.title}</p>
++                  <p style={styles.itemText}>{principle.text}</p>
 +                </li>
 +              ))}
 +            </ul>
@@ -2618,21 +2775,48 @@ index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f
 +  )
 +}
 diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
-index d7eb19dca8dd4c545b86698838f6c6ed51b4c4c1..0157e66899343329a65c6dc7440bbdd4ccf6411d
+index 0157e66899343329a65c6dc7440bbdd4ccf6411d..b300e2cd34cf511410e94fac255dc59f5e293762
 --- a/src/pages/ChiSiamo.jsx
 +++ b/src/pages/ChiSiamo.jsx
-@@ -1,4 +1,5 @@
+@@ -1,58 +1,13 @@
  import AboutHeroSection from "../components/AboutHeroSection"
-+import StorySection from "../components/StorySection"
++import PhilosophySection from "../components/PhilosophySection"
+ import StorySection from "../components/StorySection"
  
  export default function ChiSiamo() {
-   const sectionStyle = {
-@@ -31,27 +32,7 @@
+-  const sectionStyle = {
+-    padding: "4rem 0",
+-    borderBottom: "1px solid rgba(15, 23, 42, 0.08)",
+-  }
+-
+-  const contentStyle = {
+-    width: "min(100%, 64rem)",
+-    margin: "0 auto",
+-  }
+-
+-  const eyebrowStyle = {
+-    margin: "0 0 1rem",
+-    fontSize: "0.75rem",
+-    fontWeight: 700,
+-    letterSpacing: "0.18em",
+-    textTransform: "uppercase",
+-    color: "#f97316",
+-  }
+-
+-  const bodyStyle = {
+-    margin: "0",
+-    maxWidth: "44rem",
+-    fontSize: "1.05rem",
+-    lineHeight: 1.7,
+-    color: "#475569",
+-  }
+-
    return (
      <>
        <AboutHeroSection />
+       <StorySection />
 -
--      <section id="story" style={sectionStyle}>
+-      <section id="philosophy" style={{ ...sectionStyle, borderBottom: "none" }}>
 -        <div style={contentStyle}>
 -          <h2
 -            style={{
@@ -2642,137 +2826,148 @@ index d7eb19dca8dd4c545b86698838f6c6ed51b4c4c1..0157e66899343329a65c6dc7440bbdd4
 -              color: "#0f172a",
 -            }}
 -          >
--            Una storia fatta di ritmo, materia prima e ospitalita.
+-            La nostra filosofia
 -          </h2>
 -          <p style={bodyStyle}>
--            Siamo nati con un&apos;idea semplice: creare un luogo in cui la cucina
--            italiana incontri una sensibilita piu essenziale, precisa e
--            attuale. Il risultato e un ambiente caldo, piatti riconoscibili e
--            una proposta che cambia con naturalezza durante l&apos;anno.
+-            Puntiamo su menu leggibili, sapori netti e una sala che lascia
+-            spazio alla conversazione. Qualita, stagionalita e semplicita sono
+-            i principi che guidano ogni servizio.
 -          </p>
 -        </div>
 -      </section>
-+      <StorySection />
- 
-       <section id="philosophy" style={{ ...sectionStyle, borderBottom: "none" }}>
-         <div style={contentStyle}>
++      <PhilosophySection />
+     </>
+   )
+ }
 
 codex
-Modified files: [src/components/StorySection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/StorySection.jsx), [src/pages/ChiSiamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/ChiSiamo.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md)
+Modified files: [src/components/PhilosophySection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/PhilosophySection.jsx), [src/pages/ChiSiamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/ChiSiamo.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md).
 
-Implemented the `story` section for `chi-siamo` as a dedicated editorial-content component. [src/components/StorySection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/StorySection.jsx) adds a two-column narrative layout with restaurant-focused copy and an editorial aside, and [src/pages/ChiSiamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/ChiSiamo.jsx) now renders that component in place of the previous inline block.
+Implemented the `philosophy` section on the `chi-siamo` page as a dedicated split-content component. The new section uses a two-column editorial layout with philosophy copy on one side and principle highlights on the other, and `ChiSiamo` now renders `PhilosophySection` instead of the previous inline placeholder.
 
-Build result: `npm run build` passed successfully with Vite production output generated. I also logged the task completion in [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md).
+Build result: `npm run build` passed successfully with Vite production output generated.
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 57701834fe0ffc4d3c4975fe0ebc6fd4261085f7..6f4e09246e345e0a7ed90d725aeffd015ac6e00f
+index 6e336f8c45d0e1d14fc3d7b8621237fb5f21b66b..31edddece6388d71aaaa0572fbb32aa2094535c3
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
 @@ -218,6 +218,22 @@
  TASK page-chi-siamo-shell completed successfully.
  Build passed.
  
-+Prepared TASK section-chi-siamo-story (Create story section on chi-siamo) for execution.
++Prepared TASK section-chi-siamo-philosophy (Create philosophy section on chi-siamo) for execution.
 +
-+Launching Codex for TASK section-chi-siamo-story.
++Launching Codex for TASK section-chi-siamo-philosophy.
 +
-+Completed TASK `section-chi-siamo-story`.
++Completed TASK `section-chi-siamo-philosophy`.
 +
-+- Added a reusable `StorySection` component in `src/components/StorySection.jsx`.
-+- Replaced the inline `story` block in `src/pages/ChiSiamo.jsx` so the page renders the dedicated editorial-content section.
-+- Kept the required `story` section id and restaurant-focused narrative aligned with the existing `chi-siamo` page shell.
++- Added a reusable `PhilosophySection` component in `src/components/PhilosophySection.jsx`.
++- Replaced the inline philosophy placeholder in `src/pages/ChiSiamo.jsx` so the page renders a dedicated split-content section.
++- Implemented restaurant-focused philosophy copy and principle highlights while preserving the required `philosophy` section id.
 +
-+TASK section-chi-siamo-story executed by Codex.
++TASK section-chi-siamo-philosophy executed by Codex.
 +Waiting for validation.
 +
-+TASK section-chi-siamo-story completed successfully.
++TASK section-chi-siamo-philosophy completed successfully.
 +Build passed.
 +
- Prepared TASK section-chi-siamo-about-hero (Create about-hero section on chi-siamo) for execution.
+ Prepared TASK section-chi-siamo-story (Create story section on chi-siamo) for execution.
  
- Launching Codex for TASK section-chi-siamo-about-hero.
-diff --git a/src/components/StorySection.jsx b/src/components/StorySection.jsx
+ Launching Codex for TASK section-chi-siamo-story.
+diff --git a/src/components/PhilosophySection.jsx b/src/components/PhilosophySection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f426a2cfa
+index 0000000000000000000000000000000000000000..682caa8c09857570ac9e5468d1d5a98e865fdf48
 --- /dev/null
-+++ b/src/components/StorySection.jsx
-@@ -0,0 +1,156 @@
-+const storyMoments = [
++++ b/src/components/PhilosophySection.jsx
+@@ -0,0 +1,162 @@
++const principles = [
 +  {
-+    label: "Origine",
-+    text: "Il progetto nasce dal desiderio di offrire una cucina italiana nitida, contemporanea e leggibile, senza perdere calore umano.",
++    title: "Semplicita leggibile",
++    text: "Riduciamo il rumore per dare spazio a sapori chiari, menu essenziali e scelte che restano immediate per chi si accomoda.",
 +  },
 +  {
-+    label: "Metodo",
-+    text: "Lavoriamo su ingredienti stagionali, preparazioni essenziali e un servizio che accompagna il tavolo con naturalezza.",
++    title: "Tecnica senza ostentazione",
++    text: "La precisione e presente in cucina, ma non chiede attenzione. Serve a rendere il piatto nitido, coerente e naturale.",
 +  },
 +  {
-+    label: "Atmosfera",
-+    text: "Sala, luci e ritmo del servizio sono pensati per lasciare spazio alla conversazione e far percepire ogni dettaglio con equilibrio.",
++    title: "Esperienza che respira",
++    text: "Sala, tempi e servizio sono calibrati per accompagnare la conversazione e mantenere l'atmosfera rilassata ma curata.",
 +  },
 +]
 +
 +const styles = {
 +  section: {
++    position: "relative",
++    overflow: "hidden",
 +    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
-+    borderBottom: "1px solid rgba(15, 23, 42, 0.08)",
 +    background:
-+      "linear-gradient(180deg, #ffffff 0%, #fffaf5 100%)",
++      "linear-gradient(135deg, #0f172a 0%, #111827 56%, #1e293b 100%)",
++  },
++  glow: {
++    position: "absolute",
++    inset: "auto auto -8rem -6rem",
++    width: "20rem",
++    height: "20rem",
++    borderRadius: "999px",
++    background: "radial-gradient(circle, rgba(249, 115, 22, 0.34), transparent 68%)",
++    pointerEvents: "none",
 +  },
 +  shell: {
++    position: "relative",
++    zIndex: 1,
 +    maxWidth: "1280px",
 +    margin: "0 auto",
-+    display: "grid",
-+    gap: "2rem",
 +  },
 +  layout: {
 +    display: "grid",
 +    gap: "2rem",
-+    gridTemplateColumns: "minmax(0, 1.2fr) minmax(0, 0.8fr)",
++    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
 +    alignItems: "start",
 +  },
 +  intro: {
 +    display: "grid",
 +    gap: "1.25rem",
++    maxWidth: "42rem",
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    fontSize: "0.78rem",
++    fontSize: "0.8rem",
 +    fontWeight: 700,
 +    letterSpacing: "0.18em",
 +    textTransform: "uppercase",
-+    color: "#f97316",
++    color: "#fb923c",
 +  },
 +  title: {
 +    margin: 0,
-+    maxWidth: "12ch",
-+    fontSize: "clamp(2.4rem, 6vw, 4.8rem)",
-+    lineHeight: 0.95,
++    maxWidth: "11ch",
++    fontSize: "clamp(2.5rem, 6vw, 4.8rem)",
++    lineHeight: 0.94,
 +    letterSpacing: "-0.05em",
-+    color: "#111111",
++    color: "#ffffff",
 +    textWrap: "balance",
 +  },
 +  lead: {
 +    margin: 0,
-+    maxWidth: "42rem",
-+    fontSize: "clamp(1.05rem, 2.2vw, 1.25rem)",
++    fontSize: "clamp(1.05rem, 2.4vw, 1.22rem)",
 +    lineHeight: 1.8,
-+    color: "#475569",
++    color: "rgba(255, 255, 255, 0.78)",
 +  },
 +  emphasis: {
 +    margin: 0,
-+    maxWidth: "32rem",
-+    fontSize: "1rem",
-+    lineHeight: 1.8,
-+    color: "#0f172a",
++    maxWidth: "34rem",
++    fontSize: "0.98rem",
++    lineHeight: 1.75,
++    color: "rgba(255, 255, 255, 0.64)",
 +  },
 +  panel: {
 +    display: "grid",
 +    gap: "1rem",
++    alignContent: "start",
 +    padding: "clamp(1.5rem, 4vw, 2rem)",
-+    borderRadius: "1.5rem",
-+    backgroundColor: "#0f172a",
-+    boxShadow: "0 20px 60px rgba(15, 23, 42, 0.1)",
++    border: "1px solid rgba(255, 255, 255, 0.12)",
++    borderRadius: "1.75rem",
++    background: "rgba(255, 255, 255, 0.04)",
++    backdropFilter: "blur(8px)",
 +  },
 +  panelTitle: {
 +    margin: 0,
@@ -2780,7 +2975,7 @@ index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f
 +    fontWeight: 700,
 +    letterSpacing: "0.16em",
 +    textTransform: "uppercase",
-+    color: "#fb923c",
++    color: "#fdba74",
 +  },
 +  list: {
 +    margin: 0,
@@ -2791,13 +2986,13 @@ index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f
 +  },
 +  item: {
 +    display: "grid",
-+    gap: "0.35rem",
++    gap: "0.45rem",
 +    paddingTop: "1rem",
-+    borderTop: "1px solid rgba(255, 255, 255, 0.12)",
++    borderTop: "1px solid rgba(255, 255, 255, 0.1)",
 +  },
-+  itemLabel: {
++  itemTitle: {
 +    margin: 0,
-+    fontSize: "1rem",
++    fontSize: "1.05rem",
 +    fontWeight: 700,
 +    color: "#ffffff",
 +  },
@@ -2805,45 +3000,39 @@ index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f
 +    margin: 0,
 +    fontSize: "0.98rem",
 +    lineHeight: 1.7,
-+    color: "rgba(255, 255, 255, 0.76)",
++    color: "rgba(255, 255, 255, 0.72)",
 +  },
 +}
 +
-+export default function StorySection() {
++export default function PhilosophySection() {
 +  return (
-+    <section id="story" aria-labelledby="story-title" style={styles.section}>
++    <section id="philosophy" aria-labelledby="philosophy-title" style={styles.section}>
++      <div aria-hidden="true" style={styles.glow} />
 +      <div style={styles.shell}>
-+        <div
-+          style={{
-+            ...styles.layout,
-+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-+          }}
-+        >
++        <div style={styles.layout}>
 +          <div style={styles.intro}>
-+            <p style={styles.eyebrow}>La nostra storia</p>
-+            <h2 id="story-title" style={styles.title}>
-+              Una visione italiana resa piu essenziale.
++            <p style={styles.eyebrow}>La nostra filosofia</p>
++            <h2 id="philosophy-title" style={styles.title}>
++              Cucinare meno rumore, lasciare piu sostanza.
 +            </h2>
 +            <p style={styles.lead}>
-+              Siamo partiti da un&apos;idea semplice: creare un luogo in cui la cucina
-+              resti riconoscibile, ma venga alleggerita da tutto cio che e superfluo.
-+              Per questo il menu cambia con il ritmo della stagione, i sapori sono netti
-+              e ogni piatto cerca equilibrio prima dell&apos;effetto.
++              Crediamo che un ristorante funzioni davvero quando ogni elemento ha un
++              ruolo chiaro: ingredienti stagionali, tecnica pulita e una sala che non
++              forza il ritmo dell&apos;esperienza.
 +            </p>
 +            <p style={styles.emphasis}>
-+              Vogliamo che l&apos;esperienza sia contemporanea, curata e accessibile:
-+              abbastanza precisa da farsi ricordare, abbastanza naturale da far sentire
-+              ogni ospite al posto giusto.
++              Per questo scegliamo equilibrio prima dell&apos;effetto, leggibilita prima
++              dell&apos;eccesso e un&apos;ospitalita precisa che resta sempre umana.
 +            </p>
 +          </div>
 +
-+          <aside aria-label="Momenti chiave della nostra storia" style={styles.panel}>
-+            <p style={styles.panelTitle}>Come prendiamo forma</p>
++          <aside aria-label="Principi che guidano il ristorante" style={styles.panel}>
++            <p style={styles.panelTitle}>I principi che seguiamo</p>
 +            <ul style={styles.list}>
-+              {storyMoments.map((moment) => (
-+                <li key={moment.label} style={styles.item}>
-+                  <p style={styles.itemLabel}>{moment.label}</p>
-+                  <p style={styles.itemText}>{moment.text}</p>
++              {principles.map((principle) => (
++                <li key={principle.title} style={styles.item}>
++                  <p style={styles.itemTitle}>{principle.title}</p>
++                  <p style={styles.itemText}>{principle.text}</p>
 +                </li>
 +              ))}
 +            </ul>
@@ -2854,21 +3043,48 @@ index 0000000000000000000000000000000000000000..72c88dad1a145d54c7ae45cedeb38e5f
 +  )
 +}
 diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
-index d7eb19dca8dd4c545b86698838f6c6ed51b4c4c1..0157e66899343329a65c6dc7440bbdd4ccf6411d
+index 0157e66899343329a65c6dc7440bbdd4ccf6411d..b300e2cd34cf511410e94fac255dc59f5e293762
 --- a/src/pages/ChiSiamo.jsx
 +++ b/src/pages/ChiSiamo.jsx
-@@ -1,4 +1,5 @@
+@@ -1,58 +1,13 @@
  import AboutHeroSection from "../components/AboutHeroSection"
-+import StorySection from "../components/StorySection"
++import PhilosophySection from "../components/PhilosophySection"
+ import StorySection from "../components/StorySection"
  
  export default function ChiSiamo() {
-   const sectionStyle = {
-@@ -31,27 +32,7 @@
+-  const sectionStyle = {
+-    padding: "4rem 0",
+-    borderBottom: "1px solid rgba(15, 23, 42, 0.08)",
+-  }
+-
+-  const contentStyle = {
+-    width: "min(100%, 64rem)",
+-    margin: "0 auto",
+-  }
+-
+-  const eyebrowStyle = {
+-    margin: "0 0 1rem",
+-    fontSize: "0.75rem",
+-    fontWeight: 700,
+-    letterSpacing: "0.18em",
+-    textTransform: "uppercase",
+-    color: "#f97316",
+-  }
+-
+-  const bodyStyle = {
+-    margin: "0",
+-    maxWidth: "44rem",
+-    fontSize: "1.05rem",
+-    lineHeight: 1.7,
+-    color: "#475569",
+-  }
+-
    return (
      <>
        <AboutHeroSection />
+       <StorySection />
 -
--      <section id="story" style={sectionStyle}>
+-      <section id="philosophy" style={{ ...sectionStyle, borderBottom: "none" }}>
 -        <div style={contentStyle}>
 -          <h2
 -            style={{
@@ -2878,20 +3094,19 @@ index d7eb19dca8dd4c545b86698838f6c6ed51b4c4c1..0157e66899343329a65c6dc7440bbdd4
 -              color: "#0f172a",
 -            }}
 -          >
--            Una storia fatta di ritmo, materia prima e ospitalita.
+-            La nostra filosofia
 -          </h2>
 -          <p style={bodyStyle}>
--            Siamo nati con un&apos;idea semplice: creare un luogo in cui la cucina
--            italiana incontri una sensibilita piu essenziale, precisa e
--            attuale. Il risultato e un ambiente caldo, piatti riconoscibili e
--            una proposta che cambia con naturalezza durante l&apos;anno.
+-            Puntiamo su menu leggibili, sapori netti e una sala che lascia
+-            spazio alla conversazione. Qualita, stagionalita e semplicita sono
+-            i principi che guidano ogni servizio.
 -          </p>
 -        </div>
 -      </section>
-+      <StorySection />
- 
-       <section id="philosophy" style={{ ...sectionStyle, borderBottom: "none" }}>
-         <div style={contentStyle}>
++      <PhilosophySection />
+     </>
+   )
+ }
 
 tokens used
-19.843
+19.871
