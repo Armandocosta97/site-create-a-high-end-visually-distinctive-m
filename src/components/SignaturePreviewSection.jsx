@@ -1,29 +1,28 @@
 const signatureItems = [
   {
     number: "01",
-    title: "Refined visual systems",
+    title: "Direzione visiva nitida",
     description:
-      "Clear typography, measured spacing, and art direction that gives small businesses a sharper digital presence.",
+      "Tipografia forte, gerarchia chiara e un layout che valorizza il brand senza sembrare un template.",
   },
   {
     number: "02",
-    title: "Fast, lightweight builds",
+    title: "Build leggere e veloci",
     description:
-      "Lean front-end decisions keep the experience responsive, readable, and easy to navigate on every screen.",
+      "Decisioni front-end essenziali per mantenere il sito rapido, leggibile e solido su ogni schermo.",
   },
   {
     number: "03",
-    title: "SEO-ready structure",
+    title: "Struttura pronta per crescere",
     description:
-      "Semantic markup and purposeful content layouts create a stronger foundation for visibility and conversion.",
+      "Markup semantico, contenuti ordinati e pagine pensate per farsi trovare e generare contatti.",
   },
 ]
 
 const styles = {
   section: {
     padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
-    background:
-      "linear-gradient(180deg, #ffffff 0%, #fff7f1 52%, #ffffff 100%)",
+    background: "transparent",
   },
   shell: {
     maxWidth: "1280px",
@@ -111,13 +110,14 @@ export default function SignaturePreviewSection() {
     >
       <div style={styles.shell}>
         <div style={styles.intro}>
-          <p style={styles.eyebrow}>Signature preview</p>
+          <p style={styles.eyebrow}>Cosa facciamo</p>
           <h2 id="signature-preview-title" style={styles.title}>
-            Three traits shape every Alai Web project.
+            Tre principi guidano ogni progetto firmato Alai Web.
           </h2>
           <p style={styles.lead}>
-            The work is intentionally balanced: strong visual identity, technical restraint,
-            and a structure that helps real businesses turn attention into inquiries.
+            Ogni sito nasce dall'equilibrio tra immagine, performance e chiarezza.
+            L'obiettivo non e impressionare per pochi secondi, ma aiutare un'attivita
+            reale a trasformare visite in richieste concrete.
           </p>
         </div>
 

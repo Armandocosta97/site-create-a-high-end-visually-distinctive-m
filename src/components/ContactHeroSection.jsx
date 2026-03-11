@@ -3,8 +3,7 @@ const styles = {
     position: "relative",
     overflow: "hidden",
     padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem) clamp(3rem, 6vw, 4rem)",
-    background:
-      "radial-gradient(circle at top left, rgba(249, 115, 22, 0.16), transparent 30%), linear-gradient(180deg, rgba(249, 115, 22, 0.08) 0%, #ffffff 72%)",
+    background: "transparent",
   },
   shell: {
     maxWidth: "1280px",
@@ -81,11 +80,11 @@ export default function ContactHeroSection() {
           sales sequence.
         </p>
         <div style={styles.actions}>
-          <a href="mailto:hello@alaiweb.com" style={styles.primaryAction}>
+          <a href="mailto:alai.web.info@gmail.com" style={styles.primaryAction}>
             Tell us about your idea
           </a>
           <a
-            href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
+            href="https://wa.me/393454639301?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
             target="_blank"
             rel="noreferrer"
             style={styles.secondaryAction}

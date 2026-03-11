@@ -1,51 +1,51 @@
 const galleryItems = [
   {
-    title: "Chef's tasting course",
+    title: "Sito corporate essenziale",
     description:
-      "A plated sequence focused on sharp color contrast, clean geometry, and seasonal produce.",
-    alt: "A refined tasting plate with bright vegetables and precise sauce placement.",
+      "Un layout pulito con gerarchia forte, pensato per raccontare servizi e valore senza dispersione.",
+    alt: "Mockup di un sito corporate con tipografia decisa, blocchi editoriali e call to action in evidenza.",
     palette: ["#fff7ed", "#fdba74", "#7c2d12"],
-    accent: "Signature dishes",
+    accent: "Corporate",
   },
   {
-    title: "Evening service",
+    title: "Landing page per campagna",
     description:
-      "Soft light, layered table settings, and a room tuned for intimate conversations over dinner.",
-    alt: "An elegant dining room with candlelight, set tables, and warm evening tones.",
+      "Una pagina focalizzata su un'offerta specifica, con contenuti brevi e un percorso lineare verso la richiesta.",
+    alt: "Mockup di una landing page con sezione hero, blocchi di benefici e call to action per lead generation.",
     palette: ["#e2e8f0", "#1e293b", "#f97316"],
-    accent: "Dining room",
+    accent: "Lead generation",
   },
   {
-    title: "Open kitchen rhythm",
+    title: "Interfaccia portfolio studio",
     description:
-      "Focused movements, polished surfaces, and a service pace built around calm precision.",
-    alt: "A chef plating dishes in an open kitchen with stainless steel counters.",
+      "Un impianto visivo piu editoriale, utile per chi deve mostrare lavori, approccio e sensibilita estetica.",
+    alt: "Mockup di un portfolio creativo con grande impatto tipografico e anteprime progetto.",
     palette: ["#f8fafc", "#94a3b8", "#0f172a"],
-    accent: "Kitchen detail",
+    accent: "Portfolio",
   },
   {
-    title: "Seasonal starters",
+    title: "Restyling per piccola impresa",
     description:
-      "Light compositions that bring together herbs, citrus, and texture without excess.",
-    alt: "A seasonal starter with herbs, citrus, and delicate plating on a ceramic dish.",
+      "Una revisione completa di tono, struttura e presenza visiva per rendere il sito piu attuale e professionale.",
+    alt: "Mockup di redesign per piccola impresa con palette neutra, sezioni ordinate e messaggi chiari.",
     palette: ["#fef2f2", "#fb923c", "#431407"],
-    accent: "Fresh courses",
+    accent: "Redesign",
   },
   {
-    title: "Private corner tables",
+    title: "Pagina servizi ad alta leggibilita",
     description:
-      "Material warmth, measured spacing, and the kind of seating that encourages longer evenings.",
-    alt: "A quiet restaurant corner with linen-covered tables and soft ambient lighting.",
+      "Una composizione pensata per rendere ogni servizio immediato da capire, anche da mobile.",
+    alt: "Mockup di pagina servizi con blocchi editoriali, titoli grandi e chiara scansione dei contenuti.",
     palette: ["#fafaf9", "#d6d3d1", "#292524"],
-    accent: "Atmosphere",
+    accent: "Servizi",
   },
   {
-    title: "Final course details",
+    title: "Contatti orientati alla conversione",
     description:
-      "Desserts finished with restraint, texture, and the same visual care as the first plate.",
-    alt: "A minimalist dessert course with layered textures and a glossy finish.",
+      "Una pagina finale costruita per eliminare attriti e facilitare la presa di contatto con CTA chiare.",
+    alt: "Mockup di pagina contatti con call to action evidenti, recapiti e forte gerarchia visiva.",
     palette: ["#fff1f2", "#fb7185", "#4c0519"],
-    accent: "Closing notes",
+    accent: "Conversione",
   },
 ]
 
@@ -79,8 +79,7 @@ const styles = {
   section: {
     position: "relative",
     padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem) clamp(5rem, 8vw, 8rem)",
-    background:
-      "linear-gradient(180deg, #ffffff 0%, #fff7f1 22%, #ffffff 54%, #f8fafc 100%)",
+    background: "transparent",
   },
   shell: {
     maxWidth: "1280px",
@@ -128,8 +127,9 @@ const styles = {
     padding: "1rem",
     borderRadius: "1.85rem",
     border: "1px solid rgba(17, 17, 17, 0.08)",
-    backgroundColor: "rgba(255, 255, 255, 0.88)",
+    backgroundColor: "rgba(255, 255, 255, 0.72)",
     boxShadow: "0 20px 55px rgba(15, 23, 42, 0.08)",
+    backdropFilter: "blur(12px)",
   },
   imageWrap: {
     margin: 0,
@@ -179,14 +179,14 @@ export default function GalleryGridSection() {
     >
       <div style={styles.shell}>
         <div style={styles.intro}>
-          <p style={styles.eyebrow}>Image grid</p>
+          <p style={styles.eyebrow}>Selezione lavori</p>
           <h2 id="gallery-grid-title" style={styles.title}>
-            Plates, spaces, and service details that define the experience.
+            Esempi di pagine, sistemi visivi e strutture pensate per business reali.
           </h2>
           <p style={styles.lead}>
-            The gallery brings together signature dishes, dining-room atmosphere, and
-            kitchen moments in a responsive editorial grid designed to stay clear on
-            mobile and expansive on larger screens.
+            Qui trovi anteprime concettuali di progetti e direzioni creative sviluppate
+            per mostrare come Alai Web lavora su brand, leggibilita e conversione in una
+            griglia responsive chiara su ogni dispositivo.
           </p>
         </div>
 

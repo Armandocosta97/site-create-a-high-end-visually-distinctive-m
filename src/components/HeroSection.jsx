@@ -5,8 +5,7 @@ const styles = {
     position: "relative",
     overflow: "hidden",
     padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
-    background:
-      "radial-gradient(circle at top right, rgba(249, 115, 22, 0.18), transparent 28%), linear-gradient(135deg, #fffaf6 0%, #ffffff 48%, #f5f5f5 100%)",
+    background: "transparent",
   },
   shell: {
     maxWidth: "1280px",
@@ -107,34 +106,35 @@ export default function HeroSection() {
         <div style={styles.content}>
           <p style={styles.eyebrow}>Alai Web</p>
           <h1 id="home-hero-title" style={styles.title}>
-            Websites that look great and actually work.
+            Siti web belli da vedere e costruiti per funzionare.
           </h1>
           <p style={styles.lead}>
-            Beautiful. Fast. Effective. Alai Web designs refined, SEO-ready websites for
-            small businesses that need clarity, speed, and a stronger digital presence.
+            Beautiful. Fast. Effective. Alai Web realizza siti moderni, veloci e
+            SEO-ready per attivita che vogliono una presenza digitale piu chiara,
+            credibile e utile al business.
           </p>
           <div style={styles.actions}>
             <Link to="/menu" style={styles.primaryAction}>
-              Start your project
+              Scopri i servizi
             </Link>
             <Link to="/contatti" style={styles.secondaryAction}>
-              Talk about your website
+              Parliamo del tuo progetto
             </Link>
           </div>
         </div>
 
         <div aria-label="Alai Web highlights" style={styles.metrics}>
           <div style={styles.metric}>
-            <span style={styles.metricValue}>Fast</span>
-            <p style={styles.metricLabel}>Lean builds shaped for speed and smooth browsing.</p>
+            <span style={styles.metricValue}>Veloci</span>
+            <p style={styles.metricLabel}>Build leggere, rapide da caricare e facili da navigare.</p>
           </div>
           <div style={styles.metric}>
-            <span style={styles.metricValue}>Focused</span>
-            <p style={styles.metricLabel}>Clear structure that guides visitors toward action.</p>
+            <span style={styles.metricValue}>Chiari</span>
+            <p style={styles.metricLabel}>Struttura pulita che accompagna l'utente verso l'azione.</p>
           </div>
           <div style={styles.metric}>
             <span style={styles.metricValue}>SEO-ready</span>
-            <p style={styles.metricLabel}>Technical foundations prepared for discoverability.</p>
+            <p style={styles.metricLabel}>Fondamenta tecniche pensate per visibilita e conversione.</p>
           </div>
         </div>
       </div>

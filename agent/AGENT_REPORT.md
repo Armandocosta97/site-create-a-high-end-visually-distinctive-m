@@ -218,6 +218,13 @@ Waiting for validation.
 TASK page-chi-siamo-shell completed successfully.
 Build passed.
 
+Completed FINAL QA fix for `agent/TEST_REPORT.md`.
+
+- Added a real rendered homepage image to the existing `brand-story-preview` section in `src/components/BrandStoryPreviewSection.jsx`.
+- Kept the current layout, routing, navigation, and CTA structure unchanged.
+- Confirmed `npm run build` passes after the fix.
+- `npm run test:ui` could not complete in the sandbox because Playwright's preview server was blocked from listening on `127.0.0.1:4173` with `EPERM`.
+
 Prepared TASK validation-prep (Prepare site for final validation) for execution.
 
 Launching Codex for TASK validation-prep.
@@ -250,6 +257,90 @@ Waiting for validation.
 
 TASK navigation-structure completed successfully.
 Build passed.
+
+Completed copy alignment pass for the live site.
+
+- Rewrote the remaining restaurant-oriented copy across `Servizi`, `Chi siamo`, and `Portfolio` sections so the site now reads as a web agency throughout.
+- Aligned mixed-language UI text into a more coherent Italian voice while preserving the existing routes and component structure.
+- Updated navigation labels and page metadata to match the corrected agency positioning.
+
+Updated live contact details across the site.
+
+- Replaced the public contact email with `alai.web.info@gmail.com` in footer and contact CTAs.
+- Replaced phone and WhatsApp targets with `+39 345 463 9301` across contact cards and floating WhatsApp actions.
+- Preserved the existing page structure and CTA behavior while updating the contact endpoints.
+
+Updated the shared brand presentation to use the provided logo asset.
+
+- Replaced the text-only brand mark in the header with `public/logo_AW_2.png`.
+- Added the same logo to the footer brand lockup while preserving the brand name and tagline.
+- Adjusted shared CSS so the uploaded logo renders cleanly in both placements.
+
+Enhanced the home hero with an animated gradient treatment.
+
+- Added layered gradient, orb, and grid overlays to the homepage hero for a more premium visual atmosphere.
+- Implemented CSS-only motion with reduced-motion fallback so the effect stays lightweight and accessible.
+- Kept the hero content, CTAs, and readability unchanged while improving the background art direction.
+
+Refined the homepage background into a single animated surface.
+
+- Moved the animated treatment from the hero-only area to the entire homepage so the background reads as one continuous gradient.
+- Added soft wave-like motion layers behind all homepage sections and made homepage section backgrounds transparent.
+- Simplified the hero-specific overlays to avoid visual conflict and preserve a cleaner full-page effect.
+
+Increased homepage gradient contrast and redistributed the motion across the visible area.
+
+- Added stronger warm/cool color separation and extra gradient focal points in the center of the homepage.
+- Expanded the motion ranges so the animated surface no longer feels driven only by corners or edges.
+- Kept the footer outside the animated surface while making the visible homepage background feel more active overall.
+
+Increased gradient activity in the center and lower portion of the homepage.
+
+- Added extra focal points and additional gradient bubbles concentrated around the middle and bottom of the visible page.
+- Expanded the lower motion field so the background keeps moving even away from the hero area.
+- Preserved the footer exclusion while making the central and lower homepage feel more alive.
+
+Removed dark homepage hotspots and shifted contrast into stronger orange tones.
+
+- Replaced the remaining dark gradient focal points with warmer orange and amber variants.
+- Kept the stronger contrast request by increasing warm saturation instead of introducing gray or black shadowing.
+- Preserved the same animated structure while cleaning the background behind the homepage content cards.
+
+Applied the shared visual direction to the `Servizi` page with a calmer treatment.
+
+- Added a static page-level gradient surface to `Servizi` so it feels related to the homepage without repeating the animated background.
+- Refined the hero and service cards with softer glass-like whites, controlled orange glows, and the same premium spacing language.
+- Kept the page more stable and editorial than the homepage while preserving the same brand palette and visual family.
+
+Rebuilt the `Servizi` page in a simpler premium-business direction after rejecting the more experimental treatments.
+
+- Replaced the previous visual experiments with a clearer structure: one strong dark hero band and a cleaner service section below.
+- Simplified the surfaces, reduced decorative noise, and kept contrast focused on layout and hierarchy instead of layered effects.
+- Preserved brand continuity with the homepage while moving `Servizi` toward a more authoritative and less stylized presentation.
+
+Pushed the `Servizi` page into a stronger orange-led direction.
+
+- Turned orange from a minor accent into a structural color within the hero and service blocks.
+- Added stronger orange hierarchy cues, side stripes, and warmer surfaces so the page feels more distinctive without copying the homepage animation.
+- Kept the overall layout simpler and more business-focused while making the brand color materially present.
+
+Added cursor-follow glow backgrounds to selected internal pages.
+
+- Implemented a reusable cursor glow background component and mounted it only on `Chi siamo`, `Portfolio`, and `Contatti`.
+- Kept the effect behind the page content so it enriches the background without affecting cards or interaction layers.
+- Tuned page-specific glow intensity so the effect feels decorative and elegant rather than intrusive.
+
+Extended the cursor glow effect across the full site.
+
+- Moved the glow background into the shared layout so it now applies consistently across all routes.
+- Removed the page-by-page duplication and kept the effect behind the main content layer.
+- Preserved the footer as a separate surface while keeping the cursor glow active throughout the site content.
+
+Optimized homepage animation performance.
+
+- Removed the JavaScript frame loop that was updating many homepage background values continuously.
+- Replaced the heaviest homepage motion with CSS-only transform and opacity animations that are cheaper during scroll.
+- Disabled the shared cursor glow on the homepage so the most demanding page no longer combines both animation systems.
 
 Prepared TASK cta-contatti-contatti-phone (Add CTA contatti-phone on contatti) for execution.
 
@@ -618,3 +709,4 @@ Waiting for validation.
 
 TASK validation-prep completed successfully.
 Build passed.
+Commit created for TASK validation-prep.

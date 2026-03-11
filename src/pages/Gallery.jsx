@@ -4,20 +4,20 @@ import GalleryGridSection from "../components/GalleryGridSection"
 
 export default function Gallery() {
   useEffect(() => {
-    document.title = "Gallery | Alai Web"
+    document.title = "Portfolio | Alai Web"
 
     const metaDescription = document.querySelector('meta[name="description"]')
 
     if (metaDescription) {
       metaDescription.setAttribute(
         "content",
-        "View the gallery for a closer look at the dining room, plated dishes, kitchen detail, and service atmosphere across the restaurant experience."
+        "Esplora il portfolio di Alai Web con anteprime di progetti, direzione visiva e soluzioni digitali pensate per brand e piccole imprese."
       )
     }
   }, [])
 
   return (
-    <main>
+    <main className="cursor-glow-page cursor-glow-page-portfolio">
       <GalleryHeroSection />
       <GalleryGridSection />
     </main>

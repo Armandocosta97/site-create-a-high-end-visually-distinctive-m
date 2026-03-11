@@ -1,15 +1,15 @@
 const values = [
   {
-    title: "Stagionalita",
-    text: "Il menu segue il tempo degli ingredienti, con piatti che cambiano senza perdere equilibrio.",
+    title: "Chiarezza",
+    text: "Ogni sito parte da una struttura leggibile, per aiutare l'utente a capire subito valore, offerta e prossima azione.",
   },
   {
     title: "Precisione",
-    text: "Ogni dettaglio, dalla cucina alla sala, e misurato per mantenere il servizio chiaro e naturale.",
+    text: "Design, contenuti e sviluppo devono lavorare insieme senza rumore, con attenzione reale ai dettagli che contano.",
   },
   {
-    title: "Accoglienza",
-    text: "L'esperienza resta contemporanea, ma sempre calda, leggibile e pensata per far tornare le persone.",
+    title: "Concretezza",
+    text: "Non costruiamo siti solo belli: li progettiamo per essere veloci, credibili e utili agli obiettivi del business.",
   },
 ]
 
@@ -18,8 +18,7 @@ const styles = {
     position: "relative",
     overflow: "hidden",
     padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
-    background:
-      "radial-gradient(circle at top left, rgba(249, 115, 22, 0.16), transparent 28%), linear-gradient(135deg, #fffaf5 0%, #ffffff 52%, #f8fafc 100%)",
+    background: "transparent",
   },
   shell: {
     maxWidth: "1280px",
@@ -121,17 +120,18 @@ export default function AboutHeroSection() {
           <div style={styles.content}>
             <p style={styles.eyebrow}>Chi siamo</p>
             <h1 id="about-hero-title" style={styles.title}>
-              Un ristorante costruito sulla cura dei dettagli.
+              Un'agenzia web costruita su design, velocita e sostanza.
             </h1>
             <p style={styles.lead}>
-              La nostra cucina parte da ingredienti stagionali, tecnica pulita e un
-              servizio attento. Ogni scelta, dal menu alla sala, e pensata per offrire
-              un'esperienza contemporanea ma accogliente.
+              Alai Web nasce per creare siti moderni per piccole imprese e realta
+              indipendenti che vogliono comunicare meglio online. Ogni scelta, dalla
+              gerarchia dei contenuti al codice, punta a rendere il progetto piu chiaro,
+              piu rapido e piu efficace.
             </p>
-            <p style={styles.note}>Cucina essenziale, ritmo preciso, ospitalita senza eccessi.</p>
+            <p style={styles.note}>Meno rumore visivo, piu chiarezza, piu risultati.</p>
           </div>
 
-          <aside aria-label="Valori del ristorante" style={styles.panel}>
+          <aside aria-label="Valori dell'agenzia" style={styles.panel}>
             <p style={styles.panelTitle}>Cosa guida il nostro lavoro</p>
             <ul style={styles.valueList}>
               {values.map((value) => (

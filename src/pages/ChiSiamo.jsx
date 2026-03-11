@@ -12,13 +12,13 @@ export default function ChiSiamo() {
     if (metaDescription) {
       metaDescription.setAttribute(
         "content",
-        "Read the story, philosophy, and hospitality approach behind a detail-driven dining experience shaped by seasonal ingredients and precise service."
+        "Scopri il metodo, la visione e l'approccio di Alai Web: design essenziale, sviluppo veloce e siti pensati per obiettivi reali."
       )
     }
   }, [])
 
   return (
-    <main>
+    <main className="cursor-glow-page cursor-glow-page-about">
       <AboutHeroSection />
       <StorySection />
       <PhilosophySection />

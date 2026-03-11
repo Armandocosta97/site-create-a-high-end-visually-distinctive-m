@@ -1,20 +1,20 @@
 const contactDetails = [
   {
     label: "Email",
-    value: "hello@alaiweb.com",
-    href: "mailto:hello@alaiweb.com",
+    value: "alai.web.info@gmail.com",
+    href: "mailto:alai.web.info@gmail.com",
     description: "Share your goals, timeline, and current site status.",
   },
   {
     label: "Phone",
-    value: "+39 02 9475 1280",
-    href: "tel:+390294751280",
+    value: "+39 345 463 9301",
+    href: "tel:+393454639301",
     description: "Call for a quick conversation about scope and priorities.",
   },
   {
     label: "WhatsApp",
     value: "Message the studio",
-    href: "https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project.",
+    href: "https://wa.me/393454639301?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project.",
     description:
       "Ideal for early project questions, quick feedback, and scheduling the first call.",
     isDark: true,
@@ -48,8 +48,9 @@ const styles = {
     padding: "1.5rem",
     borderRadius: "1.75rem",
     background:
-      "linear-gradient(135deg, rgba(249, 115, 22, 0.14), rgba(17, 17, 17, 0.04))",
+      "linear-gradient(135deg, rgba(249, 115, 22, 0.18), rgba(255, 255, 255, 0.42))",
     border: "1px solid rgba(17, 17, 17, 0.08)",
+    backdropFilter: "blur(12px)",
   },
   ctaTitle: {
     margin: 0,
@@ -87,9 +88,10 @@ const styles = {
     gap: "0.75rem",
     padding: "1.5rem",
     borderRadius: "1.5rem",
-    backgroundColor: "#f5f5f5",
+    backgroundColor: "rgba(255, 255, 255, 0.72)",
     color: "#111111",
     textDecoration: "none",
+    backdropFilter: "blur(12px)",
   },
   cardDark: {
     backgroundColor: "#111111",
@@ -135,7 +137,7 @@ export default function ContactDetailsSection() {
             project, timeline, and budget range.
           </p>
           <a
-            href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
+            href="https://wa.me/393454639301?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
             target="_blank"
             rel="noreferrer"
             style={styles.ctaAction}

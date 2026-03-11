@@ -18,7 +18,7 @@ export default function Contatti() {
   }, [])
 
   return (
-    <main>
+    <main className="cursor-glow-page cursor-glow-page-contact">
       <ContactHeroSection />
       <ContactDetailsSection />
       <OpeningHoursSection />

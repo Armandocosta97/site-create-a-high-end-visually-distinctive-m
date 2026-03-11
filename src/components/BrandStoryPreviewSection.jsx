@@ -1,16 +1,37 @@
 import { Link } from "react-router-dom"
 
 const principles = [
-  "Clarity in structure, so visitors always know where to go next.",
-  "Restraint in design, so every detail supports the message instead of distracting from it.",
-  "Performance in delivery, so the final site feels fast, polished, and dependable.",
+  "Una struttura chiara, per far capire subito cosa fai e dove portare l'utente.",
+  "Un design misurato, in cui ogni dettaglio rafforza il messaggio invece di distrarlo.",
+  "Uno sviluppo leggero, cosi il sito risulta rapido, affidabile e piacevole da usare.",
 ]
+
+const previewImage = `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="Alai Web project preview">
+    <defs>
+      <linearGradient id="surface" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#fff7ed" />
+        <stop offset="100%" stop-color="#ffffff" />
+      </linearGradient>
+    </defs>
+    <rect width="1200" height="900" rx="52" fill="url(#surface)" />
+    <circle cx="930" cy="190" r="170" fill="#f97316" fill-opacity="0.18" />
+    <circle cx="235" cy="735" r="210" fill="#0f172a" fill-opacity="0.08" />
+    <rect x="118" y="126" width="964" height="648" rx="40" fill="#ffffff" />
+    <rect x="170" y="190" width="470" height="520" rx="28" fill="#0f172a" />
+    <rect x="700" y="220" width="210" height="28" rx="14" fill="#f97316" fill-opacity="0.85" />
+    <rect x="700" y="280" width="282" height="86" rx="24" fill="#0f172a" fill-opacity="0.08" />
+    <rect x="700" y="392" width="330" height="22" rx="11" fill="#0f172a" fill-opacity="0.12" />
+    <rect x="700" y="432" width="258" height="22" rx="11" fill="#0f172a" fill-opacity="0.12" />
+    <rect x="700" y="472" width="306" height="22" rx="11" fill="#0f172a" fill-opacity="0.12" />
+    <rect x="700" y="550" width="190" height="58" rx="29" fill="#f97316" />
+  </svg>
+`)}`
 
 const styles = {
   section: {
     padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
-    background:
-      "linear-gradient(180deg, #ffffff 0%, #ffffff 28%, #f8fafc 100%)",
+    background: "transparent",
   },
   shell: {
     maxWidth: "1280px",
@@ -78,6 +99,22 @@ const styles = {
       "linear-gradient(160deg, rgba(255, 247, 237, 0.96), rgba(255, 255, 255, 0.98))",
     boxShadow: "0 18px 48px rgba(15, 23, 42, 0.08)",
   },
+  imageFrame: {
+    overflow: "hidden",
+    minHeight: "100%",
+    borderRadius: "2rem",
+    border: "1px solid rgba(17, 17, 17, 0.08)",
+    background:
+      "linear-gradient(160deg, rgba(255, 247, 237, 0.96), rgba(255, 255, 255, 0.98))",
+    boxShadow: "0 18px 48px rgba(15, 23, 42, 0.08)",
+  },
+  image: {
+    display: "block",
+    width: "100%",
+    height: "100%",
+    minHeight: "320px",
+    objectFit: "cover",
+  },
   kicker: {
     margin: 0,
     fontSize: "0.95rem",
@@ -119,25 +156,33 @@ export default function BrandStoryPreviewSection() {
       <div style={styles.shell}>
         <div style={styles.layout}>
           <div style={styles.contentPanel}>
-            <p style={styles.eyebrow}>Brand story preview</p>
+            <p style={styles.eyebrow}>Il nostro approccio</p>
             <h2 id="brand-story-preview-title" style={styles.title}>
-              Designed with a calm hand and a technical eye.
+              Design essenziale, visione chiara, sviluppo concreto.
             </h2>
             <p style={styles.lead}>
-              Alai Web builds websites for businesses that want something cleaner than a
-              template and more useful than a visual refresh. Every project aims to feel
-              editorial, fast, and easy to trust.
+              Alai Web lavora con attivita che vogliono qualcosa di piu utile di un
+              semplice restyling. Ogni progetto e pensato per essere credibile,
+              veloce e facile da capire al primo sguardo.
             </p>
             <Link to="/chi-siamo" style={styles.action}>
-              Learn how Alai Web works
+              Scopri come lavoriamo
             </Link>
           </div>
 
+          <div style={styles.imageFrame}>
+            <img
+              src={previewImage}
+              alt="Editorial website mockup with bold typography and a highlighted call to action."
+              style={styles.image}
+            />
+          </div>
+
           <div style={styles.detailPanel}>
-            <p style={styles.kicker}>What drives the work</p>
+            <p style={styles.kicker}>Cio che conta davvero</p>
             <p style={styles.highlight}>
-              The goal is not to add more interface. It is to make the right message land
-              faster.
+              Il punto non e aggiungere effetti. Il punto e far arrivare il messaggio
+              giusto, piu in fretta.
             </p>
             <ul style={styles.list}>
               {principles.map((principle) => (

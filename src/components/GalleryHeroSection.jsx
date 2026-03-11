@@ -1,15 +1,15 @@
 const highlights = [
   {
-    label: "Dining room",
-    text: "Soft light, natural materials, and a room designed to feel calm before the first course arrives.",
+    label: "Direzione visiva",
+    text: "Layout editoriali, tipografia forte e una costruzione visiva che sostiene il posizionamento del brand.",
   },
   {
-    label: "Kitchen detail",
-    text: "Close finishes, precise plating, and the small gestures that give the menu its identity.",
+    label: "Struttura delle pagine",
+    text: "Sezioni essenziali, gerarchie chiare e percorsi pensati per accompagnare l'utente fino al contatto.",
   },
   {
-    label: "Service rhythm",
-    text: "A visual sequence of evenings shaped by timing, warmth, and a steady pace across the table.",
+    label: "Dettaglio tecnico",
+    text: "Performance, leggibilita e solidita front-end trattate come parte integrante del design.",
   },
 ]
 
@@ -18,8 +18,7 @@ const styles = {
     position: "relative",
     overflow: "hidden",
     padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
-    background:
-      "radial-gradient(circle at top right, rgba(249, 115, 22, 0.16), transparent 30%), linear-gradient(145deg, #fffaf5 0%, #ffffff 52%, #f8fafc 100%)",
+    background: "transparent",
   },
   shell: {
     maxWidth: "1280px",
@@ -119,19 +118,20 @@ export default function GalleryHeroSection() {
       <div style={styles.shell}>
         <div style={styles.layout}>
           <div style={styles.content}>
-            <p style={styles.eyebrow}>Gallery</p>
+            <p style={styles.eyebrow}>Portfolio</p>
             <h1 id="gallery-hero-title" style={styles.title}>
-              Moments from the table, the kitchen, and the room.
+              Una selezione di direzioni creative e progetti digitali.
             </h1>
             <p style={styles.lead}>
-              Explore the atmosphere of our restaurant through plated signatures,
-              evening service, and the details that shape each visit.
+              Questa sezione raccoglie esempi di approccio visivo, struttura e
+              presentazione del brand. Non solo estetica: ogni progetto e pensato per
+              essere chiaro, credibile e pronto a convertire.
             </p>
-            <p style={styles.note}>A closer look at the dishes, setting, and pace behind every service.</p>
+            <p style={styles.note}>Brand, layout e contenuti allineati per dare piu forza al messaggio.</p>
           </div>
 
-          <aside aria-label="Gallery highlights" style={styles.panel}>
-            <p style={styles.panelTitle}>What the gallery captures</p>
+          <aside aria-label="Portfolio highlights" style={styles.panel}>
+            <p style={styles.panelTitle}>Cosa racconta il portfolio</p>
             <ul style={styles.list}>
               {highlights.map((highlight) => (
                 <li key={highlight.label} style={styles.item}>

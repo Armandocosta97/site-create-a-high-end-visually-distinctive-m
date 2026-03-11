@@ -1,15 +1,15 @@
 const principles = [
   {
     title: "Semplicita leggibile",
-    text: "Riduciamo il rumore per dare spazio a sapori chiari, menu essenziali e scelte che restano immediate per chi si accomoda.",
+    text: "Riduciamo il rumore visivo per lasciare spazio a messaggio, gerarchia e call to action davvero utili.",
   },
   {
     title: "Tecnica senza ostentazione",
-    text: "La precisione e presente in cucina, ma non chiede attenzione. Serve a rendere il piatto nitido, coerente e naturale.",
+    text: "La qualita tecnica non deve mettersi in mostra: deve far caricare il sito velocemente e farlo funzionare bene.",
   },
   {
-    title: "Esperienza che respira",
-    text: "Sala, tempi e servizio sono calibrati per accompagnare la conversazione e mantenere l'atmosfera rilassata ma curata.",
+    title: "Esperienza che converte",
+    text: "Ogni pagina deve accompagnare l'utente con fluidita, fino al contatto o alla richiesta di preventivo.",
   },
 ]
 
@@ -131,20 +131,21 @@ export default function PhilosophySection() {
           <div style={styles.intro}>
             <p style={styles.eyebrow}>La nostra filosofia</p>
             <h2 id="philosophy-title" style={styles.title}>
-              Cucinare meno rumore, lasciare piu sostanza.
+              Togliere il superfluo, lasciare spazio a cio che conta.
             </h2>
             <p style={styles.lead}>
-              Crediamo che un ristorante funzioni davvero quando ogni elemento ha un
-              ruolo chiaro: ingredienti stagionali, tecnica pulita e una sala che non
-              forza il ritmo dell&apos;esperienza.
+              Crediamo che un buon sito funzioni quando ogni elemento ha un ruolo
+              preciso: contenuti chiari, struttura leggibile, performance solide e un
+              design capace di dare autorevolezza senza complicare l'esperienza.
             </p>
             <p style={styles.emphasis}>
-              Per questo scegliamo equilibrio prima dell&apos;effetto, leggibilita prima
-              dell&apos;eccesso e un&apos;ospitalita precisa che resta sempre umana.
+              Per questo scegliamo equilibrio prima dell'effetto, leggibilita prima
+              dell'eccesso e decisioni progettuali che aiutino davvero chi il sito lo
+              deve usare, non solo guardare.
             </p>
           </div>
 
-          <aside aria-label="Principi che guidano il ristorante" style={styles.panel}>
+          <aside aria-label="Principi che guidano l'agenzia" style={styles.panel}>
             <p style={styles.panelTitle}>I principi che seguiamo</p>
             <ul style={styles.list}>
               {principles.map((principle) => (

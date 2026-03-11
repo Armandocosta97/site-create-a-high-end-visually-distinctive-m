@@ -1,15 +1,15 @@
 const storyMoments = [
   {
     label: "Origine",
-    text: "Il progetto nasce dal desiderio di offrire una cucina italiana nitida, contemporanea e leggibile, senza perdere calore umano.",
+    text: "Alai Web nasce dall'idea che molte attivita abbiano bisogno di un sito piu semplice, piu curato e meno standardizzato.",
   },
   {
     label: "Metodo",
-    text: "Lavoriamo su ingredienti stagionali, preparazioni essenziali e un servizio che accompagna il tavolo con naturalezza.",
+    text: "Ogni progetto parte da obiettivi, struttura e contenuti, poi prende forma con design editoriale e sviluppo leggero.",
   },
   {
-    label: "Atmosfera",
-    text: "Sala, luci e ritmo del servizio sono pensati per lasciare spazio alla conversazione e far percepire ogni dettaglio con equilibrio.",
+    label: "Direzione",
+    text: "Cerchiamo sempre equilibrio tra immagine, performance e utilita, senza appesantire il sito con elementi superflui.",
   },
 ]
 
@@ -17,8 +17,7 @@ const styles = {
   section: {
     padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
     borderBottom: "1px solid rgba(15, 23, 42, 0.08)",
-    background:
-      "linear-gradient(180deg, #ffffff 0%, #fffaf5 100%)",
+    background: "transparent",
   },
   shell: {
     maxWidth: "1280px",
@@ -123,23 +122,23 @@ export default function StorySection() {
           <div style={styles.intro}>
             <p style={styles.eyebrow}>La nostra storia</p>
             <h2 id="story-title" style={styles.title}>
-              Una visione italiana resa piu essenziale.
+              Una visione semplice: fare siti che aiutano davvero il business.
             </h2>
             <p style={styles.lead}>
-              Siamo partiti da un&apos;idea semplice: creare un luogo in cui la cucina
-              resti riconoscibile, ma venga alleggerita da tutto cio che e superfluo.
-              Per questo il menu cambia con il ritmo della stagione, i sapori sono netti
-              e ogni piatto cerca equilibrio prima dell&apos;effetto.
+              Siamo partiti da un'idea precisa: molte aziende hanno siti lenti,
+              confusi o poco credibili, non per mancanza di valore, ma per una
+              comunicazione digitale costruita male. Per questo lavoriamo su contenuti,
+              layout e sviluppo in modo coordinato, cosi ogni pagina ha un ruolo chiaro.
             </p>
             <p style={styles.emphasis}>
-              Vogliamo che l&apos;esperienza sia contemporanea, curata e accessibile:
-              abbastanza precisa da farsi ricordare, abbastanza naturale da far sentire
-              ogni ospite al posto giusto.
+              Il risultato deve essere contemporaneo ma utile: abbastanza curato da
+              distinguerti, abbastanza semplice da essere capito e abbastanza solido da
+              sostenere la crescita nel tempo.
             </p>
           </div>
 
           <aside aria-label="Momenti chiave della nostra storia" style={styles.panel}>
-            <p style={styles.panelTitle}>Come prendiamo forma</p>
+            <p style={styles.panelTitle}>Come lavoriamo</p>
             <ul style={styles.list}>
               {storyMoments.map((moment) => (
                 <li key={moment.label} style={styles.item}>

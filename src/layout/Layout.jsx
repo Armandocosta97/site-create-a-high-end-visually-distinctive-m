@@ -1,20 +1,28 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, useLocation } from "react-router-dom"
+import CursorGlowBackground from "../components/CursorGlowBackground"
 
 const navigationItems = [
   { label: "Home", target: "/" },
-  { label: "Menu", target: "/menu" },
+  { label: "Servizi", target: "/menu" },
   { label: "Chi siamo", target: "/chi-siamo" },
-  { label: "Gallery", target: "/gallery" },
+  { label: "Portfolio", target: "/gallery" },
   { label: "Contatti", target: "/contatti" },
 ]
 
 export default function Layout({ children }) {
+  const location = useLocation()
+  const showCursorGlow = location.pathname !== "/"
+
   return (
     <>
       <header>
         <div className="site-shell">
           <NavLink to="/" className="site-brand" aria-label="Alai Web home">
-            <span className="site-brand-mark">AW</span>
+            <img
+              className="site-brand-logo"
+              src="/logo_AW_2.png"
+              alt="Alai Web logo"
+            />
             <span className="site-brand-text">
               <strong>Alai Web</strong>
               <span>Beautiful. Fast. Effective.</span>
@@ -31,12 +39,22 @@ export default function Layout({ children }) {
         </div>
       </header>
 
-      {children}
+      <div className="cursor-glow-site">
+        {showCursorGlow ? <CursorGlowBackground variant="intense" /> : null}
+        <div className="cursor-glow-content">{children}</div>
+      </div>
 
       <footer>
         <div className="site-shell site-footer-content">
           <div className="site-footer-copy">
-            <p className="site-footer-brand">Alai Web</p>
+            <div className="site-footer-brand-lockup">
+              <img
+                className="site-footer-logo"
+                src="/logo_AW_2.png"
+                alt="Alai Web logo"
+              />
+              <p className="site-footer-brand">Alai Web</p>
+            </div>
             <p>Beautiful. Fast. Effective.</p>
           </div>
 
@@ -48,8 +66,8 @@ export default function Layout({ children }) {
             ))}
           </nav>
 
-          <a className="site-footer-email" href="mailto:hello@alaiweb.com">
-            hello@alaiweb.com
+          <a className="site-footer-email" href="mailto:alai.web.info@gmail.com">
+            alai.web.info@gmail.com
           </a>
         </div>
       </footer>

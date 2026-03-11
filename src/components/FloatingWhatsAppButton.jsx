@@ -1,5 +1,5 @@
 const whatsappHref =
-  "https://api.whatsapp.com/send?text=Hello%20Alai%20Web%2C%20I%27d%20like%20to%20talk%20about%20a%20website%20project."
+  "https://api.whatsapp.com/send?phone=393454639301&text=Hello%20Alai%20Web%2C%20I%27d%20like%20to%20talk%20about%20a%20website%20project."
 
 const styles = {
   link: {
