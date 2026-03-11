@@ -143,3 +143,20 @@ Waiting for validation.
 
 TASK cta-home-home-whatsapp completed successfully.
 Build passed.
+Commit created for TASK cta-home-home-whatsapp.
+
+Prepared TASK page-menu-shell (Create menu page shell) for execution.
+
+Launching Codex for TASK page-menu-shell.
+
+Completed TASK `page-menu-shell`.
+
+- Replaced the placeholder menu page with a semantic `main` shell in `src/pages/Menu.jsx`.
+- Preserved the required `menu-hero` and `menu-categories` sections for the `/menu` route.
+- Added real restaurant-oriented copy and category previews so the page renders without placeholder text or crashes.
+
+TASK page-menu-shell executed by Codex.
+Waiting for validation.
+
+TASK page-menu-shell completed successfully.
+Build passed.
