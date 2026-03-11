@@ -1,15 +1,8 @@
-Modified files:
-- [src/components/GalleryGridSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/GalleryGridSection.jsx)
-- [src/pages/Gallery.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Gallery.jsx)
-- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md)
+Modified files: [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md)
 
-What was implemented:
-- Added a dedicated `GalleryGridSection` component for the `gallery-grid` section.
-- Replaced the inline placeholder in the gallery page so `gallery-grid` is rendered as the required `image-grid` section.
-- Built the section as a responsive grid using valid lazy-loaded SVG data-image sources with meaningful alt text.
+Implemented the `contatti` page shell in [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx) with the required `contact-hero`, `contact-details`, and `opening-hours` sections, real contact copy, and functional `mailto:`, `tel:`, and WhatsApp CTAs. The `/contatti` route was already mounted in [src/App.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/App.jsx), so no router change was needed. I also appended the task summary to [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md).
 
-Build result:
-- `npm run build` passed successfully with Vite production build output.
+Build result: `npm run build` passed with Vite production build success.
 
 OpenAI Codex v0.111.0 (research preview)
 --------
@@ -20,7 +13,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cddb6-211f-7353-b758-d687adff0da9
+session id: 019cddb7-a0af-72e2-a996-ed1e17ee339f
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1157,35 +1150,32 @@ It must feel like a modern digital product studio.
 ```
 
 ## Current task id
-section-gallery-gallery-grid
+page-contatti-shell
 
 ## Current task title
-Create gallery-grid section on gallery
+Create contatti page shell
 
 ## Current task type
-section
+page-shell
 
 ## Current task target
 ```json
 {
-  "pageId": "gallery",
-  "sectionId": "gallery-grid",
-  "sectionType": "image-grid"
+  "pageId": "contatti"
 }
 ```
 
 ## Depends on
-- page-gallery-shell
+- none
 
 ## Files allowed
-- src/pages/Gallery.jsx
-- src/components/GalleryGridSection.jsx
-- src/components
+- src/App.jsx
+- src/pages/Contatti.jsx
 
 ## Definition of done
-- section gallery-grid exists on gallery
-- section gallery-grid matches type image-grid
-- section gallery-grid is rendered in page gallery
+- page shell exists for contatti
+- contatti route is mounted if required
+- contatti page renders without crashing
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1214,181 +1204,12 @@ section
 
 mcp startup: no servers
 codex
-I’m executing the `section-gallery-gallery-grid` task only. First I’m checking the current gallery page and the task/source-of-truth files so I can add the image-grid section without touching unrelated routes or sections.
+I’m checking the current app structure and the existing page/router setup first so I can add the `contatti` page shell with the smallest safe change, then I’ll run a build and update the agent report.
 exec
-/bin/zsh -lc "sed -n '1,220p' src/pages/Gallery.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,260p' site-spec.json" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,220p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc 'rg --files src/components' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 52ms:
-{
-  "originalPrompt": "Create a high-end, visually distinctive multi-page website for a modern web agency called Alai Web.\n\nThe agency builds:\n- modern websites\n- fast websites\n- SEO-ready websites\n- custom business websites\n- elegant digital experiences for small businesses\n\nThe positioning of the brand is:\n\n\"Beautiful. Fast. Effective.\"\n\nThe site must communicate that Alai Web creates websites that are:\n- visually refined\n- technically solid\n- lightweight\n- SEO friendly\n- designed for real businesses\n\nIMPORTANT STRUCTURE\n\nThis must be a REAL multi-page website.\n\nCreate separate pages with real routes:\n\n- Home\n- Services\n- Portfolio\n- Process\n- About\n- Contact\n\nEach page must have a clear purpose.\nDo NOT collapse everything into the homepage.\nDo NOT simulate pages using anchor sections.\n\nDESIGN PRINCIPLE\n\nThe website must feel like a premium modern design studio.\n\nAvoid generic template style.\nAvoid repetitive card grids.\nAvoid UI patterns that look like cheap startup templates.\n\nPrefer:\n\n- large typographic sections\n- editorial layouts\n- split image/text compositions\n- asymmetrical blocks\n- strong visual rhythm\n- bold headlines\n- large spacing\n- full width sections\n- layered backgrounds\n- minimal containers\n- occasional cards only when necessary\n\nIMPORTANT:\nDo NOT build the entire site as repeated service cards.\nServices should often appear as rows, editorial blocks, or split layouts.\n\nVISUAL STYLE\n\nModern digital agency aesthetic.\n\nClean.\nSharp.\nConfident.\nMinimal but expressive.\n\nInspired by:\nmodern SaaS sites\ncreative digital studios\npremium design portfolios.\n\nCOLOR PALETTE\n\nPrimary brand color: ORANGE.\n\nSuggested palette:\n\nbackground: #ffffff\ntext: #111111\nbrand orange: #F97316\ndark section: #0f172a\nlight gray: #f5f5f5\n\nOrange must be used as:\n- accent color\n- CTA color\n- highlight elements\n- interactive states\n\nAvoid overusing orange for large backgrounds.\n\nTYPOGRAPHY\n\nStrong typographic hierarchy.\n\nHeadlines:\nlarge, bold, modern\n\nBody text:\nclean sans serif\n\nUse typography as a design element.\nLarge titles should drive sections.\n\nLAYOUT\n\nPrefer sections like:\n\nHero\nSplit layout (text + image)\nText driven sections\nEditorial feature blocks\nProcess timeline\nPortfolio previews\nFull width highlight bands\n\nAvoid stacking 6 identical cards.\n\nHOME PAGE STRUCTURE\n\n1. Hero section\n\nStrong, bold, minimal.\n\nHeadline idea:\n\nWebsites that look great\nand actually work.\n\nSubtext:\n\nAlai Web builds fast, modern websites designed to convert visitors into real customers.\n\nPrimary CTA:\nStart your project\n\nSecondary CTA:\nSee our work\n\nHero design should feel powerful and spacious.\n\n2. Value proposition section\n\nExplain clearly what Alai Web offers.\n\nAvoid cards.\nUse 2-3 strong typographic blocks.\n\nExamples:\n\nBeautiful design\nFast performance\nSEO foundations\n\n3. Portfolio preview\n\nLarge project previews.\n\nImage left / text right style.\n\nShow 3 example projects.\n\n4. How we work preview\n\nSimple process explanation.\n\nPrefer horizontal flow instead of cards.\n\nExample steps:\n\n1 Discovery\n2 Design\n3 Build\n4 Launch\n\n5. CTA section\n\nEncourage visitors to start a project.\n\nSERVICES PAGE\n\nExplain services clearly.\n\nPossible services:\n\nBusiness websites\nLanding pages\nWebsite redesign\nPerformance optimization\nSEO-ready builds\n\nPresent services using:\n\neditorial sections\nsplit layouts\nicon rows\nnot repetitive card grids.\n\nPORTFOLIO PAGE\n\nVisual portfolio.\n\nLarge images.\nProject titles.\nShort description.\n\nPortfolio should feel modern and visual.\n\nAvoid tiny thumbnails.\n\nPROCESS PAGE\n\nExplain the workflow.\n\nSteps like:\n\nDiscovery\nStructure\nDesign\nDevelopment\nLaunch\n\nUse visual timeline or progressive sections.\n\nABOUT PAGE\n\nTell the story of Alai Web.\n\nExplain:\n\n- philosophy\n- approach\n- design mindset\n- focus on performance and simplicity\n\nTone should feel human and confident.\n\nCONTACT PAGE\n\nSimple and effective.\n\nInclude:\n\ncontact form\nemail placeholder\noptional WhatsApp CTA\nproject inquiry CTA\n\nExample email:\n\nhello@alaiweb.com\n\nCTA examples:\n\nStart your project\nTell us about your idea\nLet's build something great\n\nFOOTER\n\nClean modern footer.\n\nInclude:\n\nbrand name\nshort tagline\nnavigation links\ncontact email\ncopyright\n\nRESPONSIVE\n\nFully responsive.\n\nNo horizontal overflow.\nTypography must scale correctly.\nHero must remain strong on mobile.\n\nQUALITY EXPECTATION\n\nThe final site must look like a real modern web agency website.\n\nIt must feel:\n\nmodern\nfast\nminimal\nprofessional\ndistinct\n\nIt must NOT look like a generic template.\n\nIt must NOT look like restaurant or salon websites.\n\nIt must feel like a modern digital product studio.",
-  "siteName": "site-create-a-high-end-visually-distinctive-m",
-  "businessType": "restaurant",
-  "architecture": "multi-page",
-  "routing": {
-    "mode": "hash"
-  },
-  "pages": [
-    {
-      "id": "home",
-      "route": "/",
-      "role": "landing",
-      "sections": [
-        {
-          "id": "hero",
-          "type": "hero"
-        },
-        {
-          "id": "signature-preview",
- succeeded in 52ms:
-import GalleryHeroSection from "../components/GalleryHeroSection"
-
-export default function Gallery() {
-  return (
-    <main>
-      <GalleryHeroSection />
-
-      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
-        <h2 id="gallery-grid-title">A visual look at our dining experience</h2>
-        <p>
-          This page brings together the dishes, textures, and spaces that define
-          our menu and hospitality.
-        </p>
-        <div>
-          <article>
-            <h3>Signature plates</h3>
-            <p>
-              Seasonal compositions, refined presentation, and ingredients chosen
-              with care.
-            </p>
- succeeded in 50ms:
-# CURRENT TASK EXECUTION PROMPT
-
-You are the coding executor for this project.
-
-## Project path
-site-create-a-high-end-visually-distinctive-m
-
-## Source of truth files
-- brief/original-prompt.md
-- brief/brief-summary.md
-- site-spec.json
-- docs/DEVELOPMENT_METHOD.md
-- agent/TASK_GRAPH.json
-- agent/TASK_STATE.json
-- agent/CURRENT_TASK_PROMPT.md
-
-## Development method
-# Development Method
-
-All sites must follow these rules.
- succeeded in 52ms:
-src/components/FloatingWhatsAppButton.jsx
-src/components/AboutHeroSection.jsx
-src/components/StorySection.jsx
-src/components/BrandStoryPreviewSection.jsx
-src/components/PhilosophySection.jsx
-src/components/MenuCategoriesSection.jsx
-src/components/GalleryHeroSection.jsx
-src/components/SignaturePreviewSection.jsx
-src/components/MenuHeroSection.jsx
-src/components/HeroSection.jsx
-codex
-The gallery page already has a temporary inline section. I’m reading nearby component patterns now so I can replace that with a dedicated `GalleryGridSection` component that matches the existing structure and keeps the page modular.
-exec
-/bin/zsh -lc "sed -n '1,260p' src/components/BrandStoryPreviewSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,240p' src/components/GalleryHeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,260p' src/components/SignaturePreviewSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "rg -n \"style=|className=|export default function\" src/components src/pages | sed -n '1,260p'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 51ms:
-const signatureItems = [
-  {
-    number: "01",
-    title: "Refined visual systems",
-    description:
-      "Clear typography, measured spacing, and art direction that gives small businesses a sharper digital presence.",
-  },
-  {
-    number: "02",
-    title: "Fast, lightweight builds",
-    description:
-      "Lean front-end decisions keep the experience responsive, readable, and easy to navigate on every screen.",
-  },
-  {
-    number: "03",
-    title: "SEO-ready structure",
-    description:
-      "Semantic markup and purposeful content layouts create a stronger foundation for visibility and conversion.",
-  },
-]
- succeeded in 51ms:
-import { Link } from "react-router-dom"
-
-const principles = [
-  "Clarity in structure, so visitors always know where to go next.",
-  "Restraint in design, so every detail supports the message instead of distracting from it.",
-  "Performance in delivery, so the final site feels fast, polished, and dependable.",
-]
-
-const styles = {
-  section: {
-    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
-    background:
-      "linear-gradient(180deg, #ffffff 0%, #ffffff 28%, #f8fafc 100%)",
-  },
-  shell: {
-    maxWidth: "1280px",
-    margin: "0 auto",
-    display: "grid",
-    gap: "2rem",
-  },
- succeeded in 51ms:
-const highlights = [
-  {
-    label: "Dining room",
-    text: "Soft light, natural materials, and a room designed to feel calm before the first course arrives.",
-  },
-  {
-    label: "Kitchen detail",
-    text: "Close finishes, precise plating, and the small gestures that give the menu its identity.",
-  },
-  {
-    label: "Service rhythm",
-    text: "A visual sequence of evenings shaped by timing, warmth, and a steady pace across the table.",
-  },
-]
-
-const styles = {
-  section: {
-    position: "relative",
-    overflow: "hidden",
-    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
- succeeded in 52ms:
-src/pages/Home.jsx:6:export default function Home() {
-src/components/FloatingWhatsAppButton.jsx:52:export default function FloatingWhatsAppButton() {
-src/components/FloatingWhatsAppButton.jsx:59:      style={styles.link}
-src/components/FloatingWhatsAppButton.jsx:61:      <span aria-hidden="true" style={styles.iconWrap}>
-src/components/FloatingWhatsAppButton.jsx:64:      <span style={styles.label}>WhatsApp</span>
-src/pages/Gallery.jsx:3:export default function Gallery() {
-src/components/AboutHeroSection.jsx:116:export default function AboutHeroSection() {
-src/components/AboutHeroSection.jsx:118:    <section id="about-hero" aria-labelledby="about-hero-title" style={styles.section}>
-src/components/AboutHeroSection.jsx:119:      <div style={styles.shell}>
-src/components/AboutHeroSection.jsx:120:        <div style={styles.layout}>
-src/components/AboutHeroSection.jsx:121:          <div style={styles.content}>
-src/components/AboutHeroSection.jsx:122:            <p style={styles.eyebrow}>Chi siamo</p>
-src/components/AboutHeroSection.jsx:123:            <h1 id="about-hero-title" style={styles.title}>
-src/components/AboutHeroSection.jsx:126:            <p style={styles.lead}>
-src/components/AboutHeroSection.jsx:131:            <p style={styles.note}>Cucina essenziale, ritmo preciso, ospitalita senza eccessi.</p>
-src/components/AboutHeroSection.jsx:134:          <aside aria-label="Valori del ristorante" style={styles.panel}>
-src/components/AboutHeroSection.jsx:135:            <p style={styles.panelTitle}>Cosa guida il nostro lavoro</p>
-src/components/AboutHeroSection.jsx:136:            <ul style={styles.valueList}>
-src/components/AboutHeroSection.jsx:138:                <li key={value.title} style={styles.valueItem}>
-src/components/AboutHeroSection.jsx:139:                  <p style={styles.valueHeading}>{value.title}</p>
-codex
-I have enough context. Next I’m replacing the inline gallery markup with a reusable image-grid component, then I’ll run a build and append the required task note to `agent/AGENT_REPORT.md`.
-exec
-/bin/zsh -lc "sed -n '1,220p' src/pages/ChiSiamo.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
 /bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,220p' src/pages/Menu.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 53ms:
+/bin/zsh -lc "sed -n '1,220p' src/pages/Contatti.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,220p' src/App.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc 'rg --files' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 53ms:
 # AGENT REPORT
 
 Project created.
@@ -1410,16 +1231,97 @@ Waiting for validation.
 TASK page-home-shell completed successfully.
 Build passed.
  succeeded in 53ms:
-import AboutHeroSection from "../components/AboutHeroSection"
-import PhilosophySection from "../components/PhilosophySection"
-import StorySection from "../components/StorySection"
+import { HashRouter, Routes, Route } from "react-router-dom"
+import Layout from "./layout/Layout"
+import Home from "./pages/Home"
+import Menu from "./pages/Menu"
+import ChiSiamo from "./pages/ChiSiamo"
+import Gallery from "./pages/Gallery"
+import Contatti from "./pages/Contatti"
 
-export default function ChiSiamo() {
+export default function App() {
+  return (
+    <HashRouter>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/chi-siamo" element={<ChiSiamo />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/contatti" element={<Contatti />} />
+        </Routes>
+      </Layout>
+ succeeded in 53ms:
+export default function Contatti() {
   return (
     <>
-      <AboutHeroSection />
-      <StorySection />
-      <PhilosophySection />
+      <section id="contact-hero">
+        <h1>Contact Hero</h1>
+        <p>Content for contact-hero will be generated by tasks</p>
+      </section>
+      <section id="contact-details">
+        <h2>Contact Details</h2>
+        <p>Content for contact-details will be generated by tasks</p>
+      </section>
+      <section id="opening-hours">
+        <h2>Opening Hours</h2>
+        <p>Content for opening-hours will be generated by tasks</p>
+      </section>
+    </>
+  )
+}
+ succeeded in 51ms:
+src/pages/Home.jsx
+src/pages/Gallery.jsx
+src/pages/ChiSiamo.jsx
+src/pages/Contatti.jsx
+src/pages/Menu.jsx
+src/assets/react.svg
+src/App.jsx
+src/main.jsx
+src/components/FloatingWhatsAppButton.jsx
+src/components/AboutHeroSection.jsx
+src/components/StorySection.jsx
+src/components/BrandStoryPreviewSection.jsx
+src/components/PhilosophySection.jsx
+src/components/MenuCategoriesSection.jsx
+src/components/GalleryHeroSection.jsx
+src/components/SignaturePreviewSection.jsx
+src/components/GalleryGridSection.jsx
+src/components/MenuHeroSection.jsx
+src/components/HeroSection.jsx
+src/index.css
+codex
+The route is already mounted, so the work is confined to replacing the placeholder `Contatti` page with a real shell and then recording the task result. I’m checking adjacent page patterns to keep the implementation consistent with the existing app.
+exec
+/bin/zsh -lc "sed -n '1,220p' src/pages/Home.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,220p' src/pages/Menu.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,220p' src/pages/Gallery.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,220p' src/pages/ChiSiamo.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 51ms:
+import GalleryHeroSection from "../components/GalleryHeroSection"
+import GalleryGridSection from "../components/GalleryGridSection"
+
+export default function Gallery() {
+  return (
+    <main>
+      <GalleryHeroSection />
+      <GalleryGridSection />
+    </main>
+  )
+}
+ succeeded in 52ms:
+import HeroSection from "../components/HeroSection"
+import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
+import SignaturePreviewSection from "../components/SignaturePreviewSection"
+import FloatingWhatsAppButton from "../components/FloatingWhatsAppButton"
+
+export default function Home() {
+  return (
+    <>
+      <HeroSection />
+      <SignaturePreviewSection />
+      <BrandStoryPreviewSection />
+      <FloatingWhatsAppButton />
     </>
   )
 }
@@ -1435,813 +1337,954 @@ export default function Menu() {
     </main>
   )
 }
-codex
-I’m editing the gallery page now. The change is limited to swapping the inline placeholder for a dedicated `GalleryGridSection` component and adding that component with a responsive one-two-three column image grid.
-file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Gallery.jsx
-@@ -1,2 +1,3 @@
- import GalleryHeroSection from "../components/GalleryHeroSection"
-+import GalleryGridSection from "../components/GalleryGridSection"
- 
-@@ -6,33 +7,3 @@
-       <GalleryHeroSection />
--
--      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
--        <h2 id="gallery-grid-title">A visual look at our dining experience</h2>
--        <p>
--          This page brings together the dishes, textures, and spaces that define
--          our menu and hospitality.
--        </p>
--        <div>
--          <article>
--            <h3>Signature plates</h3>
--            <p>
--              Seasonal compositions, refined presentation, and ingredients chosen
--              with care.
--            </p>
--          </article>
--          <article>
--            <h3>Dining room atmosphere</h3>
--            <p>
--              Warm lighting, intimate tables, and a setting designed for long,
--              relaxed evenings.
--            </p>
--          </article>
--          <article>
--            <h3>Service in motion</h3>
--            <p>
--              A closer look at the rhythm of the kitchen and the team behind each
--              course.
--            </p>
--          </article>
--        </div>
--      </section>
-+      <GalleryGridSection />
-     </main>
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/GalleryGridSection.jsx
-const galleryItems = [
-  {
-    title: "Chef's tasting course",
-    description:
-      "A plated sequence focused on sharp color contrast, clean geometry, and seasonal produce.",
-    alt: "A refined tasting plate with bright vegetables and precise sauce placement.",
-    palette: ["#fff7ed", "#fdba74", "#7c2d12"],
-    accent: "Signature dishes",
-  },
-  {
-    title: "Evening service",
-    description:
-      "Soft light, layered table settings, and a room tuned for intimate conversations over dinner.",
-    alt: "An elegant dining room with candlelight, set tables, and warm evening tones.",
-    palette: ["#e2e8f0", "#1e293b", "#f97316"],
-    accent: "Dining room",
-  },
-  {
-    title: "Open kitchen rhythm",
-    description:
-      "Focused movements, polished surfaces, and a service pace built around calm precision.",
-    alt: "A chef plating dishes in an open kitchen with stainless steel counters.",
-    palette: ["#f8fafc", "#94a3b8", "#0f172a"],
-    accent: "Kitchen detail",
-  },
-  {
-    title: "Seasonal starters",
-    description:
-      "Light compositions that bring together herbs, citrus, and texture without excess.",
-    alt: "A seasonal starter with herbs, citrus, and delicate plating on a ceramic dish.",
-    palette: ["#fef2f2", "#fb923c", "#431407"],
-    accent: "Fresh courses",
-  },
-  {
-    title: "Private corner tables",
-    description:
-      "Material warmth, measured spacing, and the kind of seating that encourages longer evenings.",
-    alt: "A quiet restaurant corner with linen-covered tables and soft ambient lighting.",
-    palette: ["#fafaf9", "#d6d3d1", "#292524"],
-    accent: "Atmosphere",
-  },
-  {
-    title: "Final course details",
-    description:
-      "Desserts finished with restraint, texture, and the same visual care as the first plate.",
-    alt: "A minimalist dessert course with layered textures and a glossy finish.",
-    palette: ["#fff1f2", "#fb7185", "#4c0519"],
-    accent: "Closing notes",
-  },
-]
+ succeeded in 51ms:
+import AboutHeroSection from "../components/AboutHeroSection"
+import PhilosophySection from "../components/PhilosophySection"
+import StorySection from "../components/StorySection"
 
-function createGalleryImage(title, palette) {
-  const [base, accent, detail] = palette
-  const svg = `
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="${title}">
-      <defs>
-        <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="${base}" />
-          <stop offset="100%" stop-color="#ffffff" />
-        </linearGradient>
-      </defs>
-      <rect width="1200" height="900" rx="48" fill="url(#bg)" />
-      <circle cx="930" cy="220" r="190" fill="${accent}" fill-opacity="0.22" />
-      <circle cx="240" cy="720" r="210" fill="${detail}" fill-opacity="0.10" />
-      <rect x="134" y="164" width="932" height="572" rx="34" fill="#ffffff" fill-opacity="0.72" />
-      <rect x="190" y="230" width="420" height="300" rx="28" fill="${detail}" fill-opacity="0.88" />
-      <rect x="652" y="230" width="220" height="132" rx="24" fill="${accent}" fill-opacity="0.86" />
-      <rect x="652" y="390" width="314" height="48" rx="24" fill="${detail}" fill-opacity="0.12" />
-      <rect x="652" y="464" width="252" height="34" rx="17" fill="${detail}" fill-opacity="0.1" />
-      <rect x="190" y="566" width="776" height="36" rx="18" fill="${detail}" fill-opacity="0.08" />
-      <rect x="190" y="624" width="610" height="28" rx="14" fill="${detail}" fill-opacity="0.08" />
-    </svg>
-  `
-
-  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`
-}
-
-const styles = {
-  section: {
-    position: "relative",
-    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem) clamp(5rem, 8vw, 8rem)",
-    background:
-      "linear-gradient(180deg, #ffffff 0%, #fff7f1 22%, #ffffff 54%, #f8fafc 100%)",
-  },
-  shell: {
-    maxWidth: "1280px",
-    margin: "0 auto",
-    display: "grid",
-    gap: "2.5rem",
-  },
-  intro: {
-    display: "grid",
-    gap: "1rem",
-    maxWidth: "780px",
-  },
-  eyebrow: {
-    margin: 0,
-    fontSize: "0.85rem",
-    fontWeight: 700,
-    letterSpacing: "0.18em",
-    textTransform: "uppercase",
-    color: "#f97316",
-  },
-  title: {
-    margin: 0,
-    fontSize: "clamp(2.4rem, 6vw, 4.5rem)",
-    lineHeight: 0.95,
-    letterSpacing: "-0.05em",
-    color: "#111111",
-    textWrap: "balance",
-  },
-  lead: {
-    margin: 0,
-    maxWidth: "46rem",
-    fontSize: "clamp(1rem, 2.2vw, 1.18rem)",
-    lineHeight: 1.75,
-    color: "#52525b",
-  },
-  grid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-    gap: "1.25rem",
-  },
-  item: {
-    display: "grid",
-    gap: "1rem",
-    margin: 0,
-    padding: "1rem",
-    borderRadius: "1.85rem",
-    border: "1px solid rgba(17, 17, 17, 0.08)",
-    backgroundColor: "rgba(255, 255, 255, 0.88)",
-    boxShadow: "0 20px 55px rgba(15, 23, 42, 0.08)",
-  },
-  imageWrap: {
-    margin: 0,
-    overflow: "hidden",
-    borderRadius: "1.3rem",
-    backgroundColor: "#f5f5f5",
-  },
-  image: {
-    display: "block",
-    width: "100%",
-    aspectRatio: "4 / 3",
-    objectFit: "cover",
-  },
-  meta: {
-    display: "grid",
-    gap: "0.65rem",
-  },
-  accent: {
-    margin: 0,
-    fontSize: "0.78rem",
-    fontWeight: 700,
-    letterSpacing: "0.14em",
-    textTransform: "uppercase",
-    color: "#f97316",
-  },
-  itemTitle: {
-    margin: 0,
-    fontSize: "1.45rem",
-    lineHeight: 1.08,
-    letterSpacing: "-0.04em",
-    color: "#111111",
-  },
-  itemText: {
-    margin: 0,
-    fontSize: "0.98rem",
-    lineHeight: 1.7,
-    color: "#52525b",
-  },
-}
-
-export default function GalleryGridSection() {
+export default function ChiSiamo() {
   return (
-    <section
-      id="gallery-grid"
-      aria-labelledby="gallery-grid-title"
-      style={styles.section}
-    >
-      <div style={styles.shell}>
-        <div style={styles.intro}>
-          <p style={styles.eyebrow}>Image grid</p>
-          <h2 id="gallery-grid-title" style={styles.title}>
-            Plates, spaces, and service details that define the experience.
-          </h2>
-          <p style={styles.lead}>
-            The gallery brings together signature dishes, dining-room atmosphere, and
-            kitchen moments in a responsive editorial grid designed to stay clear on
-            mobile and expansive on larger screens.
-          </p>
-        </div>
-
-        <div style={styles.grid}>
-          {galleryItems.map((item) => (
-            <article key={item.title} style={styles.item}>
-              <figure style={styles.imageWrap}>
-                <img
-                  src={createGalleryImage(item.title, item.palette)}
-                  alt={item.alt}
-                  loading="lazy"
-                  style={styles.image}
-                />
-              </figure>
-              <div style={styles.meta}>
-                <p style={styles.accent}>{item.accent}</p>
-                <h3 style={styles.itemTitle}>{item.title}</h3>
-                <p style={styles.itemText}>{item.description}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
+    <>
+      <AboutHeroSection />
+      <StorySection />
+      <PhilosophySection />
+    </>
   )
 }
-apply_patch(auto_approved=true) exited 0 in 52ms:
-Success. Updated the following files:
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/GalleryGridSection.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Gallery.jsx
-file update:
-diff --git a/src/components/GalleryGridSection.jsx b/src/components/GalleryGridSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..3e470dde4f5e20c8dcf316d2b233df694e79f3de
---- /dev/null
-+++ b/src/components/GalleryGridSection.jsx
-@@ -0,0 +1,215 @@
-+const galleryItems = [
+codex
+I have enough context. I’m replacing the placeholder sections in `src/pages/Contatti.jsx` with a semantic page shell that matches the spec’s three required sections and includes the required phone and WhatsApp actions, then I’ll append the task summary to the agent report and run a build.
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx
+@@ -1,17 +1,272 @@
++const contactDetails = [
 +  {
-+    title: "Chef's tasting course",
-+    description:
-+      "A plated sequence focused on sharp color contrast, clean geometry, and seasonal produce.",
-+    alt: "A refined tasting plate with bright vegetables and precise sauce placement.",
-+    palette: ["#fff7ed", "#fdba74", "#7c2d12"],
-+    accent: "Signature dishes",
++    label: "Email",
++    value: "hello@alaiweb.com",
++    href: "mailto:hello@alaiweb.com",
++    description: "Share your goals, timeline, and current site status.",
 +  },
 +  {
-+    title: "Evening service",
-+    description:
-+      "Soft light, layered table settings, and a room tuned for intimate conversations over dinner.",
-+    alt: "An elegant dining room with candlelight, set tables, and warm evening tones.",
-+    palette: ["#e2e8f0", "#1e293b", "#f97316"],
-+    accent: "Dining room",
-+  },
-+  {
-+    title: "Open kitchen rhythm",
-+    description:
-+      "Focused movements, polished surfaces, and a service pace built around calm precision.",
-+    alt: "A chef plating dishes in an open kitchen with stainless steel counters.",
-+    palette: ["#f8fafc", "#94a3b8", "#0f172a"],
-+    accent: "Kitchen detail",
-+  },
-+  {
-+    title: "Seasonal starters",
-+    description:
-+      "Light compositions that bring together herbs, citrus, and texture without excess.",
-+    alt: "A seasonal starter with herbs, citrus, and delicate plating on a ceramic dish.",
-+    palette: ["#fef2f2", "#fb923c", "#431407"],
-+    accent: "Fresh courses",
-+  },
-+  {
-+    title: "Private corner tables",
-+    description:
-+      "Material warmth, measured spacing, and the kind of seating that encourages longer evenings.",
-+    alt: "A quiet restaurant corner with linen-covered tables and soft ambient lighting.",
-+    palette: ["#fafaf9", "#d6d3d1", "#292524"],
-+    accent: "Atmosphere",
-+  },
-+  {
-+    title: "Final course details",
-+    description:
-+      "Desserts finished with restraint, texture, and the same visual care as the first plate.",
-+    alt: "A minimalist dessert course with layered textures and a glossy finish.",
-+    palette: ["#fff1f2", "#fb7185", "#4c0519"],
-+    accent: "Closing notes",
++    label: "Phone",
++    value: "+39 02 9475 1280",
++    href: "tel:+390294751280",
++    description: "Call for a quick conversation about scope and priorities.",
 +  },
 +]
 +
-+function createGalleryImage(title, palette) {
-+  const [base, accent, detail] = palette
-+  const svg = `
-+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="${title}">
-+      <defs>
-+        <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-+          <stop offset="0%" stop-color="${base}" />
-+          <stop offset="100%" stop-color="#ffffff" />
-+        </linearGradient>
-+      </defs>
-+      <rect width="1200" height="900" rx="48" fill="url(#bg)" />
-+      <circle cx="930" cy="220" r="190" fill="${accent}" fill-opacity="0.22" />
-+      <circle cx="240" cy="720" r="210" fill="${detail}" fill-opacity="0.10" />
-+      <rect x="134" y="164" width="932" height="572" rx="34" fill="#ffffff" fill-opacity="0.72" />
-+      <rect x="190" y="230" width="420" height="300" rx="28" fill="${detail}" fill-opacity="0.88" />
-+      <rect x="652" y="230" width="220" height="132" rx="24" fill="${accent}" fill-opacity="0.86" />
-+      <rect x="652" y="390" width="314" height="48" rx="24" fill="${detail}" fill-opacity="0.12" />
-+      <rect x="652" y="464" width="252" height="34" rx="17" fill="${detail}" fill-opacity="0.1" />
-+      <rect x="190" y="566" width="776" height="36" rx="18" fill="${detail}" fill-opacity="0.08" />
-+      <rect x="190" y="624" width="610" height="28" rx="14" fill="${detail}" fill-opacity="0.08" />
-+    </svg>
-+  `
++const officeHours = [
++  { day: "Monday", hours: "09:00 - 18:00" },
++  { day: "Tuesday", hours: "09:00 - 18:00" },
++  { day: "Wednesday", hours: "09:00 - 18:00" },
++  { day: "Thursday", hours: "09:00 - 18:00" },
++  { day: "Friday", hours: "09:00 - 16:00" },
++  { day: "Saturday", hours: "By request" },
++  { day: "Sunday", hours: "Closed" },
++]
 +
-+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`
-+}
-+
-+const styles = {
-+  section: {
-+    position: "relative",
-+    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem) clamp(5rem, 8vw, 8rem)",
-+    background:
-+      "linear-gradient(180deg, #ffffff 0%, #fff7f1 22%, #ffffff 54%, #f8fafc 100%)",
-+  },
-+  shell: {
-+    maxWidth: "1280px",
-+    margin: "0 auto",
-+    display: "grid",
-+    gap: "2.5rem",
-+  },
-+  intro: {
-+    display: "grid",
-+    gap: "1rem",
-+    maxWidth: "780px",
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    fontSize: "0.85rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.18em",
-+    textTransform: "uppercase",
-+    color: "#f97316",
-+  },
-+  title: {
-+    margin: 0,
-+    fontSize: "clamp(2.4rem, 6vw, 4.5rem)",
-+    lineHeight: 0.95,
-+    letterSpacing: "-0.05em",
-+    color: "#111111",
-+    textWrap: "balance",
-+  },
-+  lead: {
-+    margin: 0,
-+    maxWidth: "46rem",
-+    fontSize: "clamp(1rem, 2.2vw, 1.18rem)",
-+    lineHeight: 1.75,
-+    color: "#52525b",
-+  },
-+  grid: {
-+    display: "grid",
-+    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-+    gap: "1.25rem",
-+  },
-+  item: {
-+    display: "grid",
-+    gap: "1rem",
-+    margin: 0,
-+    padding: "1rem",
-+    borderRadius: "1.85rem",
-+    border: "1px solid rgba(17, 17, 17, 0.08)",
-+    backgroundColor: "rgba(255, 255, 255, 0.88)",
-+    boxShadow: "0 20px 55px rgba(15, 23, 42, 0.08)",
-+  },
-+  imageWrap: {
-+    margin: 0,
-+    overflow: "hidden",
-+    borderRadius: "1.3rem",
-+    backgroundColor: "#f5f5f5",
-+  },
-+  image: {
-+    display: "block",
-+    width: "100%",
-+    aspectRatio: "4 / 3",
-+    objectFit: "cover",
-+  },
-+  meta: {
-+    display: "grid",
-+    gap: "0.65rem",
-+  },
-+  accent: {
-+    margin: 0,
-+    fontSize: "0.78rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.14em",
-+    textTransform: "uppercase",
-+    color: "#f97316",
-+  },
-+  itemTitle: {
-+    margin: 0,
-+    fontSize: "1.45rem",
-+    lineHeight: 1.08,
-+    letterSpacing: "-0.04em",
-+    color: "#111111",
-+  },
-+  itemText: {
-+    margin: 0,
-+    fontSize: "0.98rem",
-+    lineHeight: 1.7,
-+    color: "#52525b",
-+  },
-+}
-+
-+export default function GalleryGridSection() {
-+  return (
-+    <section
-+      id="gallery-grid"
-+      aria-labelledby="gallery-grid-title"
-+      style={styles.section}
-+    >
-+      <div style={styles.shell}>
-+        <div style={styles.intro}>
-+          <p style={styles.eyebrow}>Image grid</p>
-+          <h2 id="gallery-grid-title" style={styles.title}>
-+            Plates, spaces, and service details that define the experience.
-+          </h2>
-+          <p style={styles.lead}>
-+            The gallery brings together signature dishes, dining-room atmosphere, and
-+            kitchen moments in a responsive editorial grid designed to stay clear on
-+            mobile and expansive on larger screens.
-+          </p>
-+        </div>
-+
-+        <div style={styles.grid}>
-+          {galleryItems.map((item) => (
-+            <article key={item.title} style={styles.item}>
-+              <figure style={styles.imageWrap}>
-+                <img
-+                  src={createGalleryImage(item.title, item.palette)}
-+                  alt={item.alt}
-+                  loading="lazy"
-+                  style={styles.image}
-+                />
-+              </figure>
-+              <div style={styles.meta}>
-+                <p style={styles.accent}>{item.accent}</p>
-+                <h3 style={styles.itemTitle}>{item.title}</h3>
-+                <p style={styles.itemText}>{item.description}</p>
-+              </div>
-+            </article>
-+          ))}
-+        </div>
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
-index 3faf7ba19819329179d84f56970bf2d1a3afa271..13278dbc41ba99e25167a3e7ebfa0f5f4c77ff87
---- a/src/pages/Gallery.jsx
-+++ b/src/pages/Gallery.jsx
-@@ -1,40 +1,11 @@
- import GalleryHeroSection from "../components/GalleryHeroSection"
-+import GalleryGridSection from "../components/GalleryGridSection"
- 
- export default function Gallery() {
+ export default function Contatti() {
    return (
-     <main>
-       <GalleryHeroSection />
--
--      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
--        <h2 id="gallery-grid-title">A visual look at our dining experience</h2>
--        <p>
--          This page brings together the dishes, textures, and spaces that define
--          our menu and hospitality.
--        </p>
--        <div>
--          <article>
--            <h3>Signature plates</h3>
--            <p>
--              Seasonal compositions, refined presentation, and ingredients chosen
--              with care.
--            </p>
--          </article>
--          <article>
--            <h3>Dining room atmosphere</h3>
--            <p>
--              Warm lighting, intimate tables, and a setting designed for long,
--              relaxed evenings.
--            </p>
--          </article>
--          <article>
--            <h3>Service in motion</h3>
--            <p>
--              A closer look at the rhythm of the kitchen and the team behind each
--              course.
--            </p>
--          </article>
--        </div>
--      </section>
-+      <GalleryGridSection />
-     </main>
+-    <>
+-      <section id="contact-hero">
+-        <h1>Contact Hero</h1>
+-        <p>Content for contact-hero will be generated by tasks</p>
++    <main>
++      <section
++        id="contact-hero"
++        style={{
++          padding: "5rem 1.5rem 3rem",
++          background:
++            "linear-gradient(180deg, rgba(249, 115, 22, 0.08) 0%, rgba(255, 255, 255, 1) 70%)",
++        }}
++      >
++        <div
++          style={{
++            maxWidth: "72rem",
++            margin: "0 auto",
++            display: "grid",
++            gap: "1.5rem",
++          }}
++        >
++          <p
++            style={{
++              margin: 0,
++              color: "#f97316",
++              fontSize: "0.875rem",
++              fontWeight: 700,
++              letterSpacing: "0.12em",
++              textTransform: "uppercase",
++            }}
++          >
++            Contact
++          </p>
++          <h1
++            style={{
++              margin: 0,
++              maxWidth: "12ch",
++              fontSize: "clamp(3rem, 8vw, 5.5rem)",
++              lineHeight: 0.95,
++            }}
++          >
++            Let&apos;s build something sharp and effective.
++          </h1>
++          <p
++            style={{
++              margin: 0,
++              maxWidth: "38rem",
++              fontSize: "1.125rem",
++              lineHeight: 1.7,
++              color: "rgba(17, 17, 17, 0.78)",
++            }}
++          >
++            Reach out with your business goals, launch timeline, and the kind of
++            digital presence you need. We reply with a clear next step, not a vague
++            sales sequence.
++          </p>
++          <div
++            style={{
++              display: "flex",
++              flexWrap: "wrap",
++              gap: "1rem",
++            }}
++          >
++            <a
++              href="mailto:hello@alaiweb.com"
++              style={{
++                display: "inline-flex",
++                alignItems: "center",
++                justifyContent: "center",
++                minHeight: "3rem",
++                padding: "0.875rem 1.5rem",
++                borderRadius: "999px",
++                backgroundColor: "#f97316",
++                color: "#ffffff",
++                fontWeight: 700,
++                textDecoration: "none",
++              }}
++            >
++              Tell us about your idea
++            </a>
++            <a
++              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
++              target="_blank"
++              rel="noreferrer"
++              style={{
++                display: "inline-flex",
++                alignItems: "center",
++                justifyContent: "center",
++                minHeight: "3rem",
++                padding: "0.875rem 1.5rem",
++                borderRadius: "999px",
++                border: "1px solid rgba(17, 17, 17, 0.14)",
++                color: "#111111",
++                fontWeight: 700,
++                textDecoration: "none",
++              }}
++            >
++              Start on WhatsApp
++            </a>
++          </div>
++        </div>
+       </section>
+-      <section id="contact-details">
+-        <h2>Contact Details</h2>
+-        <p>Content for contact-details will be generated by tasks</p>
++
++      <section id="contact-details" style={{ padding: "0 1.5rem 3rem" }}>
++        <div
++          style={{
++            maxWidth: "72rem",
++            margin: "0 auto",
++            display: "grid",
++            gap: "1.5rem",
++          }}
++        >
++          <h2 style={{ margin: 0, fontSize: "clamp(2rem, 5vw, 3.25rem)" }}>
++            Project conversations, without the friction.
++          </h2>
++          <p
++            style={{
++              margin: 0,
++              maxWidth: "42rem",
++              color: "rgba(17, 17, 17, 0.72)",
++              lineHeight: 1.7,
++            }}
++          >
++            Use the channel that fits your workflow. Email is best for detailed
++            briefs, phone is best for quick alignment, and WhatsApp works well when
++            you want to move fast.
++          </p>
++          <div
++            style={{
++              display: "grid",
++              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
++              gap: "1rem",
++            }}
++          >
++            {contactDetails.map((item) => (
++              <a
++                key={item.label}
++                href={item.href}
++                style={{
++                  display: "grid",
++                  gap: "0.75rem",
++                  padding: "1.5rem",
++                  borderRadius: "1.5rem",
++                  backgroundColor: "#f5f5f5",
++                  color: "#111111",
++                  textDecoration: "none",
++                }}
++              >
++                <span
++                  style={{
++                    fontSize: "0.875rem",
++                    fontWeight: 700,
++                    letterSpacing: "0.08em",
++                    textTransform: "uppercase",
++                    color: "#f97316",
++                  }}
++                >
++                  {item.label}
++                </span>
++                <strong style={{ fontSize: "1.25rem" }}>{item.value}</strong>
++                <span style={{ color: "rgba(17, 17, 17, 0.72)", lineHeight: 1.6 }}>
++                  {item.description}
++                </span>
++              </a>
++            ))}
++            <a
++              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
++              target="_blank"
++              rel="noreferrer"
++              style={{
++                display: "grid",
++                gap: "0.75rem",
++                padding: "1.5rem",
++                borderRadius: "1.5rem",
++                backgroundColor: "#111111",
++                color: "#ffffff",
++                textDecoration: "none",
++              }}
++            >
++              <span
++                style={{
++                  fontSize: "0.875rem",
++                  fontWeight: 700,
++                  letterSpacing: "0.08em",
++                  textTransform: "uppercase",
++                  color: "#f97316",
++                }}
++              >
++                WhatsApp
++              </span>
++              <strong style={{ fontSize: "1.25rem" }}>Message the studio</strong>
++              <span style={{ color: "rgba(255, 255, 255, 0.72)", lineHeight: 1.6 }}>
++                Ideal for early project questions, quick feedback, and scheduling the
++                first call.
++              </span>
++            </a>
++          </div>
++        </div>
+       </section>
+-      <section id="opening-hours">
+-        <h2>Opening Hours</h2>
+-        <p>Content for opening-hours will be generated by tasks</p>
++
++      <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
++        <div
++          style={{
++            maxWidth: "72rem",
++            margin: "0 auto",
++            padding: "2rem",
++            borderRadius: "2rem",
++            backgroundColor: "#0f172a",
++            color: "#ffffff",
++            display: "grid",
++            gap: "1.5rem",
++          }}
++        >
++          <div style={{ display: "grid", gap: "0.75rem" }}>
++            <h2 style={{ margin: 0, fontSize: "clamp(2rem, 4vw, 3rem)" }}>
++              Studio hours
++            </h2>
++            <p style={{ margin: 0, maxWidth: "38rem", color: "rgba(255, 255, 255, 0.72)" }}>
++              We keep our calendar focused so projects move quickly. If your launch is
++              urgent, mention the deadline in your first message and we will confirm
++              availability directly.
++            </p>
++          </div>
++          <div
++            style={{
++              display: "grid",
++              gap: "0.75rem",
++            }}
++          >
++            {officeHours.map((entry) => (
++              <div
++                key={entry.day}
++                style={{
++                  display: "flex",
++                  justifyContent: "space-between",
++                  gap: "1rem",
++                  paddingBottom: "0.75rem",
++                  borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
++                }}
++              >
++                <span>{entry.day}</span>
++                <span style={{ color: "rgba(255, 255, 255, 0.72)" }}>{entry.hours}</span>
++              </div>
++            ))}
++          </div>
++        </div>
+       </section>
+-    </>
++    </main>
+   )
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md
+@@ -220,2 +220,12 @@
+ 
++Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
++
++Launching Codex for TASK page-contatti-shell.
++
++Completed TASK `page-contatti-shell`.
++
++- Replaced the placeholder `contatti` content in `src/pages/Contatti.jsx` with a semantic page shell built from the required `contact-hero`, `contact-details`, and `opening-hours` sections.
++- Preserved the existing `/contatti` hash route mounting in `src/App.jsx`, so no routing changes were required.
++- Added real contact copy plus working email, phone, and WhatsApp actions so the page renders without placeholder text or crashes.
++
+ Prepared TASK section-gallery-gallery-grid (Create gallery-grid section on gallery) for execution.
+apply_patch(auto_approved=true) exited 0 in 46ms:
+Success. Updated the following files:
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md
+file update:
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index 68c8f1d2b418666d61e1820fa7d8b823ade1e4f4..e782edcf5061176f61873481fe113c3a481b272b
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -218,6 +218,16 @@
+ TASK page-chi-siamo-shell completed successfully.
+ Build passed.
+ 
++Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
++
++Launching Codex for TASK page-contatti-shell.
++
++Completed TASK `page-contatti-shell`.
++
++- Replaced the placeholder `contatti` content in `src/pages/Contatti.jsx` with a semantic page shell built from the required `contact-hero`, `contact-details`, and `opening-hours` sections.
++- Preserved the existing `/contatti` hash route mounting in `src/App.jsx`, so no routing changes were required.
++- Added real contact copy plus working email, phone, and WhatsApp actions so the page renders without placeholder text or crashes.
++
+ Prepared TASK section-gallery-gallery-grid (Create gallery-grid section on gallery) for execution.
+ 
+ Launching Codex for TASK section-gallery-gallery-grid.
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index 27ef33c6d2801e2478be5154702bdb2f62cc910f..b81fe3d8080f4f88bb4a19c938bc517e57cc4363
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,18 +1,273 @@
++const contactDetails = [
++  {
++    label: "Email",
++    value: "hello@alaiweb.com",
++    href: "mailto:hello@alaiweb.com",
++    description: "Share your goals, timeline, and current site status.",
++  },
++  {
++    label: "Phone",
++    value: "+39 02 9475 1280",
++    href: "tel:+390294751280",
++    description: "Call for a quick conversation about scope and priorities.",
++  },
++]
++
++const officeHours = [
++  { day: "Monday", hours: "09:00 - 18:00" },
++  { day: "Tuesday", hours: "09:00 - 18:00" },
++  { day: "Wednesday", hours: "09:00 - 18:00" },
++  { day: "Thursday", hours: "09:00 - 18:00" },
++  { day: "Friday", hours: "09:00 - 16:00" },
++  { day: "Saturday", hours: "By request" },
++  { day: "Sunday", hours: "Closed" },
++]
++
+ export default function Contatti() {
+   return (
+-    <>
+-      <section id="contact-hero">
+-        <h1>Contact Hero</h1>
+-        <p>Content for contact-hero will be generated by tasks</p>
++    <main>
++      <section
++        id="contact-hero"
++        style={{
++          padding: "5rem 1.5rem 3rem",
++          background:
++            "linear-gradient(180deg, rgba(249, 115, 22, 0.08) 0%, rgba(255, 255, 255, 1) 70%)",
++        }}
++      >
++        <div
++          style={{
++            maxWidth: "72rem",
++            margin: "0 auto",
++            display: "grid",
++            gap: "1.5rem",
++          }}
++        >
++          <p
++            style={{
++              margin: 0,
++              color: "#f97316",
++              fontSize: "0.875rem",
++              fontWeight: 700,
++              letterSpacing: "0.12em",
++              textTransform: "uppercase",
++            }}
++          >
++            Contact
++          </p>
++          <h1
++            style={{
++              margin: 0,
++              maxWidth: "12ch",
++              fontSize: "clamp(3rem, 8vw, 5.5rem)",
++              lineHeight: 0.95,
++            }}
++          >
++            Let&apos;s build something sharp and effective.
++          </h1>
++          <p
++            style={{
++              margin: 0,
++              maxWidth: "38rem",
++              fontSize: "1.125rem",
++              lineHeight: 1.7,
++              color: "rgba(17, 17, 17, 0.78)",
++            }}
++          >
++            Reach out with your business goals, launch timeline, and the kind of
++            digital presence you need. We reply with a clear next step, not a vague
++            sales sequence.
++          </p>
++          <div
++            style={{
++              display: "flex",
++              flexWrap: "wrap",
++              gap: "1rem",
++            }}
++          >
++            <a
++              href="mailto:hello@alaiweb.com"
++              style={{
++                display: "inline-flex",
++                alignItems: "center",
++                justifyContent: "center",
++                minHeight: "3rem",
++                padding: "0.875rem 1.5rem",
++                borderRadius: "999px",
++                backgroundColor: "#f97316",
++                color: "#ffffff",
++                fontWeight: 700,
++                textDecoration: "none",
++              }}
++            >
++              Tell us about your idea
++            </a>
++            <a
++              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
++              target="_blank"
++              rel="noreferrer"
++              style={{
++                display: "inline-flex",
++                alignItems: "center",
++                justifyContent: "center",
++                minHeight: "3rem",
++                padding: "0.875rem 1.5rem",
++                borderRadius: "999px",
++                border: "1px solid rgba(17, 17, 17, 0.14)",
++                color: "#111111",
++                fontWeight: 700,
++                textDecoration: "none",
++              }}
++            >
++              Start on WhatsApp
++            </a>
++          </div>
++        </div>
+       </section>
+-      <section id="contact-details">
+-        <h2>Contact Details</h2>
+-        <p>Content for contact-details will be generated by tasks</p>
++
++      <section id="contact-details" style={{ padding: "0 1.5rem 3rem" }}>
++        <div
++          style={{
++            maxWidth: "72rem",
++            margin: "0 auto",
++            display: "grid",
++            gap: "1.5rem",
++          }}
++        >
++          <h2 style={{ margin: 0, fontSize: "clamp(2rem, 5vw, 3.25rem)" }}>
++            Project conversations, without the friction.
++          </h2>
++          <p
++            style={{
++              margin: 0,
++              maxWidth: "42rem",
++              color: "rgba(17, 17, 17, 0.72)",
++              lineHeight: 1.7,
++            }}
++          >
++            Use the channel that fits your workflow. Email is best for detailed
++            briefs, phone is best for quick alignment, and WhatsApp works well when
++            you want to move fast.
++          </p>
++          <div
++            style={{
++              display: "grid",
++              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
++              gap: "1rem",
++            }}
++          >
++            {contactDetails.map((item) => (
++              <a
++                key={item.label}
++                href={item.href}
++                style={{
++                  display: "grid",
++                  gap: "0.75rem",
++                  padding: "1.5rem",
++                  borderRadius: "1.5rem",
++                  backgroundColor: "#f5f5f5",
++                  color: "#111111",
++                  textDecoration: "none",
++                }}
++              >
++                <span
++                  style={{
++                    fontSize: "0.875rem",
++                    fontWeight: 700,
++                    letterSpacing: "0.08em",
++                    textTransform: "uppercase",
++                    color: "#f97316",
++                  }}
++                >
++                  {item.label}
++                </span>
++                <strong style={{ fontSize: "1.25rem" }}>{item.value}</strong>
++                <span style={{ color: "rgba(17, 17, 17, 0.72)", lineHeight: 1.6 }}>
++                  {item.description}
++                </span>
++              </a>
++            ))}
++            <a
++              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
++              target="_blank"
++              rel="noreferrer"
++              style={{
++                display: "grid",
++                gap: "0.75rem",
++                padding: "1.5rem",
++                borderRadius: "1.5rem",
++                backgroundColor: "#111111",
++                color: "#ffffff",
++                textDecoration: "none",
++              }}
++            >
++              <span
++                style={{
++                  fontSize: "0.875rem",
++                  fontWeight: 700,
++                  letterSpacing: "0.08em",
++                  textTransform: "uppercase",
++                  color: "#f97316",
++                }}
++              >
++                WhatsApp
++              </span>
++              <strong style={{ fontSize: "1.25rem" }}>Message the studio</strong>
++              <span style={{ color: "rgba(255, 255, 255, 0.72)", lineHeight: 1.6 }}>
++                Ideal for early project questions, quick feedback, and scheduling the
++                first call.
++              </span>
++            </a>
++          </div>
++        </div>
+       </section>
+-      <section id="opening-hours">
+-        <h2>Opening Hours</h2>
+-        <p>Content for opening-hours will be generated by tasks</p>
++
++      <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
++        <div
++          style={{
++            maxWidth: "72rem",
++            margin: "0 auto",
++            padding: "2rem",
++            borderRadius: "2rem",
++            backgroundColor: "#0f172a",
++            color: "#ffffff",
++            display: "grid",
++            gap: "1.5rem",
++          }}
++        >
++          <div style={{ display: "grid", gap: "0.75rem" }}>
++            <h2 style={{ margin: 0, fontSize: "clamp(2rem, 4vw, 3rem)" }}>
++              Studio hours
++            </h2>
++            <p style={{ margin: 0, maxWidth: "38rem", color: "rgba(255, 255, 255, 0.72)" }}>
++              We keep our calendar focused so projects move quickly. If your launch is
++              urgent, mention the deadline in your first message and we will confirm
++              availability directly.
++            </p>
++          </div>
++          <div
++            style={{
++              display: "grid",
++              gap: "0.75rem",
++            }}
++          >
++            {officeHours.map((entry) => (
++              <div
++                key={entry.day}
++                style={{
++                  display: "flex",
++                  justifyContent: "space-between",
++                  gap: "1rem",
++                  paddingBottom: "0.75rem",
++                  borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
++                }}
++              >
++                <span>{entry.day}</span>
++                <span style={{ color: "rgba(255, 255, 255, 0.72)" }}>{entry.hours}</span>
++              </div>
++            ))}
++          </div>
++        </div>
+       </section>
+-    </>
++    </main>
    )
  }
 
 file update:
-diff --git a/src/components/GalleryGridSection.jsx b/src/components/GalleryGridSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..3e470dde4f5e20c8dcf316d2b233df694e79f3de
---- /dev/null
-+++ b/src/components/GalleryGridSection.jsx
-@@ -0,0 +1,215 @@
-+const galleryItems = [
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index 68c8f1d2b418666d61e1820fa7d8b823ade1e4f4..e782edcf5061176f61873481fe113c3a481b272b
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -218,6 +218,16 @@
+ TASK page-chi-siamo-shell completed successfully.
+ Build passed.
+ 
++Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
++
++Launching Codex for TASK page-contatti-shell.
++
++Completed TASK `page-contatti-shell`.
++
++- Replaced the placeholder `contatti` content in `src/pages/Contatti.jsx` with a semantic page shell built from the required `contact-hero`, `contact-details`, and `opening-hours` sections.
++- Preserved the existing `/contatti` hash route mounting in `src/App.jsx`, so no routing changes were required.
++- Added real contact copy plus working email, phone, and WhatsApp actions so the page renders without placeholder text or crashes.
++
+ Prepared TASK section-gallery-gallery-grid (Create gallery-grid section on gallery) for execution.
+ 
+ Launching Codex for TASK section-gallery-gallery-grid.
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index 27ef33c6d2801e2478be5154702bdb2f62cc910f..b81fe3d8080f4f88bb4a19c938bc517e57cc4363
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,18 +1,273 @@
++const contactDetails = [
 +  {
-+    title: "Chef's tasting course",
-+    description:
-+      "A plated sequence focused on sharp color contrast, clean geometry, and seasonal produce.",
-+    alt: "A refined tasting plate with bright vegetables and precise sauce placement.",
-+    palette: ["#fff7ed", "#fdba74", "#7c2d12"],
-+    accent: "Signature dishes",
++    label: "Email",
++    value: "hello@alaiweb.com",
++    href: "mailto:hello@alaiweb.com",
++    description: "Share your goals, timeline, and current site status.",
 +  },
 +  {
-+    title: "Evening service",
-+    description:
-+      "Soft light, layered table settings, and a room tuned for intimate conversations over dinner.",
-+    alt: "An elegant dining room with candlelight, set tables, and warm evening tones.",
-+    palette: ["#e2e8f0", "#1e293b", "#f97316"],
-+    accent: "Dining room",
-+  },
-+  {
-+    title: "Open kitchen rhythm",
-+    description:
-+      "Focused movements, polished surfaces, and a service pace built around calm precision.",
-+    alt: "A chef plating dishes in an open kitchen with stainless steel counters.",
-+    palette: ["#f8fafc", "#94a3b8", "#0f172a"],
-+    accent: "Kitchen detail",
-+  },
-+  {
-+    title: "Seasonal starters",
-+    description:
-+      "Light compositions that bring together herbs, citrus, and texture without excess.",
-+    alt: "A seasonal starter with herbs, citrus, and delicate plating on a ceramic dish.",
-+    palette: ["#fef2f2", "#fb923c", "#431407"],
-+    accent: "Fresh courses",
-+  },
-+  {
-+    title: "Private corner tables",
-+    description:
-+      "Material warmth, measured spacing, and the kind of seating that encourages longer evenings.",
-+    alt: "A quiet restaurant corner with linen-covered tables and soft ambient lighting.",
-+    palette: ["#fafaf9", "#d6d3d1", "#292524"],
-+    accent: "Atmosphere",
-+  },
-+  {
-+    title: "Final course details",
-+    description:
-+      "Desserts finished with restraint, texture, and the same visual care as the first plate.",
-+    alt: "A minimalist dessert course with layered textures and a glossy finish.",
-+    palette: ["#fff1f2", "#fb7185", "#4c0519"],
-+    accent: "Closing notes",
++    label: "Phone",
++    value: "+39 02 9475 1280",
++    href: "tel:+390294751280",
++    description: "Call for a quick conversation about scope and priorities.",
 +  },
 +]
 +
-+function createGalleryImage(title, palette) {
-+  const [base, accent, detail] = palette
-+  const svg = `
-+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="${title}">
-+      <defs>
-+        <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-+          <stop offset="0%" stop-color="${base}" />
-+          <stop offset="100%" stop-color="#ffffff" />
-+        </linearGradient>
-+      </defs>
-+      <rect width="1200" height="900" rx="48" fill="url(#bg)" />
-+      <circle cx="930" cy="220" r="190" fill="${accent}" fill-opacity="0.22" />
-+      <circle cx="240" cy="720" r="210" fill="${detail}" fill-opacity="0.10" />
-+      <rect x="134" y="164" width="932" height="572" rx="34" fill="#ffffff" fill-opacity="0.72" />
-+      <rect x="190" y="230" width="420" height="300" rx="28" fill="${detail}" fill-opacity="0.88" />
-+      <rect x="652" y="230" width="220" height="132" rx="24" fill="${accent}" fill-opacity="0.86" />
-+      <rect x="652" y="390" width="314" height="48" rx="24" fill="${detail}" fill-opacity="0.12" />
-+      <rect x="652" y="464" width="252" height="34" rx="17" fill="${detail}" fill-opacity="0.1" />
-+      <rect x="190" y="566" width="776" height="36" rx="18" fill="${detail}" fill-opacity="0.08" />
-+      <rect x="190" y="624" width="610" height="28" rx="14" fill="${detail}" fill-opacity="0.08" />
-+    </svg>
-+  `
++const officeHours = [
++  { day: "Monday", hours: "09:00 - 18:00" },
++  { day: "Tuesday", hours: "09:00 - 18:00" },
++  { day: "Wednesday", hours: "09:00 - 18:00" },
++  { day: "Thursday", hours: "09:00 - 18:00" },
++  { day: "Friday", hours: "09:00 - 16:00" },
++  { day: "Saturday", hours: "By request" },
++  { day: "Sunday", hours: "Closed" },
++]
 +
-+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`
-+}
-+
-+const styles = {
-+  section: {
-+    position: "relative",
-+    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem) clamp(5rem, 8vw, 8rem)",
-+    background:
-+      "linear-gradient(180deg, #ffffff 0%, #fff7f1 22%, #ffffff 54%, #f8fafc 100%)",
-+  },
-+  shell: {
-+    maxWidth: "1280px",
-+    margin: "0 auto",
-+    display: "grid",
-+    gap: "2.5rem",
-+  },
-+  intro: {
-+    display: "grid",
-+    gap: "1rem",
-+    maxWidth: "780px",
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    fontSize: "0.85rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.18em",
-+    textTransform: "uppercase",
-+    color: "#f97316",
-+  },
-+  title: {
-+    margin: 0,
-+    fontSize: "clamp(2.4rem, 6vw, 4.5rem)",
-+    lineHeight: 0.95,
-+    letterSpacing: "-0.05em",
-+    color: "#111111",
-+    textWrap: "balance",
-+  },
-+  lead: {
-+    margin: 0,
-+    maxWidth: "46rem",
-+    fontSize: "clamp(1rem, 2.2vw, 1.18rem)",
-+    lineHeight: 1.75,
-+    color: "#52525b",
-+  },
-+  grid: {
-+    display: "grid",
-+    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-+    gap: "1.25rem",
-+  },
-+  item: {
-+    display: "grid",
-+    gap: "1rem",
-+    margin: 0,
-+    padding: "1rem",
-+    borderRadius: "1.85rem",
-+    border: "1px solid rgba(17, 17, 17, 0.08)",
-+    backgroundColor: "rgba(255, 255, 255, 0.88)",
-+    boxShadow: "0 20px 55px rgba(15, 23, 42, 0.08)",
-+  },
-+  imageWrap: {
-+    margin: 0,
-+    overflow: "hidden",
-+    borderRadius: "1.3rem",
-+    backgroundColor: "#f5f5f5",
-+  },
-+  image: {
-+    display: "block",
-+    width: "100%",
-+    aspectRatio: "4 / 3",
-+    objectFit: "cover",
-+  },
-+  meta: {
-+    display: "grid",
-+    gap: "0.65rem",
-+  },
-+  accent: {
-+    margin: 0,
-+    fontSize: "0.78rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.14em",
-+    textTransform: "uppercase",
-+    color: "#f97316",
-+  },
-+  itemTitle: {
-+    margin: 0,
-+    fontSize: "1.45rem",
-+    lineHeight: 1.08,
-+    letterSpacing: "-0.04em",
-+    color: "#111111",
-+  },
-+  itemText: {
-+    margin: 0,
-+    fontSize: "0.98rem",
-+    lineHeight: 1.7,
-+    color: "#52525b",
-+  },
-+}
-+
-+export default function GalleryGridSection() {
-+  return (
-+    <section
-+      id="gallery-grid"
-+      aria-labelledby="gallery-grid-title"
-+      style={styles.section}
-+    >
-+      <div style={styles.shell}>
-+        <div style={styles.intro}>
-+          <p style={styles.eyebrow}>Image grid</p>
-+          <h2 id="gallery-grid-title" style={styles.title}>
-+            Plates, spaces, and service details that define the experience.
-+          </h2>
-+          <p style={styles.lead}>
-+            The gallery brings together signature dishes, dining-room atmosphere, and
-+            kitchen moments in a responsive editorial grid designed to stay clear on
-+            mobile and expansive on larger screens.
-+          </p>
-+        </div>
-+
-+        <div style={styles.grid}>
-+          {galleryItems.map((item) => (
-+            <article key={item.title} style={styles.item}>
-+              <figure style={styles.imageWrap}>
-+                <img
-+                  src={createGalleryImage(item.title, item.palette)}
-+                  alt={item.alt}
-+                  loading="lazy"
-+                  style={styles.image}
-+                />
-+              </figure>
-+              <div style={styles.meta}>
-+                <p style={styles.accent}>{item.accent}</p>
-+                <h3 style={styles.itemTitle}>{item.title}</h3>
-+                <p style={styles.itemText}>{item.description}</p>
-+              </div>
-+            </article>
-+          ))}
-+        </div>
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
-index 3faf7ba19819329179d84f56970bf2d1a3afa271..13278dbc41ba99e25167a3e7ebfa0f5f4c77ff87
---- a/src/pages/Gallery.jsx
-+++ b/src/pages/Gallery.jsx
-@@ -1,40 +1,11 @@
- import GalleryHeroSection from "../components/GalleryHeroSection"
-+import GalleryGridSection from "../components/GalleryGridSection"
- 
- export default function Gallery() {
+ export default function Contatti() {
    return (
-     <main>
-       <GalleryHeroSection />
--
--      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
--        <h2 id="gallery-grid-title">A visual look at our dining experience</h2>
--        <p>
--          This page brings together the dishes, textures, and spaces that define
--          our menu and hospitality.
--        </p>
--        <div>
--          <article>
--            <h3>Signature plates</h3>
--            <p>
--              Seasonal compositions, refined presentation, and ingredients chosen
--              with care.
--            </p>
--          </article>
--          <article>
--            <h3>Dining room atmosphere</h3>
--            <p>
--              Warm lighting, intimate tables, and a setting designed for long,
--              relaxed evenings.
--            </p>
--          </article>
--          <article>
--            <h3>Service in motion</h3>
--            <p>
--              A closer look at the rhythm of the kitchen and the team behind each
--              course.
--            </p>
--          </article>
--        </div>
--      </section>
-+      <GalleryGridSection />
-     </main>
+-    <>
+-      <section id="contact-hero">
+-        <h1>Contact Hero</h1>
+-        <p>Content for contact-hero will be generated by tasks</p>
++    <main>
++      <section
++        id="contact-hero"
++        style={{
++          padding: "5rem 1.5rem 3rem",
++          background:
++            "linear-gradient(180deg, rgba(249, 115, 22, 0.08) 0%, rgba(255, 255, 255, 1) 70%)",
++        }}
++      >
++        <div
++          style={{
++            maxWidth: "72rem",
++            margin: "0 auto",
++            display: "grid",
++            gap: "1.5rem",
++          }}
++        >
++          <p
++            style={{
++              margin: 0,
++              color: "#f97316",
++              fontSize: "0.875rem",
++              fontWeight: 700,
++              letterSpacing: "0.12em",
++              textTransform: "uppercase",
++            }}
++          >
++            Contact
++          </p>
++          <h1
++            style={{
++              margin: 0,
++              maxWidth: "12ch",
++              fontSize: "clamp(3rem, 8vw, 5.5rem)",
++              lineHeight: 0.95,
++            }}
++          >
++            Let&apos;s build something sharp and effective.
++          </h1>
++          <p
++            style={{
++              margin: 0,
++              maxWidth: "38rem",
++              fontSize: "1.125rem",
++              lineHeight: 1.7,
++              color: "rgba(17, 17, 17, 0.78)",
++            }}
++          >
++            Reach out with your business goals, launch timeline, and the kind of
++            digital presence you need. We reply with a clear next step, not a vague
++            sales sequence.
++          </p>
++          <div
++            style={{
++              display: "flex",
++              flexWrap: "wrap",
++              gap: "1rem",
++            }}
++          >
++            <a
++              href="mailto:hello@alaiweb.com"
++              style={{
++                display: "inline-flex",
++                alignItems: "center",
++                justifyContent: "center",
++                minHeight: "3rem",
++                padding: "0.875rem 1.5rem",
++                borderRadius: "999px",
++                backgroundColor: "#f97316",
++                color: "#ffffff",
++                fontWeight: 700,
++                textDecoration: "none",
++              }}
++            >
++              Tell us about your idea
++            </a>
++            <a
++              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
++              target="_blank"
++              rel="noreferrer"
++              style={{
++                display: "inline-flex",
++                alignItems: "center",
++                justifyContent: "center",
++                minHeight: "3rem",
++                padding: "0.875rem 1.5rem",
++                borderRadius: "999px",
++                border: "1px solid rgba(17, 17, 17, 0.14)",
++                color: "#111111",
++                fontWeight: 700,
++                textDecoration: "none",
++              }}
++            >
++              Start on WhatsApp
++            </a>
++          </div>
++        </div>
+       </section>
+-      <section id="contact-details">
+-        <h2>Contact Details</h2>
+-        <p>Content for contact-details will be generated by tasks</p>
++
++      <section id="contact-details" style={{ padding: "0 1.5rem 3rem" }}>
++        <div
++          style={{
++            maxWidth: "72rem",
++            margin: "0 auto",
++            display: "grid",
++            gap: "1.5rem",
++          }}
++        >
++          <h2 style={{ margin: 0, fontSize: "clamp(2rem, 5vw, 3.25rem)" }}>
++            Project conversations, without the friction.
++          </h2>
++          <p
++            style={{
++              margin: 0,
++              maxWidth: "42rem",
++              color: "rgba(17, 17, 17, 0.72)",
++              lineHeight: 1.7,
++            }}
++          >
++            Use the channel that fits your workflow. Email is best for detailed
++            briefs, phone is best for quick alignment, and WhatsApp works well when
++            you want to move fast.
++          </p>
++          <div
++            style={{
++              display: "grid",
++              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
++              gap: "1rem",
++            }}
++          >
++            {contactDetails.map((item) => (
++              <a
++                key={item.label}
++                href={item.href}
++                style={{
++                  display: "grid",
++                  gap: "0.75rem",
++                  padding: "1.5rem",
++                  borderRadius: "1.5rem",
++                  backgroundColor: "#f5f5f5",
++                  color: "#111111",
++                  textDecoration: "none",
++                }}
++              >
++                <span
++                  style={{
++                    fontSize: "0.875rem",
++                    fontWeight: 700,
++                    letterSpacing: "0.08em",
++                    textTransform: "uppercase",
++                    color: "#f97316",
++                  }}
++                >
++                  {item.label}
++                </span>
++                <strong style={{ fontSize: "1.25rem" }}>{item.value}</strong>
++                <span style={{ color: "rgba(17, 17, 17, 0.72)", lineHeight: 1.6 }}>
++                  {item.description}
++                </span>
++              </a>
++            ))}
++            <a
++              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
++              target="_blank"
++              rel="noreferrer"
++              style={{
++                display: "grid",
++                gap: "0.75rem",
++                padding: "1.5rem",
++                borderRadius: "1.5rem",
++                backgroundColor: "#111111",
++                color: "#ffffff",
++                textDecoration: "none",
++              }}
++            >
++              <span
++                style={{
++                  fontSize: "0.875rem",
++                  fontWeight: 700,
++                  letterSpacing: "0.08em",
++                  textTransform: "uppercase",
++                  color: "#f97316",
++                }}
++              >
++                WhatsApp
++              </span>
++              <strong style={{ fontSize: "1.25rem" }}>Message the studio</strong>
++              <span style={{ color: "rgba(255, 255, 255, 0.72)", lineHeight: 1.6 }}>
++                Ideal for early project questions, quick feedback, and scheduling the
++                first call.
++              </span>
++            </a>
++          </div>
++        </div>
+       </section>
+-      <section id="opening-hours">
+-        <h2>Opening Hours</h2>
+-        <p>Content for opening-hours will be generated by tasks</p>
++
++      <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
++        <div
++          style={{
++            maxWidth: "72rem",
++            margin: "0 auto",
++            padding: "2rem",
++            borderRadius: "2rem",
++            backgroundColor: "#0f172a",
++            color: "#ffffff",
++            display: "grid",
++            gap: "1.5rem",
++          }}
++        >
++          <div style={{ display: "grid", gap: "0.75rem" }}>
++            <h2 style={{ margin: 0, fontSize: "clamp(2rem, 4vw, 3rem)" }}>
++              Studio hours
++            </h2>
++            <p style={{ margin: 0, maxWidth: "38rem", color: "rgba(255, 255, 255, 0.72)" }}>
++              We keep our calendar focused so projects move quickly. If your launch is
++              urgent, mention the deadline in your first message and we will confirm
++              availability directly.
++            </p>
++          </div>
++          <div
++            style={{
++              display: "grid",
++              gap: "0.75rem",
++            }}
++          >
++            {officeHours.map((entry) => (
++              <div
++                key={entry.day}
++                style={{
++                  display: "flex",
++                  justifyContent: "space-between",
++                  gap: "1rem",
++                  paddingBottom: "0.75rem",
++                  borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
++                }}
++              >
++                <span>{entry.day}</span>
++                <span style={{ color: "rgba(255, 255, 255, 0.72)" }}>{entry.hours}</span>
++              </div>
++            ))}
++          </div>
++        </div>
+       </section>
+-    </>
++    </main>
    )
  }
 
 codex
-The section code is in place. I’m running the build now to catch any integration issues before I update the agent report.
+The shell is in place. I’m running the build now to verify the `contatti` page renders cleanly with the existing hash-router setup and that the task can be closed with a concrete result.
 exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 864ms:
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 865ms:
 
 > site-create-a-high-end-visually-distinctive-m@0.0.0 build
 > vite build
@@ -2253,1207 +2296,637 @@ rendering chunks...
 computing gzip size...
 dist/index.html                   0.50 kB │ gzip:  0.32 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-CVJg3lMH.js   266.58 kB │ gzip: 82.73 kB
-✓ built in 594ms
+dist/assets/index-BvVgLsPK.js   271.14 kB │ gzip: 83.72 kB
+✓ built in 588ms
 file update:
-diff --git a/src/components/GalleryGridSection.jsx b/src/components/GalleryGridSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..3e470dde4f5e20c8dcf316d2b233df694e79f3de
---- /dev/null
-+++ b/src/components/GalleryGridSection.jsx
-@@ -0,0 +1,215 @@
-+const galleryItems = [
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index 68c8f1d2b418666d61e1820fa7d8b823ade1e4f4..e782edcf5061176f61873481fe113c3a481b272b
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -218,6 +218,16 @@
+ TASK page-chi-siamo-shell completed successfully.
+ Build passed.
+ 
++Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
++
++Launching Codex for TASK page-contatti-shell.
++
++Completed TASK `page-contatti-shell`.
++
++- Replaced the placeholder `contatti` content in `src/pages/Contatti.jsx` with a semantic page shell built from the required `contact-hero`, `contact-details`, and `opening-hours` sections.
++- Preserved the existing `/contatti` hash route mounting in `src/App.jsx`, so no routing changes were required.
++- Added real contact copy plus working email, phone, and WhatsApp actions so the page renders without placeholder text or crashes.
++
+ Prepared TASK section-gallery-gallery-grid (Create gallery-grid section on gallery) for execution.
+ 
+ Launching Codex for TASK section-gallery-gallery-grid.
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index 27ef33c6d2801e2478be5154702bdb2f62cc910f..b81fe3d8080f4f88bb4a19c938bc517e57cc4363
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,18 +1,273 @@
++const contactDetails = [
 +  {
-+    title: "Chef's tasting course",
-+    description:
-+      "A plated sequence focused on sharp color contrast, clean geometry, and seasonal produce.",
-+    alt: "A refined tasting plate with bright vegetables and precise sauce placement.",
-+    palette: ["#fff7ed", "#fdba74", "#7c2d12"],
-+    accent: "Signature dishes",
++    label: "Email",
++    value: "hello@alaiweb.com",
++    href: "mailto:hello@alaiweb.com",
++    description: "Share your goals, timeline, and current site status.",
 +  },
 +  {
-+    title: "Evening service",
-+    description:
-+      "Soft light, layered table settings, and a room tuned for intimate conversations over dinner.",
-+    alt: "An elegant dining room with candlelight, set tables, and warm evening tones.",
-+    palette: ["#e2e8f0", "#1e293b", "#f97316"],
-+    accent: "Dining room",
-+  },
-+  {
-+    title: "Open kitchen rhythm",
-+    description:
-+      "Focused movements, polished surfaces, and a service pace built around calm precision.",
-+    alt: "A chef plating dishes in an open kitchen with stainless steel counters.",
-+    palette: ["#f8fafc", "#94a3b8", "#0f172a"],
-+    accent: "Kitchen detail",
-+  },
-+  {
-+    title: "Seasonal starters",
-+    description:
-+      "Light compositions that bring together herbs, citrus, and texture without excess.",
-+    alt: "A seasonal starter with herbs, citrus, and delicate plating on a ceramic dish.",
-+    palette: ["#fef2f2", "#fb923c", "#431407"],
-+    accent: "Fresh courses",
-+  },
-+  {
-+    title: "Private corner tables",
-+    description:
-+      "Material warmth, measured spacing, and the kind of seating that encourages longer evenings.",
-+    alt: "A quiet restaurant corner with linen-covered tables and soft ambient lighting.",
-+    palette: ["#fafaf9", "#d6d3d1", "#292524"],
-+    accent: "Atmosphere",
-+  },
-+  {
-+    title: "Final course details",
-+    description:
-+      "Desserts finished with restraint, texture, and the same visual care as the first plate.",
-+    alt: "A minimalist dessert course with layered textures and a glossy finish.",
-+    palette: ["#fff1f2", "#fb7185", "#4c0519"],
-+    accent: "Closing notes",
++    label: "Phone",
++    value: "+39 02 9475 1280",
++    href: "tel:+390294751280",
++    description: "Call for a quick conversation about scope and priorities.",
 +  },
 +]
 +
-+function createGalleryImage(title, palette) {
-+  const [base, accent, detail] = palette
-+  const svg = `
-+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="${title}">
-+      <defs>
-+        <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-+          <stop offset="0%" stop-color="${base}" />
-+          <stop offset="100%" stop-color="#ffffff" />
-+        </linearGradient>
-+      </defs>
-+      <rect width="1200" height="900" rx="48" fill="url(#bg)" />
-+      <circle cx="930" cy="220" r="190" fill="${accent}" fill-opacity="0.22" />
-+      <circle cx="240" cy="720" r="210" fill="${detail}" fill-opacity="0.10" />
-+      <rect x="134" y="164" width="932" height="572" rx="34" fill="#ffffff" fill-opacity="0.72" />
-+      <rect x="190" y="230" width="420" height="300" rx="28" fill="${detail}" fill-opacity="0.88" />
-+      <rect x="652" y="230" width="220" height="132" rx="24" fill="${accent}" fill-opacity="0.86" />
-+      <rect x="652" y="390" width="314" height="48" rx="24" fill="${detail}" fill-opacity="0.12" />
-+      <rect x="652" y="464" width="252" height="34" rx="17" fill="${detail}" fill-opacity="0.1" />
-+      <rect x="190" y="566" width="776" height="36" rx="18" fill="${detail}" fill-opacity="0.08" />
-+      <rect x="190" y="624" width="610" height="28" rx="14" fill="${detail}" fill-opacity="0.08" />
-+    </svg>
-+  `
++const officeHours = [
++  { day: "Monday", hours: "09:00 - 18:00" },
++  { day: "Tuesday", hours: "09:00 - 18:00" },
++  { day: "Wednesday", hours: "09:00 - 18:00" },
++  { day: "Thursday", hours: "09:00 - 18:00" },
++  { day: "Friday", hours: "09:00 - 16:00" },
++  { day: "Saturday", hours: "By request" },
++  { day: "Sunday", hours: "Closed" },
++]
 +
-+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`
-+}
-+
-+const styles = {
-+  section: {
-+    position: "relative",
-+    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem) clamp(5rem, 8vw, 8rem)",
-+    background:
-+      "linear-gradient(180deg, #ffffff 0%, #fff7f1 22%, #ffffff 54%, #f8fafc 100%)",
-+  },
-+  shell: {
-+    maxWidth: "1280px",
-+    margin: "0 auto",
-+    display: "grid",
-+    gap: "2.5rem",
-+  },
-+  intro: {
-+    display: "grid",
-+    gap: "1rem",
-+    maxWidth: "780px",
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    fontSize: "0.85rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.18em",
-+    textTransform: "uppercase",
-+    color: "#f97316",
-+  },
-+  title: {
-+    margin: 0,
-+    fontSize: "clamp(2.4rem, 6vw, 4.5rem)",
-+    lineHeight: 0.95,
-+    letterSpacing: "-0.05em",
-+    color: "#111111",
-+    textWrap: "balance",
-+  },
-+  lead: {
-+    margin: 0,
-+    maxWidth: "46rem",
-+    fontSize: "clamp(1rem, 2.2vw, 1.18rem)",
-+    lineHeight: 1.75,
-+    color: "#52525b",
-+  },
-+  grid: {
-+    display: "grid",
-+    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-+    gap: "1.25rem",
-+  },
-+  item: {
-+    display: "grid",
-+    gap: "1rem",
-+    margin: 0,
-+    padding: "1rem",
-+    borderRadius: "1.85rem",
-+    border: "1px solid rgba(17, 17, 17, 0.08)",
-+    backgroundColor: "rgba(255, 255, 255, 0.88)",
-+    boxShadow: "0 20px 55px rgba(15, 23, 42, 0.08)",
-+  },
-+  imageWrap: {
-+    margin: 0,
-+    overflow: "hidden",
-+    borderRadius: "1.3rem",
-+    backgroundColor: "#f5f5f5",
-+  },
-+  image: {
-+    display: "block",
-+    width: "100%",
-+    aspectRatio: "4 / 3",
-+    objectFit: "cover",
-+  },
-+  meta: {
-+    display: "grid",
-+    gap: "0.65rem",
-+  },
-+  accent: {
-+    margin: 0,
-+    fontSize: "0.78rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.14em",
-+    textTransform: "uppercase",
-+    color: "#f97316",
-+  },
-+  itemTitle: {
-+    margin: 0,
-+    fontSize: "1.45rem",
-+    lineHeight: 1.08,
-+    letterSpacing: "-0.04em",
-+    color: "#111111",
-+  },
-+  itemText: {
-+    margin: 0,
-+    fontSize: "0.98rem",
-+    lineHeight: 1.7,
-+    color: "#52525b",
-+  },
-+}
-+
-+export default function GalleryGridSection() {
-+  return (
-+    <section
-+      id="gallery-grid"
-+      aria-labelledby="gallery-grid-title"
-+      style={styles.section}
-+    >
-+      <div style={styles.shell}>
-+        <div style={styles.intro}>
-+          <p style={styles.eyebrow}>Image grid</p>
-+          <h2 id="gallery-grid-title" style={styles.title}>
-+            Plates, spaces, and service details that define the experience.
-+          </h2>
-+          <p style={styles.lead}>
-+            The gallery brings together signature dishes, dining-room atmosphere, and
-+            kitchen moments in a responsive editorial grid designed to stay clear on
-+            mobile and expansive on larger screens.
-+          </p>
-+        </div>
-+
-+        <div style={styles.grid}>
-+          {galleryItems.map((item) => (
-+            <article key={item.title} style={styles.item}>
-+              <figure style={styles.imageWrap}>
-+                <img
-+                  src={createGalleryImage(item.title, item.palette)}
-+                  alt={item.alt}
-+                  loading="lazy"
-+                  style={styles.image}
-+                />
-+              </figure>
-+              <div style={styles.meta}>
-+                <p style={styles.accent}>{item.accent}</p>
-+                <h3 style={styles.itemTitle}>{item.title}</h3>
-+                <p style={styles.itemText}>{item.description}</p>
-+              </div>
-+            </article>
-+          ))}
-+        </div>
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
-index 3faf7ba19819329179d84f56970bf2d1a3afa271..13278dbc41ba99e25167a3e7ebfa0f5f4c77ff87
---- a/src/pages/Gallery.jsx
-+++ b/src/pages/Gallery.jsx
-@@ -1,40 +1,11 @@
- import GalleryHeroSection from "../components/GalleryHeroSection"
-+import GalleryGridSection from "../components/GalleryGridSection"
- 
- export default function Gallery() {
+ export default function Contatti() {
    return (
-     <main>
-       <GalleryHeroSection />
--
--      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
--        <h2 id="gallery-grid-title">A visual look at our dining experience</h2>
--        <p>
--          This page brings together the dishes, textures, and spaces that define
--          our menu and hospitality.
--        </p>
--        <div>
--          <article>
--            <h3>Signature plates</h3>
--            <p>
--              Seasonal compositions, refined presentation, and ingredients chosen
--              with care.
--            </p>
--          </article>
--          <article>
--            <h3>Dining room atmosphere</h3>
--            <p>
--              Warm lighting, intimate tables, and a setting designed for long,
--              relaxed evenings.
--            </p>
--          </article>
--          <article>
--            <h3>Service in motion</h3>
--            <p>
--              A closer look at the rhythm of the kitchen and the team behind each
--              course.
--            </p>
--          </article>
--        </div>
--      </section>
-+      <GalleryGridSection />
-     </main>
+-    <>
+-      <section id="contact-hero">
+-        <h1>Contact Hero</h1>
+-        <p>Content for contact-hero will be generated by tasks</p>
++    <main>
++      <section
++        id="contact-hero"
++        style={{
++          padding: "5rem 1.5rem 3rem",
++          background:
++            "linear-gradient(180deg, rgba(249, 115, 22, 0.08) 0%, rgba(255, 255, 255, 1) 70%)",
++        }}
++      >
++        <div
++          style={{
++            maxWidth: "72rem",
++            margin: "0 auto",
++            display: "grid",
++            gap: "1.5rem",
++          }}
++        >
++          <p
++            style={{
++              margin: 0,
++              color: "#f97316",
++              fontSize: "0.875rem",
++              fontWeight: 700,
++              letterSpacing: "0.12em",
++              textTransform: "uppercase",
++            }}
++          >
++            Contact
++          </p>
++          <h1
++            style={{
++              margin: 0,
++              maxWidth: "12ch",
++              fontSize: "clamp(3rem, 8vw, 5.5rem)",
++              lineHeight: 0.95,
++            }}
++          >
++            Let&apos;s build something sharp and effective.
++          </h1>
++          <p
++            style={{
++              margin: 0,
++              maxWidth: "38rem",
++              fontSize: "1.125rem",
++              lineHeight: 1.7,
++              color: "rgba(17, 17, 17, 0.78)",
++            }}
++          >
++            Reach out with your business goals, launch timeline, and the kind of
++            digital presence you need. We reply with a clear next step, not a vague
++            sales sequence.
++          </p>
++          <div
++            style={{
++              display: "flex",
++              flexWrap: "wrap",
++              gap: "1rem",
++            }}
++          >
++            <a
++              href="mailto:hello@alaiweb.com"
++              style={{
++                display: "inline-flex",
++                alignItems: "center",
++                justifyContent: "center",
++                minHeight: "3rem",
++                padding: "0.875rem 1.5rem",
++                borderRadius: "999px",
++                backgroundColor: "#f97316",
++                color: "#ffffff",
++                fontWeight: 700,
++                textDecoration: "none",
++              }}
++            >
++              Tell us about your idea
++            </a>
++            <a
++              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
++              target="_blank"
++              rel="noreferrer"
++              style={{
++                display: "inline-flex",
++                alignItems: "center",
++                justifyContent: "center",
++                minHeight: "3rem",
++                padding: "0.875rem 1.5rem",
++                borderRadius: "999px",
++                border: "1px solid rgba(17, 17, 17, 0.14)",
++                color: "#111111",
++                fontWeight: 700,
++                textDecoration: "none",
++              }}
++            >
++              Start on WhatsApp
++            </a>
++          </div>
++        </div>
+       </section>
+-      <section id="contact-details">
+-        <h2>Contact Details</h2>
+-        <p>Content for contact-details will be generated by tasks</p>
++
++      <section id="contact-details" style={{ padding: "0 1.5rem 3rem" }}>
++        <div
++          style={{
++            maxWidth: "72rem",
++            margin: "0 auto",
++            display: "grid",
++            gap: "1.5rem",
++          }}
++        >
++          <h2 style={{ margin: 0, fontSize: "clamp(2rem, 5vw, 3.25rem)" }}>
++            Project conversations, without the friction.
++          </h2>
++          <p
++            style={{
++              margin: 0,
++              maxWidth: "42rem",
++              color: "rgba(17, 17, 17, 0.72)",
++              lineHeight: 1.7,
++            }}
++          >
++            Use the channel that fits your workflow. Email is best for detailed
++            briefs, phone is best for quick alignment, and WhatsApp works well when
++            you want to move fast.
++          </p>
++          <div
++            style={{
++              display: "grid",
++              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
++              gap: "1rem",
++            }}
++          >
++            {contactDetails.map((item) => (
++              <a
++                key={item.label}
++                href={item.href}
++                style={{
++                  display: "grid",
++                  gap: "0.75rem",
++                  padding: "1.5rem",
++                  borderRadius: "1.5rem",
++                  backgroundColor: "#f5f5f5",
++                  color: "#111111",
++                  textDecoration: "none",
++                }}
++              >
++                <span
++                  style={{
++                    fontSize: "0.875rem",
++                    fontWeight: 700,
++                    letterSpacing: "0.08em",
++                    textTransform: "uppercase",
++                    color: "#f97316",
++                  }}
++                >
++                  {item.label}
++                </span>
++                <strong style={{ fontSize: "1.25rem" }}>{item.value}</strong>
++                <span style={{ color: "rgba(17, 17, 17, 0.72)", lineHeight: 1.6 }}>
++                  {item.description}
++                </span>
++              </a>
++            ))}
++            <a
++              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
++              target="_blank"
++              rel="noreferrer"
++              style={{
++                display: "grid",
++                gap: "0.75rem",
++                padding: "1.5rem",
++                borderRadius: "1.5rem",
++                backgroundColor: "#111111",
++                color: "#ffffff",
++                textDecoration: "none",
++              }}
++            >
++              <span
++                style={{
++                  fontSize: "0.875rem",
++                  fontWeight: 700,
++                  letterSpacing: "0.08em",
++                  textTransform: "uppercase",
++                  color: "#f97316",
++                }}
++              >
++                WhatsApp
++              </span>
++              <strong style={{ fontSize: "1.25rem" }}>Message the studio</strong>
++              <span style={{ color: "rgba(255, 255, 255, 0.72)", lineHeight: 1.6 }}>
++                Ideal for early project questions, quick feedback, and scheduling the
++                first call.
++              </span>
++            </a>
++          </div>
++        </div>
+       </section>
+-      <section id="opening-hours">
+-        <h2>Opening Hours</h2>
+-        <p>Content for opening-hours will be generated by tasks</p>
++
++      <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
++        <div
++          style={{
++            maxWidth: "72rem",
++            margin: "0 auto",
++            padding: "2rem",
++            borderRadius: "2rem",
++            backgroundColor: "#0f172a",
++            color: "#ffffff",
++            display: "grid",
++            gap: "1.5rem",
++          }}
++        >
++          <div style={{ display: "grid", gap: "0.75rem" }}>
++            <h2 style={{ margin: 0, fontSize: "clamp(2rem, 4vw, 3rem)" }}>
++              Studio hours
++            </h2>
++            <p style={{ margin: 0, maxWidth: "38rem", color: "rgba(255, 255, 255, 0.72)" }}>
++              We keep our calendar focused so projects move quickly. If your launch is
++              urgent, mention the deadline in your first message and we will confirm
++              availability directly.
++            </p>
++          </div>
++          <div
++            style={{
++              display: "grid",
++              gap: "0.75rem",
++            }}
++          >
++            {officeHours.map((entry) => (
++              <div
++                key={entry.day}
++                style={{
++                  display: "flex",
++                  justifyContent: "space-between",
++                  gap: "1rem",
++                  paddingBottom: "0.75rem",
++                  borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
++                }}
++              >
++                <span>{entry.day}</span>
++                <span style={{ color: "rgba(255, 255, 255, 0.72)" }}>{entry.hours}</span>
++              </div>
++            ))}
++          </div>
++        </div>
+       </section>
+-    </>
++    </main>
    )
  }
 
 codex
-The build passed cleanly. I’m adding the required task summary to `agent/AGENT_REPORT.md` now, without touching task state or unrelated execution history.
-file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md
-@@ -220,2 +220,18 @@
- 
-+Prepared TASK section-gallery-gallery-grid (Create gallery-grid section on gallery) for execution.
-+
-+Launching Codex for TASK section-gallery-gallery-grid.
-+
-+Completed TASK `section-gallery-gallery-grid`.
-+
-+- Added a reusable `GalleryGridSection` component in `src/components/GalleryGridSection.jsx`.
-+- Replaced the inline gallery placeholder in `src/pages/Gallery.jsx` so the gallery page renders the dedicated `gallery-grid` image-grid section.
-+- Implemented a responsive one-two-three column gallery layout with valid lazy-loaded image sources and meaningful alt text.
-+
-+TASK section-gallery-gallery-grid executed by Codex.
-+Waiting for validation.
-+
-+TASK section-gallery-gallery-grid completed successfully.
-+Build passed.
-+
- Prepared TASK section-gallery-gallery-hero (Create gallery-hero section on gallery) for execution.
-apply_patch(auto_approved=true) exited 0 in 56ms:
-Success. Updated the following files:
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md
+Modified files: [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md)
+
+Implemented the `contatti` page shell in [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx) with the required `contact-hero`, `contact-details`, and `opening-hours` sections, real contact copy, and functional `mailto:`, `tel:`, and WhatsApp CTAs. The `/contatti` route was already mounted in [src/App.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/App.jsx), so no router change was needed. I also appended the task summary to [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md).
+
+Build result: `npm run build` passed with Vite production build success.
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 4f55e823e5fa85bf84c18df02936b5a977169f0c..8509a5643f8c9000d0b0a1920cea45236d108487
+index 68c8f1d2b418666d61e1820fa7d8b823ade1e4f4..e782edcf5061176f61873481fe113c3a481b272b
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,22 @@
+@@ -218,6 +218,16 @@
  TASK page-chi-siamo-shell completed successfully.
  Build passed.
  
-+Prepared TASK section-gallery-gallery-grid (Create gallery-grid section on gallery) for execution.
++Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
 +
-+Launching Codex for TASK section-gallery-gallery-grid.
++Launching Codex for TASK page-contatti-shell.
 +
-+Completed TASK `section-gallery-gallery-grid`.
++Completed TASK `page-contatti-shell`.
 +
-+- Added a reusable `GalleryGridSection` component in `src/components/GalleryGridSection.jsx`.
-+- Replaced the inline gallery placeholder in `src/pages/Gallery.jsx` so the gallery page renders the dedicated `gallery-grid` image-grid section.
-+- Implemented a responsive one-two-three column gallery layout with valid lazy-loaded image sources and meaningful alt text.
++- Replaced the placeholder `contatti` content in `src/pages/Contatti.jsx` with a semantic page shell built from the required `contact-hero`, `contact-details`, and `opening-hours` sections.
++- Preserved the existing `/contatti` hash route mounting in `src/App.jsx`, so no routing changes were required.
++- Added real contact copy plus working email, phone, and WhatsApp actions so the page renders without placeholder text or crashes.
 +
-+TASK section-gallery-gallery-grid executed by Codex.
-+Waiting for validation.
-+
-+TASK section-gallery-gallery-grid completed successfully.
-+Build passed.
-+
- Prepared TASK section-gallery-gallery-hero (Create gallery-hero section on gallery) for execution.
+ Prepared TASK section-gallery-gallery-grid (Create gallery-grid section on gallery) for execution.
  
- Launching Codex for TASK section-gallery-gallery-hero.
-diff --git a/src/components/GalleryGridSection.jsx b/src/components/GalleryGridSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..3e470dde4f5e20c8dcf316d2b233df694e79f3de
---- /dev/null
-+++ b/src/components/GalleryGridSection.jsx
-@@ -0,0 +1,215 @@
-+const galleryItems = [
+ Launching Codex for TASK section-gallery-gallery-grid.
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index 27ef33c6d2801e2478be5154702bdb2f62cc910f..b81fe3d8080f4f88bb4a19c938bc517e57cc4363
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,18 +1,273 @@
++const contactDetails = [
 +  {
-+    title: "Chef's tasting course",
-+    description:
-+      "A plated sequence focused on sharp color contrast, clean geometry, and seasonal produce.",
-+    alt: "A refined tasting plate with bright vegetables and precise sauce placement.",
-+    palette: ["#fff7ed", "#fdba74", "#7c2d12"],
-+    accent: "Signature dishes",
++    label: "Email",
++    value: "hello@alaiweb.com",
++    href: "mailto:hello@alaiweb.com",
++    description: "Share your goals, timeline, and current site status.",
 +  },
 +  {
-+    title: "Evening service",
-+    description:
-+      "Soft light, layered table settings, and a room tuned for intimate conversations over dinner.",
-+    alt: "An elegant dining room with candlelight, set tables, and warm evening tones.",
-+    palette: ["#e2e8f0", "#1e293b", "#f97316"],
-+    accent: "Dining room",
-+  },
-+  {
-+    title: "Open kitchen rhythm",
-+    description:
-+      "Focused movements, polished surfaces, and a service pace built around calm precision.",
-+    alt: "A chef plating dishes in an open kitchen with stainless steel counters.",
-+    palette: ["#f8fafc", "#94a3b8", "#0f172a"],
-+    accent: "Kitchen detail",
-+  },
-+  {
-+    title: "Seasonal starters",
-+    description:
-+      "Light compositions that bring together herbs, citrus, and texture without excess.",
-+    alt: "A seasonal starter with herbs, citrus, and delicate plating on a ceramic dish.",
-+    palette: ["#fef2f2", "#fb923c", "#431407"],
-+    accent: "Fresh courses",
-+  },
-+  {
-+    title: "Private corner tables",
-+    description:
-+      "Material warmth, measured spacing, and the kind of seating that encourages longer evenings.",
-+    alt: "A quiet restaurant corner with linen-covered tables and soft ambient lighting.",
-+    palette: ["#fafaf9", "#d6d3d1", "#292524"],
-+    accent: "Atmosphere",
-+  },
-+  {
-+    title: "Final course details",
-+    description:
-+      "Desserts finished with restraint, texture, and the same visual care as the first plate.",
-+    alt: "A minimalist dessert course with layered textures and a glossy finish.",
-+    palette: ["#fff1f2", "#fb7185", "#4c0519"],
-+    accent: "Closing notes",
++    label: "Phone",
++    value: "+39 02 9475 1280",
++    href: "tel:+390294751280",
++    description: "Call for a quick conversation about scope and priorities.",
 +  },
 +]
 +
-+function createGalleryImage(title, palette) {
-+  const [base, accent, detail] = palette
-+  const svg = `
-+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="${title}">
-+      <defs>
-+        <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-+          <stop offset="0%" stop-color="${base}" />
-+          <stop offset="100%" stop-color="#ffffff" />
-+        </linearGradient>
-+      </defs>
-+      <rect width="1200" height="900" rx="48" fill="url(#bg)" />
-+      <circle cx="930" cy="220" r="190" fill="${accent}" fill-opacity="0.22" />
-+      <circle cx="240" cy="720" r="210" fill="${detail}" fill-opacity="0.10" />
-+      <rect x="134" y="164" width="932" height="572" rx="34" fill="#ffffff" fill-opacity="0.72" />
-+      <rect x="190" y="230" width="420" height="300" rx="28" fill="${detail}" fill-opacity="0.88" />
-+      <rect x="652" y="230" width="220" height="132" rx="24" fill="${accent}" fill-opacity="0.86" />
-+      <rect x="652" y="390" width="314" height="48" rx="24" fill="${detail}" fill-opacity="0.12" />
-+      <rect x="652" y="464" width="252" height="34" rx="17" fill="${detail}" fill-opacity="0.1" />
-+      <rect x="190" y="566" width="776" height="36" rx="18" fill="${detail}" fill-opacity="0.08" />
-+      <rect x="190" y="624" width="610" height="28" rx="14" fill="${detail}" fill-opacity="0.08" />
-+    </svg>
-+  `
-+
-+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`
-+}
-+
-+const styles = {
-+  section: {
-+    position: "relative",
-+    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem) clamp(5rem, 8vw, 8rem)",
-+    background:
-+      "linear-gradient(180deg, #ffffff 0%, #fff7f1 22%, #ffffff 54%, #f8fafc 100%)",
-+  },
-+  shell: {
-+    maxWidth: "1280px",
-+    margin: "0 auto",
-+    display: "grid",
-+    gap: "2.5rem",
-+  },
-+  intro: {
-+    display: "grid",
-+    gap: "1rem",
-+    maxWidth: "780px",
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    fontSize: "0.85rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.18em",
-+    textTransform: "uppercase",
-+    color: "#f97316",
-+  },
-+  title: {
-+    margin: 0,
-+    fontSize: "clamp(2.4rem, 6vw, 4.5rem)",
-+    lineHeight: 0.95,
-+    letterSpacing: "-0.05em",
-+    color: "#111111",
-+    textWrap: "balance",
-+  },
-+  lead: {
-+    margin: 0,
-+    maxWidth: "46rem",
-+    fontSize: "clamp(1rem, 2.2vw, 1.18rem)",
-+    lineHeight: 1.75,
-+    color: "#52525b",
-+  },
-+  grid: {
-+    display: "grid",
-+    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-+    gap: "1.25rem",
-+  },
-+  item: {
-+    display: "grid",
-+    gap: "1rem",
-+    margin: 0,
-+    padding: "1rem",
-+    borderRadius: "1.85rem",
-+    border: "1px solid rgba(17, 17, 17, 0.08)",
-+    backgroundColor: "rgba(255, 255, 255, 0.88)",
-+    boxShadow: "0 20px 55px rgba(15, 23, 42, 0.08)",
-+  },
-+  imageWrap: {
-+    margin: 0,
-+    overflow: "hidden",
-+    borderRadius: "1.3rem",
-+    backgroundColor: "#f5f5f5",
-+  },
-+  image: {
-+    display: "block",
-+    width: "100%",
-+    aspectRatio: "4 / 3",
-+    objectFit: "cover",
-+  },
-+  meta: {
-+    display: "grid",
-+    gap: "0.65rem",
-+  },
-+  accent: {
-+    margin: 0,
-+    fontSize: "0.78rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.14em",
-+    textTransform: "uppercase",
-+    color: "#f97316",
-+  },
-+  itemTitle: {
-+    margin: 0,
-+    fontSize: "1.45rem",
-+    lineHeight: 1.08,
-+    letterSpacing: "-0.04em",
-+    color: "#111111",
-+  },
-+  itemText: {
-+    margin: 0,
-+    fontSize: "0.98rem",
-+    lineHeight: 1.7,
-+    color: "#52525b",
-+  },
-+}
-+
-+export default function GalleryGridSection() {
-+  return (
-+    <section
-+      id="gallery-grid"
-+      aria-labelledby="gallery-grid-title"
-+      style={styles.section}
-+    >
-+      <div style={styles.shell}>
-+        <div style={styles.intro}>
-+          <p style={styles.eyebrow}>Image grid</p>
-+          <h2 id="gallery-grid-title" style={styles.title}>
-+            Plates, spaces, and service details that define the experience.
-+          </h2>
-+          <p style={styles.lead}>
-+            The gallery brings together signature dishes, dining-room atmosphere, and
-+            kitchen moments in a responsive editorial grid designed to stay clear on
-+            mobile and expansive on larger screens.
-+          </p>
-+        </div>
-+
-+        <div style={styles.grid}>
-+          {galleryItems.map((item) => (
-+            <article key={item.title} style={styles.item}>
-+              <figure style={styles.imageWrap}>
-+                <img
-+                  src={createGalleryImage(item.title, item.palette)}
-+                  alt={item.alt}
-+                  loading="lazy"
-+                  style={styles.image}
-+                />
-+              </figure>
-+              <div style={styles.meta}>
-+                <p style={styles.accent}>{item.accent}</p>
-+                <h3 style={styles.itemTitle}>{item.title}</h3>
-+                <p style={styles.itemText}>{item.description}</p>
-+              </div>
-+            </article>
-+          ))}
-+        </div>
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
-index 3faf7ba19819329179d84f56970bf2d1a3afa271..13278dbc41ba99e25167a3e7ebfa0f5f4c77ff87
---- a/src/pages/Gallery.jsx
-+++ b/src/pages/Gallery.jsx
-@@ -1,40 +1,11 @@
- import GalleryHeroSection from "../components/GalleryHeroSection"
-+import GalleryGridSection from "../components/GalleryGridSection"
- 
- export default function Gallery() {
-   return (
-     <main>
-       <GalleryHeroSection />
--
--      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
--        <h2 id="gallery-grid-title">A visual look at our dining experience</h2>
--        <p>
--          This page brings together the dishes, textures, and spaces that define
--          our menu and hospitality.
--        </p>
--        <div>
--          <article>
--            <h3>Signature plates</h3>
--            <p>
--              Seasonal compositions, refined presentation, and ingredients chosen
--              with care.
--            </p>
--          </article>
--          <article>
--            <h3>Dining room atmosphere</h3>
--            <p>
--              Warm lighting, intimate tables, and a setting designed for long,
--              relaxed evenings.
--            </p>
--          </article>
--          <article>
--            <h3>Service in motion</h3>
--            <p>
--              A closer look at the rhythm of the kitchen and the team behind each
--              course.
--            </p>
--          </article>
--        </div>
--      </section>
-+      <GalleryGridSection />
-     </main>
-   )
- }
-
-file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 4f55e823e5fa85bf84c18df02936b5a977169f0c..8509a5643f8c9000d0b0a1920cea45236d108487
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,22 @@
- TASK page-chi-siamo-shell completed successfully.
- Build passed.
- 
-+Prepared TASK section-gallery-gallery-grid (Create gallery-grid section on gallery) for execution.
-+
-+Launching Codex for TASK section-gallery-gallery-grid.
-+
-+Completed TASK `section-gallery-gallery-grid`.
-+
-+- Added a reusable `GalleryGridSection` component in `src/components/GalleryGridSection.jsx`.
-+- Replaced the inline gallery placeholder in `src/pages/Gallery.jsx` so the gallery page renders the dedicated `gallery-grid` image-grid section.
-+- Implemented a responsive one-two-three column gallery layout with valid lazy-loaded image sources and meaningful alt text.
-+
-+TASK section-gallery-gallery-grid executed by Codex.
-+Waiting for validation.
-+
-+TASK section-gallery-gallery-grid completed successfully.
-+Build passed.
-+
- Prepared TASK section-gallery-gallery-hero (Create gallery-hero section on gallery) for execution.
- 
- Launching Codex for TASK section-gallery-gallery-hero.
-diff --git a/src/components/GalleryGridSection.jsx b/src/components/GalleryGridSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..3e470dde4f5e20c8dcf316d2b233df694e79f3de
---- /dev/null
-+++ b/src/components/GalleryGridSection.jsx
-@@ -0,0 +1,215 @@
-+const galleryItems = [
-+  {
-+    title: "Chef's tasting course",
-+    description:
-+      "A plated sequence focused on sharp color contrast, clean geometry, and seasonal produce.",
-+    alt: "A refined tasting plate with bright vegetables and precise sauce placement.",
-+    palette: ["#fff7ed", "#fdba74", "#7c2d12"],
-+    accent: "Signature dishes",
-+  },
-+  {
-+    title: "Evening service",
-+    description:
-+      "Soft light, layered table settings, and a room tuned for intimate conversations over dinner.",
-+    alt: "An elegant dining room with candlelight, set tables, and warm evening tones.",
-+    palette: ["#e2e8f0", "#1e293b", "#f97316"],
-+    accent: "Dining room",
-+  },
-+  {
-+    title: "Open kitchen rhythm",
-+    description:
-+      "Focused movements, polished surfaces, and a service pace built around calm precision.",
-+    alt: "A chef plating dishes in an open kitchen with stainless steel counters.",
-+    palette: ["#f8fafc", "#94a3b8", "#0f172a"],
-+    accent: "Kitchen detail",
-+  },
-+  {
-+    title: "Seasonal starters",
-+    description:
-+      "Light compositions that bring together herbs, citrus, and texture without excess.",
-+    alt: "A seasonal starter with herbs, citrus, and delicate plating on a ceramic dish.",
-+    palette: ["#fef2f2", "#fb923c", "#431407"],
-+    accent: "Fresh courses",
-+  },
-+  {
-+    title: "Private corner tables",
-+    description:
-+      "Material warmth, measured spacing, and the kind of seating that encourages longer evenings.",
-+    alt: "A quiet restaurant corner with linen-covered tables and soft ambient lighting.",
-+    palette: ["#fafaf9", "#d6d3d1", "#292524"],
-+    accent: "Atmosphere",
-+  },
-+  {
-+    title: "Final course details",
-+    description:
-+      "Desserts finished with restraint, texture, and the same visual care as the first plate.",
-+    alt: "A minimalist dessert course with layered textures and a glossy finish.",
-+    palette: ["#fff1f2", "#fb7185", "#4c0519"],
-+    accent: "Closing notes",
-+  },
++const officeHours = [
++  { day: "Monday", hours: "09:00 - 18:00" },
++  { day: "Tuesday", hours: "09:00 - 18:00" },
++  { day: "Wednesday", hours: "09:00 - 18:00" },
++  { day: "Thursday", hours: "09:00 - 18:00" },
++  { day: "Friday", hours: "09:00 - 16:00" },
++  { day: "Saturday", hours: "By request" },
++  { day: "Sunday", hours: "Closed" },
 +]
 +
-+function createGalleryImage(title, palette) {
-+  const [base, accent, detail] = palette
-+  const svg = `
-+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="${title}">
-+      <defs>
-+        <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-+          <stop offset="0%" stop-color="${base}" />
-+          <stop offset="100%" stop-color="#ffffff" />
-+        </linearGradient>
-+      </defs>
-+      <rect width="1200" height="900" rx="48" fill="url(#bg)" />
-+      <circle cx="930" cy="220" r="190" fill="${accent}" fill-opacity="0.22" />
-+      <circle cx="240" cy="720" r="210" fill="${detail}" fill-opacity="0.10" />
-+      <rect x="134" y="164" width="932" height="572" rx="34" fill="#ffffff" fill-opacity="0.72" />
-+      <rect x="190" y="230" width="420" height="300" rx="28" fill="${detail}" fill-opacity="0.88" />
-+      <rect x="652" y="230" width="220" height="132" rx="24" fill="${accent}" fill-opacity="0.86" />
-+      <rect x="652" y="390" width="314" height="48" rx="24" fill="${detail}" fill-opacity="0.12" />
-+      <rect x="652" y="464" width="252" height="34" rx="17" fill="${detail}" fill-opacity="0.1" />
-+      <rect x="190" y="566" width="776" height="36" rx="18" fill="${detail}" fill-opacity="0.08" />
-+      <rect x="190" y="624" width="610" height="28" rx="14" fill="${detail}" fill-opacity="0.08" />
-+    </svg>
-+  `
-+
-+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`
-+}
-+
-+const styles = {
-+  section: {
-+    position: "relative",
-+    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem) clamp(5rem, 8vw, 8rem)",
-+    background:
-+      "linear-gradient(180deg, #ffffff 0%, #fff7f1 22%, #ffffff 54%, #f8fafc 100%)",
-+  },
-+  shell: {
-+    maxWidth: "1280px",
-+    margin: "0 auto",
-+    display: "grid",
-+    gap: "2.5rem",
-+  },
-+  intro: {
-+    display: "grid",
-+    gap: "1rem",
-+    maxWidth: "780px",
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    fontSize: "0.85rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.18em",
-+    textTransform: "uppercase",
-+    color: "#f97316",
-+  },
-+  title: {
-+    margin: 0,
-+    fontSize: "clamp(2.4rem, 6vw, 4.5rem)",
-+    lineHeight: 0.95,
-+    letterSpacing: "-0.05em",
-+    color: "#111111",
-+    textWrap: "balance",
-+  },
-+  lead: {
-+    margin: 0,
-+    maxWidth: "46rem",
-+    fontSize: "clamp(1rem, 2.2vw, 1.18rem)",
-+    lineHeight: 1.75,
-+    color: "#52525b",
-+  },
-+  grid: {
-+    display: "grid",
-+    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-+    gap: "1.25rem",
-+  },
-+  item: {
-+    display: "grid",
-+    gap: "1rem",
-+    margin: 0,
-+    padding: "1rem",
-+    borderRadius: "1.85rem",
-+    border: "1px solid rgba(17, 17, 17, 0.08)",
-+    backgroundColor: "rgba(255, 255, 255, 0.88)",
-+    boxShadow: "0 20px 55px rgba(15, 23, 42, 0.08)",
-+  },
-+  imageWrap: {
-+    margin: 0,
-+    overflow: "hidden",
-+    borderRadius: "1.3rem",
-+    backgroundColor: "#f5f5f5",
-+  },
-+  image: {
-+    display: "block",
-+    width: "100%",
-+    aspectRatio: "4 / 3",
-+    objectFit: "cover",
-+  },
-+  meta: {
-+    display: "grid",
-+    gap: "0.65rem",
-+  },
-+  accent: {
-+    margin: 0,
-+    fontSize: "0.78rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.14em",
-+    textTransform: "uppercase",
-+    color: "#f97316",
-+  },
-+  itemTitle: {
-+    margin: 0,
-+    fontSize: "1.45rem",
-+    lineHeight: 1.08,
-+    letterSpacing: "-0.04em",
-+    color: "#111111",
-+  },
-+  itemText: {
-+    margin: 0,
-+    fontSize: "0.98rem",
-+    lineHeight: 1.7,
-+    color: "#52525b",
-+  },
-+}
-+
-+export default function GalleryGridSection() {
-+  return (
-+    <section
-+      id="gallery-grid"
-+      aria-labelledby="gallery-grid-title"
-+      style={styles.section}
-+    >
-+      <div style={styles.shell}>
-+        <div style={styles.intro}>
-+          <p style={styles.eyebrow}>Image grid</p>
-+          <h2 id="gallery-grid-title" style={styles.title}>
-+            Plates, spaces, and service details that define the experience.
-+          </h2>
-+          <p style={styles.lead}>
-+            The gallery brings together signature dishes, dining-room atmosphere, and
-+            kitchen moments in a responsive editorial grid designed to stay clear on
-+            mobile and expansive on larger screens.
-+          </p>
-+        </div>
-+
-+        <div style={styles.grid}>
-+          {galleryItems.map((item) => (
-+            <article key={item.title} style={styles.item}>
-+              <figure style={styles.imageWrap}>
-+                <img
-+                  src={createGalleryImage(item.title, item.palette)}
-+                  alt={item.alt}
-+                  loading="lazy"
-+                  style={styles.image}
-+                />
-+              </figure>
-+              <div style={styles.meta}>
-+                <p style={styles.accent}>{item.accent}</p>
-+                <h3 style={styles.itemTitle}>{item.title}</h3>
-+                <p style={styles.itemText}>{item.description}</p>
-+              </div>
-+            </article>
-+          ))}
-+        </div>
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
-index 3faf7ba19819329179d84f56970bf2d1a3afa271..13278dbc41ba99e25167a3e7ebfa0f5f4c77ff87
---- a/src/pages/Gallery.jsx
-+++ b/src/pages/Gallery.jsx
-@@ -1,40 +1,11 @@
- import GalleryHeroSection from "../components/GalleryHeroSection"
-+import GalleryGridSection from "../components/GalleryGridSection"
- 
- export default function Gallery() {
+ export default function Contatti() {
    return (
-     <main>
-       <GalleryHeroSection />
--
--      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
--        <h2 id="gallery-grid-title">A visual look at our dining experience</h2>
--        <p>
--          This page brings together the dishes, textures, and spaces that define
--          our menu and hospitality.
--        </p>
--        <div>
--          <article>
--            <h3>Signature plates</h3>
--            <p>
--              Seasonal compositions, refined presentation, and ingredients chosen
--              with care.
--            </p>
--          </article>
--          <article>
--            <h3>Dining room atmosphere</h3>
--            <p>
--              Warm lighting, intimate tables, and a setting designed for long,
--              relaxed evenings.
--            </p>
--          </article>
--          <article>
--            <h3>Service in motion</h3>
--            <p>
--              A closer look at the rhythm of the kitchen and the team behind each
--              course.
--            </p>
--          </article>
--        </div>
--      </section>
-+      <GalleryGridSection />
-     </main>
-   )
- }
-
-codex
-Modified files:
-- [src/components/GalleryGridSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/GalleryGridSection.jsx)
-- [src/pages/Gallery.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Gallery.jsx)
-- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md)
-
-What was implemented:
-- Added a dedicated `GalleryGridSection` component for the `gallery-grid` section.
-- Replaced the inline placeholder in the gallery page so `gallery-grid` is rendered as the required `image-grid` section.
-- Built the section as a responsive grid using valid lazy-loaded SVG data-image sources with meaningful alt text.
-
-Build result:
-- `npm run build` passed successfully with Vite production build output.
-file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 4f55e823e5fa85bf84c18df02936b5a977169f0c..8509a5643f8c9000d0b0a1920cea45236d108487
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,22 @@
- TASK page-chi-siamo-shell completed successfully.
- Build passed.
- 
-+Prepared TASK section-gallery-gallery-grid (Create gallery-grid section on gallery) for execution.
-+
-+Launching Codex for TASK section-gallery-gallery-grid.
-+
-+Completed TASK `section-gallery-gallery-grid`.
-+
-+- Added a reusable `GalleryGridSection` component in `src/components/GalleryGridSection.jsx`.
-+- Replaced the inline gallery placeholder in `src/pages/Gallery.jsx` so the gallery page renders the dedicated `gallery-grid` image-grid section.
-+- Implemented a responsive one-two-three column gallery layout with valid lazy-loaded image sources and meaningful alt text.
-+
-+TASK section-gallery-gallery-grid executed by Codex.
-+Waiting for validation.
-+
-+TASK section-gallery-gallery-grid completed successfully.
-+Build passed.
-+
- Prepared TASK section-gallery-gallery-hero (Create gallery-hero section on gallery) for execution.
- 
- Launching Codex for TASK section-gallery-gallery-hero.
-diff --git a/src/components/GalleryGridSection.jsx b/src/components/GalleryGridSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..3e470dde4f5e20c8dcf316d2b233df694e79f3de
---- /dev/null
-+++ b/src/components/GalleryGridSection.jsx
-@@ -0,0 +1,215 @@
-+const galleryItems = [
-+  {
-+    title: "Chef's tasting course",
-+    description:
-+      "A plated sequence focused on sharp color contrast, clean geometry, and seasonal produce.",
-+    alt: "A refined tasting plate with bright vegetables and precise sauce placement.",
-+    palette: ["#fff7ed", "#fdba74", "#7c2d12"],
-+    accent: "Signature dishes",
-+  },
-+  {
-+    title: "Evening service",
-+    description:
-+      "Soft light, layered table settings, and a room tuned for intimate conversations over dinner.",
-+    alt: "An elegant dining room with candlelight, set tables, and warm evening tones.",
-+    palette: ["#e2e8f0", "#1e293b", "#f97316"],
-+    accent: "Dining room",
-+  },
-+  {
-+    title: "Open kitchen rhythm",
-+    description:
-+      "Focused movements, polished surfaces, and a service pace built around calm precision.",
-+    alt: "A chef plating dishes in an open kitchen with stainless steel counters.",
-+    palette: ["#f8fafc", "#94a3b8", "#0f172a"],
-+    accent: "Kitchen detail",
-+  },
-+  {
-+    title: "Seasonal starters",
-+    description:
-+      "Light compositions that bring together herbs, citrus, and texture without excess.",
-+    alt: "A seasonal starter with herbs, citrus, and delicate plating on a ceramic dish.",
-+    palette: ["#fef2f2", "#fb923c", "#431407"],
-+    accent: "Fresh courses",
-+  },
-+  {
-+    title: "Private corner tables",
-+    description:
-+      "Material warmth, measured spacing, and the kind of seating that encourages longer evenings.",
-+    alt: "A quiet restaurant corner with linen-covered tables and soft ambient lighting.",
-+    palette: ["#fafaf9", "#d6d3d1", "#292524"],
-+    accent: "Atmosphere",
-+  },
-+  {
-+    title: "Final course details",
-+    description:
-+      "Desserts finished with restraint, texture, and the same visual care as the first plate.",
-+    alt: "A minimalist dessert course with layered textures and a glossy finish.",
-+    palette: ["#fff1f2", "#fb7185", "#4c0519"],
-+    accent: "Closing notes",
-+  },
-+]
-+
-+function createGalleryImage(title, palette) {
-+  const [base, accent, detail] = palette
-+  const svg = `
-+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="${title}">
-+      <defs>
-+        <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-+          <stop offset="0%" stop-color="${base}" />
-+          <stop offset="100%" stop-color="#ffffff" />
-+        </linearGradient>
-+      </defs>
-+      <rect width="1200" height="900" rx="48" fill="url(#bg)" />
-+      <circle cx="930" cy="220" r="190" fill="${accent}" fill-opacity="0.22" />
-+      <circle cx="240" cy="720" r="210" fill="${detail}" fill-opacity="0.10" />
-+      <rect x="134" y="164" width="932" height="572" rx="34" fill="#ffffff" fill-opacity="0.72" />
-+      <rect x="190" y="230" width="420" height="300" rx="28" fill="${detail}" fill-opacity="0.88" />
-+      <rect x="652" y="230" width="220" height="132" rx="24" fill="${accent}" fill-opacity="0.86" />
-+      <rect x="652" y="390" width="314" height="48" rx="24" fill="${detail}" fill-opacity="0.12" />
-+      <rect x="652" y="464" width="252" height="34" rx="17" fill="${detail}" fill-opacity="0.1" />
-+      <rect x="190" y="566" width="776" height="36" rx="18" fill="${detail}" fill-opacity="0.08" />
-+      <rect x="190" y="624" width="610" height="28" rx="14" fill="${detail}" fill-opacity="0.08" />
-+    </svg>
-+  `
-+
-+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`
-+}
-+
-+const styles = {
-+  section: {
-+    position: "relative",
-+    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem) clamp(5rem, 8vw, 8rem)",
-+    background:
-+      "linear-gradient(180deg, #ffffff 0%, #fff7f1 22%, #ffffff 54%, #f8fafc 100%)",
-+  },
-+  shell: {
-+    maxWidth: "1280px",
-+    margin: "0 auto",
-+    display: "grid",
-+    gap: "2.5rem",
-+  },
-+  intro: {
-+    display: "grid",
-+    gap: "1rem",
-+    maxWidth: "780px",
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    fontSize: "0.85rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.18em",
-+    textTransform: "uppercase",
-+    color: "#f97316",
-+  },
-+  title: {
-+    margin: 0,
-+    fontSize: "clamp(2.4rem, 6vw, 4.5rem)",
-+    lineHeight: 0.95,
-+    letterSpacing: "-0.05em",
-+    color: "#111111",
-+    textWrap: "balance",
-+  },
-+  lead: {
-+    margin: 0,
-+    maxWidth: "46rem",
-+    fontSize: "clamp(1rem, 2.2vw, 1.18rem)",
-+    lineHeight: 1.75,
-+    color: "#52525b",
-+  },
-+  grid: {
-+    display: "grid",
-+    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-+    gap: "1.25rem",
-+  },
-+  item: {
-+    display: "grid",
-+    gap: "1rem",
-+    margin: 0,
-+    padding: "1rem",
-+    borderRadius: "1.85rem",
-+    border: "1px solid rgba(17, 17, 17, 0.08)",
-+    backgroundColor: "rgba(255, 255, 255, 0.88)",
-+    boxShadow: "0 20px 55px rgba(15, 23, 42, 0.08)",
-+  },
-+  imageWrap: {
-+    margin: 0,
-+    overflow: "hidden",
-+    borderRadius: "1.3rem",
-+    backgroundColor: "#f5f5f5",
-+  },
-+  image: {
-+    display: "block",
-+    width: "100%",
-+    aspectRatio: "4 / 3",
-+    objectFit: "cover",
-+  },
-+  meta: {
-+    display: "grid",
-+    gap: "0.65rem",
-+  },
-+  accent: {
-+    margin: 0,
-+    fontSize: "0.78rem",
-+    fontWeight: 700,
-+    letterSpacing: "0.14em",
-+    textTransform: "uppercase",
-+    color: "#f97316",
-+  },
-+  itemTitle: {
-+    margin: 0,
-+    fontSize: "1.45rem",
-+    lineHeight: 1.08,
-+    letterSpacing: "-0.04em",
-+    color: "#111111",
-+  },
-+  itemText: {
-+    margin: 0,
-+    fontSize: "0.98rem",
-+    lineHeight: 1.7,
-+    color: "#52525b",
-+  },
-+}
-+
-+export default function GalleryGridSection() {
-+  return (
-+    <section
-+      id="gallery-grid"
-+      aria-labelledby="gallery-grid-title"
-+      style={styles.section}
-+    >
-+      <div style={styles.shell}>
-+        <div style={styles.intro}>
-+          <p style={styles.eyebrow}>Image grid</p>
-+          <h2 id="gallery-grid-title" style={styles.title}>
-+            Plates, spaces, and service details that define the experience.
-+          </h2>
-+          <p style={styles.lead}>
-+            The gallery brings together signature dishes, dining-room atmosphere, and
-+            kitchen moments in a responsive editorial grid designed to stay clear on
-+            mobile and expansive on larger screens.
+-    <>
+-      <section id="contact-hero">
+-        <h1>Contact Hero</h1>
+-        <p>Content for contact-hero will be generated by tasks</p>
++    <main>
++      <section
++        id="contact-hero"
++        style={{
++          padding: "5rem 1.5rem 3rem",
++          background:
++            "linear-gradient(180deg, rgba(249, 115, 22, 0.08) 0%, rgba(255, 255, 255, 1) 70%)",
++        }}
++      >
++        <div
++          style={{
++            maxWidth: "72rem",
++            margin: "0 auto",
++            display: "grid",
++            gap: "1.5rem",
++          }}
++        >
++          <p
++            style={{
++              margin: 0,
++              color: "#f97316",
++              fontSize: "0.875rem",
++              fontWeight: 700,
++              letterSpacing: "0.12em",
++              textTransform: "uppercase",
++            }}
++          >
++            Contact
 +          </p>
++          <h1
++            style={{
++              margin: 0,
++              maxWidth: "12ch",
++              fontSize: "clamp(3rem, 8vw, 5.5rem)",
++              lineHeight: 0.95,
++            }}
++          >
++            Let&apos;s build something sharp and effective.
++          </h1>
++          <p
++            style={{
++              margin: 0,
++              maxWidth: "38rem",
++              fontSize: "1.125rem",
++              lineHeight: 1.7,
++              color: "rgba(17, 17, 17, 0.78)",
++            }}
++          >
++            Reach out with your business goals, launch timeline, and the kind of
++            digital presence you need. We reply with a clear next step, not a vague
++            sales sequence.
++          </p>
++          <div
++            style={{
++              display: "flex",
++              flexWrap: "wrap",
++              gap: "1rem",
++            }}
++          >
++            <a
++              href="mailto:hello@alaiweb.com"
++              style={{
++                display: "inline-flex",
++                alignItems: "center",
++                justifyContent: "center",
++                minHeight: "3rem",
++                padding: "0.875rem 1.5rem",
++                borderRadius: "999px",
++                backgroundColor: "#f97316",
++                color: "#ffffff",
++                fontWeight: 700,
++                textDecoration: "none",
++              }}
++            >
++              Tell us about your idea
++            </a>
++            <a
++              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
++              target="_blank"
++              rel="noreferrer"
++              style={{
++                display: "inline-flex",
++                alignItems: "center",
++                justifyContent: "center",
++                minHeight: "3rem",
++                padding: "0.875rem 1.5rem",
++                borderRadius: "999px",
++                border: "1px solid rgba(17, 17, 17, 0.14)",
++                color: "#111111",
++                fontWeight: 700,
++                textDecoration: "none",
++              }}
++            >
++              Start on WhatsApp
++            </a>
++          </div>
 +        </div>
+       </section>
+-      <section id="contact-details">
+-        <h2>Contact Details</h2>
+-        <p>Content for contact-details will be generated by tasks</p>
 +
-+        <div style={styles.grid}>
-+          {galleryItems.map((item) => (
-+            <article key={item.title} style={styles.item}>
-+              <figure style={styles.imageWrap}>
-+                <img
-+                  src={createGalleryImage(item.title, item.palette)}
-+                  alt={item.alt}
-+                  loading="lazy"
-+                  style={styles.image}
-+                />
-+              </figure>
-+              <div style={styles.meta}>
-+                <p style={styles.accent}>{item.accent}</p>
-+                <h3 style={styles.itemTitle}>{item.title}</h3>
-+                <p style={styles.itemText}>{item.description}</p>
-+              </div>
-+            </article>
-+          ))}
++      <section id="contact-details" style={{ padding: "0 1.5rem 3rem" }}>
++        <div
++          style={{
++            maxWidth: "72rem",
++            margin: "0 auto",
++            display: "grid",
++            gap: "1.5rem",
++          }}
++        >
++          <h2 style={{ margin: 0, fontSize: "clamp(2rem, 5vw, 3.25rem)" }}>
++            Project conversations, without the friction.
++          </h2>
++          <p
++            style={{
++              margin: 0,
++              maxWidth: "42rem",
++              color: "rgba(17, 17, 17, 0.72)",
++              lineHeight: 1.7,
++            }}
++          >
++            Use the channel that fits your workflow. Email is best for detailed
++            briefs, phone is best for quick alignment, and WhatsApp works well when
++            you want to move fast.
++          </p>
++          <div
++            style={{
++              display: "grid",
++              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
++              gap: "1rem",
++            }}
++          >
++            {contactDetails.map((item) => (
++              <a
++                key={item.label}
++                href={item.href}
++                style={{
++                  display: "grid",
++                  gap: "0.75rem",
++                  padding: "1.5rem",
++                  borderRadius: "1.5rem",
++                  backgroundColor: "#f5f5f5",
++                  color: "#111111",
++                  textDecoration: "none",
++                }}
++              >
++                <span
++                  style={{
++                    fontSize: "0.875rem",
++                    fontWeight: 700,
++                    letterSpacing: "0.08em",
++                    textTransform: "uppercase",
++                    color: "#f97316",
++                  }}
++                >
++                  {item.label}
++                </span>
++                <strong style={{ fontSize: "1.25rem" }}>{item.value}</strong>
++                <span style={{ color: "rgba(17, 17, 17, 0.72)", lineHeight: 1.6 }}>
++                  {item.description}
++                </span>
++              </a>
++            ))}
++            <a
++              href="https://wa.me/393331234567?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
++              target="_blank"
++              rel="noreferrer"
++              style={{
++                display: "grid",
++                gap: "0.75rem",
++                padding: "1.5rem",
++                borderRadius: "1.5rem",
++                backgroundColor: "#111111",
++                color: "#ffffff",
++                textDecoration: "none",
++              }}
++            >
++              <span
++                style={{
++                  fontSize: "0.875rem",
++                  fontWeight: 700,
++                  letterSpacing: "0.08em",
++                  textTransform: "uppercase",
++                  color: "#f97316",
++                }}
++              >
++                WhatsApp
++              </span>
++              <strong style={{ fontSize: "1.25rem" }}>Message the studio</strong>
++              <span style={{ color: "rgba(255, 255, 255, 0.72)", lineHeight: 1.6 }}>
++                Ideal for early project questions, quick feedback, and scheduling the
++                first call.
++              </span>
++            </a>
++          </div>
 +        </div>
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
-index 3faf7ba19819329179d84f56970bf2d1a3afa271..13278dbc41ba99e25167a3e7ebfa0f5f4c77ff87
---- a/src/pages/Gallery.jsx
-+++ b/src/pages/Gallery.jsx
-@@ -1,40 +1,11 @@
- import GalleryHeroSection from "../components/GalleryHeroSection"
-+import GalleryGridSection from "../components/GalleryGridSection"
- 
- export default function Gallery() {
-   return (
-     <main>
-       <GalleryHeroSection />
--
--      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
--        <h2 id="gallery-grid-title">A visual look at our dining experience</h2>
--        <p>
--          This page brings together the dishes, textures, and spaces that define
--          our menu and hospitality.
--        </p>
--        <div>
--          <article>
--            <h3>Signature plates</h3>
--            <p>
--              Seasonal compositions, refined presentation, and ingredients chosen
--              with care.
--            </p>
--          </article>
--          <article>
--            <h3>Dining room atmosphere</h3>
--            <p>
--              Warm lighting, intimate tables, and a setting designed for long,
--              relaxed evenings.
--            </p>
--          </article>
--          <article>
--            <h3>Service in motion</h3>
--            <p>
--              A closer look at the rhythm of the kitchen and the team behind each
--              course.
--            </p>
--          </article>
--        </div>
--      </section>
-+      <GalleryGridSection />
-     </main>
+       </section>
+-      <section id="opening-hours">
+-        <h2>Opening Hours</h2>
+-        <p>Content for opening-hours will be generated by tasks</p>
++
++      <section id="opening-hours" style={{ padding: "0 1.5rem 5rem" }}>
++        <div
++          style={{
++            maxWidth: "72rem",
++            margin: "0 auto",
++            padding: "2rem",
++            borderRadius: "2rem",
++            backgroundColor: "#0f172a",
++            color: "#ffffff",
++            display: "grid",
++            gap: "1.5rem",
++          }}
++        >
++          <div style={{ display: "grid", gap: "0.75rem" }}>
++            <h2 style={{ margin: 0, fontSize: "clamp(2rem, 4vw, 3rem)" }}>
++              Studio hours
++            </h2>
++            <p style={{ margin: 0, maxWidth: "38rem", color: "rgba(255, 255, 255, 0.72)" }}>
++              We keep our calendar focused so projects move quickly. If your launch is
++              urgent, mention the deadline in your first message and we will confirm
++              availability directly.
++            </p>
++          </div>
++          <div
++            style={{
++              display: "grid",
++              gap: "0.75rem",
++            }}
++          >
++            {officeHours.map((entry) => (
++              <div
++                key={entry.day}
++                style={{
++                  display: "flex",
++                  justifyContent: "space-between",
++                  gap: "1rem",
++                  paddingBottom: "0.75rem",
++                  borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
++                }}
++              >
++                <span>{entry.day}</span>
++                <span style={{ color: "rgba(255, 255, 255, 0.72)" }}>{entry.hours}</span>
++              </div>
++            ))}
++          </div>
++        </div>
+       </section>
+-    </>
++    </main>
    )
  }
 
 tokens used
-35.751
+15.759

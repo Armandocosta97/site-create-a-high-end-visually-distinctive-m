@@ -218,6 +218,16 @@ Waiting for validation.
 TASK page-chi-siamo-shell completed successfully.
 Build passed.
 
+Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
+
+Launching Codex for TASK page-contatti-shell.
+
+Completed TASK `page-contatti-shell`.
+
+- Replaced the placeholder `contatti` content in `src/pages/Contatti.jsx` with a semantic page shell built from the required `contact-hero`, `contact-details`, and `opening-hours` sections.
+- Preserved the existing `/contatti` hash route mounting in `src/App.jsx`, so no routing changes were required.
+- Added real contact copy plus working email, phone, and WhatsApp actions so the page renders without placeholder text or crashes.
+
 Prepared TASK section-gallery-gallery-grid (Create gallery-grid section on gallery) for execution.
 
 Launching Codex for TASK section-gallery-gallery-grid.
@@ -372,4 +382,15 @@ TASK section-gallery-gallery-grid executed by Codex.
 Waiting for validation.
 
 TASK section-gallery-gallery-grid completed successfully.
+Build passed.
+Commit created for TASK section-gallery-gallery-grid.
+
+Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
+
+Launching Codex for TASK page-contatti-shell.
+
+TASK page-contatti-shell executed by Codex.
+Waiting for validation.
+
+TASK page-contatti-shell completed successfully.
 Build passed.
