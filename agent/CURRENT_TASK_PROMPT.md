@@ -1132,10 +1132,10 @@ It must feel like a modern digital product studio.
 ```
 
 ## Current task id
-section-menu-menu-hero
+section-menu-menu-categories
 
 ## Current task title
-Create menu-hero section on menu
+Create menu-categories section on menu
 
 ## Current task type
 section
@@ -1144,8 +1144,8 @@ section
 ```json
 {
   "pageId": "menu",
-  "sectionId": "menu-hero",
-  "sectionType": "hero"
+  "sectionId": "menu-categories",
+  "sectionType": "menu-categories"
 }
 ```
 
@@ -1154,13 +1154,13 @@ section
 
 ## Files allowed
 - src/pages/Menu.jsx
-- src/components/MenuHeroSection.jsx
+- src/components/MenuCategoriesSection.jsx
 - src/components
 
 ## Definition of done
-- section menu-hero exists on menu
-- section menu-hero matches type hero
-- section menu-hero is rendered in page menu
+- section menu-categories exists on menu
+- section menu-categories matches type menu-categories
+- section menu-categories is rendered in page menu
 
 ## Strict execution rules
 - Execute only this current task.
