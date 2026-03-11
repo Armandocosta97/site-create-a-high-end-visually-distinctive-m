@@ -218,6 +218,16 @@ Waiting for validation.
 TASK page-chi-siamo-shell completed successfully.
 Build passed.
 
+Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
+
+Launching Codex for TASK page-gallery-shell.
+
+Completed TASK `page-gallery-shell`.
+
+- Replaced the placeholder `gallery` page with a semantic `main` shell in `src/pages/Gallery.jsx`.
+- Preserved the existing `/gallery` hash route in `src/App.jsx`, so no routing changes were required.
+- Added the required `gallery-hero` and `gallery-grid` sections with real restaurant-focused copy so the page renders without placeholder text or crashes.
+
 Prepared TASK section-chi-siamo-philosophy (Create philosophy section on chi-siamo) for execution.
 
 Launching Codex for TASK section-chi-siamo-philosophy.
@@ -303,4 +313,15 @@ TASK section-chi-siamo-philosophy executed by Codex.
 Waiting for validation.
 
 TASK section-chi-siamo-philosophy completed successfully.
+Build passed.
+Commit created for TASK section-chi-siamo-philosophy.
+
+Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
+
+Launching Codex for TASK page-gallery-shell.
+
+TASK page-gallery-shell executed by Codex.
+Waiting for validation.
+
+TASK page-gallery-shell completed successfully.
 Build passed.
