@@ -567,3 +567,26 @@ Waiting for validation.
 
 TASK seo-basics completed successfully.
 Build passed.
+Commit created for TASK seo-basics.
+
+Prepared TASK responsive-polish (Refine responsive layout and spacing) for execution.
+
+Launching Codex for TASK responsive-polish.
+
+Completed TASK `responsive-polish`.
+
+- Replaced the Vite starter global styles in `src/index.css` with a mobile-first base reset and responsive header/footer/navigation styling.
+- Tightened section grids and split layouts across the allowed components so they collapse safely at narrow widths without horizontal overflow.
+- Reduced small-screen pressure in contact and floating CTA areas by softening paddings, enabling text wrapping, and constraining the fixed WhatsApp button.
+
+TASK responsive-polish executed by Codex.
+Waiting for validation.
+
+TASK responsive-polish completed successfully.
+Build passed.
+
+TASK responsive-polish executed by Codex.
+Waiting for validation.
+
+TASK responsive-polish completed successfully.
+Build passed.

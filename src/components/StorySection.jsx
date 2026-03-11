@@ -117,7 +117,7 @@ export default function StorySection() {
         <div
           style={{
             ...styles.layout,
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
           }}
         >
           <div style={styles.intro}>

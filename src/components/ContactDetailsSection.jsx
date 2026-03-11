@@ -24,7 +24,7 @@ const contactDetails = [
 
 const styles = {
   section: {
-    padding: "0 1.5rem 3rem",
+    padding: "0 clamp(1rem, 4vw, 1.5rem) 3rem",
   },
   shell: {
     maxWidth: "72rem",
@@ -67,6 +67,7 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
     width: "fit-content",
+    maxWidth: "100%",
     minHeight: "3rem",
     padding: "0.875rem 1.5rem",
     borderRadius: "999px",
@@ -74,10 +75,11 @@ const styles = {
     color: "#ffffff",
     fontWeight: 700,
     textDecoration: "none",
+    textAlign: "center",
   },
   grid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+    gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 220px), 1fr))",
     gap: "1rem",
   },
   card: {
@@ -102,10 +104,12 @@ const styles = {
   },
   value: {
     fontSize: "1.25rem",
+    overflowWrap: "anywhere",
   },
   description: {
     color: "rgba(17, 17, 17, 0.72)",
     lineHeight: 1.6,
+    overflowWrap: "anywhere",
   },
   descriptionDark: {
     color: "rgba(255, 255, 255, 0.72)",

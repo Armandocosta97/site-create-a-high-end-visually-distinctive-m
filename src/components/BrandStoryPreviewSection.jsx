@@ -21,7 +21,7 @@ const styles = {
   layout: {
     display: "grid",
     gap: "1.5rem",
-    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+    gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
     alignItems: "stretch",
   },
   contentPanel: {

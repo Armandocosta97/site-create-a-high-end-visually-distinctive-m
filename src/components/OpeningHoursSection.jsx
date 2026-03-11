@@ -10,12 +10,12 @@ const officeHours = [
 
 const styles = {
   section: {
-    padding: "0 1.5rem 5rem",
+    padding: "0 clamp(1rem, 4vw, 1.5rem) 5rem",
   },
   shell: {
     maxWidth: "72rem",
     margin: "0 auto",
-    padding: "2rem",
+    padding: "clamp(1.5rem, 4vw, 2rem)",
     borderRadius: "2rem",
     backgroundColor: "#0f172a",
     color: "#ffffff",
@@ -42,6 +42,7 @@ const styles = {
   },
   row: {
     display: "flex",
+    flexWrap: "wrap",
     justifyContent: "space-between",
     gap: "1rem",
     paddingBottom: "0.75rem",
@@ -50,6 +51,7 @@ const styles = {
   hours: {
     color: "rgba(255, 255, 255, 0.72)",
     textAlign: "right",
+    marginLeft: "auto",
   },
 }
 

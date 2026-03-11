@@ -71,7 +71,7 @@ const styles = {
   grid: {
     display: "grid",
     gap: "1rem",
-    gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+    gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 250px), 1fr))",
   },
   card: {
     display: "grid",

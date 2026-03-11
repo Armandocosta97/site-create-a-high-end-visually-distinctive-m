@@ -30,7 +30,7 @@ const styles = {
   layout: {
     display: "grid",
     gap: "1.5rem",
-    gridTemplateColumns: "minmax(0, 1.4fr) minmax(280px, 0.9fr)",
+    gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
     alignItems: "end",
   },
   content: {

@@ -4,14 +4,15 @@ const whatsappHref =
 const styles = {
   link: {
     position: "fixed",
-    right: "1rem",
-    bottom: "1rem",
+    right: "max(0.75rem, env(safe-area-inset-right))",
+    bottom: "max(0.75rem, env(safe-area-inset-bottom))",
     zIndex: 1000,
     display: "inline-flex",
     alignItems: "center",
     gap: "0.75rem",
     minHeight: "3.5rem",
-    padding: "0.85rem 1.1rem",
+    maxWidth: "calc(100vw - 1.5rem)",
+    padding: "0.8rem 1rem",
     borderRadius: "999px",
     border: "1px solid rgba(7, 94, 84, 0.18)",
     background:
@@ -22,6 +23,7 @@ const styles = {
     textDecoration: "none",
     boxShadow: "0 18px 40px rgba(18, 140, 126, 0.24)",
     backdropFilter: "blur(12px)",
+    boxSizing: "border-box",
   },
   iconWrap: {
     display: "inline-flex",

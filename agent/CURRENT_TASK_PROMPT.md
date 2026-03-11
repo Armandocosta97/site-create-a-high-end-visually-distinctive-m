@@ -1132,36 +1132,46 @@ It must feel like a modern digital product studio.
 ```
 
 ## Current task id
-seo-basics
+responsive-polish
 
 ## Current task title
-Add baseline SEO structure
+Refine responsive layout and spacing
 
 ## Current task type
-seo
+responsive
 
 ## Current task target
 ```json
 {
-  "pages": [
-    "home",
-    "menu",
-    "chi-siamo",
-    "gallery",
-    "contatti"
+  "breakpoints": [
+    360,
+    768,
+    1024,
+    1440
   ]
 }
 ```
 
 ## Depends on
-- page-home-shell
-- page-menu-shell
-- page-chi-siamo-shell
-- page-gallery-shell
-- page-contatti-shell
+- navigation-structure
+- section-home-hero
+- section-home-signature-preview
+- section-home-brand-story-preview
+- section-menu-menu-hero
+- section-menu-menu-categories
+- section-chi-siamo-about-hero
+- section-chi-siamo-story
+- section-chi-siamo-philosophy
+- section-gallery-gallery-hero
+- section-gallery-gallery-grid
+- section-contatti-contact-hero
+- section-contatti-contact-details
+- section-contatti-opening-hours
 
 ## Files allowed
-- index.html
+- src/App.css
+- src/index.css
+- src/components
 - src/pages/Home.jsx
 - src/pages/Menu.jsx
 - src/pages/ChiSiamo.jsx
@@ -1169,9 +1179,9 @@ seo
 - src/pages/Contatti.jsx
 
 ## Definition of done
-- title exists
-- meta description exists
-- one meaningful h1 per page exists
+- layout works across required breakpoints
+- no horizontal overflow
+- spacing and hierarchy are coherent
 
 ## Strict execution rules
 - Execute only this current task.

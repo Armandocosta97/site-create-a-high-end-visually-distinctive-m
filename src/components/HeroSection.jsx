@@ -75,7 +75,7 @@ const styles = {
   },
   metrics: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
+    gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 150px), 1fr))",
     gap: "1rem",
     padding: "1.25rem",
     borderRadius: "1.5rem",
@@ -86,6 +86,7 @@ const styles = {
   metric: {
     display: "grid",
     gap: "0.2rem",
+    minWidth: 0,
   },
   metricValue: {
     fontSize: "1.8rem",
