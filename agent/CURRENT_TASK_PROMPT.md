@@ -1132,10 +1132,10 @@ It must feel like a modern digital product studio.
 ```
 
 ## Current task id
-cta-home-home-contact-cta
+cta-home-home-whatsapp
 
 ## Current task title
-Add CTA home-contact-cta on home
+Add CTA home-whatsapp on home
 
 ## Current task type
 cta
@@ -1144,13 +1144,13 @@ cta
 ```json
 {
   "pageId": "home",
-  "ctaId": "home-contact-cta",
-  "ctaKind": "internal",
+  "ctaId": "home-whatsapp",
+  "ctaKind": "external",
   "destination": {
-    "type": "route",
-    "value": "/contatti"
+    "type": "whatsapp",
+    "value": "whatsapp"
   },
-  "placement": "hero"
+  "placement": "floating"
 }
 ```
 
@@ -1160,11 +1160,13 @@ cta
 ## Files allowed
 - src/pages/Home.jsx
 - src/components
+- src/App.jsx
+- src/layout/Layout.jsx
 
 ## Definition of done
-- CTA home-contact-cta exists on home
-- CTA home-contact-cta is visible in placement hero
-- CTA home-contact-cta points to a valid destination
+- CTA home-whatsapp exists on home
+- CTA home-whatsapp is visible in placement floating
+- CTA home-whatsapp points to a valid destination
 
 ## Strict execution rules
 - Execute only this current task.
