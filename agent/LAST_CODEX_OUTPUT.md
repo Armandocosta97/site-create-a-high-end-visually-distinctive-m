@@ -1,8 +1,11 @@
-Modified files: [src/pages/Gallery.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Gallery.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md)
+Modified files:
+- [src/components/GalleryHeroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/GalleryHeroSection.jsx)
+- [src/pages/Gallery.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Gallery.jsx)
+- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md)
 
-Implemented the gallery page shell in [src/pages/Gallery.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Gallery.jsx) by replacing the generated placeholder with a semantic `main` wrapper and the required `gallery-hero` and `gallery-grid` sections. The `/gallery` route was already mounted in [src/App.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/App.jsx), so no routing change was needed. I also appended the task summary to [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md).
+Implemented the `gallery-hero` task by adding a dedicated `GalleryHeroSection` component and rendering it at the top of the gallery page. The section keeps the required `gallery-hero` id, provides the page `h1`, and follows the existing premium editorial hero pattern already used on other pages. The existing `gallery-grid` section was left unchanged.
 
-Build result: `npm run build` passed successfully.
+Build result: `npm run build` passed successfully with a production Vite build.
 
 OpenAI Codex v0.111.0 (research preview)
 --------
@@ -13,7 +16,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cddb4-3cf5-7642-9432-f5c7dee4ccdd
+session id: 019cddb5-1f9a-7472-9224-8504e78e4e4d
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1150,32 +1153,35 @@ It must feel like a modern digital product studio.
 ```
 
 ## Current task id
-page-gallery-shell
+section-gallery-gallery-hero
 
 ## Current task title
-Create gallery page shell
+Create gallery-hero section on gallery
 
 ## Current task type
-page-shell
+section
 
 ## Current task target
 ```json
 {
-  "pageId": "gallery"
+  "pageId": "gallery",
+  "sectionId": "gallery-hero",
+  "sectionType": "hero"
 }
 ```
 
 ## Depends on
-- none
+- page-gallery-shell
 
 ## Files allowed
-- src/App.jsx
 - src/pages/Gallery.jsx
+- src/components/GalleryHeroSection.jsx
+- src/components
 
 ## Definition of done
-- page shell exists for gallery
-- gallery route is mounted if required
-- gallery page renders without crashing
+- section gallery-hero exists on gallery
+- section gallery-hero matches type hero
+- section gallery-hero is rendered in page gallery
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1204,31 +1210,143 @@ page-shell
 
 mcp startup: no servers
 codex
-I’m checking the current app structure and the existing routing/page files first so I can add only the gallery shell and keep the change set minimal.
+I’m executing the `section-gallery-gallery-hero` task only. First I’m checking the current gallery page, task prompt context, and any existing shared section patterns so the hero fits the established structure without touching unrelated work.
 exec
-/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,220p' src/App.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "pwd && rg --files src agent | rg '"'^(src/App.jsx|src/pages/|agent/AGENT_REPORT.md|agent/CURRENT_TASK_PROMPT.md)$'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 52ms:
-import { HashRouter, Routes, Route } from "react-router-dom"
-import Layout from "./layout/Layout"
-import Home from "./pages/Home"
-import Menu from "./pages/Menu"
-import ChiSiamo from "./pages/ChiSiamo"
-import Gallery from "./pages/Gallery"
-import Contatti from "./pages/Contatti"
-
-export default function App() {
+/bin/zsh -lc "sed -n '1,220p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,220p' src/pages/Gallery.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc 'rg -n "HeroSection|hero" src/components src/pages' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "pwd && rg --files . | rg '"'^(src|agent|brief|docs)/'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 52ms:
+export default function Gallery() {
   return (
-    <HashRouter>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/chi-siamo" element={<ChiSiamo />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/contatti" element={<Contatti />} />
-        </Routes>
-      </Layout>
+    <main>
+      <section id="gallery-hero">
+        <p>Gallery</p>
+        <h1>Moments from the table, the kitchen, and the room.</h1>
+        <p>
+          Explore the atmosphere of our restaurant through plated signatures,
+          evening service, and the details that shape each visit.
+        </p>
+      </section>
+
+      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
+        <h2 id="gallery-grid-title">A visual look at our dining experience</h2>
+        <p>
+          This page brings together the dishes, textures, and spaces that define
+          our menu and hospitality.
+        </p>
+        <div>
+          <article>
+ succeeded in 52ms:
+# CURRENT TASK EXECUTION PROMPT
+
+You are the coding executor for this project.
+
+## Project path
+site-create-a-high-end-visually-distinctive-m
+
+## Source of truth files
+- brief/original-prompt.md
+- brief/brief-summary.md
+- site-spec.json
+- docs/DEVELOPMENT_METHOD.md
+- agent/TASK_GRAPH.json
+- agent/TASK_STATE.json
+- agent/CURRENT_TASK_PROMPT.md
+
+## Development method
+# Development Method
+
+All sites must follow these rules.
+ exited 1 in 52ms:
+/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m
+ succeeded in 52ms:
+src/pages/Home.jsx:1:import HeroSection from "../components/HeroSection"
+src/pages/Home.jsx:9:      <HeroSection />
+src/components/AboutHeroSection.jsx:116:export default function AboutHeroSection() {
+src/components/AboutHeroSection.jsx:118:    <section id="about-hero" aria-labelledby="about-hero-title" style={styles.section}>
+src/components/AboutHeroSection.jsx:123:            <h1 id="about-hero-title" style={styles.title}>
+src/pages/Gallery.jsx:4:      <section id="gallery-hero">
+src/pages/ChiSiamo.jsx:1:import AboutHeroSection from "../components/AboutHeroSection"
+src/pages/ChiSiamo.jsx:8:      <AboutHeroSection />
+src/pages/Contatti.jsx:4:      <section id="contact-hero">
+src/pages/Contatti.jsx:6:        <p>Content for contact-hero will be generated by tasks</p>
+src/components/HeroSection.jsx:102:export default function HeroSection() {
+src/components/HeroSection.jsx:104:    <section id="hero" aria-labelledby="home-hero-title" style={styles.section}>
+src/components/HeroSection.jsx:108:          <h1 id="home-hero-title" style={styles.title}>
+src/pages/Menu.jsx:1:import MenuHeroSection from "../components/MenuHeroSection"
+src/pages/Menu.jsx:7:      <MenuHeroSection />
+src/components/MenuHeroSection.jsx:80:export default function MenuHeroSection() {
+src/components/MenuHeroSection.jsx:82:    <section id="menu-hero" aria-labelledby="menu-hero-title" style={styles.section}>
+src/components/MenuHeroSection.jsx:87:            <h1 id="menu-hero-title" style={styles.title}>
+codex
+I’ve confirmed the gallery page still has inline placeholder-style markup, while other pages already use extracted hero components. I’m reading the existing hero section patterns now so the gallery hero uses the same level of structure and build safety.
+exec
+/bin/zsh -lc "sed -n '1,220p' src/components/AboutHeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,220p' src/components/MenuHeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,220p' src/components/HeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 52ms:
+const values = [
+  {
+    title: "Stagionalita",
+    text: "Il menu segue il tempo degli ingredienti, con piatti che cambiano senza perdere equilibrio.",
+  },
+  {
+    title: "Precisione",
+    text: "Ogni dettaglio, dalla cucina alla sala, e misurato per mantenere il servizio chiaro e naturale.",
+  },
+  {
+    title: "Accoglienza",
+    text: "L'esperienza resta contemporanea, ma sempre calda, leggibile e pensata per far tornare le persone.",
+  },
+]
+
+const styles = {
+  section: {
+    position: "relative",
+    overflow: "hidden",
+    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
+ succeeded in 52ms:
+const styles = {
+  section: {
+    position: "relative",
+    overflow: "hidden",
+    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
+    background:
+      "radial-gradient(circle at top left, rgba(249, 115, 22, 0.16), transparent 30%), linear-gradient(135deg, #fff8f1 0%, #ffffff 50%, #f8fafc 100%)",
+  },
+  shell: {
+    maxWidth: "1280px",
+    margin: "0 auto",
+    display: "grid",
+    gap: "2rem",
+  },
+  layout: {
+    display: "grid",
+    gap: "1.5rem",
+    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+    alignItems: "end",
+  },
+ succeeded in 52ms:
+import { Link } from "react-router-dom"
+
+const styles = {
+  section: {
+    position: "relative",
+    overflow: "hidden",
+    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
+    background:
+      "radial-gradient(circle at top right, rgba(249, 115, 22, 0.18), transparent 28%), linear-gradient(135deg, #fffaf6 0%, #ffffff 48%, #f5f5f5 100%)",
+  },
+  shell: {
+    maxWidth: "1280px",
+    margin: "0 auto",
+    display: "grid",
+    gap: "2.5rem",
+    alignItems: "end",
+  },
+  eyebrow: {
+    margin: 0,
+    fontSize: "0.85rem",
  succeeded in 52ms:
 # AGENT REPORT
 
@@ -1250,543 +1368,1015 @@ Waiting for validation.
 
 TASK page-home-shell completed successfully.
 Build passed.
- succeeded in 53ms:
-/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m
-agent/CURRENT_TASK_PROMPT.md
-agent/AGENT_REPORT.md
-src/App.jsx
 codex
-The gallery route is already mounted in `src/App.jsx`, so the remaining work is to replace the gallery placeholder with the required page shell and then run a build check.
-exec
-/bin/zsh -lc 'cat package.json' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,240p' src/pages/Gallery.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc 'ls -la src/pages' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 51ms:
-total 40
-drwxr-xr-x   7 armandocosta  staff  224 Mar 11 17:21 .
-drwxr-xr-x  10 armandocosta  staff  320 Mar 11 17:21 ..
--rw-r--r--   1 armandocosta  staff  328 Mar 11 17:21 ChiSiamo.jsx
--rw-r--r--   1 armandocosta  staff  525 Mar 11 17:05 Contatti.jsx
--rw-r--r--   1 armandocosta  staff  364 Mar 11 17:05 Gallery.jsx
--rw-r--r--   1 armandocosta  staff  470 Mar 11 17:12 Home.jsx
--rw-r--r--   1 armandocosta  staff  264 Mar 11 17:15 Menu.jsx
- succeeded in 52ms:
-{
-  "name": "site-create-a-high-end-visually-distinctive-m",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "test:ui": "playwright test"
-  },
-  "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "react-router-dom": "^7.13.1"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.39.1",
-    "@playwright/test": "^1.58.2",
- succeeded in 52ms:
-export default function Gallery() {
-  return (
-    <>
-      <section id="gallery-hero">
-        <h1>Gallery Hero</h1>
-        <p>Content for gallery-hero will be generated by tasks</p>
-      </section>
-      <section id="gallery-grid">
-        <h2>Gallery Grid</h2>
-        <p>Content for gallery-grid will be generated by tasks</p>
-      </section>
-    </>
-  )
-}
-codex
-I’ve confirmed `Gallery.jsx` is still the generated placeholder. I’m reading the existing page shells now so the gallery page matches the project’s current structural pattern without expanding scope.
-exec
-/bin/zsh -lc "sed -n '1,220p' src/pages/Contatti.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,220p' src/pages/Menu.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,220p' src/pages/ChiSiamo.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,220p' src/pages/Home.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 53ms:
-import HeroSection from "../components/HeroSection"
-import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
-import SignaturePreviewSection from "../components/SignaturePreviewSection"
-import FloatingWhatsAppButton from "../components/FloatingWhatsAppButton"
-
-export default function Home() {
-  return (
-    <>
-      <HeroSection />
-      <SignaturePreviewSection />
-      <BrandStoryPreviewSection />
-      <FloatingWhatsAppButton />
-    </>
-  )
-}
- succeeded in 53ms:
-export default function Contatti() {
-  return (
-    <>
-      <section id="contact-hero">
-        <h1>Contact Hero</h1>
-        <p>Content for contact-hero will be generated by tasks</p>
-      </section>
-      <section id="contact-details">
-        <h2>Contact Details</h2>
-        <p>Content for contact-details will be generated by tasks</p>
-      </section>
-      <section id="opening-hours">
-        <h2>Opening Hours</h2>
-        <p>Content for opening-hours will be generated by tasks</p>
-      </section>
-    </>
-  )
-}
- succeeded in 53ms:
-import MenuHeroSection from "../components/MenuHeroSection"
-import MenuCategoriesSection from "../components/MenuCategoriesSection"
-
-export default function Menu() {
-  return (
-    <main>
-      <MenuHeroSection />
-      <MenuCategoriesSection />
-    </main>
-  )
-}
- succeeded in 53ms:
-import AboutHeroSection from "../components/AboutHeroSection"
-import PhilosophySection from "../components/PhilosophySection"
-import StorySection from "../components/StorySection"
-
-export default function ChiSiamo() {
-  return (
-    <>
-      <AboutHeroSection />
-      <StorySection />
-      <PhilosophySection />
-    </>
-  )
-}
-codex
-I’m editing `src/pages/Gallery.jsx` now. The change stays within the page shell task: semantic structure, required section ids, real copy, and no extra component work beyond what’s needed for the route to render cleanly.
+I have enough context. I’m extracting the gallery hero into its own component and wiring it into [Gallery.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Gallery.jsx) while leaving the existing gallery grid untouched, then I’ll run the build and append the task summary to the agent report.
 file update
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/GalleryHeroSection.jsx
+const highlights = [
+  {
+    label: "Dining room",
+    text: "Soft light, natural materials, and a room designed to feel calm before the first course arrives.",
+  },
+  {
+    label: "Kitchen detail",
+    text: "Close finishes, precise plating, and the small gestures that give the menu its identity.",
+  },
+  {
+    label: "Service rhythm",
+    text: "A visual sequence of evenings shaped by timing, warmth, and a steady pace across the table.",
+  },
+]
+
+const styles = {
+  section: {
+    position: "relative",
+    overflow: "hidden",
+    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
+    background:
+      "radial-gradient(circle at top right, rgba(249, 115, 22, 0.16), transparent 30%), linear-gradient(145deg, #fffaf5 0%, #ffffff 52%, #f8fafc 100%)",
+  },
+  shell: {
+    maxWidth: "1280px",
+    margin: "0 auto",
+    display: "grid",
+    gap: "2rem",
+  },
+  layout: {
+    display: "grid",
+    gap: "1.5rem",
+    gridTemplateColumns: "minmax(0, 1.4fr) minmax(280px, 0.9fr)",
+    alignItems: "end",
+  },
+  content: {
+    display: "grid",
+    gap: "1.25rem",
+    maxWidth: "760px",
+  },
+  eyebrow: {
+    margin: 0,
+    fontSize: "0.85rem",
+    fontWeight: 700,
+    letterSpacing: "0.18em",
+    textTransform: "uppercase",
+    color: "#f97316",
+  },
+  title: {
+    margin: 0,
+    maxWidth: "10ch",
+    fontSize: "clamp(3rem, 9vw, 5.75rem)",
+    lineHeight: 0.92,
+    letterSpacing: "-0.05em",
+    color: "#111111",
+    textWrap: "balance",
+  },
+  lead: {
+    margin: 0,
+    maxWidth: "40rem",
+    fontSize: "clamp(1.05rem, 2.6vw, 1.28rem)",
+    lineHeight: 1.75,
+    color: "#52525b",
+  },
+  note: {
+    margin: 0,
+    fontSize: "0.95rem",
+    fontWeight: 700,
+    letterSpacing: "0.08em",
+    textTransform: "uppercase",
+    color: "#0f172a",
+  },
+  panel: {
+    display: "grid",
+    gap: "1rem",
+    padding: "clamp(1.5rem, 4vw, 2rem)",
+    borderRadius: "1.75rem",
+    backgroundColor: "#0f172a",
+    boxShadow: "0 24px 70px rgba(15, 23, 42, 0.12)",
+  },
+  panelTitle: {
+    margin: 0,
+    fontSize: "0.8rem",
+    fontWeight: 700,
+    letterSpacing: "0.16em",
+    textTransform: "uppercase",
+    color: "#fb923c",
+  },
+  list: {
+    margin: 0,
+    padding: 0,
+    listStyle: "none",
+    display: "grid",
+    gap: "1rem",
+  },
+  item: {
+    display: "grid",
+    gap: "0.35rem",
+    paddingTop: "1rem",
+    borderTop: "1px solid rgba(255, 255, 255, 0.12)",
+  },
+  itemLabel: {
+    margin: 0,
+    fontSize: "1.1rem",
+    lineHeight: 1.2,
+    color: "#ffffff",
+  },
+  itemText: {
+    margin: 0,
+    fontSize: "0.98rem",
+    lineHeight: 1.7,
+    color: "rgba(255, 255, 255, 0.74)",
+  },
+}
+
+export default function GalleryHeroSection() {
+  return (
+    <section id="gallery-hero" aria-labelledby="gallery-hero-title" style={styles.section}>
+      <div style={styles.shell}>
+        <div style={styles.layout}>
+          <div style={styles.content}>
+            <p style={styles.eyebrow}>Gallery</p>
+            <h1 id="gallery-hero-title" style={styles.title}>
+              Moments from the table, the kitchen, and the room.
+            </h1>
+            <p style={styles.lead}>
+              Explore the atmosphere of our restaurant through plated signatures,
+              evening service, and the details that shape each visit.
+            </p>
+            <p style={styles.note}>A closer look at the dishes, setting, and pace behind every service.</p>
+          </div>
+
+          <aside aria-label="Gallery highlights" style={styles.panel}>
+            <p style={styles.panelTitle}>What the gallery captures</p>
+            <ul style={styles.list}>
+              {highlights.map((highlight) => (
+                <li key={highlight.label} style={styles.item}>
+                  <p style={styles.itemLabel}>{highlight.label}</p>
+                  <p style={styles.itemText}>{highlight.text}</p>
+                </li>
+              ))}
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+  )
+}
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md
 @@ -220,2 +220,12 @@
  
-+Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
++Prepared TASK section-gallery-gallery-hero (Create gallery-hero section on gallery) for execution.
 +
-+Launching Codex for TASK page-gallery-shell.
++Launching Codex for TASK section-gallery-gallery-hero.
 +
-+Completed TASK `page-gallery-shell`.
++Completed TASK `section-gallery-gallery-hero`.
 +
-+- Replaced the placeholder `gallery` page with a semantic `main` shell in `src/pages/Gallery.jsx`.
-+- Preserved the existing `/gallery` hash route in `src/App.jsx`, so no routing changes were required.
-+- Added the required `gallery-hero` and `gallery-grid` sections with real restaurant-focused copy so the page renders without placeholder text or crashes.
++- Added a reusable `GalleryHeroSection` component in `src/components/GalleryHeroSection.jsx`.
++- Replaced the inline gallery hero markup in `src/pages/Gallery.jsx` so the gallery page renders the dedicated hero section.
++- Preserved the required `gallery-hero` section id and page `h1` while leaving the existing gallery grid section unchanged.
 +
- Prepared TASK section-chi-siamo-philosophy (Create philosophy section on chi-siamo) for execution.
+ Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Gallery.jsx
-@@ -2,12 +2,43 @@
-   return (
--    <>
-+    <main>
-       <section id="gallery-hero">
--        <h1>Gallery Hero</h1>
--        <p>Content for gallery-hero will be generated by tasks</p>
-+        <p>Gallery</p>
-+        <h1>Moments from the table, the kitchen, and the room.</h1>
-+        <p>
-+          Explore the atmosphere of our restaurant through plated signatures,
-+          evening service, and the details that shape each visit.
-+        </p>
-       </section>
--      <section id="gallery-grid">
--        <h2>Gallery Grid</h2>
--        <p>Content for gallery-grid will be generated by tasks</p>
+@@ -1 +1,3 @@
++import GalleryHeroSection from "../components/GalleryHeroSection"
 +
-+      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
-+        <h2 id="gallery-grid-title">A visual look at our dining experience</h2>
-+        <p>
-+          This page brings together the dishes, textures, and spaces that define
-+          our menu and hospitality.
-+        </p>
-+        <div>
-+          <article>
-+            <h3>Signature plates</h3>
-+            <p>
-+              Seasonal compositions, refined presentation, and ingredients chosen
-+              with care.
-+            </p>
-+          </article>
-+          <article>
-+            <h3>Dining room atmosphere</h3>
-+            <p>
-+              Warm lighting, intimate tables, and a setting designed for long,
-+              relaxed evenings.
-+            </p>
-+          </article>
-+          <article>
-+            <h3>Service in motion</h3>
-+            <p>
-+              A closer look at the rhythm of the kitchen and the team behind each
-+              course.
-+            </p>
-+          </article>
-+        </div>
-       </section>
--    </>
-+    </main>
-   )
-apply_patch(auto_approved=true) exited 0 in 52ms:
+ export default function Gallery() {
+@@ -3,10 +5,3 @@
+     <main>
+-      <section id="gallery-hero">
+-        <p>Gallery</p>
+-        <h1>Moments from the table, the kitchen, and the room.</h1>
+-        <p>
+-          Explore the atmosphere of our restaurant through plated signatures,
+-          evening service, and the details that shape each visit.
+-        </p>
+-      </section>
++      <GalleryHeroSection />
+ 
+apply_patch(auto_approved=true) exited 0 in 57ms:
 Success. Updated the following files:
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/GalleryHeroSection.jsx
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Gallery.jsx
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 988cbbe8ea49855313d75eec5b792ecc86468c23..92af499be226efe7c5b23912ff11a0cf31c68b38
+index 5d1acb974b6b1e63619bd9a55f157cda5098fd1b..d6be604c4bafab5d520db204700a7eb980894b91
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
 @@ -218,6 +218,16 @@
  TASK page-chi-siamo-shell completed successfully.
  Build passed.
  
-+Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
++Prepared TASK section-gallery-gallery-hero (Create gallery-hero section on gallery) for execution.
 +
-+Launching Codex for TASK page-gallery-shell.
++Launching Codex for TASK section-gallery-gallery-hero.
 +
-+Completed TASK `page-gallery-shell`.
++Completed TASK `section-gallery-gallery-hero`.
 +
-+- Replaced the placeholder `gallery` page with a semantic `main` shell in `src/pages/Gallery.jsx`.
-+- Preserved the existing `/gallery` hash route in `src/App.jsx`, so no routing changes were required.
-+- Added the required `gallery-hero` and `gallery-grid` sections with real restaurant-focused copy so the page renders without placeholder text or crashes.
++- Added a reusable `GalleryHeroSection` component in `src/components/GalleryHeroSection.jsx`.
++- Replaced the inline gallery hero markup in `src/pages/Gallery.jsx` so the gallery page renders the dedicated hero section.
++- Preserved the required `gallery-hero` section id and page `h1` while leaving the existing gallery grid section unchanged.
 +
- Prepared TASK section-chi-siamo-philosophy (Create philosophy section on chi-siamo) for execution.
+ Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
  
- Launching Codex for TASK section-chi-siamo-philosophy.
+ Launching Codex for TASK page-gallery-shell.
+diff --git a/src/components/GalleryHeroSection.jsx b/src/components/GalleryHeroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..95f77064e3297577a51ef4cc6df2ac6fb0e15d35
+--- /dev/null
++++ b/src/components/GalleryHeroSection.jsx
+@@ -0,0 +1,148 @@
++const highlights = [
++  {
++    label: "Dining room",
++    text: "Soft light, natural materials, and a room designed to feel calm before the first course arrives.",
++  },
++  {
++    label: "Kitchen detail",
++    text: "Close finishes, precise plating, and the small gestures that give the menu its identity.",
++  },
++  {
++    label: "Service rhythm",
++    text: "A visual sequence of evenings shaped by timing, warmth, and a steady pace across the table.",
++  },
++]
++
++const styles = {
++  section: {
++    position: "relative",
++    overflow: "hidden",
++    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
++    background:
++      "radial-gradient(circle at top right, rgba(249, 115, 22, 0.16), transparent 30%), linear-gradient(145deg, #fffaf5 0%, #ffffff 52%, #f8fafc 100%)",
++  },
++  shell: {
++    maxWidth: "1280px",
++    margin: "0 auto",
++    display: "grid",
++    gap: "2rem",
++  },
++  layout: {
++    display: "grid",
++    gap: "1.5rem",
++    gridTemplateColumns: "minmax(0, 1.4fr) minmax(280px, 0.9fr)",
++    alignItems: "end",
++  },
++  content: {
++    display: "grid",
++    gap: "1.25rem",
++    maxWidth: "760px",
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: "0.85rem",
++    fontWeight: 700,
++    letterSpacing: "0.18em",
++    textTransform: "uppercase",
++    color: "#f97316",
++  },
++  title: {
++    margin: 0,
++    maxWidth: "10ch",
++    fontSize: "clamp(3rem, 9vw, 5.75rem)",
++    lineHeight: 0.92,
++    letterSpacing: "-0.05em",
++    color: "#111111",
++    textWrap: "balance",
++  },
++  lead: {
++    margin: 0,
++    maxWidth: "40rem",
++    fontSize: "clamp(1.05rem, 2.6vw, 1.28rem)",
++    lineHeight: 1.75,
++    color: "#52525b",
++  },
++  note: {
++    margin: 0,
++    fontSize: "0.95rem",
++    fontWeight: 700,
++    letterSpacing: "0.08em",
++    textTransform: "uppercase",
++    color: "#0f172a",
++  },
++  panel: {
++    display: "grid",
++    gap: "1rem",
++    padding: "clamp(1.5rem, 4vw, 2rem)",
++    borderRadius: "1.75rem",
++    backgroundColor: "#0f172a",
++    boxShadow: "0 24px 70px rgba(15, 23, 42, 0.12)",
++  },
++  panelTitle: {
++    margin: 0,
++    fontSize: "0.8rem",
++    fontWeight: 700,
++    letterSpacing: "0.16em",
++    textTransform: "uppercase",
++    color: "#fb923c",
++  },
++  list: {
++    margin: 0,
++    padding: 0,
++    listStyle: "none",
++    display: "grid",
++    gap: "1rem",
++  },
++  item: {
++    display: "grid",
++    gap: "0.35rem",
++    paddingTop: "1rem",
++    borderTop: "1px solid rgba(255, 255, 255, 0.12)",
++  },
++  itemLabel: {
++    margin: 0,
++    fontSize: "1.1rem",
++    lineHeight: 1.2,
++    color: "#ffffff",
++  },
++  itemText: {
++    margin: 0,
++    fontSize: "0.98rem",
++    lineHeight: 1.7,
++    color: "rgba(255, 255, 255, 0.74)",
++  },
++}
++
++export default function GalleryHeroSection() {
++  return (
++    <section id="gallery-hero" aria-labelledby="gallery-hero-title" style={styles.section}>
++      <div style={styles.shell}>
++        <div style={styles.layout}>
++          <div style={styles.content}>
++            <p style={styles.eyebrow}>Gallery</p>
++            <h1 id="gallery-hero-title" style={styles.title}>
++              Moments from the table, the kitchen, and the room.
++            </h1>
++            <p style={styles.lead}>
++              Explore the atmosphere of our restaurant through plated signatures,
++              evening service, and the details that shape each visit.
++            </p>
++            <p style={styles.note}>A closer look at the dishes, setting, and pace behind every service.</p>
++          </div>
++
++          <aside aria-label="Gallery highlights" style={styles.panel}>
++            <p style={styles.panelTitle}>What the gallery captures</p>
++            <ul style={styles.list}>
++              {highlights.map((highlight) => (
++                <li key={highlight.label} style={styles.item}>
++                  <p style={styles.itemLabel}>{highlight.label}</p>
++                  <p style={styles.itemText}>{highlight.text}</p>
++                </li>
++              ))}
++            </ul>
++          </aside>
++        </div>
++      </div>
++    </section>
++  )
++}
 diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
-index 235749103c1ac2a2bc18286f9ed0fd9e11479ff2..1094779567134c12945bcb872e6f69f93737e869
+index 1094779567134c12945bcb872e6f69f93737e869..3faf7ba19819329179d84f56970bf2d1a3afa271
 --- a/src/pages/Gallery.jsx
 +++ b/src/pages/Gallery.jsx
-@@ -1,14 +1,45 @@
+@@ -1,14 +1,9 @@
++import GalleryHeroSection from "../components/GalleryHeroSection"
++
  export default function Gallery() {
    return (
--    <>
-+    <main>
-       <section id="gallery-hero">
--        <h1>Gallery Hero</h1>
--        <p>Content for gallery-hero will be generated by tasks</p>
-+        <p>Gallery</p>
-+        <h1>Moments from the table, the kitchen, and the room.</h1>
-+        <p>
-+          Explore the atmosphere of our restaurant through plated signatures,
-+          evening service, and the details that shape each visit.
-+        </p>
-       </section>
--      <section id="gallery-grid">
--        <h2>Gallery Grid</h2>
--        <p>Content for gallery-grid will be generated by tasks</p>
-+
-+      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
-+        <h2 id="gallery-grid-title">A visual look at our dining experience</h2>
-+        <p>
-+          This page brings together the dishes, textures, and spaces that define
-+          our menu and hospitality.
-+        </p>
-+        <div>
-+          <article>
-+            <h3>Signature plates</h3>
-+            <p>
-+              Seasonal compositions, refined presentation, and ingredients chosen
-+              with care.
-+            </p>
-+          </article>
-+          <article>
-+            <h3>Dining room atmosphere</h3>
-+            <p>
-+              Warm lighting, intimate tables, and a setting designed for long,
-+              relaxed evenings.
-+            </p>
-+          </article>
-+          <article>
-+            <h3>Service in motion</h3>
-+            <p>
-+              A closer look at the rhythm of the kitchen and the team behind each
-+              course.
-+            </p>
-+          </article>
-+        </div>
-       </section>
--    </>
-+    </main>
-   )
- }
+     <main>
+-      <section id="gallery-hero">
+-        <p>Gallery</p>
+-        <h1>Moments from the table, the kitchen, and the room.</h1>
+-        <p>
+-          Explore the atmosphere of our restaurant through plated signatures,
+-          evening service, and the details that shape each visit.
+-        </p>
+-      </section>
++      <GalleryHeroSection />
+ 
+       <section id="gallery-grid" aria-labelledby="gallery-grid-title">
+         <h2 id="gallery-grid-title">A visual look at our dining experience</h2>
 
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 988cbbe8ea49855313d75eec5b792ecc86468c23..92af499be226efe7c5b23912ff11a0cf31c68b38
+index 5d1acb974b6b1e63619bd9a55f157cda5098fd1b..d6be604c4bafab5d520db204700a7eb980894b91
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
 @@ -218,6 +218,16 @@
  TASK page-chi-siamo-shell completed successfully.
  Build passed.
  
-+Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
++Prepared TASK section-gallery-gallery-hero (Create gallery-hero section on gallery) for execution.
 +
-+Launching Codex for TASK page-gallery-shell.
++Launching Codex for TASK section-gallery-gallery-hero.
 +
-+Completed TASK `page-gallery-shell`.
++Completed TASK `section-gallery-gallery-hero`.
 +
-+- Replaced the placeholder `gallery` page with a semantic `main` shell in `src/pages/Gallery.jsx`.
-+- Preserved the existing `/gallery` hash route in `src/App.jsx`, so no routing changes were required.
-+- Added the required `gallery-hero` and `gallery-grid` sections with real restaurant-focused copy so the page renders without placeholder text or crashes.
++- Added a reusable `GalleryHeroSection` component in `src/components/GalleryHeroSection.jsx`.
++- Replaced the inline gallery hero markup in `src/pages/Gallery.jsx` so the gallery page renders the dedicated hero section.
++- Preserved the required `gallery-hero` section id and page `h1` while leaving the existing gallery grid section unchanged.
 +
- Prepared TASK section-chi-siamo-philosophy (Create philosophy section on chi-siamo) for execution.
+ Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
  
- Launching Codex for TASK section-chi-siamo-philosophy.
+ Launching Codex for TASK page-gallery-shell.
+diff --git a/src/components/GalleryHeroSection.jsx b/src/components/GalleryHeroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..95f77064e3297577a51ef4cc6df2ac6fb0e15d35
+--- /dev/null
++++ b/src/components/GalleryHeroSection.jsx
+@@ -0,0 +1,148 @@
++const highlights = [
++  {
++    label: "Dining room",
++    text: "Soft light, natural materials, and a room designed to feel calm before the first course arrives.",
++  },
++  {
++    label: "Kitchen detail",
++    text: "Close finishes, precise plating, and the small gestures that give the menu its identity.",
++  },
++  {
++    label: "Service rhythm",
++    text: "A visual sequence of evenings shaped by timing, warmth, and a steady pace across the table.",
++  },
++]
++
++const styles = {
++  section: {
++    position: "relative",
++    overflow: "hidden",
++    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
++    background:
++      "radial-gradient(circle at top right, rgba(249, 115, 22, 0.16), transparent 30%), linear-gradient(145deg, #fffaf5 0%, #ffffff 52%, #f8fafc 100%)",
++  },
++  shell: {
++    maxWidth: "1280px",
++    margin: "0 auto",
++    display: "grid",
++    gap: "2rem",
++  },
++  layout: {
++    display: "grid",
++    gap: "1.5rem",
++    gridTemplateColumns: "minmax(0, 1.4fr) minmax(280px, 0.9fr)",
++    alignItems: "end",
++  },
++  content: {
++    display: "grid",
++    gap: "1.25rem",
++    maxWidth: "760px",
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: "0.85rem",
++    fontWeight: 700,
++    letterSpacing: "0.18em",
++    textTransform: "uppercase",
++    color: "#f97316",
++  },
++  title: {
++    margin: 0,
++    maxWidth: "10ch",
++    fontSize: "clamp(3rem, 9vw, 5.75rem)",
++    lineHeight: 0.92,
++    letterSpacing: "-0.05em",
++    color: "#111111",
++    textWrap: "balance",
++  },
++  lead: {
++    margin: 0,
++    maxWidth: "40rem",
++    fontSize: "clamp(1.05rem, 2.6vw, 1.28rem)",
++    lineHeight: 1.75,
++    color: "#52525b",
++  },
++  note: {
++    margin: 0,
++    fontSize: "0.95rem",
++    fontWeight: 700,
++    letterSpacing: "0.08em",
++    textTransform: "uppercase",
++    color: "#0f172a",
++  },
++  panel: {
++    display: "grid",
++    gap: "1rem",
++    padding: "clamp(1.5rem, 4vw, 2rem)",
++    borderRadius: "1.75rem",
++    backgroundColor: "#0f172a",
++    boxShadow: "0 24px 70px rgba(15, 23, 42, 0.12)",
++  },
++  panelTitle: {
++    margin: 0,
++    fontSize: "0.8rem",
++    fontWeight: 700,
++    letterSpacing: "0.16em",
++    textTransform: "uppercase",
++    color: "#fb923c",
++  },
++  list: {
++    margin: 0,
++    padding: 0,
++    listStyle: "none",
++    display: "grid",
++    gap: "1rem",
++  },
++  item: {
++    display: "grid",
++    gap: "0.35rem",
++    paddingTop: "1rem",
++    borderTop: "1px solid rgba(255, 255, 255, 0.12)",
++  },
++  itemLabel: {
++    margin: 0,
++    fontSize: "1.1rem",
++    lineHeight: 1.2,
++    color: "#ffffff",
++  },
++  itemText: {
++    margin: 0,
++    fontSize: "0.98rem",
++    lineHeight: 1.7,
++    color: "rgba(255, 255, 255, 0.74)",
++  },
++}
++
++export default function GalleryHeroSection() {
++  return (
++    <section id="gallery-hero" aria-labelledby="gallery-hero-title" style={styles.section}>
++      <div style={styles.shell}>
++        <div style={styles.layout}>
++          <div style={styles.content}>
++            <p style={styles.eyebrow}>Gallery</p>
++            <h1 id="gallery-hero-title" style={styles.title}>
++              Moments from the table, the kitchen, and the room.
++            </h1>
++            <p style={styles.lead}>
++              Explore the atmosphere of our restaurant through plated signatures,
++              evening service, and the details that shape each visit.
++            </p>
++            <p style={styles.note}>A closer look at the dishes, setting, and pace behind every service.</p>
++          </div>
++
++          <aside aria-label="Gallery highlights" style={styles.panel}>
++            <p style={styles.panelTitle}>What the gallery captures</p>
++            <ul style={styles.list}>
++              {highlights.map((highlight) => (
++                <li key={highlight.label} style={styles.item}>
++                  <p style={styles.itemLabel}>{highlight.label}</p>
++                  <p style={styles.itemText}>{highlight.text}</p>
++                </li>
++              ))}
++            </ul>
++          </aside>
++        </div>
++      </div>
++    </section>
++  )
++}
 diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
-index 235749103c1ac2a2bc18286f9ed0fd9e11479ff2..1094779567134c12945bcb872e6f69f93737e869
+index 1094779567134c12945bcb872e6f69f93737e869..3faf7ba19819329179d84f56970bf2d1a3afa271
 --- a/src/pages/Gallery.jsx
 +++ b/src/pages/Gallery.jsx
-@@ -1,14 +1,45 @@
+@@ -1,14 +1,9 @@
++import GalleryHeroSection from "../components/GalleryHeroSection"
++
  export default function Gallery() {
    return (
--    <>
-+    <main>
-       <section id="gallery-hero">
--        <h1>Gallery Hero</h1>
--        <p>Content for gallery-hero will be generated by tasks</p>
-+        <p>Gallery</p>
-+        <h1>Moments from the table, the kitchen, and the room.</h1>
-+        <p>
-+          Explore the atmosphere of our restaurant through plated signatures,
-+          evening service, and the details that shape each visit.
-+        </p>
-       </section>
--      <section id="gallery-grid">
--        <h2>Gallery Grid</h2>
--        <p>Content for gallery-grid will be generated by tasks</p>
-+
-+      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
-+        <h2 id="gallery-grid-title">A visual look at our dining experience</h2>
-+        <p>
-+          This page brings together the dishes, textures, and spaces that define
-+          our menu and hospitality.
-+        </p>
-+        <div>
-+          <article>
-+            <h3>Signature plates</h3>
-+            <p>
-+              Seasonal compositions, refined presentation, and ingredients chosen
-+              with care.
-+            </p>
-+          </article>
-+          <article>
-+            <h3>Dining room atmosphere</h3>
-+            <p>
-+              Warm lighting, intimate tables, and a setting designed for long,
-+              relaxed evenings.
-+            </p>
-+          </article>
-+          <article>
-+            <h3>Service in motion</h3>
-+            <p>
-+              A closer look at the rhythm of the kitchen and the team behind each
-+              course.
-+            </p>
-+          </article>
-+        </div>
-       </section>
--    </>
-+    </main>
-   )
- }
+     <main>
+-      <section id="gallery-hero">
+-        <p>Gallery</p>
+-        <h1>Moments from the table, the kitchen, and the room.</h1>
+-        <p>
+-          Explore the atmosphere of our restaurant through plated signatures,
+-          evening service, and the details that shape each visit.
+-        </p>
+-      </section>
++      <GalleryHeroSection />
+ 
+       <section id="gallery-grid" aria-labelledby="gallery-grid-title">
+         <h2 id="gallery-grid-title">A visual look at our dining experience</h2>
 
 codex
-The page shell is in place. I’m running the project build now to verify the gallery route still compiles cleanly with the existing hash-router setup.
+The gallery hero is now componentized and mounted. I’m running the build check next to verify the task didn’t introduce regressions before I report the modified files and outcome.
 exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 857ms:
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 829ms:
 
 > site-create-a-high-end-visually-distinctive-m@0.0.0 build
 > vite build
 
 vite v7.3.1 building client environment for production...
 transforming...
-✓ 56 modules transformed.
+✓ 57 modules transformed.
 rendering chunks...
 computing gzip size...
 dist/index.html                   0.50 kB │ gzip:  0.32 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-CgLKxj8H.js   259.21 kB │ gzip: 81.09 kB
-✓ built in 570ms
+dist/assets/index-B__WSapX.js   261.93 kB │ gzip: 81.43 kB
+✓ built in 565ms
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 988cbbe8ea49855313d75eec5b792ecc86468c23..92af499be226efe7c5b23912ff11a0cf31c68b38
+index 5d1acb974b6b1e63619bd9a55f157cda5098fd1b..d6be604c4bafab5d520db204700a7eb980894b91
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
 @@ -218,6 +218,16 @@
  TASK page-chi-siamo-shell completed successfully.
  Build passed.
  
-+Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
++Prepared TASK section-gallery-gallery-hero (Create gallery-hero section on gallery) for execution.
 +
-+Launching Codex for TASK page-gallery-shell.
++Launching Codex for TASK section-gallery-gallery-hero.
 +
-+Completed TASK `page-gallery-shell`.
++Completed TASK `section-gallery-gallery-hero`.
 +
-+- Replaced the placeholder `gallery` page with a semantic `main` shell in `src/pages/Gallery.jsx`.
-+- Preserved the existing `/gallery` hash route in `src/App.jsx`, so no routing changes were required.
-+- Added the required `gallery-hero` and `gallery-grid` sections with real restaurant-focused copy so the page renders without placeholder text or crashes.
++- Added a reusable `GalleryHeroSection` component in `src/components/GalleryHeroSection.jsx`.
++- Replaced the inline gallery hero markup in `src/pages/Gallery.jsx` so the gallery page renders the dedicated hero section.
++- Preserved the required `gallery-hero` section id and page `h1` while leaving the existing gallery grid section unchanged.
 +
- Prepared TASK section-chi-siamo-philosophy (Create philosophy section on chi-siamo) for execution.
+ Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
  
- Launching Codex for TASK section-chi-siamo-philosophy.
+ Launching Codex for TASK page-gallery-shell.
+diff --git a/src/components/GalleryHeroSection.jsx b/src/components/GalleryHeroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..95f77064e3297577a51ef4cc6df2ac6fb0e15d35
+--- /dev/null
++++ b/src/components/GalleryHeroSection.jsx
+@@ -0,0 +1,148 @@
++const highlights = [
++  {
++    label: "Dining room",
++    text: "Soft light, natural materials, and a room designed to feel calm before the first course arrives.",
++  },
++  {
++    label: "Kitchen detail",
++    text: "Close finishes, precise plating, and the small gestures that give the menu its identity.",
++  },
++  {
++    label: "Service rhythm",
++    text: "A visual sequence of evenings shaped by timing, warmth, and a steady pace across the table.",
++  },
++]
++
++const styles = {
++  section: {
++    position: "relative",
++    overflow: "hidden",
++    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
++    background:
++      "radial-gradient(circle at top right, rgba(249, 115, 22, 0.16), transparent 30%), linear-gradient(145deg, #fffaf5 0%, #ffffff 52%, #f8fafc 100%)",
++  },
++  shell: {
++    maxWidth: "1280px",
++    margin: "0 auto",
++    display: "grid",
++    gap: "2rem",
++  },
++  layout: {
++    display: "grid",
++    gap: "1.5rem",
++    gridTemplateColumns: "minmax(0, 1.4fr) minmax(280px, 0.9fr)",
++    alignItems: "end",
++  },
++  content: {
++    display: "grid",
++    gap: "1.25rem",
++    maxWidth: "760px",
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: "0.85rem",
++    fontWeight: 700,
++    letterSpacing: "0.18em",
++    textTransform: "uppercase",
++    color: "#f97316",
++  },
++  title: {
++    margin: 0,
++    maxWidth: "10ch",
++    fontSize: "clamp(3rem, 9vw, 5.75rem)",
++    lineHeight: 0.92,
++    letterSpacing: "-0.05em",
++    color: "#111111",
++    textWrap: "balance",
++  },
++  lead: {
++    margin: 0,
++    maxWidth: "40rem",
++    fontSize: "clamp(1.05rem, 2.6vw, 1.28rem)",
++    lineHeight: 1.75,
++    color: "#52525b",
++  },
++  note: {
++    margin: 0,
++    fontSize: "0.95rem",
++    fontWeight: 700,
++    letterSpacing: "0.08em",
++    textTransform: "uppercase",
++    color: "#0f172a",
++  },
++  panel: {
++    display: "grid",
++    gap: "1rem",
++    padding: "clamp(1.5rem, 4vw, 2rem)",
++    borderRadius: "1.75rem",
++    backgroundColor: "#0f172a",
++    boxShadow: "0 24px 70px rgba(15, 23, 42, 0.12)",
++  },
++  panelTitle: {
++    margin: 0,
++    fontSize: "0.8rem",
++    fontWeight: 700,
++    letterSpacing: "0.16em",
++    textTransform: "uppercase",
++    color: "#fb923c",
++  },
++  list: {
++    margin: 0,
++    padding: 0,
++    listStyle: "none",
++    display: "grid",
++    gap: "1rem",
++  },
++  item: {
++    display: "grid",
++    gap: "0.35rem",
++    paddingTop: "1rem",
++    borderTop: "1px solid rgba(255, 255, 255, 0.12)",
++  },
++  itemLabel: {
++    margin: 0,
++    fontSize: "1.1rem",
++    lineHeight: 1.2,
++    color: "#ffffff",
++  },
++  itemText: {
++    margin: 0,
++    fontSize: "0.98rem",
++    lineHeight: 1.7,
++    color: "rgba(255, 255, 255, 0.74)",
++  },
++}
++
++export default function GalleryHeroSection() {
++  return (
++    <section id="gallery-hero" aria-labelledby="gallery-hero-title" style={styles.section}>
++      <div style={styles.shell}>
++        <div style={styles.layout}>
++          <div style={styles.content}>
++            <p style={styles.eyebrow}>Gallery</p>
++            <h1 id="gallery-hero-title" style={styles.title}>
++              Moments from the table, the kitchen, and the room.
++            </h1>
++            <p style={styles.lead}>
++              Explore the atmosphere of our restaurant through plated signatures,
++              evening service, and the details that shape each visit.
++            </p>
++            <p style={styles.note}>A closer look at the dishes, setting, and pace behind every service.</p>
++          </div>
++
++          <aside aria-label="Gallery highlights" style={styles.panel}>
++            <p style={styles.panelTitle}>What the gallery captures</p>
++            <ul style={styles.list}>
++              {highlights.map((highlight) => (
++                <li key={highlight.label} style={styles.item}>
++                  <p style={styles.itemLabel}>{highlight.label}</p>
++                  <p style={styles.itemText}>{highlight.text}</p>
++                </li>
++              ))}
++            </ul>
++          </aside>
++        </div>
++      </div>
++    </section>
++  )
++}
 diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
-index 235749103c1ac2a2bc18286f9ed0fd9e11479ff2..1094779567134c12945bcb872e6f69f93737e869
+index 1094779567134c12945bcb872e6f69f93737e869..3faf7ba19819329179d84f56970bf2d1a3afa271
 --- a/src/pages/Gallery.jsx
 +++ b/src/pages/Gallery.jsx
-@@ -1,14 +1,45 @@
+@@ -1,14 +1,9 @@
++import GalleryHeroSection from "../components/GalleryHeroSection"
++
  export default function Gallery() {
    return (
--    <>
-+    <main>
-       <section id="gallery-hero">
--        <h1>Gallery Hero</h1>
--        <p>Content for gallery-hero will be generated by tasks</p>
-+        <p>Gallery</p>
-+        <h1>Moments from the table, the kitchen, and the room.</h1>
-+        <p>
-+          Explore the atmosphere of our restaurant through plated signatures,
-+          evening service, and the details that shape each visit.
-+        </p>
-       </section>
--      <section id="gallery-grid">
--        <h2>Gallery Grid</h2>
--        <p>Content for gallery-grid will be generated by tasks</p>
-+
-+      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
-+        <h2 id="gallery-grid-title">A visual look at our dining experience</h2>
-+        <p>
-+          This page brings together the dishes, textures, and spaces that define
-+          our menu and hospitality.
-+        </p>
-+        <div>
-+          <article>
-+            <h3>Signature plates</h3>
-+            <p>
-+              Seasonal compositions, refined presentation, and ingredients chosen
-+              with care.
-+            </p>
-+          </article>
-+          <article>
-+            <h3>Dining room atmosphere</h3>
-+            <p>
-+              Warm lighting, intimate tables, and a setting designed for long,
-+              relaxed evenings.
-+            </p>
-+          </article>
-+          <article>
-+            <h3>Service in motion</h3>
-+            <p>
-+              A closer look at the rhythm of the kitchen and the team behind each
-+              course.
-+            </p>
-+          </article>
-+        </div>
-       </section>
--    </>
-+    </main>
-   )
- }
+     <main>
+-      <section id="gallery-hero">
+-        <p>Gallery</p>
+-        <h1>Moments from the table, the kitchen, and the room.</h1>
+-        <p>
+-          Explore the atmosphere of our restaurant through plated signatures,
+-          evening service, and the details that shape each visit.
+-        </p>
+-      </section>
++      <GalleryHeroSection />
+ 
+       <section id="gallery-grid" aria-labelledby="gallery-grid-title">
+         <h2 id="gallery-grid-title">A visual look at our dining experience</h2>
 
 codex
-Modified files: [src/pages/Gallery.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Gallery.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md)
+Modified files:
+- [src/components/GalleryHeroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/components/GalleryHeroSection.jsx)
+- [src/pages/Gallery.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Gallery.jsx)
+- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md)
 
-Implemented the gallery page shell in [src/pages/Gallery.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Gallery.jsx) by replacing the generated placeholder with a semantic `main` wrapper and the required `gallery-hero` and `gallery-grid` sections. The `/gallery` route was already mounted in [src/App.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/App.jsx), so no routing change was needed. I also appended the task summary to [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md).
+Implemented the `gallery-hero` task by adding a dedicated `GalleryHeroSection` component and rendering it at the top of the gallery page. The section keeps the required `gallery-hero` id, provides the page `h1`, and follows the existing premium editorial hero pattern already used on other pages. The existing `gallery-grid` section was left unchanged.
 
-Build result: `npm run build` passed successfully.
+Build result: `npm run build` passed successfully with a production Vite build.
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 988cbbe8ea49855313d75eec5b792ecc86468c23..92af499be226efe7c5b23912ff11a0cf31c68b38
+index 5d1acb974b6b1e63619bd9a55f157cda5098fd1b..d6be604c4bafab5d520db204700a7eb980894b91
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
 @@ -218,6 +218,16 @@
  TASK page-chi-siamo-shell completed successfully.
  Build passed.
  
-+Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
++Prepared TASK section-gallery-gallery-hero (Create gallery-hero section on gallery) for execution.
 +
-+Launching Codex for TASK page-gallery-shell.
++Launching Codex for TASK section-gallery-gallery-hero.
 +
-+Completed TASK `page-gallery-shell`.
++Completed TASK `section-gallery-gallery-hero`.
 +
-+- Replaced the placeholder `gallery` page with a semantic `main` shell in `src/pages/Gallery.jsx`.
-+- Preserved the existing `/gallery` hash route in `src/App.jsx`, so no routing changes were required.
-+- Added the required `gallery-hero` and `gallery-grid` sections with real restaurant-focused copy so the page renders without placeholder text or crashes.
++- Added a reusable `GalleryHeroSection` component in `src/components/GalleryHeroSection.jsx`.
++- Replaced the inline gallery hero markup in `src/pages/Gallery.jsx` so the gallery page renders the dedicated hero section.
++- Preserved the required `gallery-hero` section id and page `h1` while leaving the existing gallery grid section unchanged.
 +
- Prepared TASK section-chi-siamo-philosophy (Create philosophy section on chi-siamo) for execution.
+ Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
  
- Launching Codex for TASK section-chi-siamo-philosophy.
+ Launching Codex for TASK page-gallery-shell.
+diff --git a/src/components/GalleryHeroSection.jsx b/src/components/GalleryHeroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..95f77064e3297577a51ef4cc6df2ac6fb0e15d35
+--- /dev/null
++++ b/src/components/GalleryHeroSection.jsx
+@@ -0,0 +1,148 @@
++const highlights = [
++  {
++    label: "Dining room",
++    text: "Soft light, natural materials, and a room designed to feel calm before the first course arrives.",
++  },
++  {
++    label: "Kitchen detail",
++    text: "Close finishes, precise plating, and the small gestures that give the menu its identity.",
++  },
++  {
++    label: "Service rhythm",
++    text: "A visual sequence of evenings shaped by timing, warmth, and a steady pace across the table.",
++  },
++]
++
++const styles = {
++  section: {
++    position: "relative",
++    overflow: "hidden",
++    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
++    background:
++      "radial-gradient(circle at top right, rgba(249, 115, 22, 0.16), transparent 30%), linear-gradient(145deg, #fffaf5 0%, #ffffff 52%, #f8fafc 100%)",
++  },
++  shell: {
++    maxWidth: "1280px",
++    margin: "0 auto",
++    display: "grid",
++    gap: "2rem",
++  },
++  layout: {
++    display: "grid",
++    gap: "1.5rem",
++    gridTemplateColumns: "minmax(0, 1.4fr) minmax(280px, 0.9fr)",
++    alignItems: "end",
++  },
++  content: {
++    display: "grid",
++    gap: "1.25rem",
++    maxWidth: "760px",
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: "0.85rem",
++    fontWeight: 700,
++    letterSpacing: "0.18em",
++    textTransform: "uppercase",
++    color: "#f97316",
++  },
++  title: {
++    margin: 0,
++    maxWidth: "10ch",
++    fontSize: "clamp(3rem, 9vw, 5.75rem)",
++    lineHeight: 0.92,
++    letterSpacing: "-0.05em",
++    color: "#111111",
++    textWrap: "balance",
++  },
++  lead: {
++    margin: 0,
++    maxWidth: "40rem",
++    fontSize: "clamp(1.05rem, 2.6vw, 1.28rem)",
++    lineHeight: 1.75,
++    color: "#52525b",
++  },
++  note: {
++    margin: 0,
++    fontSize: "0.95rem",
++    fontWeight: 700,
++    letterSpacing: "0.08em",
++    textTransform: "uppercase",
++    color: "#0f172a",
++  },
++  panel: {
++    display: "grid",
++    gap: "1rem",
++    padding: "clamp(1.5rem, 4vw, 2rem)",
++    borderRadius: "1.75rem",
++    backgroundColor: "#0f172a",
++    boxShadow: "0 24px 70px rgba(15, 23, 42, 0.12)",
++  },
++  panelTitle: {
++    margin: 0,
++    fontSize: "0.8rem",
++    fontWeight: 700,
++    letterSpacing: "0.16em",
++    textTransform: "uppercase",
++    color: "#fb923c",
++  },
++  list: {
++    margin: 0,
++    padding: 0,
++    listStyle: "none",
++    display: "grid",
++    gap: "1rem",
++  },
++  item: {
++    display: "grid",
++    gap: "0.35rem",
++    paddingTop: "1rem",
++    borderTop: "1px solid rgba(255, 255, 255, 0.12)",
++  },
++  itemLabel: {
++    margin: 0,
++    fontSize: "1.1rem",
++    lineHeight: 1.2,
++    color: "#ffffff",
++  },
++  itemText: {
++    margin: 0,
++    fontSize: "0.98rem",
++    lineHeight: 1.7,
++    color: "rgba(255, 255, 255, 0.74)",
++  },
++}
++
++export default function GalleryHeroSection() {
++  return (
++    <section id="gallery-hero" aria-labelledby="gallery-hero-title" style={styles.section}>
++      <div style={styles.shell}>
++        <div style={styles.layout}>
++          <div style={styles.content}>
++            <p style={styles.eyebrow}>Gallery</p>
++            <h1 id="gallery-hero-title" style={styles.title}>
++              Moments from the table, the kitchen, and the room.
++            </h1>
++            <p style={styles.lead}>
++              Explore the atmosphere of our restaurant through plated signatures,
++              evening service, and the details that shape each visit.
++            </p>
++            <p style={styles.note}>A closer look at the dishes, setting, and pace behind every service.</p>
++          </div>
++
++          <aside aria-label="Gallery highlights" style={styles.panel}>
++            <p style={styles.panelTitle}>What the gallery captures</p>
++            <ul style={styles.list}>
++              {highlights.map((highlight) => (
++                <li key={highlight.label} style={styles.item}>
++                  <p style={styles.itemLabel}>{highlight.label}</p>
++                  <p style={styles.itemText}>{highlight.text}</p>
++                </li>
++              ))}
++            </ul>
++          </aside>
++        </div>
++      </div>
++    </section>
++  )
++}
 diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
-index 235749103c1ac2a2bc18286f9ed0fd9e11479ff2..1094779567134c12945bcb872e6f69f93737e869
+index 1094779567134c12945bcb872e6f69f93737e869..3faf7ba19819329179d84f56970bf2d1a3afa271
 --- a/src/pages/Gallery.jsx
 +++ b/src/pages/Gallery.jsx
-@@ -1,14 +1,45 @@
+@@ -1,14 +1,9 @@
++import GalleryHeroSection from "../components/GalleryHeroSection"
++
  export default function Gallery() {
    return (
--    <>
-+    <main>
-       <section id="gallery-hero">
--        <h1>Gallery Hero</h1>
--        <p>Content for gallery-hero will be generated by tasks</p>
-+        <p>Gallery</p>
-+        <h1>Moments from the table, the kitchen, and the room.</h1>
-+        <p>
-+          Explore the atmosphere of our restaurant through plated signatures,
-+          evening service, and the details that shape each visit.
-+        </p>
-       </section>
--      <section id="gallery-grid">
--        <h2>Gallery Grid</h2>
--        <p>Content for gallery-grid will be generated by tasks</p>
-+
-+      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
-+        <h2 id="gallery-grid-title">A visual look at our dining experience</h2>
-+        <p>
-+          This page brings together the dishes, textures, and spaces that define
-+          our menu and hospitality.
-+        </p>
-+        <div>
-+          <article>
-+            <h3>Signature plates</h3>
-+            <p>
-+              Seasonal compositions, refined presentation, and ingredients chosen
-+              with care.
-+            </p>
-+          </article>
-+          <article>
-+            <h3>Dining room atmosphere</h3>
-+            <p>
-+              Warm lighting, intimate tables, and a setting designed for long,
-+              relaxed evenings.
-+            </p>
-+          </article>
-+          <article>
-+            <h3>Service in motion</h3>
-+            <p>
-+              A closer look at the rhythm of the kitchen and the team behind each
-+              course.
-+            </p>
-+          </article>
-+        </div>
-       </section>
--    </>
-+    </main>
-   )
- }
+     <main>
+-      <section id="gallery-hero">
+-        <p>Gallery</p>
+-        <h1>Moments from the table, the kitchen, and the room.</h1>
+-        <p>
+-          Explore the atmosphere of our restaurant through plated signatures,
+-          evening service, and the details that shape each visit.
+-        </p>
+-      </section>
++      <GalleryHeroSection />
+ 
+       <section id="gallery-grid" aria-labelledby="gallery-grid-title">
+         <h2 id="gallery-grid-title">A visual look at our dining experience</h2>
 
 tokens used
-12.525
+19.767

@@ -218,6 +218,16 @@ Waiting for validation.
 TASK page-chi-siamo-shell completed successfully.
 Build passed.
 
+Prepared TASK section-gallery-gallery-hero (Create gallery-hero section on gallery) for execution.
+
+Launching Codex for TASK section-gallery-gallery-hero.
+
+Completed TASK `section-gallery-gallery-hero`.
+
+- Added a reusable `GalleryHeroSection` component in `src/components/GalleryHeroSection.jsx`.
+- Replaced the inline gallery hero markup in `src/pages/Gallery.jsx` so the gallery page renders the dedicated hero section.
+- Preserved the required `gallery-hero` section id and page `h1` while leaving the existing gallery grid section unchanged.
+
 Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
 
 Launching Codex for TASK page-gallery-shell.
@@ -324,4 +334,15 @@ TASK page-gallery-shell executed by Codex.
 Waiting for validation.
 
 TASK page-gallery-shell completed successfully.
+Build passed.
+Commit created for TASK page-gallery-shell.
+
+Prepared TASK section-gallery-gallery-hero (Create gallery-hero section on gallery) for execution.
+
+Launching Codex for TASK section-gallery-gallery-hero.
+
+TASK section-gallery-gallery-hero executed by Codex.
+Waiting for validation.
+
+TASK section-gallery-gallery-hero completed successfully.
 Build passed.

@@ -1132,32 +1132,35 @@ It must feel like a modern digital product studio.
 ```
 
 ## Current task id
-page-gallery-shell
+section-gallery-gallery-hero
 
 ## Current task title
-Create gallery page shell
+Create gallery-hero section on gallery
 
 ## Current task type
-page-shell
+section
 
 ## Current task target
 ```json
 {
-  "pageId": "gallery"
+  "pageId": "gallery",
+  "sectionId": "gallery-hero",
+  "sectionType": "hero"
 }
 ```
 
 ## Depends on
-- none
+- page-gallery-shell
 
 ## Files allowed
-- src/App.jsx
 - src/pages/Gallery.jsx
+- src/components/GalleryHeroSection.jsx
+- src/components
 
 ## Definition of done
-- page shell exists for gallery
-- gallery route is mounted if required
-- gallery page renders without crashing
+- section gallery-hero exists on gallery
+- section gallery-hero matches type hero
+- section gallery-hero is rendered in page gallery
 
 ## Strict execution rules
 - Execute only this current task.

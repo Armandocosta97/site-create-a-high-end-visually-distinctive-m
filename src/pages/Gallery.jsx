@@ -1,14 +1,9 @@
+import GalleryHeroSection from "../components/GalleryHeroSection"
+
 export default function Gallery() {
   return (
     <main>
-      <section id="gallery-hero">
-        <p>Gallery</p>
-        <h1>Moments from the table, the kitchen, and the room.</h1>
-        <p>
-          Explore the atmosphere of our restaurant through plated signatures,
-          evening service, and the details that shape each visit.
-        </p>
-      </section>
+      <GalleryHeroSection />
 
       <section id="gallery-grid" aria-labelledby="gallery-grid-title">
         <h2 id="gallery-grid-title">A visual look at our dining experience</h2>
