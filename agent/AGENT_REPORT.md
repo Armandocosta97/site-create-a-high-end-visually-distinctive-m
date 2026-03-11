@@ -218,8 +218,35 @@ Waiting for validation.
 TASK page-chi-siamo-shell completed successfully.
 Build passed.
 
+Prepared TASK section-chi-siamo-about-hero (Create about-hero section on chi-siamo) for execution.
+
+Launching Codex for TASK section-chi-siamo-about-hero.
+
+Completed TASK `section-chi-siamo-about-hero`.
+
+- Added a reusable `AboutHeroSection` component in `src/components/AboutHeroSection.jsx`.
+- Replaced the inline `about-hero` markup in `src/pages/ChiSiamo.jsx` so the chi-siamo page renders the dedicated hero section.
+- Preserved the required `about-hero` section id and the page `h1` while leaving the existing `story` and `philosophy` sections unchanged.
+
+TASK section-chi-siamo-about-hero executed by Codex.
+Waiting for validation.
+
+TASK section-chi-siamo-about-hero completed successfully.
+Build passed.
+
 TASK page-chi-siamo-shell executed by Codex.
 Waiting for validation.
 
 TASK page-chi-siamo-shell completed successfully.
+Build passed.
+Commit created for TASK page-chi-siamo-shell.
+
+Prepared TASK section-chi-siamo-about-hero (Create about-hero section on chi-siamo) for execution.
+
+Launching Codex for TASK section-chi-siamo-about-hero.
+
+TASK section-chi-siamo-about-hero executed by Codex.
+Waiting for validation.
+
+TASK section-chi-siamo-about-hero completed successfully.
 Build passed.

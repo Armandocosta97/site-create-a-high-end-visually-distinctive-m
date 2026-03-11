@@ -1,3 +1,5 @@
+import AboutHeroSection from "../components/AboutHeroSection"
+
 export default function ChiSiamo() {
   const sectionStyle = {
     padding: "4rem 0",
@@ -28,27 +30,7 @@ export default function ChiSiamo() {
 
   return (
     <>
-      <section id="about-hero" style={sectionStyle}>
-        <div style={contentStyle}>
-          <p style={eyebrowStyle}>Chi siamo</p>
-          <h1
-            style={{
-              margin: "0 0 1.5rem",
-              maxWidth: "14ch",
-              fontSize: "clamp(2.75rem, 8vw, 5.5rem)",
-              lineHeight: 0.95,
-              color: "#0f172a",
-            }}
-          >
-            Un ristorante costruito sulla cura dei dettagli.
-          </h1>
-          <p style={bodyStyle}>
-            La nostra cucina parte da ingredienti stagionali, tecnica pulita e
-            un servizio attento. Ogni scelta, dal menu alla sala, e pensata per
-            offrire un&apos;esperienza contemporanea ma accogliente.
-          </p>
-        </div>
-      </section>
+      <AboutHeroSection />
 
       <section id="story" style={sectionStyle}>
         <div style={contentStyle}>
