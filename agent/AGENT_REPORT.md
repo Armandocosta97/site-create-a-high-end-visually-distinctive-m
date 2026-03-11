@@ -218,6 +218,22 @@ Waiting for validation.
 TASK page-chi-siamo-shell completed successfully.
 Build passed.
 
+Prepared TASK navigation-structure (Build navigation from spec) for execution.
+
+Launching Codex for TASK navigation-structure.
+
+Completed TASK `navigation-structure`.
+
+- Updated `src/layout/Layout.jsx` to render all required navigation items from a single navigation config.
+- Replaced raw hash anchors with `NavLink` components so navigation stays aligned with the existing `HashRouter` routing mode.
+- Preserved the required routes: `/`, `/menu`, `/chi-siamo`, `/gallery`, and `/contatti`.
+
+TASK navigation-structure executed by Codex.
+Waiting for validation.
+
+TASK navigation-structure completed successfully.
+Build passed.
+
 Prepared TASK cta-contatti-contatti-phone (Add CTA contatti-phone on contatti) for execution.
 
 Launching Codex for TASK cta-contatti-contatti-phone.
@@ -512,4 +528,15 @@ TASK cta-contatti-contatti-phone executed by Codex.
 Waiting for validation.
 
 TASK cta-contatti-contatti-phone completed successfully.
+Build passed.
+Commit created for TASK cta-contatti-contatti-phone.
+
+Prepared TASK navigation-structure (Build navigation from spec) for execution.
+
+Launching Codex for TASK navigation-structure.
+
+TASK navigation-structure executed by Codex.
+Waiting for validation.
+
+TASK navigation-structure completed successfully.
 Build passed.

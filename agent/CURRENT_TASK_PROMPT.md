@@ -1132,39 +1132,76 @@ It must feel like a modern digital product studio.
 ```
 
 ## Current task id
-cta-contatti-contatti-phone
+navigation-structure
 
 ## Current task title
-Add CTA contatti-phone on contatti
+Build navigation from spec
 
 ## Current task type
-cta
+navigation
 
 ## Current task target
 ```json
 {
-  "pageId": "contatti",
-  "ctaId": "contatti-phone",
-  "ctaKind": "external",
-  "destination": {
-    "type": "phone",
-    "value": "phone"
-  },
-  "placement": "body"
+  "navigation": [
+    {
+      "label": "Home",
+      "type": "route",
+      "target": "/"
+    },
+    {
+      "label": "Menu",
+      "type": "route",
+      "target": "/menu"
+    },
+    {
+      "label": "Chi siamo",
+      "type": "route",
+      "target": "/chi-siamo"
+    },
+    {
+      "label": "Gallery",
+      "type": "route",
+      "target": "/gallery"
+    },
+    {
+      "label": "Contatti",
+      "type": "route",
+      "target": "/contatti"
+    }
+  ],
+  "routingMode": "hash"
 }
 ```
 
 ## Depends on
+- page-home-shell
+- page-menu-shell
+- page-chi-siamo-shell
+- page-gallery-shell
 - page-contatti-shell
+- section-home-hero
+- section-home-signature-preview
+- section-home-brand-story-preview
+- section-menu-menu-hero
+- section-menu-menu-categories
+- section-chi-siamo-about-hero
+- section-chi-siamo-story
+- section-chi-siamo-philosophy
+- section-gallery-gallery-hero
+- section-gallery-gallery-grid
+- section-contatti-contact-hero
+- section-contatti-contact-details
+- section-contatti-opening-hours
 
 ## Files allowed
-- src/pages/Contatti.jsx
-- src/components
+- src/App.jsx
+- src/layout/Layout.jsx
 
 ## Definition of done
-- CTA contatti-phone exists on contatti
-- CTA contatti-phone is visible in placement body
-- CTA contatti-phone points to a valid destination
+- all navigation items are rendered
+- all navigation links point to valid pages or sections
+- navigation is compatible with routing mode
 
 ## Strict execution rules
 - Execute only this current task.
