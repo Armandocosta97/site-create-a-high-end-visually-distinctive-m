@@ -18,3 +18,27 @@ Waiting for validation.
 
 TASK page-home-shell completed successfully.
 Build passed.
+Commit created for TASK page-home-shell.
+
+Prepared TASK section-home-hero (Create hero section on home) for execution.
+
+Launching Codex for TASK section-home-hero.
+
+Completed TASK `section-home-hero`.
+
+- Added a reusable home hero component in `src/components/HeroSection.jsx`.
+- Replaced the inline home hero markup so the home page renders the dedicated hero section.
+- Kept the required CTAs pointing to `/menu` and `/contatti` in the existing hash-router setup.
+- Corrected the home page structure by removing the nested `main` wrapper from `Home.jsx`.
+
+TASK section-home-hero executed by Codex.
+Waiting for validation.
+
+TASK section-home-hero completed successfully.
+Build passed.
+
+TASK section-home-hero executed by Codex.
+Waiting for validation.
+
+TASK section-home-hero completed successfully.
+Build passed.
