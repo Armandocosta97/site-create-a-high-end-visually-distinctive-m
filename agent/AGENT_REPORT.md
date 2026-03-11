@@ -218,6 +218,22 @@ Waiting for validation.
 TASK page-chi-siamo-shell completed successfully.
 Build passed.
 
+Prepared TASK section-gallery-gallery-grid (Create gallery-grid section on gallery) for execution.
+
+Launching Codex for TASK section-gallery-gallery-grid.
+
+Completed TASK `section-gallery-gallery-grid`.
+
+- Added a reusable `GalleryGridSection` component in `src/components/GalleryGridSection.jsx`.
+- Replaced the inline gallery placeholder in `src/pages/Gallery.jsx` so the gallery page renders the dedicated `gallery-grid` image-grid section.
+- Implemented a responsive one-two-three column gallery layout with valid lazy-loaded image sources and meaningful alt text.
+
+TASK section-gallery-gallery-grid executed by Codex.
+Waiting for validation.
+
+TASK section-gallery-gallery-grid completed successfully.
+Build passed.
+
 Prepared TASK section-gallery-gallery-hero (Create gallery-hero section on gallery) for execution.
 
 Launching Codex for TASK section-gallery-gallery-hero.
@@ -345,4 +361,15 @@ TASK section-gallery-gallery-hero executed by Codex.
 Waiting for validation.
 
 TASK section-gallery-gallery-hero completed successfully.
+Build passed.
+Commit created for TASK section-gallery-gallery-hero.
+
+Prepared TASK section-gallery-gallery-grid (Create gallery-grid section on gallery) for execution.
+
+Launching Codex for TASK section-gallery-gallery-grid.
+
+TASK section-gallery-gallery-grid executed by Codex.
+Waiting for validation.
+
+TASK section-gallery-gallery-grid completed successfully.
 Build passed.
