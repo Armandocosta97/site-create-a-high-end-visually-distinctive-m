@@ -1,8 +1,8 @@
-Modified files: [src/layout/Layout.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/layout/Layout.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md)
+Modified files: [index.html](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/index.html), [src/pages/Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Home.jsx), [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Menu.jsx), [src/pages/ChiSiamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/ChiSiamo.jsx), [src/pages/Gallery.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Gallery.jsx), [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md).
 
-Implemented the navigation in [src/layout/Layout.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/layout/Layout.jsx) from a single spec-aligned config with all required items: `Home`, `Menu`, `Chi siamo`, `Gallery`, and `Contatti`. The header now uses `NavLink` targets for `/`, `/menu`, `/chi-siamo`, `/gallery`, and `/contatti`, which keeps the navigation compatible with the existing `HashRouter` setup instead of relying on hardcoded hash anchors.
+Implemented baseline SEO for the five target pages by adding a branded default `<title>` and meta description in [index.html](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/index.html), then setting route-specific `document.title` and `meta[name="description"]` values from each page shell on mount. I also wrapped [src/pages/Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Home.jsx) and [src/pages/ChiSiamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/ChiSiamo.jsx) in `main` to keep page semantics consistent. The existing hero sections already provided one meaningful `h1` per page, so no section content changes were needed.
 
-Build result: `npm run build` passed successfully. I also appended the task summary to [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md) per the project completion instructions.
+Build result: `npm run build` passed successfully. I also updated [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md) with a short task summary.
 
 OpenAI Codex v0.111.0 (research preview)
 --------
@@ -13,7 +13,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cddbd-cf1c-77e0-8a9c-74a8f4c2dbd6
+session id: 019cddbe-9101-73b0-813a-394c57eae7d1
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1150,45 +1150,24 @@ It must feel like a modern digital product studio.
 ```
 
 ## Current task id
-navigation-structure
+seo-basics
 
 ## Current task title
-Build navigation from spec
+Add baseline SEO structure
 
 ## Current task type
-navigation
+seo
 
 ## Current task target
 ```json
 {
-  "navigation": [
-    {
-      "label": "Home",
-      "type": "route",
-      "target": "/"
-    },
-    {
-      "label": "Menu",
-      "type": "route",
-      "target": "/menu"
-    },
-    {
-      "label": "Chi siamo",
-      "type": "route",
-      "target": "/chi-siamo"
-    },
-    {
-      "label": "Gallery",
-      "type": "route",
-      "target": "/gallery"
-    },
-    {
-      "label": "Contatti",
-      "type": "route",
-      "target": "/contatti"
-    }
-  ],
-  "routingMode": "hash"
+  "pages": [
+    "home",
+    "menu",
+    "chi-siamo",
+    "gallery",
+    "contatti"
+  ]
 }
 ```
 
@@ -1198,28 +1177,19 @@ navigation
 - page-chi-siamo-shell
 - page-gallery-shell
 - page-contatti-shell
-- section-home-hero
-- section-home-signature-preview
-- section-home-brand-story-preview
-- section-menu-menu-hero
-- section-menu-menu-categories
-- section-chi-siamo-about-hero
-- section-chi-siamo-story
-- section-chi-siamo-philosophy
-- section-gallery-gallery-hero
-- section-gallery-gallery-grid
-- section-contatti-contact-hero
-- section-contatti-contact-details
-- section-contatti-opening-hours
 
 ## Files allowed
-- src/App.jsx
-- src/layout/Layout.jsx
+- index.html
+- src/pages/Home.jsx
+- src/pages/Menu.jsx
+- src/pages/ChiSiamo.jsx
+- src/pages/Gallery.jsx
+- src/pages/Contatti.jsx
 
 ## Definition of done
-- all navigation items are rendered
-- all navigation links point to valid pages or sections
-- navigation is compatible with routing mode
+- title exists
+- meta description exists
+- one meaningful h1 per page exists
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1248,111 +1218,236 @@ navigation
 
 mcp startup: no servers
 codex
-I’m checking the task sources and the current app structure first so I can wire the navigation exactly to the spec and keep it hash-router compatible.
+I’m checking the current page shells and document head setup first so I can add only the baseline SEO changes this task allows, then I’ll run a build and update the task report.
 exec
-/bin/zsh -lc "sed -n '1,220p' src/App.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,260p' src/layout/Layout.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,240p' site-spec.json" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "pwd && rg --files brief agent docs src | sed 's#"'^#./#'"' | sort | rg '"'^(./(brief/original-prompt.md|brief/brief-summary.md|agent/CURRENT_TASK_PROMPT.md|agent/TASK_STATE.json|agent/TASK_GRAPH.json|docs/DEVELOPMENT_METHOD.md|site-spec.json|src/App.jsx|src/layout/Layout.jsx|agent/AGENT_REPORT.md))$'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 52ms:
-export default function Layout({ children }) {
+/bin/zsh -lc "sed -n '1,220p' index.html" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,220p' src/pages/ChiSiamo.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,220p' src/pages/Menu.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,220p' src/pages/Home.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,240p' src/pages/Gallery.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,240p' src/pages/Contatti.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc 'pwd && rg --files index.html src/pages agent/AGENT_REPORT.md brief/original-prompt.md brief/brief-summary.md site-spec.json docs/DEVELOPMENT_METHOD.md agent/TASK_GRAPH.json agent/TASK_STATE.json agent/CURRENT_TASK_PROMPT.md' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 50ms:
+import GalleryHeroSection from "../components/GalleryHeroSection"
+import GalleryGridSection from "../components/GalleryGridSection"
+
+export default function Gallery() {
+  return (
+    <main>
+      <GalleryHeroSection />
+      <GalleryGridSection />
+    </main>
+  )
+}
+ succeeded in 52ms:
+import AboutHeroSection from "../components/AboutHeroSection"
+import PhilosophySection from "../components/PhilosophySection"
+import StorySection from "../components/StorySection"
+
+export default function ChiSiamo() {
   return (
     <>
-      <header>
-        <nav aria-label="Main navigation">
-          <a href="#/">Home</a>
-          <a href="#/menu">Menu</a>
-          <a href="#/chi-siamo">Chi siamo</a>
-          <a href="#/gallery">Gallery</a>
-          <a href="#/contatti">Contatti</a>
-        </nav>
-      </header>
-
-      <main>{children}</main>
-
-      <footer>
-        <p>© Website</p>
-      </footer>
+      <AboutHeroSection />
+      <StorySection />
+      <PhilosophySection />
     </>
   )
+}
  succeeded in 52ms:
-{
-  "originalPrompt": "Create a high-end, visually distinctive multi-page website for a modern web agency called Alai Web.\n\nThe agency builds:\n- modern websites\n- fast websites\n- SEO-ready websites\n- custom business websites\n- elegant digital experiences for small businesses\n\nThe positioning of the brand is:\n\n\"Beautiful. Fast. Effective.\"\n\nThe site must communicate that Alai Web creates websites that are:\n- visually refined\n- technically solid\n- lightweight\n- SEO friendly\n- designed for real businesses\n\nIMPORTANT STRUCTURE\n\nThis must be a REAL multi-page website.\n\nCreate separate pages with real routes:\n\n- Home\n- Services\n- Portfolio\n- Process\n- About\n- Contact\n\nEach page must have a clear purpose.\nDo NOT collapse everything into the homepage.\nDo NOT simulate pages using anchor sections.\n\nDESIGN PRINCIPLE\n\nThe website must feel like a premium modern design studio.\n\nAvoid generic template style.\nAvoid repetitive card grids.\nAvoid UI patterns that look like cheap startup templates.\n\nPrefer:\n\n- large typographic sections\n- editorial layouts\n- split image/text compositions\n- asymmetrical blocks\n- strong visual rhythm\n- bold headlines\n- large spacing\n- full width sections\n- layered backgrounds\n- minimal containers\n- occasional cards only when necessary\n\nIMPORTANT:\nDo NOT build the entire site as repeated service cards.\nServices should often appear as rows, editorial blocks, or split layouts.\n\nVISUAL STYLE\n\nModern digital agency aesthetic.\n\nClean.\nSharp.\nConfident.\nMinimal but expressive.\n\nInspired by:\nmodern SaaS sites\ncreative digital studios\npremium design portfolios.\n\nCOLOR PALETTE\n\nPrimary brand color: ORANGE.\n\nSuggested palette:\n\nbackground: #ffffff\ntext: #111111\nbrand orange: #F97316\ndark section: #0f172a\nlight gray: #f5f5f5\n\nOrange must be used as:\n- accent color\n- CTA color\n- highlight elements\n- interactive states\n\nAvoid overusing orange for large backgrounds.\n\nTYPOGRAPHY\n\nStrong typographic hierarchy.\n\nHeadlines:\nlarge, bold, modern\n\nBody text:\nclean sans serif\n\nUse typography as a design element.\nLarge titles should drive sections.\n\nLAYOUT\n\nPrefer sections like:\n\nHero\nSplit layout (text + image)\nText driven sections\nEditorial feature blocks\nProcess timeline\nPortfolio previews\nFull width highlight bands\n\nAvoid stacking 6 identical cards.\n\nHOME PAGE STRUCTURE\n\n1. Hero section\n\nStrong, bold, minimal.\n\nHeadline idea:\n\nWebsites that look great\nand actually work.\n\nSubtext:\n\nAlai Web builds fast, modern websites designed to convert visitors into real customers.\n\nPrimary CTA:\nStart your project\n\nSecondary CTA:\nSee our work\n\nHero design should feel powerful and spacious.\n\n2. Value proposition section\n\nExplain clearly what Alai Web offers.\n\nAvoid cards.\nUse 2-3 strong typographic blocks.\n\nExamples:\n\nBeautiful design\nFast performance\nSEO foundations\n\n3. Portfolio preview\n\nLarge project previews.\n\nImage left / text right style.\n\nShow 3 example projects.\n\n4. How we work preview\n\nSimple process explanation.\n\nPrefer horizontal flow instead of cards.\n\nExample steps:\n\n1 Discovery\n2 Design\n3 Build\n4 Launch\n\n5. CTA section\n\nEncourage visitors to start a project.\n\nSERVICES PAGE\n\nExplain services clearly.\n\nPossible services:\n\nBusiness websites\nLanding pages\nWebsite redesign\nPerformance optimization\nSEO-ready builds\n\nPresent services using:\n\neditorial sections\nsplit layouts\nicon rows\nnot repetitive card grids.\n\nPORTFOLIO PAGE\n\nVisual portfolio.\n\nLarge images.\nProject titles.\nShort description.\n\nPortfolio should feel modern and visual.\n\nAvoid tiny thumbnails.\n\nPROCESS PAGE\n\nExplain the workflow.\n\nSteps like:\n\nDiscovery\nStructure\nDesign\nDevelopment\nLaunch\n\nUse visual timeline or progressive sections.\n\nABOUT PAGE\n\nTell the story of Alai Web.\n\nExplain:\n\n- philosophy\n- approach\n- design mindset\n- focus on performance and simplicity\n\nTone should feel human and confident.\n\nCONTACT PAGE\n\nSimple and effective.\n\nInclude:\n\ncontact form\nemail placeholder\noptional WhatsApp CTA\nproject inquiry CTA\n\nExample email:\n\nhello@alaiweb.com\n\nCTA examples:\n\nStart your project\nTell us about your idea\nLet's build something great\n\nFOOTER\n\nClean modern footer.\n\nInclude:\n\nbrand name\nshort tagline\nnavigation links\ncontact email\ncopyright\n\nRESPONSIVE\n\nFully responsive.\n\nNo horizontal overflow.\nTypography must scale correctly.\nHero must remain strong on mobile.\n\nQUALITY EXPECTATION\n\nThe final site must look like a real modern web agency website.\n\nIt must feel:\n\nmodern\nfast\nminimal\nprofessional\ndistinct\n\nIt must NOT look like a generic template.\n\nIt must NOT look like restaurant or salon websites.\n\nIt must feel like a modern digital product studio.",
-  "siteName": "site-create-a-high-end-visually-distinctive-m",
-  "businessType": "restaurant",
-  "architecture": "multi-page",
-  "routing": {
-    "mode": "hash"
-  },
-  "pages": [
-    {
-      "id": "home",
-      "route": "/",
-      "role": "landing",
-      "sections": [
-        {
-          "id": "hero",
-          "type": "hero"
-        },
-        {
-          "id": "signature-preview",
- succeeded in 52ms:
-import { HashRouter, Routes, Route } from "react-router-dom"
-import Layout from "./layout/Layout"
-import Home from "./pages/Home"
-import Menu from "./pages/Menu"
-import ChiSiamo from "./pages/ChiSiamo"
-import Gallery from "./pages/Gallery"
-import Contatti from "./pages/Contatti"
+import MenuHeroSection from "../components/MenuHeroSection"
+import MenuCategoriesSection from "../components/MenuCategoriesSection"
 
-export default function App() {
+export default function Menu() {
   return (
-    <HashRouter>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/chi-siamo" element={<ChiSiamo />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/contatti" element={<Contatti />} />
-        </Routes>
-      </Layout>
+    <main>
+      <MenuHeroSection />
+      <MenuCategoriesSection />
+    </main>
+  )
+}
+ succeeded in 52ms:
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>site-create-a-high-end-visually-distinctive-m</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+ succeeded in 51ms:
+import HeroSection from "../components/HeroSection"
+import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
+import SignaturePreviewSection from "../components/SignaturePreviewSection"
+import FloatingWhatsAppButton from "../components/FloatingWhatsAppButton"
+
+export default function Home() {
+  return (
+    <>
+      <HeroSection />
+      <SignaturePreviewSection />
+      <BrandStoryPreviewSection />
+      <FloatingWhatsAppButton />
+    </>
+  )
+}
+ succeeded in 50ms:
+import ContactHeroSection from "../components/ContactHeroSection"
+import ContactDetailsSection from "../components/ContactDetailsSection"
+import OpeningHoursSection from "../components/OpeningHoursSection"
+
+export default function Contatti() {
+  return (
+    <main>
+      <ContactHeroSection />
+      <ContactDetailsSection />
+      <OpeningHoursSection />
+    </main>
+  )
+}
  succeeded in 52ms:
 /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m
-./agent/AGENT_REPORT.md
-./agent/CURRENT_TASK_PROMPT.md
-./agent/TASK_GRAPH.json
-./agent/TASK_STATE.json
-./brief/brief-summary.md
-./brief/original-prompt.md
-./docs/DEVELOPMENT_METHOD.md
-./src/App.jsx
-./src/layout/Layout.jsx
+index.html
+agent/TASK_STATE.json
+agent/TASK_GRAPH.json
+docs/DEVELOPMENT_METHOD.md
+site-spec.json
+brief/brief-summary.md
+brief/original-prompt.md
+agent/AGENT_REPORT.md
+agent/CURRENT_TASK_PROMPT.md
+src/pages/Home.jsx
+src/pages/Gallery.jsx
+src/pages/ChiSiamo.jsx
+src/pages/Contatti.jsx
+src/pages/Menu.jsx
 codex
-I’ve confirmed the routes already exist in `src/App.jsx`. The remaining work is to make the header navigation spec-driven in `src/layout/Layout.jsx`, using router-aware links instead of raw hash anchors, then run a build check.
+The page shells are thin, so I’m checking the section components next to avoid introducing duplicate `h1`s and to see whether page-level title/meta updates can stay isolated to the allowed files.
+exec
+/bin/zsh -lc "sed -n '1,220p' src/components/GalleryHeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,220p' src/components/MenuHeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,220p' src/components/AboutHeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,220p' src/components/ContactHeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,220p' src/components/HeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "rg -n \"<h1|<H1|document.title|meta name=\\\"description\\\"|Helmet|react-helmet\" src/components src/pages" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 51ms:
+const styles = {
+  section: {
+    position: "relative",
+    overflow: "hidden",
+    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem) clamp(3rem, 6vw, 4rem)",
+    background:
+      "radial-gradient(circle at top left, rgba(249, 115, 22, 0.16), transparent 30%), linear-gradient(180deg, rgba(249, 115, 22, 0.08) 0%, #ffffff 72%)",
+  },
+  shell: {
+    maxWidth: "1280px",
+    margin: "0 auto",
+    display: "grid",
+    gap: "1.5rem",
+  },
+  eyebrow: {
+    margin: 0,
+    color: "#f97316",
+    fontSize: "0.875rem",
+    fontWeight: 700,
+    letterSpacing: "0.12em",
+ succeeded in 51ms:
+const highlights = [
+  {
+    label: "Dining room",
+    text: "Soft light, natural materials, and a room designed to feel calm before the first course arrives.",
+  },
+  {
+    label: "Kitchen detail",
+    text: "Close finishes, precise plating, and the small gestures that give the menu its identity.",
+  },
+  {
+    label: "Service rhythm",
+    text: "A visual sequence of evenings shaped by timing, warmth, and a steady pace across the table.",
+  },
+]
+
+const styles = {
+  section: {
+    position: "relative",
+    overflow: "hidden",
+    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
+ succeeded in 51ms:
+const values = [
+  {
+    title: "Stagionalita",
+    text: "Il menu segue il tempo degli ingredienti, con piatti che cambiano senza perdere equilibrio.",
+  },
+  {
+    title: "Precisione",
+    text: "Ogni dettaglio, dalla cucina alla sala, e misurato per mantenere il servizio chiaro e naturale.",
+  },
+  {
+    title: "Accoglienza",
+    text: "L'esperienza resta contemporanea, ma sempre calda, leggibile e pensata per far tornare le persone.",
+  },
+]
+
+const styles = {
+  section: {
+    position: "relative",
+    overflow: "hidden",
+    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
+ succeeded in 51ms:
+const styles = {
+  section: {
+    position: "relative",
+    overflow: "hidden",
+    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
+    background:
+      "radial-gradient(circle at top left, rgba(249, 115, 22, 0.16), transparent 30%), linear-gradient(135deg, #fff8f1 0%, #ffffff 50%, #f8fafc 100%)",
+  },
+  shell: {
+    maxWidth: "1280px",
+    margin: "0 auto",
+    display: "grid",
+    gap: "2rem",
+  },
+  layout: {
+    display: "grid",
+    gap: "1.5rem",
+    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+    alignItems: "end",
+  },
+ succeeded in 50ms:
+import { Link } from "react-router-dom"
+
+const styles = {
+  section: {
+    position: "relative",
+    overflow: "hidden",
+    padding: "clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 3rem)",
+    background:
+      "radial-gradient(circle at top right, rgba(249, 115, 22, 0.18), transparent 28%), linear-gradient(135deg, #fffaf6 0%, #ffffff 48%, #f5f5f5 100%)",
+  },
+  shell: {
+    maxWidth: "1280px",
+    margin: "0 auto",
+    display: "grid",
+    gap: "2.5rem",
+    alignItems: "end",
+  },
+  eyebrow: {
+    margin: 0,
+    fontSize: "0.85rem",
+ succeeded in 51ms:
+src/components/GalleryHeroSection.jsx:123:            <h1 id="gallery-hero-title" style={styles.title}>
+src/components/MenuHeroSection.jsx:87:            <h1 id="menu-hero-title" style={styles.title}>
+src/components/AboutHeroSection.jsx:123:            <h1 id="about-hero-title" style={styles.title}>
+src/components/HeroSection.jsx:108:          <h1 id="home-hero-title" style={styles.title}>
+src/components/ContactHeroSection.jsx:75:        <h1 id="contact-hero-title" style={styles.title}>
+codex
+I’ve confirmed each page already has a single hero `h1`, so the remaining work is page-level `title` and description management plus a default head fallback in `index.html`, then the build and report update.
 exec
 /bin/zsh -lc 'cat package.json' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
-/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 52ms:
-# AGENT REPORT
-
-Project created.
-
-Prepared TASK page-home-shell (Create home page shell) for execution.
-
-Launching Codex for TASK page-home-shell.
-
-Completed TASK `page-home-shell`.
-
-- Replaced placeholder home page content with a semantic `main` shell.
-- Kept the home route mounted in the existing hash router setup.
-- Added the required home sections: `hero`, `signature-preview`, and `brand-story-preview`.
-- Added working internal CTAs to `/menu` and `/contatti`.
-
-TASK page-home-shell executed by Codex.
-Waiting for validation.
-
-TASK page-home-shell completed successfully.
-Build passed.
- succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 51ms:
 {
   "name": "site-create-a-high-end-visually-distinctive-m",
   "private": true,
@@ -1373,395 +1468,1484 @@ Build passed.
   "devDependencies": {
     "@eslint/js": "^9.39.1",
     "@playwright/test": "^1.58.2",
-codex
-I’ve got enough context. I’m updating `src/layout/Layout.jsx` now to derive the header links from the task’s navigation spec and switch them to `NavLink` so they resolve correctly under `HashRouter`.
-file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/layout/Layout.jsx
-@@ -1 +1,11 @@
-+import { NavLink } from "react-router-dom"
-+
-+const navigationItems = [
-+  { label: "Home", target: "/" },
-+  { label: "Menu", target: "/menu" },
-+  { label: "Chi siamo", target: "/chi-siamo" },
-+  { label: "Gallery", target: "/gallery" },
-+  { label: "Contatti", target: "/contatti" },
-+]
-+
- export default function Layout({ children }) {
-@@ -5,7 +15,7 @@
-         <nav aria-label="Main navigation">
--          <a href="#/">Home</a>
--          <a href="#/menu">Menu</a>
--          <a href="#/chi-siamo">Chi siamo</a>
--          <a href="#/gallery">Gallery</a>
--          <a href="#/contatti">Contatti</a>
-+          {navigationItems.map((item) => (
-+            <NavLink key={item.target} to={item.target}>
-+              {item.label}
-+            </NavLink>
-+          ))}
-         </nav>
-apply_patch(auto_approved=true) exited 0 in 38ms:
-Success. Updated the following files:
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/layout/Layout.jsx
-file update:
-diff --git a/src/layout/Layout.jsx b/src/layout/Layout.jsx
-index d3879db9e4eaea383b3f7246e7d55902a9fdebab..d180fbee2237dc1461d648572346ed393e6d3d0f
---- a/src/layout/Layout.jsx
-+++ b/src/layout/Layout.jsx
-@@ -1,13 +1,23 @@
-+import { NavLink } from "react-router-dom"
-+
-+const navigationItems = [
-+  { label: "Home", target: "/" },
-+  { label: "Menu", target: "/menu" },
-+  { label: "Chi siamo", target: "/chi-siamo" },
-+  { label: "Gallery", target: "/gallery" },
-+  { label: "Contatti", target: "/contatti" },
-+]
-+
- export default function Layout({ children }) {
-   return (
-     <>
-       <header>
-         <nav aria-label="Main navigation">
--          <a href="#/">Home</a>
--          <a href="#/menu">Menu</a>
--          <a href="#/chi-siamo">Chi siamo</a>
--          <a href="#/gallery">Gallery</a>
--          <a href="#/contatti">Contatti</a>
-+          {navigationItems.map((item) => (
-+            <NavLink key={item.target} to={item.target}>
-+              {item.label}
-+            </NavLink>
-+          ))}
-         </nav>
-       </header>
- 
+ succeeded in 51ms:
+# AGENT REPORT
 
-file update:
-diff --git a/src/layout/Layout.jsx b/src/layout/Layout.jsx
-index d3879db9e4eaea383b3f7246e7d55902a9fdebab..d180fbee2237dc1461d648572346ed393e6d3d0f
---- a/src/layout/Layout.jsx
-+++ b/src/layout/Layout.jsx
-@@ -1,13 +1,23 @@
-+import { NavLink } from "react-router-dom"
-+
-+const navigationItems = [
-+  { label: "Home", target: "/" },
-+  { label: "Menu", target: "/menu" },
-+  { label: "Chi siamo", target: "/chi-siamo" },
-+  { label: "Gallery", target: "/gallery" },
-+  { label: "Contatti", target: "/contatti" },
-+]
-+
- export default function Layout({ children }) {
-   return (
-     <>
-       <header>
-         <nav aria-label="Main navigation">
--          <a href="#/">Home</a>
--          <a href="#/menu">Menu</a>
--          <a href="#/chi-siamo">Chi siamo</a>
--          <a href="#/gallery">Gallery</a>
--          <a href="#/contatti">Contatti</a>
-+          {navigationItems.map((item) => (
-+            <NavLink key={item.target} to={item.target}>
-+              {item.label}
-+            </NavLink>
-+          ))}
-         </nav>
-       </header>
- 
+Project created.
 
+Prepared TASK page-home-shell (Create home page shell) for execution.
+
+Launching Codex for TASK page-home-shell.
+
+Completed TASK `page-home-shell`.
+
+- Replaced placeholder home page content with a semantic `main` shell.
+- Kept the home route mounted in the existing hash router setup.
+- Added the required home sections: `hero`, `signature-preview`, and `brand-story-preview`.
+- Added working internal CTAs to `/menu` and `/contatti`.
+
+TASK page-home-shell executed by Codex.
+Waiting for validation.
+
+TASK page-home-shell completed successfully.
+Build passed.
 codex
-The navigation change is in place. Next I’m running the build to verify the router-aware links don’t break the existing multi-page setup, then I’ll record the task summary in the agent report if the build stays green.
+I’m making the edits now. The page components will own their route-specific `title` and description updates via `useEffect`, and `index.html` will provide the non-JS/default head fallback so the task is complete without touching routing.
 exec
-/bin/zsh -lc "sed -n '1,220p' src/layout/Layout.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 52ms:
-import { NavLink } from "react-router-dom"
+/bin/zsh -lc "sed -n '1,220p' src/App.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '220,520p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 51ms:
 
-const navigationItems = [
-  { label: "Home", target: "/" },
-  { label: "Menu", target: "/menu" },
-  { label: "Chi siamo", target: "/chi-siamo" },
-  { label: "Gallery", target: "/gallery" },
-  { label: "Contatti", target: "/contatti" },
-]
+Prepared TASK navigation-structure (Build navigation from spec) for execution.
 
-export default function Layout({ children }) {
+Launching Codex for TASK navigation-structure.
+
+Completed TASK `navigation-structure`.
+
+- Updated `src/layout/Layout.jsx` to render all required navigation items from a single navigation config.
+- Replaced raw hash anchors with `NavLink` components so navigation stays aligned with the existing `HashRouter` routing mode.
+- Preserved the required routes: `/`, `/menu`, `/chi-siamo`, `/gallery`, and `/contatti`.
+
+TASK navigation-structure executed by Codex.
+Waiting for validation.
+
+TASK navigation-structure completed successfully.
+Build passed.
+
+Prepared TASK cta-contatti-contatti-phone (Add CTA contatti-phone on contatti) for execution.
+
+Launching Codex for TASK cta-contatti-contatti-phone.
+ succeeded in 51ms:
+import { HashRouter, Routes, Route } from "react-router-dom"
+import Layout from "./layout/Layout"
+import Home from "./pages/Home"
+import Menu from "./pages/Menu"
+import ChiSiamo from "./pages/ChiSiamo"
+import Gallery from "./pages/Gallery"
+import Contatti from "./pages/Contatti"
+
+export default function App() {
   return (
-    <>
-      <header>
-        <nav aria-label="Main navigation">
-          {navigationItems.map((item) => (
-            <NavLink key={item.target} to={item.target}>
-              {item.label}
-            </NavLink>
-          ))}
+    <HashRouter>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/chi-siamo" element={<ChiSiamo />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/contatti" element={<Contatti />} />
+        </Routes>
+      </Layout>
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Gallery.jsx
+@@ -1 +1,2 @@
++import { useEffect } from "react"
+ import GalleryHeroSection from "../components/GalleryHeroSection"
+@@ -4,2 +5,15 @@
+ export default function Gallery() {
++  useEffect(() => {
++    document.title = "Gallery | Alai Web"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "View the gallery for a closer look at the dining room, plated dishes, kitchen detail, and service atmosphere across the restaurant experience."
++      )
++    }
++  }, [])
++
+   return (
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/ChiSiamo.jsx
+@@ -1 +1,2 @@
++import { useEffect } from "react"
+ import AboutHeroSection from "../components/AboutHeroSection"
+@@ -5,4 +6,17 @@
+ export default function ChiSiamo() {
++  useEffect(() => {
++    document.title = "Chi siamo | Alai Web"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Read the story, philosophy, and hospitality approach behind a detail-driven dining experience shaped by seasonal ingredients and precise service."
++      )
++    }
++  }, [])
++
+   return (
+-    <>
++    <main>
+       <AboutHeroSection />
+@@ -10,3 +24,3 @@
+       <PhilosophySection />
+-    </>
++    </main>
+   )
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/index.html
+@@ -1,3 +1,3 @@
+ <!doctype html>
+-<html lang="en">
++<html lang="it">
+   <head>
+@@ -6,3 +6,7 @@
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+-    <title>site-create-a-high-end-visually-distinctive-m</title>
++    <title>Alai Web | Beautiful. Fast. Effective.</title>
++    <meta
++      name="description"
++      content="Alai Web creates modern, fast, and SEO-ready websites with a refined digital studio approach and clear business focus."
++    />
+   </head>
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Home.jsx
+@@ -1 +1,2 @@
++import { useEffect } from "react"
+ import HeroSection from "../components/HeroSection"
+@@ -6,4 +7,17 @@
+ export default function Home() {
++  useEffect(() => {
++    document.title = "Alai Web | Modern websites that look great and work"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Alai Web builds modern, fast, and SEO-ready websites for small businesses that need clarity, performance, and stronger digital presence."
++      )
++    }
++  }, [])
++
+   return (
+-    <>
++    <main>
+       <HeroSection />
+@@ -12,3 +26,3 @@
+       <FloatingWhatsAppButton />
+-    </>
++    </main>
+   )
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx
+@@ -1 +1,2 @@
++import { useEffect } from "react"
+ import ContactHeroSection from "../components/ContactHeroSection"
+@@ -5,2 +6,15 @@
+ export default function Contatti() {
++  useEffect(() => {
++    document.title = "Contatti | Alai Web"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Contact Alai Web by email, phone, or WhatsApp to discuss your project goals, timeline, and the next step for your digital presence."
++      )
++    }
++  }, [])
++
+   return (
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Menu.jsx
+@@ -1 +1,2 @@
++import { useEffect } from "react"
+ import MenuHeroSection from "../components/MenuHeroSection"
+@@ -4,2 +5,15 @@
+ export default function Menu() {
++  useEffect(() => {
++    document.title = "Menu | Alai Web"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Browse the current menu with seasonal antipasti, pasta, mains, and desserts presented with a balanced, contemporary dining approach."
++      )
++    }
++  }, [])
++
+   return (
+apply_patch(auto_approved=true) exited 0 in 78ms:
+Success. Updated the following files:
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/index.html
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Home.jsx
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Menu.jsx
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/ChiSiamo.jsx
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Gallery.jsx
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx
+file update:
+diff --git a/index.html b/index.html
+index 30f2f215c28b26c2b819396508b5f06b89edecbf..c620b5bf12808efc1c11a59d9313a5d52067adf6
+--- a/index.html
++++ b/index.html
+@@ -1,10 +1,14 @@
+ <!doctype html>
+-<html lang="en">
++<html lang="it">
+   <head>
+     <meta charset="UTF-8" />
+     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+-    <title>site-create-a-high-end-visually-distinctive-m</title>
++    <title>Alai Web | Beautiful. Fast. Effective.</title>
++    <meta
++      name="description"
++      content="Alai Web creates modern, fast, and SEO-ready websites with a refined digital studio approach and clear business focus."
++    />
+   </head>
+   <body>
+     <div id="root"></div>
+diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
+index b300e2cd34cf511410e94fac255dc59f5e293762..be719d8578ea26eafb078025c2d809e2d4a4cd5c
+--- a/src/pages/ChiSiamo.jsx
++++ b/src/pages/ChiSiamo.jsx
+@@ -1,13 +1,27 @@
++import { useEffect } from "react"
+ import AboutHeroSection from "../components/AboutHeroSection"
+ import PhilosophySection from "../components/PhilosophySection"
+ import StorySection from "../components/StorySection"
+ 
+ export default function ChiSiamo() {
++  useEffect(() => {
++    document.title = "Chi siamo | Alai Web"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Read the story, philosophy, and hospitality approach behind a detail-driven dining experience shaped by seasonal ingredients and precise service."
++      )
++    }
++  }, [])
++
+   return (
+-    <>
++    <main>
+       <AboutHeroSection />
+       <StorySection />
+       <PhilosophySection />
+-    </>
++    </main>
+   )
+ }
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index 45f7ff857f0af04da85926b2097eb7e62469c4fe..0969f917585b2a8af07998dc167a5b624383e303
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,8 +1,22 @@
++import { useEffect } from "react"
+ import ContactHeroSection from "../components/ContactHeroSection"
+ import ContactDetailsSection from "../components/ContactDetailsSection"
+ import OpeningHoursSection from "../components/OpeningHoursSection"
+ 
+ export default function Contatti() {
++  useEffect(() => {
++    document.title = "Contatti | Alai Web"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Contact Alai Web by email, phone, or WhatsApp to discuss your project goals, timeline, and the next step for your digital presence."
++      )
++    }
++  }, [])
++
+   return (
+     <main>
+       <ContactHeroSection />
+diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
+index 13278dbc41ba99e25167a3e7ebfa0f5f4c77ff87..d2e8f2060f63db5ba6af317562c78d629a2e40a1
+--- a/src/pages/Gallery.jsx
++++ b/src/pages/Gallery.jsx
+@@ -1,7 +1,21 @@
++import { useEffect } from "react"
+ import GalleryHeroSection from "../components/GalleryHeroSection"
+ import GalleryGridSection from "../components/GalleryGridSection"
+ 
+ export default function Gallery() {
++  useEffect(() => {
++    document.title = "Gallery | Alai Web"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "View the gallery for a closer look at the dining room, plated dishes, kitchen detail, and service atmosphere across the restaurant experience."
++      )
++    }
++  }, [])
++
+   return (
+     <main>
+       <GalleryHeroSection />
+diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
+index 975c0d61b240732b26d7688f1b22f5200d120a4b..ff79ded3fb5a8dd2fc0c0e68bb92a0721560ba9e
+--- a/src/pages/Home.jsx
++++ b/src/pages/Home.jsx
+@@ -1,15 +1,29 @@
++import { useEffect } from "react"
+ import HeroSection from "../components/HeroSection"
+ import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
+ import SignaturePreviewSection from "../components/SignaturePreviewSection"
+ import FloatingWhatsAppButton from "../components/FloatingWhatsAppButton"
+ 
+ export default function Home() {
++  useEffect(() => {
++    document.title = "Alai Web | Modern websites that look great and work"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Alai Web builds modern, fast, and SEO-ready websites for small businesses that need clarity, performance, and stronger digital presence."
++      )
++    }
++  }, [])
++
+   return (
+-    <>
++    <main>
+       <HeroSection />
+       <SignaturePreviewSection />
+       <BrandStoryPreviewSection />
+       <FloatingWhatsAppButton />
+-    </>
++    </main>
+   )
+ }
+diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
+index b0d4ebf5a36062ea077fae7ffa0286a0571e13ab..085fd657f31247157db8a1d4bb6b33cb2a86ef8b
+--- a/src/pages/Menu.jsx
++++ b/src/pages/Menu.jsx
+@@ -1,7 +1,21 @@
++import { useEffect } from "react"
+ import MenuHeroSection from "../components/MenuHeroSection"
+ import MenuCategoriesSection from "../components/MenuCategoriesSection"
+ 
+ export default function Menu() {
++  useEffect(() => {
++    document.title = "Menu | Alai Web"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Browse the current menu with seasonal antipasti, pasta, mains, and desserts presented with a balanced, contemporary dining approach."
++      )
++    }
++  }, [])
++
+   return (
+     <main>
+       <MenuHeroSection />
+
+file update:
+diff --git a/index.html b/index.html
+index 30f2f215c28b26c2b819396508b5f06b89edecbf..c620b5bf12808efc1c11a59d9313a5d52067adf6
+--- a/index.html
++++ b/index.html
+@@ -1,10 +1,14 @@
+ <!doctype html>
+-<html lang="en">
++<html lang="it">
+   <head>
+     <meta charset="UTF-8" />
+     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+-    <title>site-create-a-high-end-visually-distinctive-m</title>
++    <title>Alai Web | Beautiful. Fast. Effective.</title>
++    <meta
++      name="description"
++      content="Alai Web creates modern, fast, and SEO-ready websites with a refined digital studio approach and clear business focus."
++    />
+   </head>
+   <body>
+     <div id="root"></div>
+diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
+index b300e2cd34cf511410e94fac255dc59f5e293762..be719d8578ea26eafb078025c2d809e2d4a4cd5c
+--- a/src/pages/ChiSiamo.jsx
++++ b/src/pages/ChiSiamo.jsx
+@@ -1,13 +1,27 @@
++import { useEffect } from "react"
+ import AboutHeroSection from "../components/AboutHeroSection"
+ import PhilosophySection from "../components/PhilosophySection"
+ import StorySection from "../components/StorySection"
+ 
+ export default function ChiSiamo() {
++  useEffect(() => {
++    document.title = "Chi siamo | Alai Web"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Read the story, philosophy, and hospitality approach behind a detail-driven dining experience shaped by seasonal ingredients and precise service."
++      )
++    }
++  }, [])
++
+   return (
+-    <>
++    <main>
+       <AboutHeroSection />
+       <StorySection />
+       <PhilosophySection />
+-    </>
++    </main>
+   )
+ }
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index 45f7ff857f0af04da85926b2097eb7e62469c4fe..0969f917585b2a8af07998dc167a5b624383e303
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,8 +1,22 @@
++import { useEffect } from "react"
+ import ContactHeroSection from "../components/ContactHeroSection"
+ import ContactDetailsSection from "../components/ContactDetailsSection"
+ import OpeningHoursSection from "../components/OpeningHoursSection"
+ 
+ export default function Contatti() {
++  useEffect(() => {
++    document.title = "Contatti | Alai Web"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Contact Alai Web by email, phone, or WhatsApp to discuss your project goals, timeline, and the next step for your digital presence."
++      )
++    }
++  }, [])
++
+   return (
+     <main>
+       <ContactHeroSection />
+diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
+index 13278dbc41ba99e25167a3e7ebfa0f5f4c77ff87..d2e8f2060f63db5ba6af317562c78d629a2e40a1
+--- a/src/pages/Gallery.jsx
++++ b/src/pages/Gallery.jsx
+@@ -1,7 +1,21 @@
++import { useEffect } from "react"
+ import GalleryHeroSection from "../components/GalleryHeroSection"
+ import GalleryGridSection from "../components/GalleryGridSection"
+ 
+ export default function Gallery() {
++  useEffect(() => {
++    document.title = "Gallery | Alai Web"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "View the gallery for a closer look at the dining room, plated dishes, kitchen detail, and service atmosphere across the restaurant experience."
++      )
++    }
++  }, [])
++
+   return (
+     <main>
+       <GalleryHeroSection />
+diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
+index 975c0d61b240732b26d7688f1b22f5200d120a4b..ff79ded3fb5a8dd2fc0c0e68bb92a0721560ba9e
+--- a/src/pages/Home.jsx
++++ b/src/pages/Home.jsx
+@@ -1,15 +1,29 @@
++import { useEffect } from "react"
+ import HeroSection from "../components/HeroSection"
+ import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
+ import SignaturePreviewSection from "../components/SignaturePreviewSection"
+ import FloatingWhatsAppButton from "../components/FloatingWhatsAppButton"
+ 
+ export default function Home() {
++  useEffect(() => {
++    document.title = "Alai Web | Modern websites that look great and work"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Alai Web builds modern, fast, and SEO-ready websites for small businesses that need clarity, performance, and stronger digital presence."
++      )
++    }
++  }, [])
++
+   return (
+-    <>
++    <main>
+       <HeroSection />
+       <SignaturePreviewSection />
+       <BrandStoryPreviewSection />
+       <FloatingWhatsAppButton />
+-    </>
++    </main>
+   )
+ }
+diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
+index b0d4ebf5a36062ea077fae7ffa0286a0571e13ab..085fd657f31247157db8a1d4bb6b33cb2a86ef8b
+--- a/src/pages/Menu.jsx
++++ b/src/pages/Menu.jsx
+@@ -1,7 +1,21 @@
++import { useEffect } from "react"
+ import MenuHeroSection from "../components/MenuHeroSection"
+ import MenuCategoriesSection from "../components/MenuCategoriesSection"
+ 
+ export default function Menu() {
++  useEffect(() => {
++    document.title = "Menu | Alai Web"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Browse the current menu with seasonal antipasti, pasta, mains, and desserts presented with a balanced, contemporary dining approach."
++      )
++    }
++  }, [])
++
+   return (
+     <main>
+       <MenuHeroSection />
+
+codex
+The SEO edits are in place. I’m doing a quick readback for correctness and then running the build so I can confirm there are no regressions before I append the task report.
 exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 745ms:
+/bin/zsh -lc "sed -n '1,200p' src/pages/Menu.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,200p' src/pages/Home.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,200p' src/pages/ChiSiamo.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,200p' src/pages/Gallery.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-mexec
+/bin/zsh -lc "sed -n '1,200p' src/pages/Contatti.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 52ms:
+import { useEffect } from "react"
+import HeroSection from "../components/HeroSection"
+import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
+import SignaturePreviewSection from "../components/SignaturePreviewSection"
+import FloatingWhatsAppButton from "../components/FloatingWhatsAppButton"
+
+export default function Home() {
+  useEffect(() => {
+    document.title = "Alai Web | Modern websites that look great and work"
+
+    const metaDescription = document.querySelector('meta[name="description"]')
+
+    if (metaDescription) {
+      metaDescription.setAttribute(
+        "content",
+        "Alai Web builds modern, fast, and SEO-ready websites for small businesses that need clarity, performance, and stronger digital presence."
+      )
+    }
+  }, [])
+
+ succeeded in 51ms:
+import { useEffect } from "react"
+import AboutHeroSection from "../components/AboutHeroSection"
+import PhilosophySection from "../components/PhilosophySection"
+import StorySection from "../components/StorySection"
+
+export default function ChiSiamo() {
+  useEffect(() => {
+    document.title = "Chi siamo | Alai Web"
+
+    const metaDescription = document.querySelector('meta[name="description"]')
+
+    if (metaDescription) {
+      metaDescription.setAttribute(
+        "content",
+        "Read the story, philosophy, and hospitality approach behind a detail-driven dining experience shaped by seasonal ingredients and precise service."
+      )
+    }
+  }, [])
+
+  return (
+ succeeded in 52ms:
+import { useEffect } from "react"
+import MenuHeroSection from "../components/MenuHeroSection"
+import MenuCategoriesSection from "../components/MenuCategoriesSection"
+
+export default function Menu() {
+  useEffect(() => {
+    document.title = "Menu | Alai Web"
+
+    const metaDescription = document.querySelector('meta[name="description"]')
+
+    if (metaDescription) {
+      metaDescription.setAttribute(
+        "content",
+        "Browse the current menu with seasonal antipasti, pasta, mains, and desserts presented with a balanced, contemporary dining approach."
+      )
+    }
+  }, [])
+
+  return (
+    <main>
+ succeeded in 52ms:
+import { useEffect } from "react"
+import GalleryHeroSection from "../components/GalleryHeroSection"
+import GalleryGridSection from "../components/GalleryGridSection"
+
+export default function Gallery() {
+  useEffect(() => {
+    document.title = "Gallery | Alai Web"
+
+    const metaDescription = document.querySelector('meta[name="description"]')
+
+    if (metaDescription) {
+      metaDescription.setAttribute(
+        "content",
+        "View the gallery for a closer look at the dining room, plated dishes, kitchen detail, and service atmosphere across the restaurant experience."
+      )
+    }
+  }, [])
+
+  return (
+    <main>
+ succeeded in 51ms:
+import { useEffect } from "react"
+import ContactHeroSection from "../components/ContactHeroSection"
+import ContactDetailsSection from "../components/ContactDetailsSection"
+import OpeningHoursSection from "../components/OpeningHoursSection"
+
+export default function Contatti() {
+  useEffect(() => {
+    document.title = "Contatti | Alai Web"
+
+    const metaDescription = document.querySelector('meta[name="description"]')
+
+    if (metaDescription) {
+      metaDescription.setAttribute(
+        "content",
+        "Contact Alai Web by email, phone, or WhatsApp to discuss your project goals, timeline, and the next step for your digital presence."
+      )
+    }
+  }, [])
+
+  return (
+exec
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m succeeded in 839ms:
+
+> site-create-a-high-end-visually-distinctive-m@0.0.0 build
+> vite build
+
 vite v7.3.1 building client environment for production...
 transforming...
 ✓ 61 modules transformed.
 rendering chunks...
 computing gzip size...
-dist/index.html                   0.50 kB │ gzip:  0.32 kB
+dist/index.html                   0.67 kB │ gzip:  0.41 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-CAT49j4Q.js   273.06 kB │ gzip: 84.11 kB
-✓ built in 571ms
+dist/assets/index-DsMCnx-n.js   274.51 kB │ gzip: 84.42 kB
+✓ built in 573ms
 file update:
-diff --git a/src/layout/Layout.jsx b/src/layout/Layout.jsx
-index d3879db9e4eaea383b3f7246e7d55902a9fdebab..d180fbee2237dc1461d648572346ed393e6d3d0f
---- a/src/layout/Layout.jsx
-+++ b/src/layout/Layout.jsx
-@@ -1,13 +1,23 @@
-+import { NavLink } from "react-router-dom"
-+
-+const navigationItems = [
-+  { label: "Home", target: "/" },
-+  { label: "Menu", target: "/menu" },
-+  { label: "Chi siamo", target: "/chi-siamo" },
-+  { label: "Gallery", target: "/gallery" },
-+  { label: "Contatti", target: "/contatti" },
-+]
-+
- export default function Layout({ children }) {
-   return (
-     <>
-       <header>
-         <nav aria-label="Main navigation">
--          <a href="#/">Home</a>
--          <a href="#/menu">Menu</a>
--          <a href="#/chi-siamo">Chi siamo</a>
--          <a href="#/gallery">Gallery</a>
--          <a href="#/contatti">Contatti</a>
-+          {navigationItems.map((item) => (
-+            <NavLink key={item.target} to={item.target}>
-+              {item.label}
-+            </NavLink>
-+          ))}
-         </nav>
-       </header>
+diff --git a/index.html b/index.html
+index 30f2f215c28b26c2b819396508b5f06b89edecbf..c620b5bf12808efc1c11a59d9313a5d52067adf6
+--- a/index.html
++++ b/index.html
+@@ -1,10 +1,14 @@
+ <!doctype html>
+-<html lang="en">
++<html lang="it">
+   <head>
+     <meta charset="UTF-8" />
+     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+-    <title>site-create-a-high-end-visually-distinctive-m</title>
++    <title>Alai Web | Beautiful. Fast. Effective.</title>
++    <meta
++      name="description"
++      content="Alai Web creates modern, fast, and SEO-ready websites with a refined digital studio approach and clear business focus."
++    />
+   </head>
+   <body>
+     <div id="root"></div>
+diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
+index b300e2cd34cf511410e94fac255dc59f5e293762..be719d8578ea26eafb078025c2d809e2d4a4cd5c
+--- a/src/pages/ChiSiamo.jsx
++++ b/src/pages/ChiSiamo.jsx
+@@ -1,13 +1,27 @@
++import { useEffect } from "react"
+ import AboutHeroSection from "../components/AboutHeroSection"
+ import PhilosophySection from "../components/PhilosophySection"
+ import StorySection from "../components/StorySection"
  
+ export default function ChiSiamo() {
++  useEffect(() => {
++    document.title = "Chi siamo | Alai Web"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Read the story, philosophy, and hospitality approach behind a detail-driven dining experience shaped by seasonal ingredients and precise service."
++      )
++    }
++  }, [])
++
+   return (
+-    <>
++    <main>
+       <AboutHeroSection />
+       <StorySection />
+       <PhilosophySection />
+-    </>
++    </main>
+   )
+ }
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index 45f7ff857f0af04da85926b2097eb7e62469c4fe..0969f917585b2a8af07998dc167a5b624383e303
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,8 +1,22 @@
++import { useEffect } from "react"
+ import ContactHeroSection from "../components/ContactHeroSection"
+ import ContactDetailsSection from "../components/ContactDetailsSection"
+ import OpeningHoursSection from "../components/OpeningHoursSection"
+ 
+ export default function Contatti() {
++  useEffect(() => {
++    document.title = "Contatti | Alai Web"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Contact Alai Web by email, phone, or WhatsApp to discuss your project goals, timeline, and the next step for your digital presence."
++      )
++    }
++  }, [])
++
+   return (
+     <main>
+       <ContactHeroSection />
+diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
+index 13278dbc41ba99e25167a3e7ebfa0f5f4c77ff87..d2e8f2060f63db5ba6af317562c78d629a2e40a1
+--- a/src/pages/Gallery.jsx
++++ b/src/pages/Gallery.jsx
+@@ -1,7 +1,21 @@
++import { useEffect } from "react"
+ import GalleryHeroSection from "../components/GalleryHeroSection"
+ import GalleryGridSection from "../components/GalleryGridSection"
+ 
+ export default function Gallery() {
++  useEffect(() => {
++    document.title = "Gallery | Alai Web"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "View the gallery for a closer look at the dining room, plated dishes, kitchen detail, and service atmosphere across the restaurant experience."
++      )
++    }
++  }, [])
++
+   return (
+     <main>
+       <GalleryHeroSection />
+diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
+index 975c0d61b240732b26d7688f1b22f5200d120a4b..ff79ded3fb5a8dd2fc0c0e68bb92a0721560ba9e
+--- a/src/pages/Home.jsx
++++ b/src/pages/Home.jsx
+@@ -1,15 +1,29 @@
++import { useEffect } from "react"
+ import HeroSection from "../components/HeroSection"
+ import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
+ import SignaturePreviewSection from "../components/SignaturePreviewSection"
+ import FloatingWhatsAppButton from "../components/FloatingWhatsAppButton"
+ 
+ export default function Home() {
++  useEffect(() => {
++    document.title = "Alai Web | Modern websites that look great and work"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Alai Web builds modern, fast, and SEO-ready websites for small businesses that need clarity, performance, and stronger digital presence."
++      )
++    }
++  }, [])
++
+   return (
+-    <>
++    <main>
+       <HeroSection />
+       <SignaturePreviewSection />
+       <BrandStoryPreviewSection />
+       <FloatingWhatsAppButton />
+-    </>
++    </main>
+   )
+ }
+diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
+index b0d4ebf5a36062ea077fae7ffa0286a0571e13ab..085fd657f31247157db8a1d4bb6b33cb2a86ef8b
+--- a/src/pages/Menu.jsx
++++ b/src/pages/Menu.jsx
+@@ -1,7 +1,21 @@
++import { useEffect } from "react"
+ import MenuHeroSection from "../components/MenuHeroSection"
+ import MenuCategoriesSection from "../components/MenuCategoriesSection"
+ 
+ export default function Menu() {
++  useEffect(() => {
++    document.title = "Menu | Alai Web"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Browse the current menu with seasonal antipasti, pasta, mains, and desserts presented with a balanced, contemporary dining approach."
++      )
++    }
++  }, [])
++
+   return (
+     <main>
+       <MenuHeroSection />
 
 codex
-The build passed. I’m appending a minimal task entry to `agent/AGENT_REPORT.md` now so the execution log reflects the navigation work and the green build result.
+The build passed. I’m appending the required task summary to `agent/AGENT_REPORT.md`, limited to what this SEO task changed.
 file update
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md
-@@ -220,2 +220,18 @@
+@@ -262,2 +262,18 @@
  
-+Prepared TASK navigation-structure (Build navigation from spec) for execution.
++Prepared TASK seo-basics (Add baseline SEO structure) for execution.
 +
-+Launching Codex for TASK navigation-structure.
++Launching Codex for TASK seo-basics.
 +
-+Completed TASK `navigation-structure`.
++Completed TASK `seo-basics`.
 +
-+- Updated `src/layout/Layout.jsx` to render all required navigation items from a single navigation config.
-+- Replaced raw hash anchors with `NavLink` components so navigation stays aligned with the existing `HashRouter` routing mode.
-+- Preserved the required routes: `/`, `/menu`, `/chi-siamo`, `/gallery`, and `/contatti`.
++- Added a branded default `<title>` and `<meta name="description">` to `index.html` as baseline document head fallbacks.
++- Updated `src/pages/Home.jsx`, `src/pages/Menu.jsx`, `src/pages/ChiSiamo.jsx`, `src/pages/Gallery.jsx`, and `src/pages/Contatti.jsx` to set route-specific document titles and meta descriptions on mount.
++- Verified each target page still exposes one meaningful hero `h1`, satisfying the page-level heading requirement without changing section content.
 +
-+TASK navigation-structure executed by Codex.
++TASK seo-basics executed by Codex.
 +Waiting for validation.
 +
-+TASK navigation-structure completed successfully.
++TASK seo-basics completed successfully.
 +Build passed.
 +
- Prepared TASK cta-contatti-contatti-phone (Add CTA contatti-phone on contatti) for execution.
-apply_patch(auto_approved=true) exited 0 in 49ms:
+ Prepared TASK section-contatti-contact-details (Create contact-details section on contatti) for execution.
+apply_patch(auto_approved=true) exited 0 in 92ms:
 Success. Updated the following files:
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 10b1c714a8eb37e366b5657a526aa679685dcb7c..f93ca14e9f07cd98a09712dbeb741602d6c3b3bd
+index 9d28059d34e8fcb303a2f18eea8a6d44e686ef1f..99c13870b7402a441834fe0996660fd910c38fc9
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,22 @@
- TASK page-chi-siamo-shell completed successfully.
+@@ -260,6 +260,22 @@
+ TASK cta-contatti-contatti-whatsapp completed successfully.
  Build passed.
  
-+Prepared TASK navigation-structure (Build navigation from spec) for execution.
++Prepared TASK seo-basics (Add baseline SEO structure) for execution.
 +
-+Launching Codex for TASK navigation-structure.
++Launching Codex for TASK seo-basics.
 +
-+Completed TASK `navigation-structure`.
++Completed TASK `seo-basics`.
 +
-+- Updated `src/layout/Layout.jsx` to render all required navigation items from a single navigation config.
-+- Replaced raw hash anchors with `NavLink` components so navigation stays aligned with the existing `HashRouter` routing mode.
-+- Preserved the required routes: `/`, `/menu`, `/chi-siamo`, `/gallery`, and `/contatti`.
++- Added a branded default `<title>` and `<meta name="description">` to `index.html` as baseline document head fallbacks.
++- Updated `src/pages/Home.jsx`, `src/pages/Menu.jsx`, `src/pages/ChiSiamo.jsx`, `src/pages/Gallery.jsx`, and `src/pages/Contatti.jsx` to set route-specific document titles and meta descriptions on mount.
++- Verified each target page still exposes one meaningful hero `h1`, satisfying the page-level heading requirement without changing section content.
 +
-+TASK navigation-structure executed by Codex.
++TASK seo-basics executed by Codex.
 +Waiting for validation.
 +
-+TASK navigation-structure completed successfully.
++TASK seo-basics completed successfully.
 +Build passed.
 +
- Prepared TASK cta-contatti-contatti-phone (Add CTA contatti-phone on contatti) for execution.
+ Prepared TASK section-contatti-contact-details (Create contact-details section on contatti) for execution.
  
- Launching Codex for TASK cta-contatti-contatti-phone.
-diff --git a/src/layout/Layout.jsx b/src/layout/Layout.jsx
-index d3879db9e4eaea383b3f7246e7d55902a9fdebab..d180fbee2237dc1461d648572346ed393e6d3d0f
---- a/src/layout/Layout.jsx
-+++ b/src/layout/Layout.jsx
-@@ -1,13 +1,23 @@
-+import { NavLink } from "react-router-dom"
+ Launching Codex for TASK section-contatti-contact-details.
+diff --git a/index.html b/index.html
+index 30f2f215c28b26c2b819396508b5f06b89edecbf..c620b5bf12808efc1c11a59d9313a5d52067adf6
+--- a/index.html
++++ b/index.html
+@@ -1,10 +1,14 @@
+ <!doctype html>
+-<html lang="en">
++<html lang="it">
+   <head>
+     <meta charset="UTF-8" />
+     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+-    <title>site-create-a-high-end-visually-distinctive-m</title>
++    <title>Alai Web | Beautiful. Fast. Effective.</title>
++    <meta
++      name="description"
++      content="Alai Web creates modern, fast, and SEO-ready websites with a refined digital studio approach and clear business focus."
++    />
+   </head>
+   <body>
+     <div id="root"></div>
+diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
+index b300e2cd34cf511410e94fac255dc59f5e293762..be719d8578ea26eafb078025c2d809e2d4a4cd5c
+--- a/src/pages/ChiSiamo.jsx
++++ b/src/pages/ChiSiamo.jsx
+@@ -1,13 +1,27 @@
++import { useEffect } from "react"
+ import AboutHeroSection from "../components/AboutHeroSection"
+ import PhilosophySection from "../components/PhilosophySection"
+ import StorySection from "../components/StorySection"
+ 
+ export default function ChiSiamo() {
++  useEffect(() => {
++    document.title = "Chi siamo | Alai Web"
 +
-+const navigationItems = [
-+  { label: "Home", target: "/" },
-+  { label: "Menu", target: "/menu" },
-+  { label: "Chi siamo", target: "/chi-siamo" },
-+  { label: "Gallery", target: "/gallery" },
-+  { label: "Contatti", target: "/contatti" },
-+]
++    const metaDescription = document.querySelector('meta[name="description"]')
 +
- export default function Layout({ children }) {
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Read the story, philosophy, and hospitality approach behind a detail-driven dining experience shaped by seasonal ingredients and precise service."
++      )
++    }
++  }, [])
++
    return (
-     <>
-       <header>
-         <nav aria-label="Main navigation">
--          <a href="#/">Home</a>
--          <a href="#/menu">Menu</a>
--          <a href="#/chi-siamo">Chi siamo</a>
--          <a href="#/gallery">Gallery</a>
--          <a href="#/contatti">Contatti</a>
-+          {navigationItems.map((item) => (
-+            <NavLink key={item.target} to={item.target}>
-+              {item.label}
-+            </NavLink>
-+          ))}
-         </nav>
-       </header>
+-    <>
++    <main>
+       <AboutHeroSection />
+       <StorySection />
+       <PhilosophySection />
+-    </>
++    </main>
+   )
+ }
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index 45f7ff857f0af04da85926b2097eb7e62469c4fe..0969f917585b2a8af07998dc167a5b624383e303
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,8 +1,22 @@
++import { useEffect } from "react"
+ import ContactHeroSection from "../components/ContactHeroSection"
+ import ContactDetailsSection from "../components/ContactDetailsSection"
+ import OpeningHoursSection from "../components/OpeningHoursSection"
  
+ export default function Contatti() {
++  useEffect(() => {
++    document.title = "Contatti | Alai Web"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Contact Alai Web by email, phone, or WhatsApp to discuss your project goals, timeline, and the next step for your digital presence."
++      )
++    }
++  }, [])
++
+   return (
+     <main>
+       <ContactHeroSection />
+diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
+index 13278dbc41ba99e25167a3e7ebfa0f5f4c77ff87..d2e8f2060f63db5ba6af317562c78d629a2e40a1
+--- a/src/pages/Gallery.jsx
++++ b/src/pages/Gallery.jsx
+@@ -1,7 +1,21 @@
++import { useEffect } from "react"
+ import GalleryHeroSection from "../components/GalleryHeroSection"
+ import GalleryGridSection from "../components/GalleryGridSection"
+ 
+ export default function Gallery() {
++  useEffect(() => {
++    document.title = "Gallery | Alai Web"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "View the gallery for a closer look at the dining room, plated dishes, kitchen detail, and service atmosphere across the restaurant experience."
++      )
++    }
++  }, [])
++
+   return (
+     <main>
+       <GalleryHeroSection />
+diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
+index 975c0d61b240732b26d7688f1b22f5200d120a4b..ff79ded3fb5a8dd2fc0c0e68bb92a0721560ba9e
+--- a/src/pages/Home.jsx
++++ b/src/pages/Home.jsx
+@@ -1,15 +1,29 @@
++import { useEffect } from "react"
+ import HeroSection from "../components/HeroSection"
+ import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
+ import SignaturePreviewSection from "../components/SignaturePreviewSection"
+ import FloatingWhatsAppButton from "../components/FloatingWhatsAppButton"
+ 
+ export default function Home() {
++  useEffect(() => {
++    document.title = "Alai Web | Modern websites that look great and work"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Alai Web builds modern, fast, and SEO-ready websites for small businesses that need clarity, performance, and stronger digital presence."
++      )
++    }
++  }, [])
++
+   return (
+-    <>
++    <main>
+       <HeroSection />
+       <SignaturePreviewSection />
+       <BrandStoryPreviewSection />
+       <FloatingWhatsAppButton />
+-    </>
++    </main>
+   )
+ }
+diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
+index b0d4ebf5a36062ea077fae7ffa0286a0571e13ab..085fd657f31247157db8a1d4bb6b33cb2a86ef8b
+--- a/src/pages/Menu.jsx
++++ b/src/pages/Menu.jsx
+@@ -1,7 +1,21 @@
++import { useEffect } from "react"
+ import MenuHeroSection from "../components/MenuHeroSection"
+ import MenuCategoriesSection from "../components/MenuCategoriesSection"
+ 
+ export default function Menu() {
++  useEffect(() => {
++    document.title = "Menu | Alai Web"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Browse the current menu with seasonal antipasti, pasta, mains, and desserts presented with a balanced, contemporary dining approach."
++      )
++    }
++  }, [])
++
+   return (
+     <main>
+       <MenuHeroSection />
 
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 10b1c714a8eb37e366b5657a526aa679685dcb7c..f93ca14e9f07cd98a09712dbeb741602d6c3b3bd
+index 9d28059d34e8fcb303a2f18eea8a6d44e686ef1f..99c13870b7402a441834fe0996660fd910c38fc9
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,22 @@
- TASK page-chi-siamo-shell completed successfully.
+@@ -260,6 +260,22 @@
+ TASK cta-contatti-contatti-whatsapp completed successfully.
  Build passed.
  
-+Prepared TASK navigation-structure (Build navigation from spec) for execution.
++Prepared TASK seo-basics (Add baseline SEO structure) for execution.
 +
-+Launching Codex for TASK navigation-structure.
++Launching Codex for TASK seo-basics.
 +
-+Completed TASK `navigation-structure`.
++Completed TASK `seo-basics`.
 +
-+- Updated `src/layout/Layout.jsx` to render all required navigation items from a single navigation config.
-+- Replaced raw hash anchors with `NavLink` components so navigation stays aligned with the existing `HashRouter` routing mode.
-+- Preserved the required routes: `/`, `/menu`, `/chi-siamo`, `/gallery`, and `/contatti`.
++- Added a branded default `<title>` and `<meta name="description">` to `index.html` as baseline document head fallbacks.
++- Updated `src/pages/Home.jsx`, `src/pages/Menu.jsx`, `src/pages/ChiSiamo.jsx`, `src/pages/Gallery.jsx`, and `src/pages/Contatti.jsx` to set route-specific document titles and meta descriptions on mount.
++- Verified each target page still exposes one meaningful hero `h1`, satisfying the page-level heading requirement without changing section content.
 +
-+TASK navigation-structure executed by Codex.
++TASK seo-basics executed by Codex.
 +Waiting for validation.
 +
-+TASK navigation-structure completed successfully.
++TASK seo-basics completed successfully.
 +Build passed.
 +
- Prepared TASK cta-contatti-contatti-phone (Add CTA contatti-phone on contatti) for execution.
+ Prepared TASK section-contatti-contact-details (Create contact-details section on contatti) for execution.
  
- Launching Codex for TASK cta-contatti-contatti-phone.
-diff --git a/src/layout/Layout.jsx b/src/layout/Layout.jsx
-index d3879db9e4eaea383b3f7246e7d55902a9fdebab..d180fbee2237dc1461d648572346ed393e6d3d0f
---- a/src/layout/Layout.jsx
-+++ b/src/layout/Layout.jsx
-@@ -1,13 +1,23 @@
-+import { NavLink } from "react-router-dom"
+ Launching Codex for TASK section-contatti-contact-details.
+diff --git a/index.html b/index.html
+index 30f2f215c28b26c2b819396508b5f06b89edecbf..c620b5bf12808efc1c11a59d9313a5d52067adf6
+--- a/index.html
++++ b/index.html
+@@ -1,10 +1,14 @@
+ <!doctype html>
+-<html lang="en">
++<html lang="it">
+   <head>
+     <meta charset="UTF-8" />
+     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+-    <title>site-create-a-high-end-visually-distinctive-m</title>
++    <title>Alai Web | Beautiful. Fast. Effective.</title>
++    <meta
++      name="description"
++      content="Alai Web creates modern, fast, and SEO-ready websites with a refined digital studio approach and clear business focus."
++    />
+   </head>
+   <body>
+     <div id="root"></div>
+diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
+index b300e2cd34cf511410e94fac255dc59f5e293762..be719d8578ea26eafb078025c2d809e2d4a4cd5c
+--- a/src/pages/ChiSiamo.jsx
++++ b/src/pages/ChiSiamo.jsx
+@@ -1,13 +1,27 @@
++import { useEffect } from "react"
+ import AboutHeroSection from "../components/AboutHeroSection"
+ import PhilosophySection from "../components/PhilosophySection"
+ import StorySection from "../components/StorySection"
+ 
+ export default function ChiSiamo() {
++  useEffect(() => {
++    document.title = "Chi siamo | Alai Web"
 +
-+const navigationItems = [
-+  { label: "Home", target: "/" },
-+  { label: "Menu", target: "/menu" },
-+  { label: "Chi siamo", target: "/chi-siamo" },
-+  { label: "Gallery", target: "/gallery" },
-+  { label: "Contatti", target: "/contatti" },
-+]
++    const metaDescription = document.querySelector('meta[name="description"]')
 +
- export default function Layout({ children }) {
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Read the story, philosophy, and hospitality approach behind a detail-driven dining experience shaped by seasonal ingredients and precise service."
++      )
++    }
++  }, [])
++
    return (
-     <>
-       <header>
-         <nav aria-label="Main navigation">
--          <a href="#/">Home</a>
--          <a href="#/menu">Menu</a>
--          <a href="#/chi-siamo">Chi siamo</a>
--          <a href="#/gallery">Gallery</a>
--          <a href="#/contatti">Contatti</a>
-+          {navigationItems.map((item) => (
-+            <NavLink key={item.target} to={item.target}>
-+              {item.label}
-+            </NavLink>
-+          ))}
-         </nav>
-       </header>
+-    <>
++    <main>
+       <AboutHeroSection />
+       <StorySection />
+       <PhilosophySection />
+-    </>
++    </main>
+   )
+ }
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index 45f7ff857f0af04da85926b2097eb7e62469c4fe..0969f917585b2a8af07998dc167a5b624383e303
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,8 +1,22 @@
++import { useEffect } from "react"
+ import ContactHeroSection from "../components/ContactHeroSection"
+ import ContactDetailsSection from "../components/ContactDetailsSection"
+ import OpeningHoursSection from "../components/OpeningHoursSection"
  
+ export default function Contatti() {
++  useEffect(() => {
++    document.title = "Contatti | Alai Web"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Contact Alai Web by email, phone, or WhatsApp to discuss your project goals, timeline, and the next step for your digital presence."
++      )
++    }
++  }, [])
++
+   return (
+     <main>
+       <ContactHeroSection />
+diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
+index 13278dbc41ba99e25167a3e7ebfa0f5f4c77ff87..d2e8f2060f63db5ba6af317562c78d629a2e40a1
+--- a/src/pages/Gallery.jsx
++++ b/src/pages/Gallery.jsx
+@@ -1,7 +1,21 @@
++import { useEffect } from "react"
+ import GalleryHeroSection from "../components/GalleryHeroSection"
+ import GalleryGridSection from "../components/GalleryGridSection"
+ 
+ export default function Gallery() {
++  useEffect(() => {
++    document.title = "Gallery | Alai Web"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "View the gallery for a closer look at the dining room, plated dishes, kitchen detail, and service atmosphere across the restaurant experience."
++      )
++    }
++  }, [])
++
+   return (
+     <main>
+       <GalleryHeroSection />
+diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
+index 975c0d61b240732b26d7688f1b22f5200d120a4b..ff79ded3fb5a8dd2fc0c0e68bb92a0721560ba9e
+--- a/src/pages/Home.jsx
++++ b/src/pages/Home.jsx
+@@ -1,15 +1,29 @@
++import { useEffect } from "react"
+ import HeroSection from "../components/HeroSection"
+ import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
+ import SignaturePreviewSection from "../components/SignaturePreviewSection"
+ import FloatingWhatsAppButton from "../components/FloatingWhatsAppButton"
+ 
+ export default function Home() {
++  useEffect(() => {
++    document.title = "Alai Web | Modern websites that look great and work"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Alai Web builds modern, fast, and SEO-ready websites for small businesses that need clarity, performance, and stronger digital presence."
++      )
++    }
++  }, [])
++
+   return (
+-    <>
++    <main>
+       <HeroSection />
+       <SignaturePreviewSection />
+       <BrandStoryPreviewSection />
+       <FloatingWhatsAppButton />
+-    </>
++    </main>
+   )
+ }
+diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
+index b0d4ebf5a36062ea077fae7ffa0286a0571e13ab..085fd657f31247157db8a1d4bb6b33cb2a86ef8b
+--- a/src/pages/Menu.jsx
++++ b/src/pages/Menu.jsx
+@@ -1,7 +1,21 @@
++import { useEffect } from "react"
+ import MenuHeroSection from "../components/MenuHeroSection"
+ import MenuCategoriesSection from "../components/MenuCategoriesSection"
+ 
+ export default function Menu() {
++  useEffect(() => {
++    document.title = "Menu | Alai Web"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Browse the current menu with seasonal antipasti, pasta, mains, and desserts presented with a balanced, contemporary dining approach."
++      )
++    }
++  }, [])
++
+   return (
+     <main>
+       <MenuHeroSection />
 
 codex
-Modified files: [src/layout/Layout.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/layout/Layout.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md)
+Modified files: [index.html](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/index.html), [src/pages/Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Home.jsx), [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Menu.jsx), [src/pages/ChiSiamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/ChiSiamo.jsx), [src/pages/Gallery.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Gallery.jsx), [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Contatti.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md).
 
-Implemented the navigation in [src/layout/Layout.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/layout/Layout.jsx) from a single spec-aligned config with all required items: `Home`, `Menu`, `Chi siamo`, `Gallery`, and `Contatti`. The header now uses `NavLink` targets for `/`, `/menu`, `/chi-siamo`, `/gallery`, and `/contatti`, which keeps the navigation compatible with the existing `HashRouter` setup instead of relying on hardcoded hash anchors.
+Implemented baseline SEO for the five target pages by adding a branded default `<title>` and meta description in [index.html](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/index.html), then setting route-specific `document.title` and `meta[name="description"]` values from each page shell on mount. I also wrapped [src/pages/Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/Home.jsx) and [src/pages/ChiSiamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/src/pages/ChiSiamo.jsx) in `main` to keep page semantics consistent. The existing hero sections already provided one meaningful `h1` per page, so no section content changes were needed.
 
-Build result: `npm run build` passed successfully. I also appended the task summary to [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md) per the project completion instructions.
+Build result: `npm run build` passed successfully. I also updated [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-high-end-visually-distinctive-m/agent/AGENT_REPORT.md) with a short task summary.
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 10b1c714a8eb37e366b5657a526aa679685dcb7c..f93ca14e9f07cd98a09712dbeb741602d6c3b3bd
+index 9d28059d34e8fcb303a2f18eea8a6d44e686ef1f..99c13870b7402a441834fe0996660fd910c38fc9
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,22 @@
- TASK page-chi-siamo-shell completed successfully.
+@@ -260,6 +260,22 @@
+ TASK cta-contatti-contatti-whatsapp completed successfully.
  Build passed.
  
-+Prepared TASK navigation-structure (Build navigation from spec) for execution.
++Prepared TASK seo-basics (Add baseline SEO structure) for execution.
 +
-+Launching Codex for TASK navigation-structure.
++Launching Codex for TASK seo-basics.
 +
-+Completed TASK `navigation-structure`.
++Completed TASK `seo-basics`.
 +
-+- Updated `src/layout/Layout.jsx` to render all required navigation items from a single navigation config.
-+- Replaced raw hash anchors with `NavLink` components so navigation stays aligned with the existing `HashRouter` routing mode.
-+- Preserved the required routes: `/`, `/menu`, `/chi-siamo`, `/gallery`, and `/contatti`.
++- Added a branded default `<title>` and `<meta name="description">` to `index.html` as baseline document head fallbacks.
++- Updated `src/pages/Home.jsx`, `src/pages/Menu.jsx`, `src/pages/ChiSiamo.jsx`, `src/pages/Gallery.jsx`, and `src/pages/Contatti.jsx` to set route-specific document titles and meta descriptions on mount.
++- Verified each target page still exposes one meaningful hero `h1`, satisfying the page-level heading requirement without changing section content.
 +
-+TASK navigation-structure executed by Codex.
++TASK seo-basics executed by Codex.
 +Waiting for validation.
 +
-+TASK navigation-structure completed successfully.
++TASK seo-basics completed successfully.
 +Build passed.
 +
- Prepared TASK cta-contatti-contatti-phone (Add CTA contatti-phone on contatti) for execution.
+ Prepared TASK section-contatti-contact-details (Create contact-details section on contatti) for execution.
  
- Launching Codex for TASK cta-contatti-contatti-phone.
-diff --git a/src/layout/Layout.jsx b/src/layout/Layout.jsx
-index d3879db9e4eaea383b3f7246e7d55902a9fdebab..d180fbee2237dc1461d648572346ed393e6d3d0f
---- a/src/layout/Layout.jsx
-+++ b/src/layout/Layout.jsx
-@@ -1,13 +1,23 @@
-+import { NavLink } from "react-router-dom"
+ Launching Codex for TASK section-contatti-contact-details.
+diff --git a/index.html b/index.html
+index 30f2f215c28b26c2b819396508b5f06b89edecbf..c620b5bf12808efc1c11a59d9313a5d52067adf6
+--- a/index.html
++++ b/index.html
+@@ -1,10 +1,14 @@
+ <!doctype html>
+-<html lang="en">
++<html lang="it">
+   <head>
+     <meta charset="UTF-8" />
+     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+-    <title>site-create-a-high-end-visually-distinctive-m</title>
++    <title>Alai Web | Beautiful. Fast. Effective.</title>
++    <meta
++      name="description"
++      content="Alai Web creates modern, fast, and SEO-ready websites with a refined digital studio approach and clear business focus."
++    />
+   </head>
+   <body>
+     <div id="root"></div>
+diff --git a/src/pages/ChiSiamo.jsx b/src/pages/ChiSiamo.jsx
+index b300e2cd34cf511410e94fac255dc59f5e293762..be719d8578ea26eafb078025c2d809e2d4a4cd5c
+--- a/src/pages/ChiSiamo.jsx
++++ b/src/pages/ChiSiamo.jsx
+@@ -1,13 +1,27 @@
++import { useEffect } from "react"
+ import AboutHeroSection from "../components/AboutHeroSection"
+ import PhilosophySection from "../components/PhilosophySection"
+ import StorySection from "../components/StorySection"
+ 
+ export default function ChiSiamo() {
++  useEffect(() => {
++    document.title = "Chi siamo | Alai Web"
 +
-+const navigationItems = [
-+  { label: "Home", target: "/" },
-+  { label: "Menu", target: "/menu" },
-+  { label: "Chi siamo", target: "/chi-siamo" },
-+  { label: "Gallery", target: "/gallery" },
-+  { label: "Contatti", target: "/contatti" },
-+]
++    const metaDescription = document.querySelector('meta[name="description"]')
 +
- export default function Layout({ children }) {
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Read the story, philosophy, and hospitality approach behind a detail-driven dining experience shaped by seasonal ingredients and precise service."
++      )
++    }
++  }, [])
++
    return (
-     <>
-       <header>
-         <nav aria-label="Main navigation">
--          <a href="#/">Home</a>
--          <a href="#/menu">Menu</a>
--          <a href="#/chi-siamo">Chi siamo</a>
--          <a href="#/gallery">Gallery</a>
--          <a href="#/contatti">Contatti</a>
-+          {navigationItems.map((item) => (
-+            <NavLink key={item.target} to={item.target}>
-+              {item.label}
-+            </NavLink>
-+          ))}
-         </nav>
-       </header>
+-    <>
++    <main>
+       <AboutHeroSection />
+       <StorySection />
+       <PhilosophySection />
+-    </>
++    </main>
+   )
+ }
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index 45f7ff857f0af04da85926b2097eb7e62469c4fe..0969f917585b2a8af07998dc167a5b624383e303
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,8 +1,22 @@
++import { useEffect } from "react"
+ import ContactHeroSection from "../components/ContactHeroSection"
+ import ContactDetailsSection from "../components/ContactDetailsSection"
+ import OpeningHoursSection from "../components/OpeningHoursSection"
  
+ export default function Contatti() {
++  useEffect(() => {
++    document.title = "Contatti | Alai Web"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Contact Alai Web by email, phone, or WhatsApp to discuss your project goals, timeline, and the next step for your digital presence."
++      )
++    }
++  }, [])
++
+   return (
+     <main>
+       <ContactHeroSection />
+diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
+index 13278dbc41ba99e25167a3e7ebfa0f5f4c77ff87..d2e8f2060f63db5ba6af317562c78d629a2e40a1
+--- a/src/pages/Gallery.jsx
++++ b/src/pages/Gallery.jsx
+@@ -1,7 +1,21 @@
++import { useEffect } from "react"
+ import GalleryHeroSection from "../components/GalleryHeroSection"
+ import GalleryGridSection from "../components/GalleryGridSection"
+ 
+ export default function Gallery() {
++  useEffect(() => {
++    document.title = "Gallery | Alai Web"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "View the gallery for a closer look at the dining room, plated dishes, kitchen detail, and service atmosphere across the restaurant experience."
++      )
++    }
++  }, [])
++
+   return (
+     <main>
+       <GalleryHeroSection />
+diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
+index 975c0d61b240732b26d7688f1b22f5200d120a4b..ff79ded3fb5a8dd2fc0c0e68bb92a0721560ba9e
+--- a/src/pages/Home.jsx
++++ b/src/pages/Home.jsx
+@@ -1,15 +1,29 @@
++import { useEffect } from "react"
+ import HeroSection from "../components/HeroSection"
+ import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
+ import SignaturePreviewSection from "../components/SignaturePreviewSection"
+ import FloatingWhatsAppButton from "../components/FloatingWhatsAppButton"
+ 
+ export default function Home() {
++  useEffect(() => {
++    document.title = "Alai Web | Modern websites that look great and work"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Alai Web builds modern, fast, and SEO-ready websites for small businesses that need clarity, performance, and stronger digital presence."
++      )
++    }
++  }, [])
++
+   return (
+-    <>
++    <main>
+       <HeroSection />
+       <SignaturePreviewSection />
+       <BrandStoryPreviewSection />
+       <FloatingWhatsAppButton />
+-    </>
++    </main>
+   )
+ }
+diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
+index b0d4ebf5a36062ea077fae7ffa0286a0571e13ab..085fd657f31247157db8a1d4bb6b33cb2a86ef8b
+--- a/src/pages/Menu.jsx
++++ b/src/pages/Menu.jsx
+@@ -1,7 +1,21 @@
++import { useEffect } from "react"
+ import MenuHeroSection from "../components/MenuHeroSection"
+ import MenuCategoriesSection from "../components/MenuCategoriesSection"
+ 
+ export default function Menu() {
++  useEffect(() => {
++    document.title = "Menu | Alai Web"
++
++    const metaDescription = document.querySelector('meta[name="description"]')
++
++    if (metaDescription) {
++      metaDescription.setAttribute(
++        "content",
++        "Browse the current menu with seasonal antipasti, pasta, mains, and desserts presented with a balanced, contemporary dining approach."
++      )
++    }
++  }, [])
++
+   return (
+     <main>
+       <MenuHeroSection />
 
 tokens used
-16.970
+27.217

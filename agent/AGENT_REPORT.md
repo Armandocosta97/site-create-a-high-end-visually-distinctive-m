@@ -260,6 +260,22 @@ Waiting for validation.
 TASK cta-contatti-contatti-whatsapp completed successfully.
 Build passed.
 
+Prepared TASK seo-basics (Add baseline SEO structure) for execution.
+
+Launching Codex for TASK seo-basics.
+
+Completed TASK `seo-basics`.
+
+- Added a branded default `<title>` and `<meta name="description">` to `index.html` as baseline document head fallbacks.
+- Updated `src/pages/Home.jsx`, `src/pages/Menu.jsx`, `src/pages/ChiSiamo.jsx`, `src/pages/Gallery.jsx`, and `src/pages/Contatti.jsx` to set route-specific document titles and meta descriptions on mount.
+- Verified each target page still exposes one meaningful hero `h1`, satisfying the page-level heading requirement without changing section content.
+
+TASK seo-basics executed by Codex.
+Waiting for validation.
+
+TASK seo-basics completed successfully.
+Build passed.
+
 Prepared TASK section-contatti-contact-details (Create contact-details section on contatti) for execution.
 
 Launching Codex for TASK section-contatti-contact-details.
@@ -539,4 +555,15 @@ TASK navigation-structure executed by Codex.
 Waiting for validation.
 
 TASK navigation-structure completed successfully.
+Build passed.
+Commit created for TASK navigation-structure.
+
+Prepared TASK seo-basics (Add baseline SEO structure) for execution.
+
+Launching Codex for TASK seo-basics.
+
+TASK seo-basics executed by Codex.
+Waiting for validation.
+
+TASK seo-basics completed successfully.
 Build passed.
