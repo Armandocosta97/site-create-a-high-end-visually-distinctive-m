@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import { useI18n } from "../i18n/useI18n"
 
 const styles = {
   section: {
@@ -100,42 +101,33 @@ const styles = {
 }
 
 export default function HeroSection() {
+  const { messages } = useI18n()
+  const { hero } = messages.home
+
   return (
     <section id="hero" aria-labelledby="home-hero-title" style={styles.section}>
       <div style={styles.shell}>
         <div style={styles.content}>
-          <p style={styles.eyebrow}>Alai Web</p>
-          <h1 id="home-hero-title" style={styles.title}>
-            Siti web belli da vedere e costruiti per funzionare.
-          </h1>
-          <p style={styles.lead}>
-            Beautiful. Fast. Effective. Alai Web realizza siti moderni, veloci e
-            SEO-ready per attivita che vogliono una presenza digitale piu chiara,
-            credibile e utile al business.
-          </p>
+          <p style={styles.eyebrow}>{hero.eyebrow}</p>
+          <h1 id="home-hero-title" style={styles.title}>{hero.title}</h1>
+          <p style={styles.lead}>{hero.lead}</p>
           <div style={styles.actions}>
-            <Link to="/menu" style={styles.primaryAction}>
-              Scopri i servizi
+            <Link to={hero.primaryCta.to} style={styles.primaryAction}>
+              {hero.primaryCta.label}
             </Link>
-            <Link to="/contatti" style={styles.secondaryAction}>
-              Parliamo del tuo progetto
+            <Link to={hero.secondaryCta.to} style={styles.secondaryAction}>
+              {hero.secondaryCta.label}
             </Link>
           </div>
         </div>
 
-        <div aria-label="Alai Web highlights" style={styles.metrics}>
-          <div style={styles.metric}>
-            <span style={styles.metricValue}>Veloci</span>
-            <p style={styles.metricLabel}>Build leggere, rapide da caricare e facili da navigare.</p>
-          </div>
-          <div style={styles.metric}>
-            <span style={styles.metricValue}>Chiari</span>
-            <p style={styles.metricLabel}>Struttura pulita che accompagna l'utente verso l'azione.</p>
-          </div>
-          <div style={styles.metric}>
-            <span style={styles.metricValue}>SEO-ready</span>
-            <p style={styles.metricLabel}>Fondamenta tecniche pensate per visibilita e conversione.</p>
-          </div>
+        <div aria-label={hero.metricsAriaLabel} style={styles.metrics} className="home-metrics-deck">
+          {hero.metrics.map((metric) => (
+            <div key={metric.value} style={styles.metric} className="home-metric-card">
+              <span style={styles.metricValue}>{metric.value}</span>
+              <p style={styles.metricLabel}>{metric.label}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

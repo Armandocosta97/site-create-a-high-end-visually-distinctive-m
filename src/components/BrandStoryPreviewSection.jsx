@@ -1,13 +1,10 @@
 import { Link } from "react-router-dom"
+import routes from "../config/routes"
+import { useI18n } from "../i18n/useI18n"
 
-const principles = [
-  "Una struttura chiara, per far capire subito cosa fai e dove portare l'utente.",
-  "Un design misurato, in cui ogni dettaglio rafforza il messaggio invece di distrarlo.",
-  "Uno sviluppo leggero, cosi il sito risulta rapido, affidabile e piacevole da usare.",
-]
-
-const previewImage = `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="Alai Web project preview">
+function createPreviewImage(imageSvgLabel) {
+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="${imageSvgLabel}">
     <defs>
       <linearGradient id="surface" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stop-color="#fff7ed" />
@@ -26,7 +23,8 @@ const previewImage = `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
     <rect x="700" y="472" width="306" height="22" rx="11" fill="#0f172a" fill-opacity="0.12" />
     <rect x="700" y="550" width="190" height="58" rx="29" fill="#f97316" />
   </svg>
-`)}`
+`)}` 
+}
 
 const styles = {
   section: {
@@ -147,6 +145,10 @@ const styles = {
 }
 
 export default function BrandStoryPreviewSection() {
+  const { messages } = useI18n()
+  const { brandStoryPreview } = messages.home
+  const previewImage = createPreviewImage(brandStoryPreview.imageSvgLabel)
+
   return (
     <section
       id="brand-story-preview"
@@ -156,36 +158,27 @@ export default function BrandStoryPreviewSection() {
       <div style={styles.shell}>
         <div style={styles.layout}>
           <div style={styles.contentPanel}>
-            <p style={styles.eyebrow}>Il nostro approccio</p>
-            <h2 id="brand-story-preview-title" style={styles.title}>
-              Design essenziale, visione chiara, sviluppo concreto.
-            </h2>
-            <p style={styles.lead}>
-              Alai Web lavora con attivita che vogliono qualcosa di piu utile di un
-              semplice restyling. Ogni progetto e pensato per essere credibile,
-              veloce e facile da capire al primo sguardo.
-            </p>
-            <Link to="/chi-siamo" style={styles.action}>
-              Scopri come lavoriamo
+            <p style={styles.eyebrow}>{brandStoryPreview.eyebrow}</p>
+            <h2 id="brand-story-preview-title" style={styles.title}>{brandStoryPreview.title}</h2>
+            <p style={styles.lead}>{brandStoryPreview.lead}</p>
+            <Link to={routes.about} style={styles.action}>
+              {brandStoryPreview.ctaLabel}
             </Link>
           </div>
 
           <div style={styles.imageFrame}>
             <img
               src={previewImage}
-              alt="Editorial website mockup with bold typography and a highlighted call to action."
+              alt={brandStoryPreview.imageAlt}
               style={styles.image}
             />
           </div>
 
           <div style={styles.detailPanel}>
-            <p style={styles.kicker}>Cio che conta davvero</p>
-            <p style={styles.highlight}>
-              Il punto non e aggiungere effetti. Il punto e far arrivare il messaggio
-              giusto, piu in fretta.
-            </p>
+            <p style={styles.kicker}>{brandStoryPreview.kicker}</p>
+            <p style={styles.highlight}>{brandStoryPreview.highlight}</p>
             <ul style={styles.list}>
-              {principles.map((principle) => (
+              {brandStoryPreview.principles.map((principle) => (
                 <li key={principle} style={styles.item}>
                   {principle}
                 </li>

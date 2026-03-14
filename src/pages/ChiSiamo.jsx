@@ -2,20 +2,15 @@ import { useEffect } from "react"
 import AboutHeroSection from "../components/AboutHeroSection"
 import PhilosophySection from "../components/PhilosophySection"
 import StorySection from "../components/StorySection"
+import { applyPageSeo } from "../utils/applyPageSeo"
+import { useI18n } from "../i18n/useI18n"
 
 export default function ChiSiamo() {
+  const { messages } = useI18n()
+
   useEffect(() => {
-    document.title = "Chi siamo | Alai Web"
-
-    const metaDescription = document.querySelector('meta[name="description"]')
-
-    if (metaDescription) {
-      metaDescription.setAttribute(
-        "content",
-        "Scopri il metodo, la visione e l'approccio di Alai Web: design essenziale, sviluppo veloce e siti pensati per obiettivi reali."
-      )
-    }
-  }, [])
+    applyPageSeo(messages.seo.chiSiamo)
+  }, [messages])
 
   return (
     <main className="cursor-glow-page cursor-glow-page-about">

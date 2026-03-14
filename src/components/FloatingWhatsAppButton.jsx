@@ -1,5 +1,5 @@
-const whatsappHref =
-  "https://api.whatsapp.com/send?phone=393454639301&text=Hello%20Alai%20Web%2C%20I%27d%20like%20to%20talk%20about%20a%20website%20project."
+import siteConfig from "../config/siteConfig"
+import { useI18n } from "../i18n/useI18n"
 
 const styles = {
   link: {
@@ -52,18 +52,21 @@ function WhatsAppIcon() {
 }
 
 export default function FloatingWhatsAppButton() {
+  const { messages } = useI18n()
+  const { floatingWhatsapp } = messages
+
   return (
     <a
-      href={whatsappHref}
+      href={siteConfig.whatsappApiHref}
       target="_blank"
       rel="noreferrer"
-      aria-label="Chat with Alai Web on WhatsApp"
+      aria-label={floatingWhatsapp.ariaLabel}
       style={styles.link}
     >
       <span aria-hidden="true" style={styles.iconWrap}>
         <WhatsAppIcon />
       </span>
-      <span style={styles.label}>WhatsApp</span>
+      <span style={styles.label}>{floatingWhatsapp.label}</span>
     </a>
   )
 }

@@ -1,12 +1,4 @@
-const officeHours = [
-  { day: "Monday", hours: "09:00 - 18:00" },
-  { day: "Tuesday", hours: "09:00 - 18:00" },
-  { day: "Wednesday", hours: "09:00 - 18:00" },
-  { day: "Thursday", hours: "09:00 - 18:00" },
-  { day: "Friday", hours: "09:00 - 16:00" },
-  { day: "Saturday", hours: "By request" },
-  { day: "Sunday", hours: "Closed" },
-]
+import { useI18n } from "../i18n/useI18n"
 
 const styles = {
   section: {
@@ -56,21 +48,18 @@ const styles = {
 }
 
 export default function OpeningHoursSection() {
+  const { messages } = useI18n()
+  const { hours } = messages.contact
+
   return (
     <section id="opening-hours" aria-labelledby="opening-hours-title" style={styles.section}>
       <div style={styles.shell}>
         <div style={styles.header}>
-          <h2 id="opening-hours-title" style={styles.title}>
-            Studio hours
-          </h2>
-          <p style={styles.lead}>
-            We keep our calendar focused so projects move quickly. If your launch is
-            urgent, mention the deadline in your first message and we will confirm
-            availability directly.
-          </p>
+          <h2 id="opening-hours-title" style={styles.title}>{hours.title}</h2>
+          <p style={styles.lead}>{hours.lead}</p>
         </div>
         <div style={styles.list}>
-          {officeHours.map((entry) => (
+          {hours.entries.map((entry) => (
             <div key={entry.day} style={styles.row}>
               <span>{entry.day}</span>
               <span style={styles.hours}>{entry.hours}</span>

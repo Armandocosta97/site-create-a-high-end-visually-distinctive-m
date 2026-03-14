@@ -1,3 +1,5 @@
+import { useI18n } from "../i18n/useI18n"
+
 const styles = {
   section: {
     position: "relative",
@@ -111,47 +113,32 @@ const styles = {
 }
 
 export default function MenuHeroSection() {
+  const { messages } = useI18n()
+  const { hero } = messages.menu
+
   return (
     <section id="menu-hero" aria-labelledby="menu-hero-title" style={styles.section}>
       <div style={styles.shell}>
         <div style={styles.layout}>
           <div style={styles.heroBand}>
             <div style={styles.content}>
-              <p style={styles.eyebrow}>Servizi</p>
-              <h1 id="menu-hero-title" style={styles.title}>
-                Soluzioni web pensate per dare piu forza al tuo business.
-              </h1>
-              <p style={styles.lead}>
-                Dalla landing page al sito completo, Alai Web progetta e sviluppa
-                esperienze digitali chiare, veloci e coerenti con il posizionamento del
-                brand. Ogni intervento nasce per migliorare immagine, fiducia e contatti.
-              </p>
+              <p style={styles.eyebrow}>{hero.eyebrow}</p>
+              <h1 id="menu-hero-title" style={styles.title}>{hero.title}</h1>
+              <p style={styles.lead}>{hero.lead}</p>
               <div style={styles.stats}>
-                <div style={styles.stat}>
-                  <p style={styles.statValue}>Design</p>
-                  <p style={styles.statLabel}>Direzione visiva pulita e credibile.</p>
-                </div>
-                <div style={styles.stat}>
-                  <p style={styles.statValue}>Speed</p>
-                  <p style={styles.statLabel}>Build leggere, veloci e stabili.</p>
-                </div>
-                <div style={styles.stat}>
-                  <p style={styles.statValue}>Focus</p>
-                  <p style={styles.statLabel}>Struttura orientata all'azione.</p>
-                </div>
+                {hero.stats.map((stat) => (
+                  <div key={stat.value} style={styles.stat}>
+                    <p style={styles.statValue}>{stat.value}</p>
+                    <p style={styles.statLabel}>{stat.label}</p>
+                  </div>
+                ))}
               </div>
             </div>
 
-            <aside aria-label="Direzione dei servizi" style={styles.panel}>
-              <p style={styles.panelLabel}>Il nostro focus</p>
-              <p style={styles.panelTitle}>
-                Design credibile, performance reali, struttura orientata alla conversione.
-              </p>
-              <p style={styles.panelText}>
-                Niente effetti gratuiti e niente complessita inutile. Solo cio che serve
-                per far apparire meglio il brand, migliorare la leggibilita e portare
-                l'utente verso il contatto.
-              </p>
+            <aside aria-label={hero.panelAriaLabel} style={styles.panel}>
+              <p style={styles.panelLabel}>{hero.panelLabel}</p>
+              <p style={styles.panelTitle}>{hero.panelTitle}</p>
+              <p style={styles.panelText}>{hero.panelText}</p>
             </aside>
           </div>
         </div>

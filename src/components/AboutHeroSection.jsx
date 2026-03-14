@@ -1,17 +1,4 @@
-const values = [
-  {
-    title: "Chiarezza",
-    text: "Ogni sito parte da una struttura leggibile, per aiutare l'utente a capire subito valore, offerta e prossima azione.",
-  },
-  {
-    title: "Precisione",
-    text: "Design, contenuti e sviluppo devono lavorare insieme senza rumore, con attenzione reale ai dettagli che contano.",
-  },
-  {
-    title: "Concretezza",
-    text: "Non costruiamo siti solo belli: li progettiamo per essere veloci, credibili e utili agli obiettivi del business.",
-  },
-]
+import { useI18n } from "../i18n/useI18n"
 
 const styles = {
   section: {
@@ -113,28 +100,24 @@ const styles = {
 }
 
 export default function AboutHeroSection() {
+  const { messages } = useI18n()
+  const { hero } = messages.about
+
   return (
     <section id="about-hero" aria-labelledby="about-hero-title" style={styles.section}>
       <div style={styles.shell}>
         <div style={styles.layout}>
           <div style={styles.content}>
-            <p style={styles.eyebrow}>Chi siamo</p>
-            <h1 id="about-hero-title" style={styles.title}>
-              Un'agenzia web costruita su design, velocita e sostanza.
-            </h1>
-            <p style={styles.lead}>
-              Alai Web nasce per creare siti moderni per piccole imprese e realta
-              indipendenti che vogliono comunicare meglio online. Ogni scelta, dalla
-              gerarchia dei contenuti al codice, punta a rendere il progetto piu chiaro,
-              piu rapido e piu efficace.
-            </p>
-            <p style={styles.note}>Meno rumore visivo, piu chiarezza, piu risultati.</p>
+            <p style={styles.eyebrow}>{hero.eyebrow}</p>
+            <h1 id="about-hero-title" style={styles.title}>{hero.title}</h1>
+            <p style={styles.lead}>{hero.lead}</p>
+            <p style={styles.note}>{hero.note}</p>
           </div>
 
-          <aside aria-label="Valori dell'agenzia" style={styles.panel}>
-            <p style={styles.panelTitle}>Cosa guida il nostro lavoro</p>
+          <aside aria-label={hero.panelAriaLabel} style={styles.panel}>
+            <p style={styles.panelTitle}>{hero.panelTitle}</p>
             <ul style={styles.valueList}>
-              {values.map((value) => (
+              {hero.values.map((value) => (
                 <li key={value.title} style={styles.valueItem}>
                   <p style={styles.valueHeading}>{value.title}</p>
                   <p style={styles.valueText}>{value.text}</p>

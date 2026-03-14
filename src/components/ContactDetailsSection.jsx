@@ -1,26 +1,5 @@
-const contactDetails = [
-  {
-    label: "Email",
-    value: "alai.web.info@gmail.com",
-    href: "mailto:alai.web.info@gmail.com",
-    description: "Share your goals, timeline, and current site status.",
-  },
-  {
-    label: "Phone",
-    value: "+39 345 463 9301",
-    href: "tel:+393454639301",
-    description: "Call for a quick conversation about scope and priorities.",
-  },
-  {
-    label: "WhatsApp",
-    value: "Message the studio",
-    href: "https://wa.me/393454639301?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project.",
-    description:
-      "Ideal for early project questions, quick feedback, and scheduling the first call.",
-    isDark: true,
-    external: true,
-  },
-]
+import siteConfig from "../config/siteConfig"
+import { useI18n } from "../i18n/useI18n"
 
 const styles = {
   section: {
@@ -119,34 +98,28 @@ const styles = {
 }
 
 export default function ContactDetailsSection() {
+  const { messages } = useI18n()
+  const { contact } = messages
+
   return (
     <section id="contact-details" aria-labelledby="contact-details-title" style={styles.section}>
       <div style={styles.shell}>
-        <h2 id="contact-details-title" style={styles.title}>
-          Project conversations, without the friction.
-        </h2>
-        <p style={styles.lead}>
-          Use the channel that fits your workflow. Email is best for detailed briefs,
-          phone is best for quick alignment, and WhatsApp works well when you want to
-          move fast.
-        </p>
+        <h2 id="contact-details-title" style={styles.title}>{contact.details.title}</h2>
+        <p style={styles.lead}>{contact.details.lead}</p>
         <div style={styles.ctaBlock}>
-          <h3 style={styles.ctaTitle}>Prefer to start with a quick WhatsApp message?</h3>
-          <p style={styles.ctaText}>
-            Send a short brief and we will reply with the next best step for your
-            project, timeline, and budget range.
-          </p>
+          <h3 style={styles.ctaTitle}>{contact.details.ctaTitle}</h3>
+          <p style={styles.ctaText}>{contact.details.ctaText}</p>
           <a
-            href="https://wa.me/393454639301?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
+            href={siteConfig.whatsappHref}
             target="_blank"
             rel="noreferrer"
             style={styles.ctaAction}
           >
-            Chat on WhatsApp
+            {contact.details.ctaLabel}
           </a>
         </div>
         <div style={styles.grid}>
-          {contactDetails.map((item) => (
+          {contact.details.items.map((item) => (
             <a
               key={item.label}
               href={item.href}

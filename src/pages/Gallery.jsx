@@ -1,20 +1,15 @@
 import { useEffect } from "react"
 import GalleryHeroSection from "../components/GalleryHeroSection"
 import GalleryGridSection from "../components/GalleryGridSection"
+import { applyPageSeo } from "../utils/applyPageSeo"
+import { useI18n } from "../i18n/useI18n"
 
 export default function Gallery() {
+  const { messages } = useI18n()
+
   useEffect(() => {
-    document.title = "Portfolio | Alai Web"
-
-    const metaDescription = document.querySelector('meta[name="description"]')
-
-    if (metaDescription) {
-      metaDescription.setAttribute(
-        "content",
-        "Esplora il portfolio di Alai Web con anteprime di progetti, direzione visiva e soluzioni digitali pensate per brand e piccole imprese."
-      )
-    }
-  }, [])
+    applyPageSeo(messages.seo.gallery)
+  }, [messages])
 
   return (
     <main className="cursor-glow-page cursor-glow-page-portfolio">

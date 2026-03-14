@@ -1,3 +1,6 @@
+import siteConfig from "../config/siteConfig"
+import { useI18n } from "../i18n/useI18n"
+
 const styles = {
   section: {
     position: "relative",
@@ -67,29 +70,26 @@ const styles = {
 }
 
 export default function ContactHeroSection() {
+  const { messages } = useI18n()
+  const { contact } = messages
+
   return (
     <section id="contact-hero" aria-labelledby="contact-hero-title" style={styles.section}>
       <div style={styles.shell}>
-        <p style={styles.eyebrow}>Contact</p>
-        <h1 id="contact-hero-title" style={styles.title}>
-          Let&apos;s build something sharp and effective.
-        </h1>
-        <p style={styles.lead}>
-          Reach out with your business goals, launch timeline, and the kind of
-          digital presence you need. We reply with a clear next step, not a vague
-          sales sequence.
-        </p>
+        <p style={styles.eyebrow}>{contact.hero.eyebrow}</p>
+        <h1 id="contact-hero-title" style={styles.title}>{contact.hero.title}</h1>
+        <p style={styles.lead}>{contact.hero.lead}</p>
         <div style={styles.actions}>
-          <a href="mailto:alai.web.info@gmail.com" style={styles.primaryAction}>
-            Tell us about your idea
+          <a href={`mailto:${siteConfig.email}`} style={styles.primaryAction}>
+            {contact.hero.primaryCta}
           </a>
           <a
-            href="https://wa.me/393454639301?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project."
+            href={siteConfig.whatsappHref}
             target="_blank"
             rel="noreferrer"
             style={styles.secondaryAction}
           >
-            Start on WhatsApp
+            {contact.hero.secondaryCta}
           </a>
         </div>
       </div>

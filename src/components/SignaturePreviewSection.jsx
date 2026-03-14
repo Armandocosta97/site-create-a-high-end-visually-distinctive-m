@@ -1,23 +1,4 @@
-const signatureItems = [
-  {
-    number: "01",
-    title: "Direzione visiva nitida",
-    description:
-      "Tipografia forte, gerarchia chiara e un layout che valorizza il brand senza sembrare un template.",
-  },
-  {
-    number: "02",
-    title: "Build leggere e veloci",
-    description:
-      "Decisioni front-end essenziali per mantenere il sito rapido, leggibile e solido su ogni schermo.",
-  },
-  {
-    number: "03",
-    title: "Struttura pronta per crescere",
-    description:
-      "Markup semantico, contenuti ordinati e pagine pensate per farsi trovare e generare contatti.",
-  },
-]
+import { useI18n } from "../i18n/useI18n"
 
 const styles = {
   section: {
@@ -102,6 +83,9 @@ const styles = {
 }
 
 export default function SignaturePreviewSection() {
+  const { messages } = useI18n()
+  const { signaturePreview } = messages.home
+
   return (
     <section
       id="signature-preview"
@@ -110,19 +94,13 @@ export default function SignaturePreviewSection() {
     >
       <div style={styles.shell}>
         <div style={styles.intro}>
-          <p style={styles.eyebrow}>Cosa facciamo</p>
-          <h2 id="signature-preview-title" style={styles.title}>
-            Tre principi guidano ogni progetto firmato Alai Web.
-          </h2>
-          <p style={styles.lead}>
-            Ogni sito nasce dall'equilibrio tra immagine, performance e chiarezza.
-            L'obiettivo non e impressionare per pochi secondi, ma aiutare un'attivita
-            reale a trasformare visite in richieste concrete.
-          </p>
+          <p style={styles.eyebrow}>{signaturePreview.eyebrow}</p>
+          <h2 id="signature-preview-title" style={styles.title}>{signaturePreview.title}</h2>
+          <p style={styles.lead}>{signaturePreview.lead}</p>
         </div>
 
         <div style={styles.grid}>
-          {signatureItems.map((item) => (
+          {signaturePreview.items.map((item) => (
             <article key={item.number} style={styles.card}>
               <span aria-hidden="true" style={styles.number}>
                 {item.number}

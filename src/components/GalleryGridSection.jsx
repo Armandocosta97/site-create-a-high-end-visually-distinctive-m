@@ -1,53 +1,4 @@
-const galleryItems = [
-  {
-    title: "Sito corporate essenziale",
-    description:
-      "Un layout pulito con gerarchia forte, pensato per raccontare servizi e valore senza dispersione.",
-    alt: "Mockup di un sito corporate con tipografia decisa, blocchi editoriali e call to action in evidenza.",
-    palette: ["#fff7ed", "#fdba74", "#7c2d12"],
-    accent: "Corporate",
-  },
-  {
-    title: "Landing page per campagna",
-    description:
-      "Una pagina focalizzata su un'offerta specifica, con contenuti brevi e un percorso lineare verso la richiesta.",
-    alt: "Mockup di una landing page con sezione hero, blocchi di benefici e call to action per lead generation.",
-    palette: ["#e2e8f0", "#1e293b", "#f97316"],
-    accent: "Lead generation",
-  },
-  {
-    title: "Interfaccia portfolio studio",
-    description:
-      "Un impianto visivo piu editoriale, utile per chi deve mostrare lavori, approccio e sensibilita estetica.",
-    alt: "Mockup di un portfolio creativo con grande impatto tipografico e anteprime progetto.",
-    palette: ["#f8fafc", "#94a3b8", "#0f172a"],
-    accent: "Portfolio",
-  },
-  {
-    title: "Restyling per piccola impresa",
-    description:
-      "Una revisione completa di tono, struttura e presenza visiva per rendere il sito piu attuale e professionale.",
-    alt: "Mockup di redesign per piccola impresa con palette neutra, sezioni ordinate e messaggi chiari.",
-    palette: ["#fef2f2", "#fb923c", "#431407"],
-    accent: "Redesign",
-  },
-  {
-    title: "Pagina servizi ad alta leggibilita",
-    description:
-      "Una composizione pensata per rendere ogni servizio immediato da capire, anche da mobile.",
-    alt: "Mockup di pagina servizi con blocchi editoriali, titoli grandi e chiara scansione dei contenuti.",
-    palette: ["#fafaf9", "#d6d3d1", "#292524"],
-    accent: "Servizi",
-  },
-  {
-    title: "Contatti orientati alla conversione",
-    description:
-      "Una pagina finale costruita per eliminare attriti e facilitare la presa di contatto con CTA chiare.",
-    alt: "Mockup di pagina contatti con call to action evidenti, recapiti e forte gerarchia visiva.",
-    palette: ["#fff1f2", "#fb7185", "#4c0519"],
-    accent: "Conversione",
-  },
-]
+import { useI18n } from "../i18n/useI18n"
 
 function createGalleryImage(title, palette) {
   const [base, accent, detail] = palette
@@ -171,6 +122,9 @@ const styles = {
 }
 
 export default function GalleryGridSection() {
+  const { messages } = useI18n()
+  const { grid } = messages.gallery
+
   return (
     <section
       id="gallery-grid"
@@ -179,19 +133,13 @@ export default function GalleryGridSection() {
     >
       <div style={styles.shell}>
         <div style={styles.intro}>
-          <p style={styles.eyebrow}>Selezione lavori</p>
-          <h2 id="gallery-grid-title" style={styles.title}>
-            Esempi di pagine, sistemi visivi e strutture pensate per business reali.
-          </h2>
-          <p style={styles.lead}>
-            Qui trovi anteprime concettuali di progetti e direzioni creative sviluppate
-            per mostrare come Alai Web lavora su brand, leggibilita e conversione in una
-            griglia responsive chiara su ogni dispositivo.
-          </p>
+          <p style={styles.eyebrow}>{grid.eyebrow}</p>
+          <h2 id="gallery-grid-title" style={styles.title}>{grid.title}</h2>
+          <p style={styles.lead}>{grid.lead}</p>
         </div>
 
         <div style={styles.grid}>
-          {galleryItems.map((item) => (
+          {grid.items.map((item) => (
             <article key={item.title} style={styles.item}>
               <figure style={styles.imageWrap}>
                 <img

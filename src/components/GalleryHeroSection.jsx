@@ -1,17 +1,4 @@
-const highlights = [
-  {
-    label: "Direzione visiva",
-    text: "Layout editoriali, tipografia forte e una costruzione visiva che sostiene il posizionamento del brand.",
-  },
-  {
-    label: "Struttura delle pagine",
-    text: "Sezioni essenziali, gerarchie chiare e percorsi pensati per accompagnare l'utente fino al contatto.",
-  },
-  {
-    label: "Dettaglio tecnico",
-    text: "Performance, leggibilita e solidita front-end trattate come parte integrante del design.",
-  },
-]
+import { useI18n } from "../i18n/useI18n"
 
 const styles = {
   section: {
@@ -113,27 +100,24 @@ const styles = {
 }
 
 export default function GalleryHeroSection() {
+  const { messages } = useI18n()
+  const { hero } = messages.gallery
+
   return (
     <section id="gallery-hero" aria-labelledby="gallery-hero-title" style={styles.section}>
       <div style={styles.shell}>
         <div style={styles.layout}>
           <div style={styles.content}>
-            <p style={styles.eyebrow}>Portfolio</p>
-            <h1 id="gallery-hero-title" style={styles.title}>
-              Una selezione di direzioni creative e progetti digitali.
-            </h1>
-            <p style={styles.lead}>
-              Questa sezione raccoglie esempi di approccio visivo, struttura e
-              presentazione del brand. Non solo estetica: ogni progetto e pensato per
-              essere chiaro, credibile e pronto a convertire.
-            </p>
-            <p style={styles.note}>Brand, layout e contenuti allineati per dare piu forza al messaggio.</p>
+            <p style={styles.eyebrow}>{hero.eyebrow}</p>
+            <h1 id="gallery-hero-title" style={styles.title}>{hero.title}</h1>
+            <p style={styles.lead}>{hero.lead}</p>
+            <p style={styles.note}>{hero.note}</p>
           </div>
 
-          <aside aria-label="Portfolio highlights" style={styles.panel}>
-            <p style={styles.panelTitle}>Cosa racconta il portfolio</p>
+          <aside aria-label={hero.panelAriaLabel} style={styles.panel}>
+            <p style={styles.panelTitle}>{hero.panelTitle}</p>
             <ul style={styles.list}>
-              {highlights.map((highlight) => (
+              {hero.highlights.map((highlight) => (
                 <li key={highlight.label} style={styles.item}>
                   <p style={styles.itemLabel}>{highlight.label}</p>
                   <p style={styles.itemText}>{highlight.text}</p>

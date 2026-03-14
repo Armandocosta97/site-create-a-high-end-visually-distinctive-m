@@ -2,20 +2,15 @@ import { useEffect } from "react"
 import ContactHeroSection from "../components/ContactHeroSection"
 import ContactDetailsSection from "../components/ContactDetailsSection"
 import OpeningHoursSection from "../components/OpeningHoursSection"
+import { applyPageSeo } from "../utils/applyPageSeo"
+import { useI18n } from "../i18n/useI18n"
 
 export default function Contatti() {
+  const { messages } = useI18n()
+
   useEffect(() => {
-    document.title = "Contatti | Alai Web"
-
-    const metaDescription = document.querySelector('meta[name="description"]')
-
-    if (metaDescription) {
-      metaDescription.setAttribute(
-        "content",
-        "Contact Alai Web by email, phone, or WhatsApp to discuss your project goals, timeline, and the next step for your digital presence."
-      )
-    }
-  }, [])
+    applyPageSeo(messages.seo.contatti)
+  }, [messages])
 
   return (
     <main className="cursor-glow-page cursor-glow-page-contact">

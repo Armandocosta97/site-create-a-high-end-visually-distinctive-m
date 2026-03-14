@@ -1,17 +1,4 @@
-const principles = [
-  {
-    title: "Semplicita leggibile",
-    text: "Riduciamo il rumore visivo per lasciare spazio a messaggio, gerarchia e call to action davvero utili.",
-  },
-  {
-    title: "Tecnica senza ostentazione",
-    text: "La qualita tecnica non deve mettersi in mostra: deve far caricare il sito velocemente e farlo funzionare bene.",
-  },
-  {
-    title: "Esperienza che converte",
-    text: "Ogni pagina deve accompagnare l'utente con fluidita, fino al contatto o alla richiesta di preventivo.",
-  },
-]
+import { useI18n } from "../i18n/useI18n"
 
 const styles = {
   section: {
@@ -123,32 +110,25 @@ const styles = {
 }
 
 export default function PhilosophySection() {
+  const { messages } = useI18n()
+  const { philosophy } = messages.about
+
   return (
     <section id="philosophy" aria-labelledby="philosophy-title" style={styles.section}>
       <div aria-hidden="true" style={styles.glow} />
       <div style={styles.shell}>
         <div style={styles.layout}>
           <div style={styles.intro}>
-            <p style={styles.eyebrow}>La nostra filosofia</p>
-            <h2 id="philosophy-title" style={styles.title}>
-              Togliere il superfluo, lasciare spazio a cio che conta.
-            </h2>
-            <p style={styles.lead}>
-              Crediamo che un buon sito funzioni quando ogni elemento ha un ruolo
-              preciso: contenuti chiari, struttura leggibile, performance solide e un
-              design capace di dare autorevolezza senza complicare l'esperienza.
-            </p>
-            <p style={styles.emphasis}>
-              Per questo scegliamo equilibrio prima dell'effetto, leggibilita prima
-              dell'eccesso e decisioni progettuali che aiutino davvero chi il sito lo
-              deve usare, non solo guardare.
-            </p>
+            <p style={styles.eyebrow}>{philosophy.eyebrow}</p>
+            <h2 id="philosophy-title" style={styles.title}>{philosophy.title}</h2>
+            <p style={styles.lead}>{philosophy.lead}</p>
+            <p style={styles.emphasis}>{philosophy.emphasis}</p>
           </div>
 
-          <aside aria-label="Principi che guidano l'agenzia" style={styles.panel}>
-            <p style={styles.panelTitle}>I principi che seguiamo</p>
+          <aside aria-label={philosophy.panelAriaLabel} style={styles.panel}>
+            <p style={styles.panelTitle}>{philosophy.panelTitle}</p>
             <ul style={styles.list}>
-              {principles.map((principle) => (
+              {philosophy.principles.map((principle) => (
                 <li key={principle.title} style={styles.item}>
                   <p style={styles.itemTitle}>{principle.title}</p>
                   <p style={styles.itemText}>{principle.text}</p>

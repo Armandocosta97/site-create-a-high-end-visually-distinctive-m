@@ -1,20 +1,15 @@
 import { useEffect } from "react"
 import MenuHeroSection from "../components/MenuHeroSection"
 import MenuCategoriesSection from "../components/MenuCategoriesSection"
+import { applyPageSeo } from "../utils/applyPageSeo"
+import { useI18n } from "../i18n/useI18n"
 
 export default function Menu() {
+  const { messages } = useI18n()
+
   useEffect(() => {
-    document.title = "Servizi | Alai Web"
-
-    const metaDescription = document.querySelector('meta[name="description"]')
-
-    if (metaDescription) {
-      metaDescription.setAttribute(
-        "content",
-        "Scopri i servizi di Alai Web: siti web moderni, redesign, landing page e build veloci pensate per aziende che vogliono performance e chiarezza."
-      )
-    }
-  }, [])
+    applyPageSeo(messages.seo.menu)
+  }, [messages])
 
   return (
     <main className="services-page">

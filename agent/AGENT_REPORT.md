@@ -218,6 +218,22 @@ Waiting for validation.
 TASK page-chi-siamo-shell completed successfully.
 Build passed.
 
+Mobile home interaction adjustment completed on March 11, 2026.
+
+- Updated the home hero metrics on narrow screens to behave as a recycle-style horizontal card view with one black card visible at a time.
+- Preserved the original three metric items while enabling touch scrolling with snap alignment for mobile interaction.
+- Tightened the mobile implementation to an explicit horizontal track so the cards can actually swipe reliably on narrow screens.
+- Expanded the responsive threshold so the same separated-card scrolling behavior also appears in narrow desktop windows, including Chrome's minimum-width testing state.
+- Left the wider-screen layout unchanged.
+- Reworked the shared footer structure and styling so it reads as a proper three-part footer on large screens and collapses cleanly on smaller ones.
+- Replaced the temporary single-file text store with a proper i18n layer built around `src/i18n/`, locale files for `it` and `en`, and shared non-translated config in `src/config/`.
+- Added a language provider, locale persistence, and a header language switcher with flag + dropdown list.
+- Rewired layout, pages, and content sections to consume translated messages via `useI18n()` and kept technical data like contact URLs in `src/config/siteConfig.js`.
+- Added the French locale with the same message shape as Italian and English, and registered it in the language switcher config/messages layer.
+- Added the German locale with the same message shape and registered it in the shared i18n config/messages layer.
+- Added the Spanish locale with the same message shape and registered it in the shared i18n config/messages layer.
+- Verified the project still builds successfully after the change with `npm run build`.
+
 Completed FINAL QA fix for `agent/TEST_REPORT.md`.
 
 - Added a real rendered homepage image to the existing `brand-story-preview` section in `src/components/BrandStoryPreviewSection.jsx`.

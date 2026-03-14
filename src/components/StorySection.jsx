@@ -1,17 +1,4 @@
-const storyMoments = [
-  {
-    label: "Origine",
-    text: "Alai Web nasce dall'idea che molte attivita abbiano bisogno di un sito piu semplice, piu curato e meno standardizzato.",
-  },
-  {
-    label: "Metodo",
-    text: "Ogni progetto parte da obiettivi, struttura e contenuti, poi prende forma con design editoriale e sviluppo leggero.",
-  },
-  {
-    label: "Direzione",
-    text: "Cerchiamo sempre equilibrio tra immagine, performance e utilita, senza appesantire il sito con elementi superflui.",
-  },
-]
+import { useI18n } from "../i18n/useI18n"
 
 const styles = {
   section: {
@@ -110,6 +97,9 @@ const styles = {
 }
 
 export default function StorySection() {
+  const { messages } = useI18n()
+  const { story } = messages.about
+
   return (
     <section id="story" aria-labelledby="story-title" style={styles.section}>
       <div style={styles.shell}>
@@ -120,27 +110,16 @@ export default function StorySection() {
           }}
         >
           <div style={styles.intro}>
-            <p style={styles.eyebrow}>La nostra storia</p>
-            <h2 id="story-title" style={styles.title}>
-              Una visione semplice: fare siti che aiutano davvero il business.
-            </h2>
-            <p style={styles.lead}>
-              Siamo partiti da un'idea precisa: molte aziende hanno siti lenti,
-              confusi o poco credibili, non per mancanza di valore, ma per una
-              comunicazione digitale costruita male. Per questo lavoriamo su contenuti,
-              layout e sviluppo in modo coordinato, cosi ogni pagina ha un ruolo chiaro.
-            </p>
-            <p style={styles.emphasis}>
-              Il risultato deve essere contemporaneo ma utile: abbastanza curato da
-              distinguerti, abbastanza semplice da essere capito e abbastanza solido da
-              sostenere la crescita nel tempo.
-            </p>
+            <p style={styles.eyebrow}>{story.eyebrow}</p>
+            <h2 id="story-title" style={styles.title}>{story.title}</h2>
+            <p style={styles.lead}>{story.lead}</p>
+            <p style={styles.emphasis}>{story.emphasis}</p>
           </div>
 
-          <aside aria-label="Momenti chiave della nostra storia" style={styles.panel}>
-            <p style={styles.panelTitle}>Come lavoriamo</p>
+          <aside aria-label={story.panelAriaLabel} style={styles.panel}>
+            <p style={styles.panelTitle}>{story.panelTitle}</p>
             <ul style={styles.list}>
-              {storyMoments.map((moment) => (
+              {story.moments.map((moment) => (
                 <li key={moment.label} style={styles.item}>
                   <p style={styles.itemLabel}>{moment.label}</p>
                   <p style={styles.itemText}>{moment.text}</p>

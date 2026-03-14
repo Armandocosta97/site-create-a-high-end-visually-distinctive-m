@@ -1,41 +1,4 @@
-const menuCategories = [
-  {
-    number: "01",
-    name: "Siti aziendali",
-    accent: "Presenza digitale chiara",
-    tone: "light",
-    description:
-      "Siti completi per attivita, studi e professionisti che hanno bisogno di raccontarsi meglio e generare fiducia subito.",
-    dishes: ["Architettura dei contenuti", "Design editoriale su misura", "Sviluppo responsive e veloce"],
-  },
-  {
-    number: "02",
-    name: "Landing page",
-    accent: "Una pagina, un obiettivo",
-    tone: "dark",
-    description:
-      "Pagine focalizzate su un'offerta precisa, pensate per campagne, lanci, lead generation o nuovi servizi.",
-    dishes: ["Headline e struttura orientate all'azione", "Copy sintetico e gerarchia forte", "CTA pensate per convertire"],
-  },
-  {
-    number: "03",
-    name: "Restyling sito",
-    accent: "Da confuso a credibile",
-    tone: "warm",
-    description:
-      "Riprogettazione di siti esistenti che oggi risultano datati, lenti o incoerenti con il posizionamento del brand.",
-    dishes: ["Pulizia visiva e nuova gerarchia", "Revisione contenuti e percorsi utente", "Aggiornamento tecnico e mobile-first"],
-  },
-  {
-    number: "04",
-    name: "Ottimizzazione performance",
-    accent: "Piu veloci, piu efficaci",
-    tone: "light",
-    description:
-      "Interventi mirati per migliorare caricamento, leggibilita, stabilita e basi SEO del sito.",
-    dishes: ["Riduzione del peso front-end", "Migliorie SEO tecniche di base", "Pulizia markup e accessibilita"],
-  },
-]
+import { useI18n } from "../i18n/useI18n"
 
 const styles = {
   section: {
@@ -184,6 +147,9 @@ const styles = {
 }
 
 export default function MenuCategoriesSection() {
+  const { messages } = useI18n()
+  const { categories } = messages.menu
+
   return (
     <section
       id="menu-categories"
@@ -192,19 +158,13 @@ export default function MenuCategoriesSection() {
     >
       <div style={styles.shell}>
         <div style={styles.intro}>
-          <p style={styles.eyebrow}>Servizi principali</p>
-          <h2 id="menu-categories-title" style={styles.title}>
-            Ogni servizio ha un obiettivo preciso: chiarezza, fiducia, conversione.
-          </h2>
-          <p style={styles.lead}>
-            Il lavoro non si riduce a "fare un sito". Ogni intervento serve a migliorare
-            come il brand si presenta, come viene percepito e quanto facilmente porta a
-            una richiesta reale.
-          </p>
+          <p style={styles.eyebrow}>{categories.eyebrow}</p>
+          <h2 id="menu-categories-title" style={styles.title}>{categories.title}</h2>
+          <p style={styles.lead}>{categories.lead}</p>
         </div>
 
         <div style={styles.grid}>
-          {menuCategories.map((category) => (
+          {categories.items.map((category) => (
             <article
               key={category.name}
               style={{
