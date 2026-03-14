@@ -7,7 +7,7 @@ export const siteConfig = {
     "https://wa.me/393454639301?text=Hi%20Alai%20Web%2C%20I%27d%20like%20to%20start%20a%20project.",
   whatsappApiHref:
     "https://api.whatsapp.com/send?phone=393454639301&text=Hello%20Alai%20Web%2C%20I%27d%20like%20to%20talk%20about%20a%20website%20project.",
-  logoSrc: "/logo_AW_2.png",
+  logoSrc: `${import.meta.env.BASE_URL}logo_AW_2.png`,
 }
 
 export default siteConfig
