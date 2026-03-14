@@ -99,9 +99,9 @@ export default function SignaturePreviewSection() {
           <p style={styles.lead}>{signaturePreview.lead}</p>
         </div>
 
-        <div style={styles.grid}>
+        <div style={styles.grid} className="signature-preview-grid">
           {signaturePreview.items.map((item) => (
-            <article key={item.number} style={styles.card}>
+            <article key={item.number} style={styles.card} className="signature-preview-card">
               <span aria-hidden="true" style={styles.number}>
                 {item.number}
               </span>
