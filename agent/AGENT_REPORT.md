@@ -795,6 +795,13 @@ Footer simplification:
 
 Build passed after the footer simplification.
 
+Footer layout refinement:
+
+- Redistributed the simplified footer into a proper two-sided layout: logo and motto on the left, email and contact CTA on the right.
+- Added a mobile fallback that stacks the two columns cleanly when space gets tight.
+
+Build passed after the footer refinement.
+
 Localization layout fix:
 
 - Added robust long-word wrapping to the black `BrandStoryPreviewSection` title so German strings no longer overflow the panel.
@@ -890,3 +897,10 @@ Header interaction fix:
 - Also reset both menus on route change so the header state stays clean after navigation.
 
 Build passed after the interaction fix.
+
+Footer simplification:
+
+- Reduced the footer to a minimal block with only logo, brand motto, email, and contact CTA.
+- Removed the extra footer structure so it now reads as a compact closing element instead of a full section.
+
+Build passed after the footer simplification.

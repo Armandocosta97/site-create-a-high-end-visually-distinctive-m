@@ -159,28 +159,26 @@ export default function Layout({ children }) {
 
       <footer>
         <div className="site-shell site-footer-content">
-          <div className="site-footer-copy">
-            <div className="site-footer-brand-lockup">
-              <img
-                className="site-footer-logo"
-                src={siteConfig.logoSrc}
-                alt={`${brand.name} ${accessibility.logoLabelSuffix}`}
-              />
-              <div className="site-footer-brand-block">
+          <div className="site-footer-minimal">
+            <div className="site-footer-brand-column">
+              <div className="site-footer-brand-lockup">
+                <img
+                  className="site-footer-logo"
+                  src={siteConfig.logoSrc}
+                  alt={`${brand.name} ${accessibility.logoLabelSuffix}`}
+                />
                 <p className="site-footer-brand">{brand.name}</p>
               </div>
+              <p className="site-footer-summary">{brand.tagline}</p>
             </div>
-            <p className="site-footer-summary">{brand.summary}</p>
-          </div>
-
-          <div className="site-footer-contact">
-            <p className="site-footer-heading">{footer.contactHeading}</p>
-            <a className="site-footer-email" href={`mailto:${siteConfig.email}`}>
-              {siteConfig.email}
-            </a>
-            <NavLink className="site-footer-cta" to={routes.contact}>
-              {footer.ctaLabel}
-            </NavLink>
+            <div className="site-footer-cta-column">
+              <a className="site-footer-email" href={`mailto:${siteConfig.email}`}>
+                {siteConfig.email}
+              </a>
+              <NavLink className="site-footer-cta" to={routes.contact}>
+                {footer.ctaLabel}
+              </NavLink>
+            </div>
           </div>
         </div>
 
