@@ -410,6 +410,28 @@ const de = {
       ctaText:
         "Senden Sie ein kurzes Briefing und wir antworten mit dem sinnvollsten nächsten Schritt für Projekt, Timing und Budgetrahmen.",
       ctaLabel: "Auf WhatsApp chatten",
+      formLabel: "Formular",
+      formValue: "Kurzes Briefing senden",
+      formDescription:
+        "Wenn Sie mit einer kurzen Anfrage starten möchten, nutzen Sie diesen Einstieg und wir führen Sie zum nächsten sinnvollen Schritt.",
+      form: {
+        eyebrow: "Briefing",
+        title: "Tragen Sie hier die Projektdetails ein.",
+        lead:
+          "Wir bereiten jetzt eine einfache Struktur vor: im nächsten Schritt wird dieser Block an ein echtes statisches Formular angebunden.",
+        nameLabel: "Name",
+        namePlaceholder: "Ihr Name",
+        emailLabel: "E-Mail",
+        emailPlaceholder: "name@firma.de",
+        phoneLabel: "Telefon",
+        phonePlaceholder: "+49 000 000000",
+        businessLabel: "Unternehmen",
+        businessPlaceholder: "Firma oder Geschäft",
+        messageLabel: "Nachricht",
+        messagePlaceholder: "Ziele, Timing, Art der Website, benötigte Seiten und nützliche Hinweise.",
+        submitLabel: "Anfrage senden",
+        note: "Statisches Formular in Vorbereitung: die Submit-Anbindung kommt im nächsten Schritt.",
+      },
     },
     hours: {
       title: "Studiozeiten",

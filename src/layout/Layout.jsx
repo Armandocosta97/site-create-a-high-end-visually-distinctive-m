@@ -1,6 +1,7 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { NavLink, useLocation } from "react-router-dom"
 import CursorGlowBackground from "../components/CursorGlowBackground"
+import FloatingWhatsAppButton from "../components/FloatingWhatsAppButton"
 import routes from "../config/routes"
 import siteConfig from "../config/siteConfig"
 import { useI18n } from "../i18n/useI18n"
@@ -8,10 +9,45 @@ import { useI18n } from "../i18n/useI18n"
 export default function Layout({ children }) {
   const location = useLocation()
   const showCursorGlow = location.pathname !== "/"
+  const showFloatingWhatsApp = location.pathname !== routes.contact
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false)
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false)
+  const languageSwitcherRef = useRef(null)
+  const mobileMenuRef = useRef(null)
   const { locale, setLocale, messages, supportedLocales } = useI18n()
   const { accessibility, brand, footer, languageSwitcher, navigation } = messages
   const activeLocale = supportedLocales[locale]
+
+  useEffect(() => {
+    function handlePointerDown(event) {
+      if (
+        isLanguageMenuOpen &&
+        languageSwitcherRef.current &&
+        !languageSwitcherRef.current.contains(event.target)
+      ) {
+        setIsLanguageMenuOpen(false)
+      }
+
+      if (
+        isMobileNavOpen &&
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target)
+      ) {
+        setIsMobileNavOpen(false)
+      }
+    }
+
+    document.addEventListener("pointerdown", handlePointerDown)
+
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown)
+    }
+  }, [isLanguageMenuOpen, isMobileNavOpen])
+
+  useEffect(() => {
+    setIsLanguageMenuOpen(false)
+    setIsMobileNavOpen(false)
+  }, [location.pathname])
 
   return (
     <>
@@ -29,7 +65,7 @@ export default function Layout({ children }) {
             </span>
           </NavLink>
 
-          <nav aria-label={accessibility.mainNavigation}>
+          <nav aria-label={accessibility.mainNavigation} className="site-nav site-nav-desktop">
             {navigation.map((item) => (
               <NavLink key={item.target} to={item.target}>
                 {item.label}
@@ -37,43 +73,81 @@ export default function Layout({ children }) {
             ))}
           </nav>
 
-          <div className="language-switcher">
-            <button
-              type="button"
-              className="language-switcher-trigger"
-              aria-label={accessibility.languageMenuOpen}
-              aria-expanded={isLanguageMenuOpen}
-              onClick={() => setIsLanguageMenuOpen((currentValue) => !currentValue)}
-            >
-              <span aria-hidden="true">{activeLocale.flag}</span>
-              <span>{activeLocale.shortLabel}</span>
-            </button>
-
-            {isLanguageMenuOpen ? (
-              <div
-                className="language-switcher-menu"
-                role="menu"
-                aria-label={accessibility.languageMenu}
+          <div className="site-header-actions">
+            <div className="language-switcher" ref={languageSwitcherRef}>
+              <button
+                type="button"
+                className="language-switcher-trigger"
+                aria-label={accessibility.languageMenuOpen}
+                aria-expanded={isLanguageMenuOpen}
+                onClick={() => {
+                  setIsLanguageMenuOpen((currentValue) => !currentValue)
+                  setIsMobileNavOpen(false)
+                }}
               >
-                <p className="language-switcher-label">{languageSwitcher.label}</p>
-                {Object.values(supportedLocales).map((localeOption) => (
-                  <button
-                    key={localeOption.code}
-                    type="button"
-                    className={`language-switcher-option${
-                      localeOption.code === locale ? " is-active" : ""
-                    }`}
-                    onClick={() => {
-                      setLocale(localeOption.code)
-                      setIsLanguageMenuOpen(false)
-                    }}
-                  >
-                    <span aria-hidden="true">{localeOption.flag}</span>
-                    <span>{localeOption.label}</span>
-                  </button>
-                ))}
-              </div>
-            ) : null}
+                <span aria-hidden="true">{activeLocale.flag}</span>
+                <span>{activeLocale.shortLabel}</span>
+              </button>
+
+              {isLanguageMenuOpen ? (
+                <div
+                  className="language-switcher-menu"
+                  role="menu"
+                  aria-label={accessibility.languageMenu}
+                >
+                  <p className="language-switcher-label">{languageSwitcher.label}</p>
+                  {Object.values(supportedLocales).map((localeOption) => (
+                    <button
+                      key={localeOption.code}
+                      type="button"
+                      className={`language-switcher-option${
+                        localeOption.code === locale ? " is-active" : ""
+                      }`}
+                      onClick={() => {
+                        setLocale(localeOption.code)
+                        setIsLanguageMenuOpen(false)
+                      }}
+                    >
+                      <span aria-hidden="true">{localeOption.flag}</span>
+                      <span>{localeOption.label}</span>
+                    </button>
+                  ))}
+                </div>
+              ) : null}
+            </div>
+
+            <div className="mobile-menu" ref={mobileMenuRef}>
+              <button
+                type="button"
+                className="mobile-menu-trigger"
+                aria-label="Open navigation menu"
+                aria-expanded={isMobileNavOpen}
+                onClick={() => {
+                  setIsMobileNavOpen((currentValue) => !currentValue)
+                  setIsLanguageMenuOpen(false)
+                }}
+              >
+                <span className="mobile-menu-trigger-line" />
+                <span className="mobile-menu-trigger-line" />
+                <span className="mobile-menu-trigger-line" />
+              </button>
+
+              {isMobileNavOpen ? (
+                <div className="mobile-nav-panel">
+                  <nav aria-label={accessibility.mainNavigation} className="site-nav site-nav-mobile">
+                    {navigation.map((item) => (
+                      <NavLink
+                        key={`mobile-${item.target}`}
+                        to={item.target}
+                        onClick={() => setIsMobileNavOpen(false)}
+                      >
+                        {item.label}
+                      </NavLink>
+                    ))}
+                  </nav>
+                </div>
+              ) : null}
+            </div>
           </div>
         </div>
       </header>
@@ -94,21 +168,9 @@ export default function Layout({ children }) {
               />
               <div className="site-footer-brand-block">
                 <p className="site-footer-brand">{brand.name}</p>
-                <p className="site-footer-kicker">{brand.descriptor}</p>
               </div>
             </div>
             <p className="site-footer-summary">{brand.summary}</p>
-          </div>
-
-          <div className="site-footer-links">
-            <p className="site-footer-heading">{footer.navigationHeading}</p>
-            <nav aria-label={accessibility.footerNavigation} className="site-footer-nav">
-              {navigation.map((item) => (
-                <NavLink key={`footer-${item.target}`} to={item.target}>
-                  {item.label}
-                </NavLink>
-              ))}
-            </nav>
           </div>
 
           <div className="site-footer-contact">
@@ -126,6 +188,8 @@ export default function Layout({ children }) {
           <p className="site-footer-legal">{footer.legal}</p>
         </div>
       </footer>
+
+      {showFloatingWhatsApp ? <FloatingWhatsAppButton /> : null}
     </>
   )
 }

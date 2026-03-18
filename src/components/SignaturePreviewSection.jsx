@@ -49,10 +49,10 @@ const styles = {
     display: "grid",
     gap: "1rem",
     padding: "1.5rem",
-    border: "1px solid rgba(17, 17, 17, 0.08)",
+    border: "1px solid rgba(17, 17, 17, 0.16)",
     borderRadius: "1.75rem",
-    backgroundColor: "rgba(255, 255, 255, 0.92)",
-    boxShadow: "0 18px 48px rgba(15, 23, 42, 0.08)",
+    overflow: "hidden",
+    backgroundColor: "#ffffff",
   },
   number: {
     display: "inline-flex",
@@ -91,8 +91,9 @@ export default function SignaturePreviewSection() {
       id="signature-preview"
       aria-labelledby="signature-preview-title"
       style={styles.section}
+      className="signature-preview-section"
     >
-      <div style={styles.shell}>
+      <div style={styles.shell} className="signature-preview-shell">
         <div style={styles.intro}>
           <p style={styles.eyebrow}>{signaturePreview.eyebrow}</p>
           <h2 id="signature-preview-title" style={styles.title}>{signaturePreview.title}</h2>

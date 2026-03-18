@@ -2,7 +2,6 @@ import { useEffect } from "react"
 import HeroSection from "../components/HeroSection"
 import BrandStoryPreviewSection from "../components/BrandStoryPreviewSection"
 import SignaturePreviewSection from "../components/SignaturePreviewSection"
-import FloatingWhatsAppButton from "../components/FloatingWhatsAppButton"
 import { applyPageSeo } from "../utils/applyPageSeo"
 import { useI18n } from "../i18n/useI18n"
 
@@ -29,7 +28,6 @@ export default function Home() {
         <HeroSection />
         <SignaturePreviewSection />
         <BrandStoryPreviewSection />
-        <FloatingWhatsAppButton />
       </div>
     </main>
   )

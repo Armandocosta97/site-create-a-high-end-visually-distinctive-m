@@ -410,6 +410,28 @@ const it = {
       ctaText:
         "Invia un brief sintetico e ti risponderemo con il prossimo passo piu utile per progetto, tempi e range di budget.",
       ctaLabel: "Chatta su WhatsApp",
+      formLabel: "Form",
+      formValue: "Invia un brief rapido",
+      formDescription:
+        "Se vuoi partire con una richiesta sintetica, usa questo punto di ingresso e ti guidiamo nel prossimo passo.",
+      form: {
+        eyebrow: "Brief",
+        title: "Inserisci qui i dettagli del progetto.",
+        lead:
+          "Prepariamo da ora una struttura semplice: nel prossimo passaggio collegheremo questo blocco a uno static form reale.",
+        nameLabel: "Nome",
+        namePlaceholder: "Il tuo nome",
+        emailLabel: "Email",
+        emailPlaceholder: "nome@azienda.it",
+        phoneLabel: "Telefono",
+        phonePlaceholder: "+39 000 000 0000",
+        businessLabel: "Business",
+        businessPlaceholder: "Azienda o attivita",
+        messageLabel: "Messaggio",
+        messagePlaceholder: "Obiettivi, tempi, tipo di sito, pagine richieste, note utili.",
+        submitLabel: "Invia richiesta",
+        note: "Form statico in preparazione: il collegamento del submit arriva nel prossimo step.",
+      },
     },
     hours: {
       title: "Orari studio",

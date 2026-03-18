@@ -726,3 +726,167 @@ Waiting for validation.
 TASK validation-prep completed successfully.
 Build passed.
 Commit created for TASK validation-prep.
+
+Manual fix applied after validation-prep:
+
+- Refined the small-screen `signature-preview` carousel styling in `src/index.css` so the horizontal `01 / 02 / 03` cards render as fully opaque white cards with no container shadow band beneath the row.
+- Forced the mobile track to stay visually transparent and removed residual composite shadow/background artifacts from the card strip.
+
+Build passed after the fix.
+
+Follow-up manual fix:
+
+- Added dedicated classes to `SignaturePreviewSection` and forced the section/shell background to solid white on small screens so the home page global glow/wave background no longer reads as a continuous shadow strip beneath the horizontal card row.
+
+Build passed after the follow-up fix.
+
+Additional mobile follow-up:
+
+- Removed the border from the small-screen `signature-preview` cards so the aligned bottom edge no longer reads as a continuous shadow/line under the horizontal row.
+
+Build passed after the additional follow-up.
+
+Final mobile rendering cleanup:
+
+- Flattened the small-screen `signature-preview` cards completely by disabling residual filters, backdrop effects, and compositing artifacts in addition to shadow/border removal.
+
+Build passed after the final cleanup.
+
+Source-level fix:
+
+- Removed the inline `boxShadow` from the `SignaturePreviewSection` card style so the white `01 / 02 / 03` cards no longer generate a continuous bottom shadow strip.
+
+Build passed after the source-level fix.
+
+Rendering fix:
+
+- Changed the `SignaturePreviewSection` cards from semi-transparent white to solid white and added `overflow: hidden` so the rounded bottom edge no longer produces a continuous antialiased line on small screens.
+
+Build passed after the rendering fix.
+
+Layout change:
+
+- Replaced the small-screen `signature-preview` horizontal grid with a flex-based horizontal row so the `01 / 02 / 03` cards use a simpler scroll track implementation.
+
+Build passed after the layout change.
+
+Alignment update:
+
+- Aligned the small-screen `signature-preview` carousel implementation to the same track model used by the black metrics deck: `grid-auto-flow` horizontal track, matching snap behavior and card sizing, with only the white card palette kept different.
+
+Build passed after the alignment update.
+
+Follow-up tweak:
+
+- Restored the visible border on the `SignaturePreviewSection` cards while keeping the corrected small-screen horizontal track implementation.
+
+Build passed after the follow-up tweak.
+
+Visual tweak:
+
+- Increased the border contrast on the `SignaturePreviewSection` cards so each white card reads more clearly as a distinct block.
+
+Build passed after the visual tweak.
+
+Footer simplification:
+
+- Removed the footer navigation block and reduced the footer brand lockup to a smaller, more minimal logo treatment.
+- Tightened footer spacing and switched the desktop footer layout from three columns to two so the whole footer reads lighter on both large and small screens.
+
+Build passed after the footer simplification.
+
+Localization layout fix:
+
+- Added robust long-word wrapping to the black `BrandStoryPreviewSection` title so German strings no longer overflow the panel.
+
+Build passed after the localization layout fix.
+
+Floating CTA layering fix:
+
+- Raised the floating WhatsApp button z-index so it stays above the footer instead of slipping behind it.
+
+Build passed after the layering fix.
+
+Stacking-context fix:
+
+- Moved the floating WhatsApp button out of the home page content wrapper and render it at the layout root on the home route, so it no longer sits inside the `cursor-glow-site` stacking context that allowed the footer to overlap it.
+
+Build passed after the stacking-context fix.
+
+Contact section refresh:
+
+- Reworked the contact channels block into light cards with dedicated icons for email, phone, WhatsApp, and a brief/form entry card.
+- Added localized copy fields for the new form/brief card across all supported languages.
+
+Build passed after the contact section refresh.
+
+Static form prep:
+
+- Replaced the placeholder contact `Form/Brief` card with a real static form block under the contact cards.
+- Added localized form field labels, placeholders, button text, and helper note for all supported languages.
+
+Build passed after the static form prep.
+
+Contact page cleanup:
+
+- Removed the studio hours section from the contact page so the page focuses only on contact channels and the new static form block.
+
+Build passed after the contact page cleanup.
+
+Floating CTA routing update:
+
+- Changed the floating WhatsApp button visibility so it appears on every page except the contact page.
+
+Build passed after the routing update.
+
+Home background mobile tuning:
+
+- Kept the desktop home animated gradients unchanged.
+- Added a dedicated small-screen variant with reduced gradient intensity, smaller bubbles, softer blur, and lower noise opacity so the mobile home reads less orange-heavy.
+
+Build passed after the mobile tuning.
+
+Home background mobile refinement:
+
+- Reworked the small-screen home background again so it keeps the same “separate spots” feel as desktop instead of blending into an orange wash.
+- Reduced blur spread, tightened the gradient spots, and repositioned the animated bubbles to stay smaller and more spaced apart on mobile.
+
+Build passed after the refinement.
+
+Home section background continuity fix:
+
+- Removed the forced white mobile background from the `SignaturePreviewSection` wrapper so the animated home background now continues through the “Cosa facciamo” section instead of breaking into a visible rectangle.
+
+Build passed after the continuity fix.
+
+Mobile header refactor:
+
+- Reworked the mobile header into a compact bar with reduced brand lockup, compact language switcher, and a dedicated hamburger trigger.
+- Moved mobile navigation into a separate dropdown panel under the header instead of keeping the full nav inline in the bar.
+
+Build passed after the mobile header refactor.
+
+Mobile menu cohesion fix:
+
+- Moved the mobile navigation panel inside the hamburger control wrapper and positioned it as a connected dropdown so the menu now reads as one component with the trigger instead of a detached panel.
+
+Build passed after the cohesion fix.
+
+Mobile menu sizing tweak:
+
+- Changed the mobile navigation dropdown from a near-fixed width to content-aware sizing with `max-content`, plus min/max constraints for viewport safety.
+
+Build passed after the sizing tweak.
+
+Mobile menu width correction:
+
+- Tightened the mobile navigation dropdown to true content width with `fit-content` and `white-space: nowrap` on links so it no longer stays overly wide.
+
+Build passed after the width correction.
+
+Header interaction fix:
+
+- Added outside-tap closing behavior for both the language dropdown and the mobile navigation dropdown.
+- Also reset both menus on route change so the header state stays clean after navigation.
+
+Build passed after the interaction fix.

@@ -67,6 +67,9 @@ const styles = {
     lineHeight: 0.95,
     letterSpacing: "-0.05em",
     textWrap: "balance",
+    overflowWrap: "anywhere",
+    wordBreak: "break-word",
+    hyphens: "auto",
   },
   lead: {
     margin: 0,

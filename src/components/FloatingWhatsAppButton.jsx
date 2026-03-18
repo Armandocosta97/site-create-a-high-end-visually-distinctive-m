@@ -6,7 +6,7 @@ const styles = {
     position: "fixed",
     right: "max(0.75rem, env(safe-area-inset-right))",
     bottom: "max(0.75rem, env(safe-area-inset-bottom))",
-    zIndex: 1000,
+    zIndex: 9999,
     display: "inline-flex",
     alignItems: "center",
     gap: "0.75rem",

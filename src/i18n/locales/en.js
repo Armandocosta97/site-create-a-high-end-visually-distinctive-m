@@ -410,6 +410,28 @@ const en = {
       ctaText:
         "Send a short brief and we will reply with the next best step for your project, timeline, and budget range.",
       ctaLabel: "Chat on WhatsApp",
+      formLabel: "Form",
+      formValue: "Send a quick brief",
+      formDescription:
+        "If you want to start with a short inquiry, use this entry point and we will guide you to the next step.",
+      form: {
+        eyebrow: "Brief",
+        title: "Add the project details here.",
+        lead:
+          "We are preparing a simple structure now: in the next step this block will be connected to a real static form.",
+        nameLabel: "Name",
+        namePlaceholder: "Your name",
+        emailLabel: "Email",
+        emailPlaceholder: "name@company.com",
+        phoneLabel: "Phone",
+        phonePlaceholder: "+1 000 000 0000",
+        businessLabel: "Business",
+        businessPlaceholder: "Company or business",
+        messageLabel: "Message",
+        messagePlaceholder: "Goals, timing, website type, required pages, and useful notes.",
+        submitLabel: "Send request",
+        note: "Static form in preparation: submit wiring will be added in the next step.",
+      },
     },
     hours: {
       title: "Studio hours",
