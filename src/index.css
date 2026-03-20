@@ -570,6 +570,116 @@ footer {
   pointer-events: none;
 }
 
+@media (max-width: 1024px) {
+  .menu-hero-band {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+    padding: 1.35rem !important;
+    background:
+      radial-gradient(circle at 88% 14%, rgba(249, 115, 22, 0.3), transparent 20%),
+      radial-gradient(circle at 12% 84%, rgba(251, 146, 60, 0.18), transparent 24%),
+      linear-gradient(180deg, #111827 0%, #0f172a 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .menu-hero-content {
+    max-width: none !important;
+  }
+
+  .menu-hero-content h1 {
+    font-size: clamp(2.7rem, 11vw, 4.35rem) !important;
+    max-width: 11ch;
+  }
+
+  .menu-hero-content p {
+    max-width: none !important;
+  }
+
+  .menu-hero-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 0.8rem !important;
+  }
+
+  .menu-hero-stat {
+    padding: 0.85rem 0.8rem;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .menu-hero-panel {
+    max-width: none !important;
+    padding: 1.25rem !important;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.58), rgba(15, 23, 42, 0.4)) !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  .menu-hero-panel-label {
+    color: rgba(255, 190, 134, 0.92) !important;
+  }
+
+  .menu-hero-panel-title {
+    color: #ffffff !important;
+    font-size: clamp(1.35rem, 5vw, 1.9rem) !important;
+  }
+
+  .menu-hero-panel-text {
+    color: rgba(255, 255, 255, 0.78) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .menu-hero-band {
+    padding: 1.1rem !important;
+    border-radius: 1.6rem !important;
+    background:
+      radial-gradient(circle at 86% 12%, rgba(249, 115, 22, 0.36), transparent 20%),
+      radial-gradient(circle at 22% 72%, rgba(251, 146, 60, 0.14), transparent 24%),
+      linear-gradient(180deg, #111827 0%, #0f172a 100%) !important;
+  }
+
+  .menu-hero-content h1 {
+    font-size: clamp(2.7rem, 13vw, 4rem) !important;
+    line-height: 0.96 !important;
+    max-width: 9ch;
+  }
+
+  .menu-hero-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 0.65rem !important;
+  }
+
+  .menu-hero-stat {
+    padding: 0.75rem 0.6rem;
+    gap: 0.2rem !important;
+  }
+
+  .menu-hero-stat-value {
+    font-size: 1.2rem !important;
+  }
+
+  .menu-hero-stat-label {
+    font-size: 0.74rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .menu-hero-panel {
+    gap: 0.8rem !important;
+    border-radius: 1.25rem !important;
+    padding: 1rem !important;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.72), rgba(15, 23, 42, 0.52)) !important;
+  }
+
+  .menu-hero-panel-title {
+    font-size: clamp(1.3rem, 6vw, 1.7rem) !important;
+    line-height: 1.08 !important;
+  }
+}
+
 .cursor-glow-page {
   position: relative;
   overflow: hidden;
@@ -674,7 +784,8 @@ footer {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: end;
-  gap: 1rem 1.5rem;
+  width: 100%;
+  gap: 1rem 1.25rem;
 }
 
 .site-footer-brand-column,
@@ -683,9 +794,14 @@ footer {
   gap: 0.75rem;
 }
 
+.site-footer-brand-column {
+  min-width: 0;
+}
+
 .site-footer-cta-column {
   justify-items: end;
   align-content: end;
+  flex-shrink: 0;
 }
 
 .site-footer-logo {
@@ -716,7 +832,7 @@ footer {
 }
 
 .site-footer-summary {
-  max-width: 18rem;
+  max-width: 16rem;
   color: #52525b;
   font-size: 0.92rem;
   line-height: 1.6;
@@ -763,7 +879,56 @@ footer {
   border-top: 1px solid rgba(17, 17, 17, 0.08);
 }
 
-@media (max-width: 767px) {
+@media (max-width: 760px) {
+  .site-footer-minimal {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 0.85rem 1rem;
+  }
+
+  .site-footer-brand-column {
+    gap: 0.45rem;
+  }
+
+  .site-footer-cta-column {
+    gap: 0.55rem;
+  }
+
+  .site-footer-logo {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .site-footer-brand-lockup {
+    gap: 0.45rem;
+  }
+
+  .site-footer-brand {
+    font-size: 0.88rem;
+  }
+
+  .site-footer-summary {
+    max-width: 10rem;
+    font-size: 0.78rem;
+    line-height: 1.35;
+  }
+
+  .site-footer-email {
+    font-size: 0.76rem;
+  }
+
+  .site-footer-cta {
+    min-height: 2.35rem;
+    padding: 0.58rem 0.8rem;
+    font-size: 0.82rem;
+  }
+
+  .site-footer-legal {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 430px) {
   .site-footer-minimal {
     grid-template-columns: 1fr;
     align-items: start;

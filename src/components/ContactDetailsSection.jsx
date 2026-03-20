@@ -1,3 +1,4 @@
+import { useState } from "react"
 import siteConfig from "../config/siteConfig"
 import { useI18n } from "../i18n/useI18n"
 
@@ -35,6 +36,14 @@ function FormIcon() {
       <path d="M4 6h.01" />
       <path d="M4 12h.01" />
       <path d="M4 18h.01" />
+    </svg>
+  )
+}
+
+function CheckIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="m5 12 5 5L20 7" />
     </svg>
   )
 }
@@ -121,6 +130,7 @@ const styles = {
     overflowWrap: "anywhere",
   },
   formShell: {
+    position: "relative",
     display: "grid",
     gap: "1rem",
     padding: "1.5rem",
@@ -215,12 +225,139 @@ const styles = {
     fontSize: "0.92rem",
     lineHeight: 1.6,
   },
+  honeypot: {
+    position: "absolute",
+    width: "1px",
+    height: "1px",
+    padding: 0,
+    margin: "-1px",
+    overflow: "hidden",
+    clip: "rect(0, 0, 0, 0)",
+    whiteSpace: "nowrap",
+    border: 0,
+  },
+  formStatus: {
+    margin: 0,
+    fontSize: "0.92rem",
+    lineHeight: 1.6,
+  },
+  formStatusSuccess: {
+    color: "#0f766e",
+  },
+  formStatusError: {
+    color: "#b91c1c",
+  },
+  successSheet: {
+    position: "absolute",
+    left: "50%",
+    top: "50%",
+    zIndex: 5,
+    width: "min(28rem, calc(100% - 2rem))",
+    padding: "1rem 1rem 1.05rem",
+    borderRadius: "1.5rem",
+    border: "1px solid rgba(15, 23, 42, 0.08)",
+    background: "rgba(255, 255, 255, 0.98)",
+    boxShadow: "0 24px 60px rgba(15, 23, 42, 0.16)",
+    backdropFilter: "blur(18px)",
+    transform: "translate(-50%, -50%)",
+    boxSizing: "border-box",
+  },
+  successSheetContent: {
+    display: "grid",
+    gridTemplateColumns: "auto 1fr auto",
+    alignItems: "center",
+    gap: "0.85rem",
+  },
+  successSheetBadge: {
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "2.85rem",
+    height: "2.85rem",
+    borderRadius: "999px",
+    background: "#22c55e",
+    color: "#ffffff",
+    boxShadow: "0 12px 30px rgba(34, 197, 94, 0.26)",
+  },
+  successSheetText: {
+    display: "grid",
+    gap: "0.15rem",
+  },
+  successSheetTitle: {
+    margin: 0,
+    fontSize: "1rem",
+    fontWeight: 700,
+    color: "#111111",
+  },
+  successSheetLead: {
+    margin: 0,
+    color: "rgba(17, 17, 17, 0.68)",
+    fontSize: "0.9rem",
+    lineHeight: 1.5,
+  },
+  successSheetClose: {
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "2.5rem",
+    height: "2.5rem",
+    border: "0",
+    borderRadius: "999px",
+    background: "rgba(17, 17, 17, 0.05)",
+    color: "#111111",
+    fontSize: "1.25rem",
+    cursor: "pointer",
+  },
 }
 
 export default function ContactDetailsSection() {
+  const [status, setStatus] = useState("idle")
+  const [statusMessage, setStatusMessage] = useState("")
+  const [isSuccessSheetOpen, setIsSuccessSheetOpen] = useState(false)
   const { messages } = useI18n()
   const { contact } = messages
-  const contactCards = contact.details.items
+  const contactCards = contact.details.items.filter((item) => {
+    const normalizedLabel = item.label.toLowerCase()
+
+    return !normalizedLabel.includes("mail") && !normalizedLabel.includes("email") && !normalizedLabel.includes("courriel")
+  })
+
+  async function handleSubmit(event) {
+    event.preventDefault()
+
+    const form = event.currentTarget
+    const formData = new FormData(form)
+
+    if (String(formData.get("website") || "").trim() !== "") {
+      return
+    }
+
+    setStatus("loading")
+    setStatusMessage("")
+
+    formData.set("apiKey", siteConfig.staticFormsApiKey)
+    formData.set("subject", `${siteConfig.brandName} website inquiry`)
+    formData.set("replyTo", String(formData.get("email") || ""))
+
+    try {
+      const response = await fetch(siteConfig.staticFormsEndpoint, {
+        method: "POST",
+        body: formData,
+      })
+
+      if (!response.ok) {
+        throw new Error("Request failed")
+      }
+
+      setStatus("success")
+      setStatusMessage(contact.details.form.successMessage)
+      setIsSuccessSheetOpen(true)
+      form.reset()
+    } catch {
+      setStatus("error")
+      setStatusMessage(contact.details.form.errorMessage)
+    }
+  }
 
   return (
     <section id="contact-details" aria-labelledby="contact-details-title" style={styles.section}>
@@ -249,36 +386,75 @@ export default function ContactDetailsSection() {
             <h3 style={styles.formTitle}>{contact.details.form.title}</h3>
             <p style={styles.formLead}>{contact.details.form.lead}</p>
           </div>
-          <form style={styles.form}>
+          <form style={styles.form} onSubmit={handleSubmit}>
+            <input type="hidden" name="apiKey" value={siteConfig.staticFormsApiKey} />
+            <input type="hidden" name="subject" value={`${siteConfig.brandName} website inquiry`} />
+            <label style={styles.honeypot} aria-hidden="true">
+              <span>{contact.details.form.honeypotLabel}</span>
+              <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+            </label>
             <div style={styles.formGrid}>
               <label style={styles.field}>
                 <span style={styles.fieldLabel}>{contact.details.form.nameLabel}</span>
-                <input type="text" placeholder={contact.details.form.namePlaceholder} style={styles.input} />
+                <input type="text" name="name" required placeholder={contact.details.form.namePlaceholder} style={styles.input} />
               </label>
               <label style={styles.field}>
                 <span style={styles.fieldLabel}>{contact.details.form.emailLabel}</span>
-                <input type="email" placeholder={contact.details.form.emailPlaceholder} style={styles.input} />
+                <input type="email" name="email" required placeholder={contact.details.form.emailPlaceholder} style={styles.input} />
               </label>
               <label style={styles.field}>
                 <span style={styles.fieldLabel}>{contact.details.form.phoneLabel}</span>
-                <input type="tel" placeholder={contact.details.form.phonePlaceholder} style={styles.input} />
+                <input type="tel" name="phone" placeholder={contact.details.form.phonePlaceholder} style={styles.input} />
               </label>
               <label style={styles.field}>
                 <span style={styles.fieldLabel}>{contact.details.form.businessLabel}</span>
-                <input type="text" placeholder={contact.details.form.businessPlaceholder} style={styles.input} />
+                <input type="text" name="business" placeholder={contact.details.form.businessPlaceholder} style={styles.input} />
               </label>
             </div>
             <label style={styles.field}>
               <span style={styles.fieldLabel}>{contact.details.form.messageLabel}</span>
-              <textarea placeholder={contact.details.form.messagePlaceholder} style={styles.textarea} />
+              <textarea name="message" required placeholder={contact.details.form.messagePlaceholder} style={styles.textarea} />
             </label>
             <div style={styles.formFooter}>
-              <button type="button" style={styles.formAction}>
-                {contact.details.form.submitLabel}
+              <button type="submit" style={styles.formAction} disabled={status === "loading"}>
+                {status === "loading" ? contact.details.form.sendingLabel : contact.details.form.submitLabel}
               </button>
-              <p style={styles.formNote}>{contact.details.form.note}</p>
+              {statusMessage ? (
+                <p
+                  style={{
+                    ...styles.formStatus,
+                    ...(status === "success" ? styles.formStatusSuccess : null),
+                    ...(status === "error" ? styles.formStatusError : null),
+                  }}
+                >
+                  {statusMessage}
+                </p>
+              ) : (
+                <p style={styles.formNote}>{contact.details.form.note}</p>
+              )}
             </div>
           </form>
+          {isSuccessSheetOpen ? (
+            <div style={styles.successSheet} role="status" aria-live="polite">
+              <div style={styles.successSheetContent}>
+                <span style={styles.successSheetBadge}>
+                  <CheckIcon />
+                </span>
+                <div style={styles.successSheetText}>
+                  <p style={styles.successSheetTitle}>{contact.details.form.successSheetTitle}</p>
+                  <p style={styles.successSheetLead}>{contact.details.form.successMessage}</p>
+                </div>
+                <button
+                  type="button"
+                  aria-label={contact.details.form.successSheetCloseLabel}
+                  style={styles.successSheetClose}
+                  onClick={() => setIsSuccessSheetOpen(false)}
+                >
+                  ×
+                </button>
+              </div>
+            </div>
+          ) : null}
         </div>
       </div>
     </section>

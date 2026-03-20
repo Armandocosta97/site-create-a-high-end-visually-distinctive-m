@@ -1,5 +1,7 @@
 export const siteConfig = {
   brandName: "Alai Web",
+  staticFormsEndpoint: "https://api.staticforms.dev/submit",
+  staticFormsApiKey: "sf_16lmj5gb0hbmg18g4i7e59dn",
   email: "alai.web.info@gmail.com",
   phoneDisplay: "+39 345 463 9301",
   phoneHref: "tel:+393454639301",

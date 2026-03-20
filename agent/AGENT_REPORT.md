@@ -802,6 +802,112 @@ Footer layout refinement:
 
 Build passed after the footer refinement.
 
+Footer alignment fix:
+
+- Switched the simplified footer layout to a full-width flex distribution so the brand block stays on the left and the email/CTA block anchors to the right as intended.
+
+Build passed after the alignment fix.
+
+Footer breakpoint adjustment:
+
+- Delayed the footer stack-to-column breakpoint so the two-sided layout remains active at widths like the one shown in review, instead of collapsing too early.
+
+Build passed after the breakpoint adjustment.
+
+Footer small-screen compaction:
+
+- Reduced the logo, motto, email, and CTA sizing on smaller screens so the left and right footer blocks can stay side by side longer before stacking.
+
+Build passed after the compaction update.
+
+Footer structural fix:
+
+- Reworked the simplified footer into a true two-column grid with a flexible left column and auto-sized right column.
+- Kept the side-by-side layout active down to a much smaller breakpoint, while also shrinking both columns so they fit on narrow screens like the reviewed one.
+
+Build passed after the structural fix.
+
+Floating CTA layering change:
+
+- Lowered the floating WhatsApp button z-index so the footer now overlays it when they intersect near the bottom of the page.
+
+Build passed after the layering change.
+
+Home section title tweak:
+
+- Increased the `SignaturePreviewSection` title scale so the “Cosa facciamo” block reads with more authority and fills the vertical rhythm better under its eyebrow label.
+
+Build passed after the title tweak.
+
+Floating WhatsApp footer behavior:
+
+- Added footer-aware compact behavior to the floating WhatsApp button: when the footer enters the viewport, the pill animates down into a smaller circular icon state so it interferes less with the footer area.
+
+Build passed after the footer-aware behavior update.
+
+Floating WhatsApp layering restore:
+
+- Restored the floating WhatsApp button above the footer while keeping the compact circular state when the footer is in view.
+
+Build passed after the layering restore.
+
+Services hero responsive rework:
+
+- Shifted the desktop diagonal split in the services hero so the focus panel no longer sits awkwardly over the dark side of the background.
+- Added a dedicated stacked small-screen variant for the services hero instead of compressing the desktop composition into mobile.
+
+Build passed after the services hero rework.
+
+Services hero mobile art direction:
+
+- Reworked the small-screen services hero again with a darker, more intentional art direction: compact stat cards, a stronger focus panel, and a cleaner glow-based background instead of the previous washed split.
+
+Build passed after the mobile art-direction update.
+
+Services hero desktop split tweak:
+
+- Adjusted the desktop diagonal split in the services hero so the separation reads more vertically.
+
+Build passed after the desktop split tweak.
+
+Services hero panel sizing tweak:
+
+- Narrowed the desktop focus panel and adjusted the column ratio so the panel stays more cleanly inside the orange side of the services hero.
+
+Build passed after the panel sizing tweak.
+
+Services hero panel position follow-up:
+
+- Pushed the desktop focus panel further into the orange side by tightening the right column again and reducing the panel max width.
+
+Build passed after the follow-up.
+
+Static Forms integration:
+
+- Connected the contact form to Static Forms with the provided API key and AJAX submit flow.
+- Added required field names, honeypot spam protection, localized sending/success/error states, and direct submission to the official Static Forms endpoint.
+
+Build passed after the Static Forms integration.
+
+Contact form success feedback:
+
+- Added a success bottom sheet with a green confirmation badge that appears after successful form submission.
+- Localized the bottom sheet title and close label across all supported languages.
+
+Build passed after the success feedback update.
+
+Contact form success sheet positioning:
+
+- Moved the success bottom sheet from the global page bottom into the center of the form component itself so the confirmation behaves as local feedback instead of a viewport-level toast.
+
+Build passed after the positioning fix.
+
+Contact cards reduction:
+
+- Removed the email card from the contact channels block so the section now focuses on WhatsApp, phone, and the integrated form.
+
+Build passed after the contact card reduction.
+
 Localization layout fix:
 
 - Added robust long-word wrapping to the black `BrandStoryPreviewSection` title so German strings no longer overflow the panel.

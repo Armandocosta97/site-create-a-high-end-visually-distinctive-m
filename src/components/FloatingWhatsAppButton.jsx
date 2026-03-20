@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import siteConfig from "../config/siteConfig"
 import { useI18n } from "../i18n/useI18n"
 
@@ -6,7 +7,7 @@ const styles = {
     position: "fixed",
     right: "max(0.75rem, env(safe-area-inset-right))",
     bottom: "max(0.75rem, env(safe-area-inset-bottom))",
-    zIndex: 9999,
+    zIndex: 40,
     display: "inline-flex",
     alignItems: "center",
     gap: "0.75rem",
@@ -24,6 +25,9 @@ const styles = {
     boxShadow: "0 18px 40px rgba(18, 140, 126, 0.24)",
     backdropFilter: "blur(12px)",
     boxSizing: "border-box",
+    overflow: "hidden",
+    transition:
+      "width 220ms ease, min-height 220ms ease, padding 220ms ease, gap 220ms ease, transform 220ms ease, border-radius 220ms ease",
   },
   iconWrap: {
     display: "inline-flex",
@@ -34,12 +38,14 @@ const styles = {
     borderRadius: "999px",
     backgroundColor: "rgba(255, 255, 255, 0.16)",
     flexShrink: 0,
+    transition: "width 220ms ease, height 220ms ease, transform 220ms ease",
   },
   label: {
     display: "block",
     fontSize: "0.98rem",
     lineHeight: 1,
     whiteSpace: "nowrap",
+    transition: "opacity 180ms ease, width 220ms ease, transform 220ms ease",
   },
 }
 
@@ -52,8 +58,34 @@ function WhatsAppIcon() {
 }
 
 export default function FloatingWhatsAppButton() {
+  const [isCompact, setIsCompact] = useState(false)
   const { messages } = useI18n()
   const { floatingWhatsapp } = messages
+
+  useEffect(() => {
+    const footer = document.querySelector("footer")
+
+    if (!footer) {
+      return undefined
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsCompact(entry.isIntersecting)
+      },
+      {
+        root: null,
+        rootMargin: "0px 0px -48px 0px",
+        threshold: 0,
+      },
+    )
+
+    observer.observe(footer)
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
 
   return (
     <a
@@ -61,12 +93,34 @@ export default function FloatingWhatsAppButton() {
       target="_blank"
       rel="noreferrer"
       aria-label={floatingWhatsapp.ariaLabel}
-      style={styles.link}
+      style={{
+        ...styles.link,
+        width: isCompact ? "3.5rem" : "auto",
+        minHeight: isCompact ? "3.5rem" : styles.link.minHeight,
+        padding: isCompact ? "0.625rem" : styles.link.padding,
+        gap: isCompact ? "0" : styles.link.gap,
+      }}
     >
-      <span aria-hidden="true" style={styles.iconWrap}>
+      <span
+        aria-hidden="true"
+        style={{
+          ...styles.iconWrap,
+          width: isCompact ? "2.1rem" : styles.iconWrap.width,
+          height: isCompact ? "2.1rem" : styles.iconWrap.height,
+        }}
+      >
         <WhatsAppIcon />
       </span>
-      <span style={styles.label}>{floatingWhatsapp.label}</span>
+      <span
+        style={{
+          ...styles.label,
+          width: isCompact ? "0" : "auto",
+          opacity: isCompact ? 0 : 1,
+          transform: isCompact ? "translateX(0.25rem)" : "translateX(0)",
+        }}
+      >
+        {floatingWhatsapp.label}
+      </span>
     </a>
   )
 }
