@@ -32,7 +32,7 @@ const en = {
     home: {
       title: "Alai Web | Modern websites that look great and work",
       description:
-        "Alai Web builds modern, fast, and SEO-ready websites for small businesses that need clarity, performance, and stronger digital presence.",
+        "Alai Web builds modern, fast, and SEO-ready websites for small businesses that need clarity, performance, and a stronger digital presence.",
     },
     menu: {
       title: "Services | Alai Web",
@@ -106,7 +106,7 @@ const en = {
         },
         {
           number: "02",
-          title: "Light and fast builds",
+          title: "Light and fast development",
           description:
             "Essential front-end decisions that keep the site fast, readable, and solid across screens.",
         },
@@ -151,13 +151,13 @@ const en = {
       panelAriaLabel: "Service direction",
       panelLabel: "Our focus",
       panelTitle:
-        "Credible design, real performance, and a structure shaped for conversion.",
+        "Credible design, real performance, and a structure shaped to drive inquiries.",
       panelText:
         "No gratuitous effects and no unnecessary complexity. Only what helps the brand look better, read better, and move users toward contact.",
     },
     categories: {
       eyebrow: "Core services",
-      title: "Each service is built around a specific goal: clarity, trust, conversion.",
+      title: "Each service is built around a specific goal: clarity, trust, and inquiries.",
       lead:
         'The work is not just about "making a website". Each intervention improves how the brand presents itself, how it is perceived, and how easily it generates a real inquiry.',
       items: [
@@ -184,7 +184,7 @@ const en = {
           dishes: [
             "Action-oriented headlines and structure",
             "Concise copy and strong hierarchy",
-            "Conversion-focused CTA design",
+            "CTA design built to prompt action",
           ],
         },
         {
@@ -308,7 +308,7 @@ const en = {
       eyebrow: "Portfolio",
       title: "A selection of creative directions and digital project styles.",
       lead:
-        "This section gathers examples of visual direction, structure, and brand presentation. Not just aesthetics: each concept is designed to be clear, credible, and ready to convert.",
+        "This section gathers examples of visual direction, structure, and brand presentation. Not just aesthetics: each concept is designed to be clear, credible, and built to generate inquiries.",
       note: "Brand, layout, and content aligned to give the message more strength.",
       panelAriaLabel: "Portfolio highlights",
       panelTitle: "What the portfolio shows",
@@ -317,7 +317,7 @@ const en = {
       eyebrow: "Selected work",
       title: "Examples of pages, systems, and structures designed for real businesses.",
       lead:
-        "Here you will find conceptual previews of projects and creative directions built to show how Alai Web approaches brand, readability, and conversion in a clear responsive grid.",
+        "Here you will find conceptual previews of projects and creative directions built to show how Alai Web approaches brand, readability, and inquiry-driven structure in a clear responsive grid.",
       items: [
         {
           title: "Essential corporate website",
@@ -360,12 +360,12 @@ const en = {
           accent: "Services",
         },
         {
-          title: "Conversion-focused contact page",
+          title: "Inquiry-focused contact page",
           description:
             "A final page designed to remove friction and make contact requests easier with clear CTA placement.",
           alt: "Mockup of a contact page with visible calls to action, contact details, and strong visual hierarchy.",
           palette: ["#fff1f2", "#fb7185", "#4c0519"],
-          accent: "Conversion",
+          accent: "Inquiries",
         },
       ],
     },
@@ -381,12 +381,6 @@ const en = {
     },
     details: {
       items: [
-        {
-          label: "Email",
-          value: siteConfig.email,
-          href: `mailto:${siteConfig.email}`,
-          description: "Share your goals, timeline, and current site status.",
-        },
         {
           label: "Phone",
           value: siteConfig.phoneDisplay,
@@ -405,20 +399,16 @@ const en = {
       ],
       title: "Project conversations, without the friction.",
       lead:
-        "Use the channel that fits your workflow. Email is best for detailed briefs, phone is best for quick alignment, and WhatsApp works well when you want to move fast.",
+        "Use the channel that fits your workflow. Phone is best for quick alignment, WhatsApp works well when you want to move fast, and the form is ideal for a more structured brief.",
       ctaTitle: "Prefer to start with a quick WhatsApp message?",
       ctaText:
         "Send a short brief and we will reply with the next best step for your project, timeline, and budget range.",
       ctaLabel: "Chat on WhatsApp",
-      formLabel: "Form",
-      formValue: "Send a quick brief",
-      formDescription:
-        "If you want to start with a short inquiry, use this entry point and we will guide you to the next step.",
       form: {
         eyebrow: "Brief",
         title: "Add the project details here.",
         lead:
-          "We are preparing a simple structure now: in the next step this block will be connected to a real static form.",
+          "Tell us about your project, your goals, and your timeline. We will reply with a clear next step.",
         nameLabel: "Name",
         namePlaceholder: "Your name",
         emailLabel: "Email",
@@ -438,20 +428,6 @@ const en = {
         honeypotLabel: "Leave this field empty",
         note: "The form sends your request directly to the studio through Static Forms.",
       },
-    },
-    hours: {
-      title: "Studio hours",
-      lead:
-        "We keep our calendar focused so projects move quickly. If your launch is urgent, mention the deadline in your first message and we will confirm availability directly.",
-      entries: [
-        { day: "Monday", hours: "09:00 - 18:00" },
-        { day: "Tuesday", hours: "09:00 - 18:00" },
-        { day: "Wednesday", hours: "09:00 - 18:00" },
-        { day: "Thursday", hours: "09:00 - 18:00" },
-        { day: "Friday", hours: "09:00 - 16:00" },
-        { day: "Saturday", hours: "By request" },
-        { day: "Sunday", hours: "Closed" },
-      ],
     },
   },
 }

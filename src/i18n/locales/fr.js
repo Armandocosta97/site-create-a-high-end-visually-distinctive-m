@@ -30,14 +30,14 @@ const fr = {
   ],
   seo: {
     home: {
-      title: "Alai Web | Des sites modernes qui sont beaux et efficaces",
+      title: "Alai Web | Des sites modernes, rapides et efficaces",
       description:
-        "Alai Web crée des sites modernes, rapides et SEO-ready pour les petites entreprises qui recherchent plus de clarté, de performance et d'impact digital.",
+        "Alai Web crée des sites modernes, rapides et prêts pour le SEO pour les petites entreprises qui recherchent plus de clarté, de performance et d'impact digital.",
     },
     menu: {
       title: "Services | Alai Web",
       description:
-        "Découvrez les services d'Alai Web : sites modernes, refontes, landing pages et builds rapides pour les entreprises qui ont besoin de clarté et de performance.",
+        "Découvrez les services d'Alai Web : sites modernes, refontes, pages d'atterrissage et développements rapides pour les entreprises qui ont besoin de clarté et de performance.",
     },
     chiSiamo: {
       title: "À propos | Alai Web",
@@ -73,22 +73,22 @@ const fr = {
       eyebrow: "Alai Web",
       title: "Des sites web élégants et construits pour être efficaces.",
       lead:
-        "Beautiful. Fast. Effective. Alai Web conçoit des sites modernes, rapides et SEO-ready pour les entreprises qui veulent une présence digitale plus claire, plus crédible et plus utile au business.",
+        "Beautiful. Fast. Effective. Alai Web conçoit des sites modernes, rapides et prêts pour le SEO pour les entreprises qui veulent une présence digitale plus claire, plus crédible et plus utile au business.",
       primaryCta: { label: "Découvrir les services", to: routes.services },
       secondaryCta: { label: "Parlons de votre projet", to: routes.contact },
       metricsAriaLabel: "Points clés d'Alai Web",
       metrics: [
         {
           value: "Rapides",
-          label: "Des builds légers qui chargent vite et restent faciles à parcourir.",
+          label: "Des structures légères qui chargent vite et restent faciles à parcourir.",
         },
         {
           value: "Clairs",
           label: "Une structure nette qui guide l'utilisateur vers la bonne action.",
         },
         {
-          value: "SEO-ready",
-          label: "Des bases techniques pensées pour la visibilité et la conversion.",
+          value: "SEO solide",
+          label: "Des bases techniques pensées pour la visibilité et les demandes.",
         },
       ],
     },
@@ -106,9 +106,9 @@ const fr = {
         },
         {
           number: "02",
-          title: "Builds légers et rapides",
+          title: "Développements légers et rapides",
           description:
-            "Des choix front-end essentiels pour garder le site rapide, lisible et solide sur tous les écrans.",
+            "Des choix de front-end essentiels pour garder le site rapide, lisible et solide sur tous les écrans.",
         },
         {
           number: "03",
@@ -142,22 +142,22 @@ const fr = {
       eyebrow: "Services",
       title: "Des solutions web conçues pour donner plus d'impact à votre activité.",
       lead:
-        "De la landing page au site complet, Alai Web conçoit et développe des expériences digitales claires, rapides et cohérentes avec le positionnement de la marque. Chaque intervention vise à améliorer l'image, la confiance et les prises de contact.",
+        "De la page d'atterrissage au site complet, Alai Web conçoit et développe des expériences digitales claires, rapides et cohérentes avec le positionnement de la marque. Chaque intervention vise à améliorer l'image, la confiance et les prises de contact.",
       stats: [
         { value: "Design", label: "Une direction visuelle propre et crédible." },
-        { value: "Speed", label: "Des builds légers, rapides et stables." },
-        { value: "Focus", label: "Une structure orientée vers l'action." },
+        { value: "Vitesse", label: "Des structures légères, rapides et stables." },
+        { value: "Clarté", label: "Une structure orientée vers l'action." },
       ],
       panelAriaLabel: "Direction des services",
       panelLabel: "Notre focus",
       panelTitle:
-        "Un design crédible, de vraies performances et une structure pensée pour convertir.",
+        "Un design crédible, de vraies performances et une structure pensée pour générer des demandes.",
       panelText:
         "Pas d'effets gratuits ni de complexité inutile. Seulement ce qui aide la marque à mieux se présenter, à mieux se lire et à guider l'utilisateur vers le contact.",
     },
     categories: {
       eyebrow: "Services principaux",
-      title: "Chaque service répond à un objectif précis : clarté, confiance, conversion.",
+      title: "Chaque service répond à un objectif précis : clarté, confiance et demandes.",
       lead:
         'Le travail ne consiste pas seulement à "faire un site". Chaque intervention améliore la façon dont la marque se présente, dont elle est perçue et la facilité avec laquelle elle génère une demande réelle.',
       items: [
@@ -176,15 +176,15 @@ const fr = {
         },
         {
           number: "02",
-          name: "Landing pages",
+          name: "Pages d'atterrissage",
           accent: "Une page, un objectif",
           tone: "dark",
           description:
-            "Des pages focalisées sur une offre précise, pensées pour les campagnes, les lancements, la lead generation ou de nouveaux services.",
+            "Des pages focalisées sur une offre précise, pensées pour les campagnes, les lancements, la génération de contacts ou de nouveaux services.",
           dishes: [
             "Titres et structure orientés action",
             "Copy concis et hiérarchie forte",
-            "CTA pensés pour convertir",
+            "CTA pensés pour susciter une prise de contact",
           ],
         },
         {
@@ -208,7 +208,7 @@ const fr = {
           description:
             "Des interventions ciblées pour améliorer le chargement, la lisibilité, la stabilité et les bases SEO du site.",
           dishes: [
-            "Réduction du poids front-end",
+            "Réduction du poids du front-end",
             "Améliorations SEO techniques de base",
             "Nettoyage du markup et accessibilité",
           ],
@@ -258,7 +258,7 @@ const fr = {
       eyebrow: "Notre histoire",
       title: "Une vision simple : créer des sites qui aident vraiment le business.",
       lead:
-        "Nous sommes partis d'une idée précise : beaucoup d'entreprises ont des sites lents, confus ou peu crédibles, non pas parce qu'elles manquent de valeur, mais parce que leur communication digitale est mal construite. C'est pour cela que nous coordonnons contenus, layout et développement afin que chaque page ait un rôle clair.",
+        "Nous sommes partis d'une idée précise : beaucoup d'entreprises ont des sites lents, confus ou peu crédibles, non pas parce qu'elles manquent de valeur, mais parce que leur communication digitale est mal construite. C'est pour cela que nous coordonnons contenus, mise en page et développement afin que chaque page ait un rôle clair.",
       emphasis:
         "Le résultat doit être contemporain mais utile : assez soigné pour se distinguer, assez simple pour être compris et assez solide pour soutenir la croissance dans le temps.",
       panelAriaLabel: "Moments clés de notre histoire",
@@ -294,7 +294,7 @@ const fr = {
       highlights: [
         {
           label: "Direction visuelle",
-          text: "Des layouts éditoriaux, une typographie forte et une construction visuelle qui soutient le positionnement de la marque.",
+          text: "Des mises en page éditoriales, une typographie forte et une construction visuelle qui soutient le positionnement de la marque.",
         },
         {
           label: "Structure des pages",
@@ -302,14 +302,14 @@ const fr = {
         },
         {
           label: "Détail technique",
-          text: "Performance, lisibilité et solidité front-end traitées comme une partie intégrante du design.",
+          text: "Performance, lisibilité et solidité du front-end traitées comme une partie intégrante du design.",
         },
       ],
       eyebrow: "Portfolio",
-      title: "Une sélection de directions créatives et de styles de projets digitaux.",
+      title: "Une sélection de directions créatives et de projets digitaux.",
       lead:
-        "Cette section rassemble des exemples de direction visuelle, de structure et de présentation de marque. Pas seulement de l'esthétique : chaque concept est pensé pour être clair, crédible et prêt à convertir.",
-      note: "Marque, layout et contenu alignés pour donner plus de force au message.",
+        "Cette section rassemble des exemples de direction visuelle, de structure et de présentation de marque. Pas seulement de l'esthétique : chaque concept est pensé pour être clair, crédible et orienté vers la prise de contact.",
+      note: "Marque, structure et contenu alignés pour donner plus de force au message.",
       panelAriaLabel: "Points forts du portfolio",
       panelTitle: "Ce que raconte le portfolio",
     },
@@ -317,13 +317,13 @@ const fr = {
       eyebrow: "Sélection de projets",
       title: "Des exemples de pages, de systèmes et de structures pensés pour de vraies entreprises.",
       lead:
-        "Vous trouverez ici des aperçus conceptuels de projets et de directions créatives conçus pour montrer comment Alai Web travaille la marque, la lisibilité et la conversion dans une grille responsive claire.",
+        "Vous trouverez ici des aperçus conceptuels de projets et de directions créatives conçus pour montrer comment Alai Web travaille la marque, la lisibilité et la génération de demandes dans une grille responsive claire.",
       items: [
         {
           title: "Site corporate essentiel",
           description:
-            "Un layout propre avec une hiérarchie forte, pensé pour raconter les services et la valeur sans dispersion.",
-          alt: "Mockup d'un site corporate avec typographie marquée, blocs éditoriaux et calls to action visibles.",
+            "Une mise en page nette avec une hiérarchie forte, pensée pour raconter les services et la valeur sans dispersion.",
+          alt: "Mockup d'un site corporate avec typographie marquée, blocs éditoriaux et appels à l'action visibles.",
           palette: ["#fff7ed", "#fdba74", "#7c2d12"],
           accent: "Corporate",
         },
@@ -331,9 +331,9 @@ const fr = {
           title: "Landing page de campagne",
           description:
             "Une page focalisée sur une offre précise, avec des contenus concis et un parcours linéaire vers la demande.",
-          alt: "Mockup d'une landing page avec hero, blocs de bénéfices et calls to action pour la lead generation.",
+          alt: "Mockup d'une landing page avec hero, blocs de bénéfices et appels à l'action pour la génération de contacts.",
           palette: ["#e2e8f0", "#1e293b", "#f97316"],
-          accent: "Lead generation",
+          accent: "Contacts",
         },
         {
           title: "Interface portfolio studio",
@@ -349,7 +349,7 @@ const fr = {
             "Une révision complète du ton, de la structure et de la présence visuelle pour rendre le site plus actuel et professionnel.",
           alt: "Mockup d'une refonte pour petite entreprise avec palette neutre, sections ordonnées et messages clairs.",
           palette: ["#fef2f2", "#fb923c", "#431407"],
-          accent: "Redesign",
+          accent: "Refonte",
         },
         {
           title: "Page services à haute lisibilité",
@@ -357,15 +357,15 @@ const fr = {
             "Une composition pensée pour rendre chaque service immédiatement compréhensible, y compris sur mobile.",
           alt: "Mockup d'une page services avec blocs éditoriaux, grands titres et lecture claire des contenus.",
           palette: ["#fafaf9", "#d6d3d1", "#292524"],
-          accent: "Services",
+          accent: "Prestations",
         },
         {
-          title: "Page contact orientée conversion",
+          title: "Page contact orientée demandes",
           description:
             "Une page finale conçue pour supprimer les frictions et faciliter la prise de contact avec des CTA clairs.",
-          alt: "Mockup d'une page contact avec calls to action visibles, coordonnées et hiérarchie visuelle forte.",
+          alt: "Mockup d'une page contact avec appels à l'action visibles, coordonnées et hiérarchie visuelle forte.",
           palette: ["#fff1f2", "#fb7185", "#4c0519"],
-          accent: "Conversion",
+          accent: "Demandes",
         },
       ],
     },
@@ -381,12 +381,6 @@ const fr = {
     },
     details: {
       items: [
-        {
-          label: "Email",
-          value: siteConfig.email,
-          href: `mailto:${siteConfig.email}`,
-          description: "Partagez vos objectifs, votre planning et l'état actuel du site.",
-        },
         {
           label: "Téléphone",
           value: siteConfig.phoneDisplay,
@@ -405,20 +399,16 @@ const fr = {
       ],
       title: "Des échanges projet, sans friction.",
       lead:
-        "Utilisez le canal le plus adapté à votre façon de travailler. L'email est idéal pour les briefs détaillés, le téléphone pour un alignement rapide, et WhatsApp quand vous voulez avancer vite.",
+        "Utilisez le canal le plus adapté à votre façon de travailler. Le téléphone est idéal pour un échange rapide, WhatsApp quand vous voulez avancer vite et le formulaire pour un brief plus structuré.",
       ctaTitle: "Vous préférez commencer avec un message WhatsApp rapide ?",
       ctaText:
         "Envoyez un brief court et nous vous répondrons avec la prochaine étape la plus utile pour votre projet, votre timing et votre budget.",
       ctaLabel: "Discuter sur WhatsApp",
-      formLabel: "Formulaire",
-      formValue: "Envoyer un brief rapide",
-      formDescription:
-        "Si vous voulez commencer avec une demande courte, utilisez ce point d'entrée et nous vous guiderons vers la prochaine étape.",
       form: {
         eyebrow: "Brief",
         title: "Ajoutez ici les détails du projet.",
         lead:
-          "Nous préparons maintenant une structure simple : à l'étape suivante, ce bloc sera relié à un vrai formulaire statique.",
+          "Ajoutez ici les informations essentielles sur votre projet et nous vous répondrons avec une prochaine étape claire.",
         nameLabel: "Nom",
         namePlaceholder: "Votre nom",
         emailLabel: "Email",
@@ -438,20 +428,6 @@ const fr = {
         honeypotLabel: "Laissez ce champ vide",
         note: "Le formulaire envoie directement votre demande au studio via Static Forms.",
       },
-    },
-    hours: {
-      title: "Horaires du studio",
-      lead:
-        "Nous gardons notre calendrier concentré pour faire avancer les projets rapidement. Si votre lancement est urgent, mentionnez la deadline dans votre premier message et nous confirmerons directement la disponibilité.",
-      entries: [
-        { day: "Lundi", hours: "09:00 - 18:00" },
-        { day: "Mardi", hours: "09:00 - 18:00" },
-        { day: "Mercredi", hours: "09:00 - 18:00" },
-        { day: "Jeudi", hours: "09:00 - 18:00" },
-        { day: "Vendredi", hours: "09:00 - 16:00" },
-        { day: "Samedi", hours: "Sur demande" },
-        { day: "Dimanche", hours: "Fermé" },
-      ],
     },
   },
 }

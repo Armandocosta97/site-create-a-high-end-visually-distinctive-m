@@ -30,14 +30,14 @@ const de = {
   ],
   seo: {
     home: {
-      title: "Alai Web | Moderne Websites, die stark aussehen und funktionieren",
+      title: "Alai Web | Moderne Websites, die überzeugen und funktionieren",
       description:
-        "Alai Web erstellt moderne, schnelle und SEO-ready Websites für kleine Unternehmen, die mehr Klarheit, Performance und digitale Wirkung brauchen.",
+        "Alai Web erstellt moderne, schnelle und für SEO vorbereitete Websites für kleine Unternehmen, die mehr Klarheit, Leistung und digitale Wirkung brauchen.",
     },
     menu: {
       title: "Leistungen | Alai Web",
       description:
-        "Entdecken Sie die Leistungen von Alai Web: moderne Websites, Relaunches, Landingpages und schnelle Builds für Unternehmen, die Klarheit und Performance brauchen.",
+        "Entdecken Sie die Leistungen von Alai Web: moderne Websites, Relaunches, Landingpages und schnelle Umsetzungen für Unternehmen, die Klarheit und Leistung brauchen.",
     },
     chiSiamo: {
       title: "Über uns | Alai Web",
@@ -73,22 +73,22 @@ const de = {
       eyebrow: "Alai Web",
       title: "Websites, die stark aussehen und dafür gebaut sind, zu funktionieren.",
       lead:
-        "Beautiful. Fast. Effective. Alai Web entwickelt moderne, schnelle und SEO-ready Websites für Unternehmen, die eine klarere, glaubwürdigere und nützlichere digitale Präsenz wollen.",
+        "Beautiful. Fast. Effective. Alai Web entwickelt moderne, schnelle und für SEO vorbereitete Websites für Unternehmen, die eine klarere, glaubwürdigere und nützlichere digitale Präsenz wollen.",
       primaryCta: { label: "Leistungen entdecken", to: routes.services },
       secondaryCta: { label: "Über Ihr Projekt sprechen", to: routes.contact },
       metricsAriaLabel: "Highlights von Alai Web",
       metrics: [
         {
           value: "Schnell",
-          label: "Leichte Builds, die schnell laden und einfach zu nutzen bleiben.",
+          label: "Leichte Umsetzungen, die schnell laden und einfach zu nutzen bleiben.",
         },
         {
           value: "Klar",
           label: "Eine saubere Struktur, die Nutzer gezielt zur richtigen Aktion führt.",
         },
         {
-          value: "SEO-ready",
-          label: "Technische Grundlagen für Sichtbarkeit und Conversion.",
+          value: "SEO-stark",
+          label: "Technische Grundlagen für Sichtbarkeit und Anfragen.",
         },
       ],
     },
@@ -106,9 +106,9 @@ const de = {
         },
         {
           number: "02",
-          title: "Leichte und schnelle Builds",
+          title: "Leichte und schnelle Entwicklung",
           description:
-            "Essenzielle Frontend-Entscheidungen, damit die Website auf jedem Screen schnell, lesbar und stabil bleibt.",
+            "Essenzielle Frontend-Entscheidungen, damit die Website auf jedem Bildschirm schnell, lesbar und stabil bleibt.",
         },
         {
           number: "03",
@@ -128,7 +128,7 @@ const de = {
       eyebrow: "Unser Ansatz",
       title: "Klares Design, klare Richtung, konkrete Entwicklung.",
       lead:
-        "Alai Web arbeitet mit Unternehmen, die etwas Nützlicheres wollen als ein einfaches Redesign. Jedes Projekt wird so gedacht, dass es glaubwürdig, schnell und auf den ersten Blick verständlich ist.",
+        "Alai Web arbeitet mit Unternehmen, die etwas Nützlicheres wollen als eine einfache visuelle Auffrischung. Jedes Projekt wird so gedacht, dass es glaubwürdig, schnell und auf den ersten Blick verständlich ist.",
       ctaLabel: "So arbeiten wir",
       imageAlt:
         "Editoriales Website-Mockup mit starker Typografie und hervorgehobenem Call-to-Action.",
@@ -145,19 +145,19 @@ const de = {
         "Von fokussierten Landingpages bis zu kompletten Websites entwickelt Alai Web digitale Erlebnisse, die klar, schnell und mit Ihrer Markenpositionierung abgestimmt sind. Jede Leistung zielt darauf ab, Image, Vertrauen und Anfragen zu verbessern.",
       stats: [
         { value: "Design", label: "Klare und glaubwürdige visuelle Richtung." },
-        { value: "Speed", label: "Leichte, schnelle und stabile Builds." },
-        { value: "Focus", label: "Struktur mit Fokus auf Handlung." },
+        { value: "Tempo", label: "Leichte, schnelle und stabile Umsetzungen." },
+        { value: "Klarheit", label: "Struktur mit klarem Fokus auf Handlung." },
       ],
       panelAriaLabel: "Leistungsfokus",
       panelLabel: "Unser Fokus",
       panelTitle:
-        "Glaubwürdiges Design, echte Performance und eine Struktur, die auf Conversion ausgerichtet ist.",
+        "Glaubwürdiges Design, echte Leistung und eine Struktur, die auf Anfragen ausgerichtet ist.",
       panelText:
         "Keine unnötigen Effekte und keine überflüssige Komplexität. Nur das, was der Marke hilft, besser wahrgenommen zu werden, besser gelesen zu werden und Nutzer Richtung Kontakt zu führen.",
     },
     categories: {
       eyebrow: "Kernleistungen",
-      title: "Jede Leistung verfolgt ein klares Ziel: Klarheit, Vertrauen, Conversion.",
+      title: "Jede Leistung verfolgt ein klares Ziel: Klarheit, Vertrauen und Anfragen.",
       lead:
         'Die Arbeit besteht nicht nur darin, "eine Website zu machen". Jede Intervention verbessert, wie die Marke auftritt, wie sie wahrgenommen wird und wie leicht daraus eine echte Anfrage entsteht.',
       items: [
@@ -167,11 +167,11 @@ const de = {
           accent: "Klare digitale Präsenz",
           tone: "light",
           description:
-            "Komplette Websites für Unternehmen, Studios und Professionals, die sich besser erklären und sofort Vertrauen aufbauen müssen.",
+            "Komplette Websites für Unternehmen, Studios und Fachleute, die sich besser erklären und sofort Vertrauen aufbauen müssen.",
           dishes: [
             "Content-Architektur",
             "Individuelles Editorial Design",
-            "Responsives und schnelles Development",
+            "Responsive und schnelle Entwicklung",
           ],
         },
         {
@@ -180,11 +180,11 @@ const de = {
           accent: "Eine Seite, ein Ziel",
           tone: "dark",
           description:
-            "Fokussierte Seiten rund um ein klares Angebot, gedacht für Kampagnen, Launches, Lead Generation oder neue Services.",
+            "Fokussierte Seiten rund um ein klares Angebot, gedacht für Kampagnen, Markteinführungen, Leadgenerierung oder neue Leistungen.",
           dishes: [
             "Handlungsorientierte Headlines und Struktur",
             "Knappes Copywriting und starke Hierarchie",
-            "CTA mit Fokus auf Conversion",
+            "CTA mit klarem Anfrageziel",
           ],
         },
         {
@@ -268,7 +268,7 @@ const de = {
       principles: [
         {
           title: "Lesbare Einfachheit",
-          text: "Wir reduzieren visuelles Rauschen, um der Botschaft, der Hierarchie und wirklich nützlichen Calls-to-Action mehr Raum zu geben.",
+          text: "Wir reduzieren visuelles Rauschen, damit Botschaft, Hierarchie und wirklich nützliche Handlungsaufforderungen mehr Raum bekommen.",
         },
         {
           title: "Technik ohne Inszenierung",
@@ -294,7 +294,7 @@ const de = {
       highlights: [
         {
           label: "Visuelle Richtung",
-          text: "Editoriale Layouts, starke Typografie und ein visuelles System, das die Markenpositionierung unterstützt.",
+          text: "Editoriale Gestaltungsraster, starke Typografie und ein visuelles System, das die Markenpositionierung unterstützt.",
         },
         {
           label: "Seitenstruktur",
@@ -308,7 +308,7 @@ const de = {
       eyebrow: "Portfolio",
       title: "Eine Auswahl kreativer Richtungen und digitaler Projektstile.",
       lead:
-        "Dieser Bereich versammelt Beispiele für visuelle Richtung, Struktur und Markenpräsentation. Nicht nur Ästhetik: Jedes Konzept ist darauf ausgelegt, klar, glaubwürdig und conversion-ready zu sein.",
+        "Dieser Bereich versammelt Beispiele für visuelle Richtung, Struktur und Markenpräsentation. Nicht nur Ästhetik: Jedes Konzept ist darauf ausgelegt, klar, glaubwürdig und auf Anfragen ausgerichtet zu sein.",
       note: "Marke, Layout und Inhalte aufeinander abgestimmt, um der Botschaft mehr Kraft zu geben.",
       panelAriaLabel: "Portfolio-Highlights",
       panelTitle: "Was das Portfolio zeigt",
@@ -317,13 +317,13 @@ const de = {
       eyebrow: "Ausgewählte Arbeiten",
       title: "Beispiele für Seiten, Systeme und Strukturen, die für echte Unternehmen entwickelt wurden.",
       lead:
-        "Hier finden Sie konzeptionelle Vorschauen auf Projekte und kreative Richtungen, die zeigen, wie Alai Web mit Marke, Lesbarkeit und Conversion in einem klaren responsiven Raster arbeitet.",
+        "Hier finden Sie konzeptionelle Vorschauen auf Projekte und kreative Richtungen, die zeigen, wie Alai Web mit Marke, Lesbarkeit und Anfrageorientierung in einem klaren responsiven Raster arbeitet.",
       items: [
         {
           title: "Essenzielle Corporate Website",
           description:
             "Ein sauberes Layout mit starker Hierarchie, entwickelt, um Leistungen und Mehrwert ohne Ablenkung zu vermitteln.",
-          alt: "Mockup einer Corporate Website mit markanter Typografie, editorialen Blöcken und hervorgehobenen Calls-to-Action.",
+          alt: "Mockup einer Corporate Website mit markanter Typografie, editorialen Blöcken und hervorgehobenen Handlungsaufforderungen.",
           palette: ["#fff7ed", "#fdba74", "#7c2d12"],
           accent: "Corporate",
         },
@@ -331,9 +331,9 @@ const de = {
           title: "Landingpage für Kampagnen",
           description:
             "Eine Seite mit Fokus auf ein konkretes Angebot, mit kompakten Inhalten und einem linearen Pfad zur Anfrage.",
-          alt: "Mockup einer Landingpage mit Hero-Bereich, Nutzenblöcken und Calls-to-Action zur Lead-Generierung.",
+          alt: "Mockup einer Landingpage mit Hero-Bereich, Nutzenblöcken und Handlungsaufforderungen zur Leadgenerierung.",
           palette: ["#e2e8f0", "#1e293b", "#f97316"],
-          accent: "Lead generation",
+          accent: "Leadgenerierung",
         },
         {
           title: "Studio-Portfolio-Interface",
@@ -347,25 +347,25 @@ const de = {
           title: "Relaunch für kleine Unternehmen",
           description:
             "Eine vollständige Überarbeitung von Tonalität, Struktur und visueller Präsenz, damit die Website aktueller und professioneller wirkt.",
-          alt: "Mockup eines Redesigns für ein kleines Unternehmen mit neutraler Farbpalette, geordneten Sektionen und klaren Botschaften.",
+          alt: "Mockup eines Relaunchs für ein kleines Unternehmen mit neutraler Farbpalette, geordneten Sektionen und klaren Botschaften.",
           palette: ["#fef2f2", "#fb923c", "#431407"],
-          accent: "Redesign",
+          accent: "Relaunch",
         },
         {
           title: "Service-Seite mit hoher Lesbarkeit",
           description:
-            "Eine Komposition, die jeden Service sofort verständlich macht, auch auf kleinen Screens.",
+            "Eine Komposition, die jede Leistung sofort verständlich macht, auch auf kleinen Bildschirmen.",
           alt: "Mockup einer Service-Seite mit editorialen Blöcken, großen Überschriften und klarer Inhaltsstruktur.",
           palette: ["#fafaf9", "#d6d3d1", "#292524"],
-          accent: "Services",
+          accent: "Leistungen",
         },
         {
-          title: "Kontaktseite mit Fokus auf Conversion",
+          title: "Kontaktseite mit Fokus auf Anfragen",
           description:
             "Eine Abschlussseite, die Reibung reduziert und die Kontaktaufnahme mit klaren CTA-Platzierungen erleichtert.",
-          alt: "Mockup einer Kontaktseite mit sichtbaren Calls-to-Action, Kontaktdaten und starker visueller Hierarchie.",
+          alt: "Mockup einer Kontaktseite mit sichtbaren Handlungsaufforderungen, Kontaktdaten und starker visueller Hierarchie.",
           palette: ["#fff1f2", "#fb7185", "#4c0519"],
-          accent: "Conversion",
+          accent: "Anfragen",
         },
       ],
     },
@@ -375,18 +375,12 @@ const de = {
       eyebrow: "Kontakt",
       title: "Lassen Sie uns etwas Präzises und Wirksames aufbauen.",
       lead:
-        "Schreiben Sie uns mit Ihren Geschäftszielen, Ihrem Zeitplan und der Art digitaler Präsenz, die Sie brauchen. Wir antworten mit einem klaren nächsten Schritt, nicht mit einer vagen Sales-Sequenz.",
+        "Schreiben Sie uns mit Ihren Geschäftszielen, Ihrem Zeitplan und der Art digitaler Präsenz, die Sie brauchen. Wir antworten mit einem klaren nächsten Schritt statt mit einer vagen Vertriebsnachricht.",
       primaryCta: "Erzählen Sie uns von Ihrer Idee",
       secondaryCta: "Auf WhatsApp starten",
     },
     details: {
       items: [
-        {
-          label: "E-Mail",
-          value: siteConfig.email,
-          href: `mailto:${siteConfig.email}`,
-          description: "Teilen Sie Ihre Ziele, Ihren Zeitplan und den aktuellen Status Ihrer Website.",
-        },
         {
           label: "Telefon",
           value: siteConfig.phoneDisplay,
@@ -405,20 +399,16 @@ const de = {
       ],
       title: "Projektgespräche ohne Reibung.",
       lead:
-        "Nutzen Sie den Kanal, der am besten zu Ihrem Arbeitsablauf passt. E-Mail eignet sich für detaillierte Briefings, Telefon für schnelle Abstimmung und WhatsApp, wenn es schnell gehen soll.",
+        "Wählen Sie den Kanal, der am besten zu Ihrem Arbeitsablauf passt. Telefon eignet sich für schnelle Abstimmungen, WhatsApp für einen direkten Start und das Formular für ein strukturiertes Briefing.",
       ctaTitle: "Lieber mit einer kurzen WhatsApp-Nachricht starten?",
       ctaText:
         "Senden Sie ein kurzes Briefing und wir antworten mit dem sinnvollsten nächsten Schritt für Projekt, Timing und Budgetrahmen.",
       ctaLabel: "Auf WhatsApp chatten",
-      formLabel: "Formular",
-      formValue: "Kurzes Briefing senden",
-      formDescription:
-        "Wenn Sie mit einer kurzen Anfrage starten möchten, nutzen Sie diesen Einstieg und wir führen Sie zum nächsten sinnvollen Schritt.",
       form: {
         eyebrow: "Briefing",
         title: "Tragen Sie hier die Projektdetails ein.",
         lead:
-          "Wir bereiten jetzt eine einfache Struktur vor: im nächsten Schritt wird dieser Block an ein echtes statisches Formular angebunden.",
+          "Beschreiben Sie kurz Ihr Projekt, Ihre Ziele und den gewünschten Zeitrahmen. Wir melden uns mit einem klaren nächsten Schritt zurück.",
         nameLabel: "Name",
         namePlaceholder: "Ihr Name",
         emailLabel: "E-Mail",
@@ -438,20 +428,6 @@ const de = {
         honeypotLabel: "Lassen Sie dieses Feld leer",
         note: "Das Formular sendet Ihre Anfrage direkt über Static Forms an das Studio.",
       },
-    },
-    hours: {
-      title: "Studiozeiten",
-      lead:
-        "Wir halten unseren Kalender fokussiert, damit Projekte schnell vorankommen. Wenn Ihr Launch dringend ist, nennen Sie die Deadline in Ihrer ersten Nachricht und wir bestätigen die Verfügbarkeit direkt.",
-      entries: [
-        { day: "Montag", hours: "09:00 - 18:00" },
-        { day: "Dienstag", hours: "09:00 - 18:00" },
-        { day: "Mittwoch", hours: "09:00 - 18:00" },
-        { day: "Donnerstag", hours: "09:00 - 18:00" },
-        { day: "Freitag", hours: "09:00 - 16:00" },
-        { day: "Samstag", hours: "Auf Anfrage" },
-        { day: "Sonntag", hours: "Geschlossen" },
-      ],
     },
   },
 }

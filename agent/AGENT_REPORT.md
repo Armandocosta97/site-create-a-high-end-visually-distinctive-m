@@ -908,6 +908,19 @@ Contact cards reduction:
 
 Build passed after the contact card reduction.
 
+Italian locale cleanup:
+
+- Restored proper Italian accents across the locale file and cleaned up several mixed-language labels and descriptions.
+- Removed obsolete Italian contact copy keys that were no longer used by the current UI.
+
+Build passed after the Italian locale cleanup.
+
+French locale cleanup:
+
+- Cleaned up the French locale by fixing several mixed-language strings, replacing obvious anglicisms with more natural French equivalents, and removing obsolete contact copy keys.
+
+Build passed after the French locale cleanup.
+
 Localization layout fix:
 
 - Added robust long-word wrapping to the black `BrandStoryPreviewSection` title so German strings no longer overflow the panel.
@@ -1010,3 +1023,35 @@ Footer simplification:
 - Removed the extra footer structure so it now reads as a compact closing element instead of a full section.
 
 Build passed after the footer simplification.
+
+German locale cleanup:
+
+- Reworked the German copy to remove the most visible mixed-English product language in the home, services, gallery, and contact sections.
+- Aligned the contact locale with the current UI by removing the obsolete email card copy, deleting deprecated form helper keys, and dropping the unused studio-hours block.
+- Replaced placeholder form wording with final user-facing German copy and tightened several CTA/SEO-oriented labels into more natural phrasing.
+
+Build passed after the German locale cleanup.
+
+Spanish locale cleanup:
+
+- Reworked the Spanish copy to remove the most visible English product terms across the home, services, gallery, and contact sections.
+- Updated the services and portfolio language so labels, accents, and CTA wording read more naturally in Spanish instead of mixed product-English.
+- Aligned the contact locale with the current UI by removing the obsolete email card copy, deleting deprecated helper keys, and removing the unused studio-hours block.
+
+Build passed after the Spanish locale cleanup.
+
+English locale cleanup:
+
+- Tightened the English copy in services and portfolio so inquiry-oriented wording reads more naturally and consistently across the site.
+- Aligned the contact locale with the current UI by removing the obsolete email card copy, deleting deprecated helper keys, and removing the unused studio-hours block.
+- Replaced the temporary form placeholder line with final user-facing copy that matches the live Static Forms flow.
+
+Build passed after the English locale cleanup.
+
+Production locale sweep:
+
+- Removed the remaining non-English locale leftovers that were still too mixed or inconsistent for production across Italian, French, German, and Spanish.
+- Aligned all non-English contact sections with the real UI by removing outdated email-card references where they were still present and updating the supporting copy around phone, WhatsApp, and the form.
+- Cleaned the last visible SEO/conversion/accent labels so the language now reads intentionally localized instead of partially translated.
+
+Build passed after the production locale sweep.
